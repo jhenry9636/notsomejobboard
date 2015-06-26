@@ -1,5 +1,8 @@
 var express = require('express')
 var	mongoose = require('mongoose');
+var session = require('express-session');
+var passport = require('passport');
+var LocalStrategy = require('passport-local').Strategy;
 
 var app = express();
 
@@ -14,8 +17,16 @@ var db = mongoose.connect('mongodb://jarrad:when!23@ds045242.mongolab.com:45242/
 app.use(bodyParser.urlencoded({
   extended: true
 }));
-
 app.use(bodyParser.json());
+
+app.use(session({
+	secret: 'deanmilton',
+	resave: true,
+	saveUninitialized: false
+}))
+
+app.use(passport.initialize());
+app.use(passport.session());
 
 require('./configs/views.js')(app)
 require('./routes/static.js')(app)

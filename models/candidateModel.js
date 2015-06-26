@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
-var Schema = mongoose.Schema
+var Schema = mongoose.Schema;
+var passportLocalMongoose = require('passport-local-mongoose');
 
 var CandidateSchema = new Schema({
 	firstName: {
@@ -26,10 +27,24 @@ var CandidateSchema = new Schema({
 		type: Schema.Types.ObjectId,
 		ref: 'Review'
 	}],
-	joinedDate: {
+	location: {
+		type: 'String',
+		require: true
+	},
+	stack: {
+		type: ['String'],
+		require: true
+	},
+	compensation: {
+		type: 'String',
+		require: true
+	},
+	joinedAt: {
 		type: 'String',
 		default : Date.now()
 	}
 })
+
+CandidateSchema.plugin(passportLocalMongoose)
 
 module.exports = mongoose.model('Candidate', CandidateSchema)

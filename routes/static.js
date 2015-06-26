@@ -11,15 +11,15 @@ module.exports = function(app) {
 		res.render('contact')
 	})
 
-	app.get('/candidate', function(req, res) {
+	app.get('/signup/recruiter', function(req, res) {
+		res.render('recruiter')
+	})
+
+	app.get('/signup/candidate', function(req, res) {
 		res.render('candidate')
 	})
 
 	app.get('/review', function(req, res) {
 		res.render('review')
-	})
-
-	app.get('/recruiter', function(req, res) {
-		res.render('recruiter')
 	})
 }
