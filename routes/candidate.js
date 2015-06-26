@@ -2,7 +2,7 @@ var express = require('express');
 var candidateRouter = express.Router();
 
 
-module.exports = function(CandidateModel) {
+module.exports = function(CandidateModel, passport) {
 
 	candidateRouter.route('/')
 		.get(function(req, res) {

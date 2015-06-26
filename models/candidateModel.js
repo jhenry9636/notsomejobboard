@@ -13,7 +13,7 @@ var CandidateSchema = new Schema({
 	},
 	userName: {
 		type: 'String',
-		default: this.emailAddress
+		require: true
 	},
 	emailAddress: {
 		type: 'String',
