@@ -2,8 +2,7 @@ var express = require('express')
 var	mongoose = require('mongoose');
 var session = require('express-session');
 var passport = require('passport');
-var candidateStrategy = require('passport-local').Strategy;
-var recruiterStrategy = require('passport-local').Strategy;
+var passportLocal = require('passport-local').Strategy;
 
 var app = express();
 
@@ -27,47 +26,10 @@ app.use(expressSession({
 	saveUninitialized: false
 }))
 
-app.use(passport.initialize())
-app.use(passport.session())
 
-passport.use(new passportLocal.Strategy(function(username, password, done) {
-	CandidateModel
-		.findOne({username: username })
-		.exec(function(err, user) {
-			if(err) {
-				done(new Error('ouch!'))
-			}
-			else if(!user) {
-				done(null, null)
-			}
-			else {
-				if(password == user.password) {
-					done(null, user)
-				}
-				else {
-					done(null, null)
-				}
-			}
-		})
-
-}))
-
-passport.serializeUser(function(user, done) {
-		done(null, user._id)
-})
-
-passport.deserializeUser(function(id, done) {
-	CandidateModel.findById(id, function(err, user) {
-		if(err) {
-			throw err
-		}
-
-		done(null, user)
-	})
-})
-
+require('./configs/passport.js')(app, passport, CandidateModel, RecruiterModel)
 require('./configs/views.js')(app)
-require('./routes/static.js')(app, passport)
+require('./routes/static.js')(app)
 
 
 var candidateRouter = require('./routes/candidate.js')(CandidateModel, passport)
@@ -78,6 +40,9 @@ app.use('/api/recruiter', recruiterRouter)
 
 var reviewRouter = require('./routes/review.js')(ReviewModel)
 app.use('/api/review', reviewRouter)
+
+var loginRouter = require('./routes/login.js')(passport)
+app.use('/login', loginRouter)
 
 
 

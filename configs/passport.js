@@ -1,6 +1,10 @@
 var LocalStrategy = require('passport-local').Strategy;
 
-module.exports = function(passport, CandidateModel, RecruiterModel) {
+module.exports = function(app, passport, CandidateModel, RecruiterModel) {
+
+	app.use(passport.initialize())
+	app.use(passport.session())
+
 	passport.serializeUser(function(user, done) {
 			done(null, user._id)
 	})
