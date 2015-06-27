@@ -26,6 +26,10 @@ app.use(expressSession({
 	saveUninitialized: false
 }))
 
+app.use(passport.initialize())
+app.use(passport.session())
+
+require('./configs/passport.js')(passport, CandidateModel, RecruiterModel)
 
 require('./configs/passport.js')(app, passport, CandidateModel, RecruiterModel)
 require('./configs/views.js')(app)
