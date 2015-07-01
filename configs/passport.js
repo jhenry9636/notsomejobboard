@@ -26,14 +26,15 @@ module.exports = function(app, passport, CandidateModel, RecruiterModel) {
 				done(new Error('ouch!'))
 			}
 			else if(!user) {
-				done(null, null)
+				done(null, null, {message: 'Invalid username or password'})
 			}
 			else {
 				if(password == user.password) {
+					console.log(password, user.password, user)
 					done(null, user)
 				}
 				else {
-					done(null, null)
+					done(null, null, {message: 'Invalid username or password'})
 				}
 			}
 		})

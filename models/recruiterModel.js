@@ -12,11 +12,11 @@ var RecruiterSchema = new Schema({
 	},
 	userName: {
 		type: String,
-		default: this.emailAddress
+		require: true
 	},
-	relatedReviews: [{
+	candidates: [{
 		type: Schema.Types.ObjectId,
-		ref: 'Review'
+		ref: 'Candidate'
 	}],
 	emailAddress: {
 		type: String,

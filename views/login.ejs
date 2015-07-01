@@ -4,6 +4,8 @@
 		<title>Log In</title>
 	</head>
 	<body>
+		<% if(!isRecruiter) { %>
+		<h1>Candidate Login</h1>
 		<form action="#" method="post">
 			<input type="text" name="username" placeholder="Name" />
 			<br />
@@ -11,5 +13,16 @@
 			<br />
 			<input type="submit" value="Log In" />
 		</form>
+		<% } %>
+		<% if(isRecruiter) { %>
+		<h1>Recruiter Login</h1>
+		<form action="#" method="post">
+			<input type="text" name="username" placeholder="Name" />
+			<br />
+			<input type="password" name="password" placeholder="Password" />
+			<br />
+			<input type="submit" value="Log In" />
+		</form>
+		<% } %>
 	</body>
 </html>

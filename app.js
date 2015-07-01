@@ -3,6 +3,7 @@ var	mongoose = require('mongoose');
 var session = require('express-session');
 var passport = require('passport');
 var passportLocal = require('passport-local').Strategy;
+var flash = require('connect-flash');
 
 var app = express();
 
@@ -25,11 +26,8 @@ app.use(expressSession({
 	resave: false,
 	saveUninitialized: false
 }))
-
-app.use(passport.initialize())
-app.use(passport.session())
-
-require('./configs/passport.js')(passport, CandidateModel, RecruiterModel)
+app.use(flash())
+app.use(express.static('public'))
 
 require('./configs/passport.js')(app, passport, CandidateModel, RecruiterModel)
 require('./configs/views.js')(app)
