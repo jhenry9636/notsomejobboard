@@ -14,13 +14,20 @@
 		</div>
 		<nav class="top-bar" data-topbar role="navigation">
 			<header>
-				<% if(user) { %>
-					<span style="float: right; color: #fff; font-size: 13px; padding-right: 15px;"><%= user.firstName%></span>
+				<% if(user) { %> 
+					<a href="/logout" style="float: right; color: #fff; font-size: 13px; padding-right: 15px;">Log Out</a>
+					<span style="float: right; color: #fff; font-size: 13px; padding-right: 15px;">Hi, <%= user.firstName %></span>
+				<% } else { %>
+					<a href="/login" data-reveal-id="log-in" style="float: right; color: #fff; font-size: 13px; padding-right: 20px;">Log In</a>
 				<% } %>
-				<a href="/login" data-reveal-id="log-in" style="float: right; color: #fff; font-size: 13px; padding-right: 15px;">Log In</a>
 				<a href="/" style="color: #fff;">Welcome to WhenRecruited.com</a>
 			</header>
 		</nav>
+		<% if(message.length) { %>
+		<div data-alert class="alert-box">
+		  <h5 style="color:#fff"><%= message %></h5>
+		</div>
+		<% }%>
 		<div class="candidate-signin">
 			<h4>Just a form away from job hunting bliss ...</h4>
 			<form method="post" action="/api/candidate">
@@ -33,12 +40,12 @@
 				<input type="text" placeholder="Salary/Rate?" name="compensation">
 				<input type="text" placeholder="Location?" name="location">
 				<input type="text" placeholder="Tech Stack?" name="stack">
-				<input type="submit">
+				<button type="submit">Sign Up!</a>
 			</form>
 		</div>
 		<div class="recruiter-signin">
 			<h2>Are you a recruiter?</h2>
-			<a href="#">Click here ...</a>
+			<a href="#">Why yes, yes I am ...</a>
 		</div>
 		<script type="text/javascript" src="/js/jquery.min.js"></script>
 		<script type="text/javascript" src="/js/libs.js"></script>

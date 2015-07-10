@@ -16,10 +16,7 @@ module.exports = function(passport) {
 	.post('/candidate',
 		passport.authenticate('candidate-strategy'),
 		function(req, res) {
-			console.log(req.user)
-			res.render('index', {
-				user: req.user
-			})
+			res.redirect('/')
 	})
 
 	loginRouter.get('/recruiter', function(req, res) {

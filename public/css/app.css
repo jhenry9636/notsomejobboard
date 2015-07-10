@@ -15,7 +15,8 @@
 
 .alert-box {
   margin: 0px;
-  padding-left: 20px;
+  margin-bottom: 0px !important;
+  padding-left: 22px !important;
 }
 
 .recruiter-signin {

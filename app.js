@@ -48,6 +48,8 @@ app.use('/api/review', reviewRouter)
 var loginRouter = require('./routes/login.js')(passport)
 app.use('/login', loginRouter)
 
+require('./routes/logout.js')(app)
+
 var verifyRouter = require('./routes/verify.js')(CandidateModel)
 app.use('/verify', verifyRouter)
 
