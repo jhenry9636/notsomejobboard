@@ -2,9 +2,45 @@
 <html>
 	<head>
 		<title>WhenRecruited.com</title>
+		<link rel="stylesheet" type="text/css" href="/css/app.css">
+		<link rel="stylesheet" type="text/css" href="/css/foundation.css">
 	</head>
 	<body>
-		<h1>Welcome to WhenRecruited.com</h1>
-		<script type="text/javascript" src="js/libs.js"></script>
+		<div id="log-in" class="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+		  <h2 id="modalTitle">Awesome. I have it.</h2>
+		  <p class="lead">Your couch.  It is mine.</p>
+		  <p>I'm a cool paragraph that lives inside of an even cooler modal. Wins!</p>
+		  <a class="close-reveal-modal" aria-label="Close">&#215;</a>
+		</div>
+		<nav class="top-bar" data-topbar role="navigation">
+			<header>
+				<% if(user) { %>
+					<span style="float: right; color: #fff; font-size: 13px; padding-right: 15px;"><%= user.firstName%></span>
+				<% } %>
+				<a href="/login" data-reveal-id="log-in" style="float: right; color: #fff; font-size: 13px; padding-right: 15px;">Log In</a>
+				<a href="/" style="color: #fff;">Welcome to WhenRecruited.com</a>
+			</header>
+		</nav>
+		<div class="candidate-signin">
+			<h4>Just a form away from job hunting bliss ...</h4>
+			<form method="post" action="/api/candidate">
+				<input type="text" placeholder="First Name" name="firstName">
+				<input type="text" placeholder="Last Name" name="lastName">
+				<input type="text" placeholder="Email Address" name="emailAddress">
+				<input type="text" placeholder="Username" name="username">
+				<input type="password" placeholder="Password" name="password">
+
+				<input type="text" placeholder="Salary/Rate?" name="compensation">
+				<input type="text" placeholder="Location?" name="location">
+				<input type="text" placeholder="Tech Stack?" name="stack">
+				<input type="submit">
+			</form>
+		</div>
+		<div class="recruiter-signin">
+			<h2>Are you a recruiter?</h2>
+			<a href="#">Click here ...</a>
+		</div>
+		<script type="text/javascript" src="/js/jquery.min.js"></script>
+		<script type="text/javascript" src="/js/libs.js"></script>
 	</body>
 </html>

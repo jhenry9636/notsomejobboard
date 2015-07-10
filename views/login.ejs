@@ -1,28 +1,47 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Log In</title>
+		<title>WhenRecruited.com</title>
+		<link rel="stylesheet" type="text/css" href="/css/app.css">
+		<link rel="stylesheet" type="text/css" href="/css/foundation.css">
 	</head>
 	<body>
-		<% if(!isRecruiter) { %>
-		<h1>Candidate Login</h1>
-		<form action="#" method="post">
-			<input type="text" name="username" placeholder="Name" />
-			<br />
-			<input type="password" name="password" placeholder="Password" />
-			<br />
-			<input type="submit" value="Log In" />
-		</form>
-		<% } %>
-		<% if(isRecruiter) { %>
-		<h1>Recruiter Login</h1>
-		<form action="#" method="post">
-			<input type="text" name="username" placeholder="Name" />
-			<br />
-			<input type="password" name="password" placeholder="Password" />
-			<br />
-			<input type="submit" value="Log In" />
-		</form>
-		<% } %>
+		<nav class="top-bar" data-topbar role="navigation">
+			<header>
+				<a href="#" data-reveal-id="log-in" style="float: right; color: #fff; font-size: 13px; padding-right: 15px;">Log In</a>
+				<a href="/" style="color: #fff;">Welcome to WhenRecruited.com</a>
+			</header>
+		</nav>
+		<% if(message.length) { %>
+		<div data-alert class="alert-box">
+		  <h5 style="color:#fff"><%= message %></h5>
+		</div>
+		<% }%>
+		<br />
+		<br />
+		<div class="row">
+			<div class="columns small-6">
+				<h2>Candidate Login</h2>
+				<form action="/login/candidate" method="post">
+					<input type="text" name="emailAddress" placeholder="Email Address" />
+					<br />
+					<input type="password" name="password" placeholder="Password" />
+					<br />
+					<input type="submit" value="Log In" />
+				</form>
+			</div>
+			<div class="columns small-6">
+				<h2>Recruiter Login</h2>
+				<form action="/login/recruiter" method="post">
+					<input type="text" name="username" placeholder="Name" />
+					<br />
+					<input type="password" name="password" placeholder="Password" />
+					<br />
+					<input type="submit" value="Log In" />
+				</form>
+			</div>
+		</div>
+		<script type="text/javascript" src="/js/jquery.min.js"></script>
+		<script type="text/javascript" src="/gjs/libs.js"></script>
 	</body>
 </html>

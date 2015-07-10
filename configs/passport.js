@@ -11,17 +11,18 @@ module.exports = function(app, passport, CandidateModel, RecruiterModel) {
 
 	passport.deserializeUser(function(id, done) {
 		CandidateModel.findById(id, function(err, user) {
-			if(err) {
-				throw err
-			}
+			if(err) throw err
+
 			done(null, user)
 		})
 	})
 
-	passport.use('candidate-strategy', new LocalStrategy(function(username, password, done) {
+	passport.use('candidate-strategy', new LocalStrategy({usernameField: 'emailAddress'},function(emailAddress, password, done) {
+		console.log('emailAddress ', emailAddress)
 		CandidateModel
-		.findOne({username: username })
+		.findOne({emailAddress: emailAddress })
 		.exec(function(err, user) {
+			console.log('password', user.password, 'server', password)
 			if(err) {
 				done(new Error('ouch!'))
 			}
@@ -30,7 +31,6 @@ module.exports = function(app, passport, CandidateModel, RecruiterModel) {
 			}
 			else {
 				if(password == user.password) {
-					console.log(password, user.password, user)
 					done(null, user)
 				}
 				else {

@@ -11,7 +11,9 @@ var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
 var expressSession = require('express-session');
 
-var CandidateModel = require('./models/candidateModel.js')
+var nodeMailer = require('nodemailer')
+
+var CandidateModel = require('./models/candidateModel.js')()
 var RecruiterModel = require('./models/recruiterModel.js')
 var ReviewModel = require('./models/reviewModel.js')
 
@@ -34,7 +36,7 @@ require('./configs/views.js')(app)
 require('./routes/static.js')(app)
 
 
-var candidateRouter = require('./routes/candidate.js')(CandidateModel, passport)
+var candidateRouter = require('./routes/candidate.js')(CandidateModel, passport, nodeMailer)
 app.use('/api/candidate', candidateRouter)
 
 var recruiterRouter = require('./routes/recruiter.js')(RecruiterModel)
@@ -45,6 +47,9 @@ app.use('/api/review', reviewRouter)
 
 var loginRouter = require('./routes/login.js')(passport)
 app.use('/login', loginRouter)
+
+var verifyRouter = require('./routes/verify.js')(CandidateModel)
+app.use('/verify', verifyRouter)
 
 
 

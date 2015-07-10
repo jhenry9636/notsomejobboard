@@ -1,7 +1,8 @@
 module.exports = function(app, passport) {
 	app.get('/', function(req, res) {
-		console.log('here' + req.user)
+		console.log(req.user)
 		res.render('index', {
+			message: req.flash('message'),
 			isAuthenticated: req.isAuthenticated(),
 			user: req.user
 		})
@@ -25,5 +26,9 @@ module.exports = function(app, passport) {
 
 	app.get('/review', function(req, res) {
 		res.render('review')
+	})
+
+	app.get('/confirm', function(req, res) {
+		res.render('emailConfirmation')
 	})
 }

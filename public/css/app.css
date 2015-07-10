@@ -1,0 +1,33 @@
+.top-bar {
+  padding-top: 20px;
+  padding-left: 20px;
+  color: #fff;
+  font-size: 30px;
+  height: 70px !important;
+}
+
+.candidate-signin {
+  margin-top: 50px;
+  width: 40%;
+  margin-left: 50px;
+  float: left;
+}
+
+.alert-box {
+  margin: 0px;
+  padding-left: 20px;
+}
+
+.recruiter-signin {
+  float: left;
+  text-align: center;
+  margin-top: 50px;
+  padding: 100px 0px 0px 0px;
+  width: 40%;
+  margin-left: 50px;
+}
+
+.candidate-signin p {
+  margin: 10px 30px;
+}
+
