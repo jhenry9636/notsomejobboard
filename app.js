@@ -53,6 +53,10 @@ require('./routes/logout.js')(app)
 var verifyRouter = require('./routes/verify.js')(CandidateModel)
 app.use('/verify', verifyRouter)
 
+var dashboardRouter = require('./routes/dashboard.js')(CandidateModel, RecruiterModel, passport)
+app.use('/dashboard', dashboardRouter)
+
+
 
 
 

@@ -18,11 +18,9 @@ module.exports = function(app, passport, CandidateModel, RecruiterModel) {
 	})
 
 	passport.use('candidate-strategy', new LocalStrategy({usernameField: 'emailAddress'},function(emailAddress, password, done) {
-		console.log('emailAddress ', emailAddress)
 		CandidateModel
 		.findOne({emailAddress: emailAddress })
 		.exec(function(err, user) {
-			console.log('password', user.password, 'server', password)
 			if(err) {
 				done(new Error('ouch!'))
 			}

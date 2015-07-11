@@ -16,7 +16,7 @@
 			<header>
 				<% if(user) { %> 
 					<a href="/logout" style="float: right; color: #fff; font-size: 13px; padding-right: 15px;">Log Out</a>
-					<span style="float: right; color: #fff; font-size: 13px; padding-right: 15px;">Hi, <%= user.firstName %></span>
+					<a style="float: right; color: #fff; font-size: 13px; padding-right: 15px;" href="/dashboard/candidate/<%= user._id %>">Hi, <%= user.firstName %></a>
 				<% } else { %>
 					<a href="/login" data-reveal-id="log-in" style="float: right; color: #fff; font-size: 13px; padding-right: 20px;">Log In</a>
 				<% } %>

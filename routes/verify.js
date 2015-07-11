@@ -4,10 +4,17 @@ var nodemailer = require('nodemailer');
 
 
 module.exports = function(CandidateModel) {
-	verifyRouter.route('/candidate').get(function(req, res) {
+	verifyRouter.route('/candidate').get(function(req, res, next) {
 		console.log('unique?'+req.query.token)
 		CandidateModel.findOne({authToken: req.query.token}, function(err, candidate) {
 			if(err) throw err
+			console.dir(candidate)
+			if(!candidate) {
+				console.warn('This token could not be verified ' + req.query.token)
+				req.flash('message', 'There was an error. Please try again later.')
+				res.redirect('/');
+				next();
+			}
 			candidate.isAuthenticated = true;
 			candidate.save(function(err, candidate) {
 				if(err) throw err

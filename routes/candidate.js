@@ -24,12 +24,11 @@ module.exports = function(CandidateModel, passport, nodemailer) {
 				        pass: 'welcome!23'
 				    }
 				});
-				console.log(candidate.emailAddress)
 				transporter.sendMail({
 				    from: 'support',
 				    to: candidate.emailAddress,
 				    subject: 'Please confirm your email address',
-				    html: '<a href="http://127.0.0.1:3333/verify/candidate?token='+candidate.authToken+'></a>'
+				    html: '<a href="http://127.0.0.1:3333/verify/candidate?token='+candidate.authToken+'">Confirm</a>'
 				}, function(err) {
 					if(err) throw err
 					
