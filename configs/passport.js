@@ -42,16 +42,17 @@ module.exports = function(app, passport, CandidateModel, RecruiterModel) {
 	passport.use('candidate-strategy', new LocalStrategy({usernameField: 'emailAddress'},function(emailAddress, password, done) {
 		CandidateModel
 		.findOne({emailAddress: emailAddress })
-		.exec(function(err, user) {
+		.exec(function(err, candidate) {
 			if(err) {
 				done(new Error('ouch!'))
 			}
-			else if(!user) {
+			else if(!candidate) {
 				done(null, null, {message: 'Invalid username or password'})
 			}
 			else {
-				if(password == user.password) {
-					done(null, user)
+				console.log('result ', candidate.comparePassword(password))
+				if(candidate.comparePassword(password)) {
+					done(null, candidate)
 				}
 				else {
 					done(null, null, {message: 'Invalid username or password'})
@@ -63,16 +64,16 @@ module.exports = function(app, passport, CandidateModel, RecruiterModel) {
 	passport.use('recruiter-strategy', new LocalStrategy({usernameField: 'emailAddress'},function(emailAddress, password, done) {
 		RecruiterModel
 		.findOne({emailAddress: emailAddress })
-		.exec(function(err, user) {
+		.exec(function(err, recruiter) {
 			if(err) {
 				done(new Error('ouch!'))
 			}
-			else if(!user) {
+			else if(!recruiter) {
 				done(null, null, {message: 'Invalid username or password'})
 			}
 			else {
-				if(password == user.password) {
-					done(null, user)
+				if(recruiter.comparePassword(password)) {
+					done(null, recruiter)
 				}
 				else {
 					done(null, null, {message: 'Invalid username or password'})

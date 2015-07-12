@@ -1,6 +1,7 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var crypto = require('crypto');
+var bcrypt = require('bcryptjs');
 var base64url = require('base64url');
 var slug = require('slug');
 
@@ -57,10 +58,6 @@ module.exports = function() {
 			type: ['String'],
 			require: true
 		},
-		isRecruiter: {
-			type: 'Boolean',
-			default: false
-		},
 		compensation: {
 			type: 'String',
 			require: true
@@ -71,10 +68,31 @@ module.exports = function() {
 		}
 	})
 
+	CandidateSchema.pre('save', function(next) {
+		var candidate = this;
+
+		if (!candidate.isModified('password')) return next();
+
+		bcrypt.genSalt(10, function(err, salt) {
+		if (err) return next(err);
+
+		bcrypt.hash(candidate.password, salt, function(err, hash) {
+			if (err) return next(err);
+				candidate.password = hash;
+				next();
+			});
+		});
+	});
+
+
 	CandidateSchema.pre('save', function (next) {
 		this.urlSlug = slug(this.userName)
 		next()
 	})
+
+	CandidateSchema.methods.comparePassword = function(candidatePassword) {
+		return bcrypt.compareSync(candidatePassword, this.password)
+	};
 
 	return mongoose.model('Candidate', CandidateSchema)
 }

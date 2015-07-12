@@ -11,7 +11,7 @@ module.exports = function(CandidateModel, RecruiterModel) {
 				console.warn('This token could not be verified ' + req.query.token)
 				req.flash('message', 'There was an error. Please try again later.')
 				res.redirect('/');
-				next();
+				return next();
 			}
 
 			if(candidate.emailVerified) {
@@ -53,7 +53,7 @@ module.exports = function(CandidateModel, RecruiterModel) {
 				console.warn('This token could not be verified ' + req.query.token)
 				req.flash('message', 'There was an error. Please try again later.')
 				res.redirect('/');
-				next();
+				return next();
 			}
 
 			if(recruiter.emailVerified) {

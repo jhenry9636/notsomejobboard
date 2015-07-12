@@ -1,6 +1,7 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var crypto = require('crypto');
+var bcrypt = require('bcryptjs');
 var base64url = require('base64url');
 var slug = require('slug');
 
@@ -67,10 +68,31 @@ module.exports = function() {
 
 	})
 
+	RecruiterSchema.pre('save', function(next) {
+		var recruiter = this;
+
+		if (!recruiter.isModified('password')) return next();
+
+		bcrypt.genSalt(10, function(err, salt) {
+		if (err) return next(err);
+
+		bcrypt.hash(recruiter.password, salt, function(err, hash) {
+			if (err) return next(err);
+				recruiter.password = hash;
+				next();
+			});
+		});
+	});
+
+
 	RecruiterSchema.pre('save', function (next) {
 		this.urlSlug = slug(this.userName)
 		next()
 	})
+
+	RecruiterSchema.methods.comparePassword = function(recruiterPassword) {
+		return bcrypt.compareSync(recruiterPassword, this.password)
+	};
 
 	return mongoose.model('Recruiter', RecruiterSchema)
 

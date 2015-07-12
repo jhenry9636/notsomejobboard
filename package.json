@@ -10,6 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "base64url": "^1.0.4",
+    "bcryptjs": "^2.2.0",
     "body-parser": "^1.12.4",
     "bower": "^1.4.1",
     "connect-flash": "^0.1.1",
