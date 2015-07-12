@@ -1,6 +1,5 @@
 module.exports = function(app, passport) {
 	app.get('/', function(req, res) {
-		console.log(req.user)
 		res.render('index', {
 			message: req.flash('message'),
 			isAuthenticated: req.isAuthenticated(),
@@ -17,11 +16,11 @@ module.exports = function(app, passport) {
 	})
 
 	app.get('/signup/recruiter', function(req, res) {
-		res.render('recruiter')
-	})
-
-	app.get('/signup/candidate', function(req, res) {
-		res.render('candidate')
+		res.render('recruiterSignup', {
+			user: req.user,
+			errors: req.flash('errors'),
+			message: req.flash('message')
+		})
 	})
 
 	app.get('/review', function(req, res) {

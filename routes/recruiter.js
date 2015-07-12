@@ -2,7 +2,7 @@ var express = require('express');
 var recruiterRouter = express.Router();
 
 
-module.exports = function(RecruiterModel) {
+module.exports = function(RecruiterModel, passport, nodemailer) {
 
 	recruiterRouter.route('/')
 		.get(function(req, res) {
@@ -14,9 +14,28 @@ module.exports = function(RecruiterModel) {
 		})
 		.post(function(req, res) {
 			var recruiter = new RecruiterModel(req.body);
-			recruiter.save(function(err) {
+			recruiter.save(function(err, recruiter) {
 				if(err) throw err
-				res.send(recruiter)
+
+				var transporter = nodemailer.createTransport({
+				    service: 'gmail',
+				    auth: {
+				        user: 'jarrad.henry@gmail.com',
+				        pass: 'welcome!23'
+				    }
+				});
+				transporter.sendMail({
+				    from: 'support',
+				    to: recruiter.emailAddress,
+				    subject: 'Verify your email.',
+				    html: '<a href="http://127.0.0.1:3333/verify/recruiter?token='+recruiter.authToken+'">Confirm</a>'
+				}, function(err) {
+					if(err) throw err
+					
+					res.redirect('/confirm')
+
+				});
+
 			})
 		})
 

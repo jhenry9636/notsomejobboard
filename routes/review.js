@@ -16,11 +16,8 @@ module.exports = function(ReviewsModel) {
 
 		.post(function(req, res) {
 			var review = new ReviewsModel(req.body);
-			console.log(req.body)
 			review.save(function(err) {
 				if(err) throw err
-								console.log(req.body)
-
 				res.send(review)
 			})
 		})

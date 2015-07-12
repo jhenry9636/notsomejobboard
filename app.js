@@ -14,7 +14,7 @@ var expressSession = require('express-session');
 var nodeMailer = require('nodemailer')
 
 var CandidateModel = require('./models/candidateModel.js')()
-var RecruiterModel = require('./models/recruiterModel.js')
+var RecruiterModel = require('./models/recruiterModel.js')()
 var ReviewModel = require('./models/reviewModel.js')
 
 var db = mongoose.connect('mongodb://jarrad:when!23@ds045242.mongolab.com:45242/whenrecruited');
@@ -39,7 +39,7 @@ require('./routes/static.js')(app)
 var candidateRouter = require('./routes/candidate.js')(CandidateModel, passport, nodeMailer)
 app.use('/api/candidate', candidateRouter)
 
-var recruiterRouter = require('./routes/recruiter.js')(RecruiterModel)
+var recruiterRouter = require('./routes/recruiter.js')(RecruiterModel, passport, nodeMailer)
 app.use('/api/recruiter', recruiterRouter)
 
 var reviewRouter = require('./routes/review.js')(ReviewModel)
@@ -50,7 +50,7 @@ app.use('/login', loginRouter)
 
 require('./routes/logout.js')(app)
 
-var verifyRouter = require('./routes/verify.js')(CandidateModel)
+var verifyRouter = require('./routes/verify.js')(CandidateModel, RecruiterModel)
 app.use('/verify', verifyRouter)
 
 var dashboardRouter = require('./routes/dashboard.js')(CandidateModel, RecruiterModel, passport)

@@ -33,12 +33,26 @@ module.exports = function(passport) {
 	})
 
 	loginRouter.get('/recruiter', function(req, res) {
-		res.render('login', {
+		res.render('recruiterSignup', {
+			errors: req.flash('errors'),
 			message: req.flash('message')
 		})
 	})
-	.post('/recruiter', passport.authenticate('candidate-strategy'), function(req, res) {
-		res.render('index')
+	.post('/recruiter', 
+		function(req, res, next) {
+			passport.authenticate('recruiter-strategy', function(err, user, info) {
+				if (err) { return next(err); }
+
+				if (!user) { 		
+					req.flash('errors', 'Invalid email address or password.')
+					return res.redirect('/login'); 
+				}
+				req.logIn(user, function(err) {
+				  if (err) { return next(err); }
+				  console.log(req.user._id)
+				  return res.redirect('/dashboard/recruiter/' + req.user._id);
+				});
+			})(req, res, next);
 	})
 
 	return loginRouter

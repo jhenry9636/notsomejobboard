@@ -22,29 +22,34 @@
 		  <h5 style="color:#fff"><%= message %></h5>
 		</div>
 		<% }%>
-		<div class="candidate-signin">
-			<h4>Just a form away from job hunting bliss ...</h4>
-			<form method="post" action="/api/candidate">
-				<input type="text" placeholder="First Name" name="firstName">
-				<input type="text" placeholder="Last Name" name="lastName">
-				<input type="text" placeholder="Email Address" name="emailAddress">
-				<input type="text" placeholder="Username" name="userName">
-				<input type="password" placeholder="Password" name="password">
+		<div class="row">
+			<div class="small-6 columns">
+				<form style="margin-top: 50px;" method="post" action="/api/recruiter">
+					<input type="text" placeholder="First Name" name="firstName">
+					<input type="text" placeholder="Last Name" name="lastName">
+					<input type="text" placeholder="Email Address" name="emailAddress">
+					<input type="text" placeholder="Username" name="userName">
+					<input type="password" placeholder="Password" name="password">
+					<br />
+					<input type="text" placeholder="Company?" name="companyName">
+					<button type="submit">Sign Up!</a>
+				</form>
+			</div>
+			<div class="small-6 columns">
+				<div class="panel" style="margin-top: 50px;">
+				  <h5>Sign up today!</h5>
+				</div>
+				<h2 style="margin-top: 20px">Warm leads at your fingertips.</h2>
 
-				<input type="text" placeholder="Salary/Rate?" name="compensation">
-				<input type="text" placeholder="Location?" name="location">
-				<input type="text" placeholder="Tech Stack?" name="stack">
-				<button type="submit">Sign Up!</button>
-			</form>
-		</div>
-		<div class="recruiter-signin">
-			<h2>Are you a recruiter?</h2>
-			<a href="/signup/recruiter" class="button info">Why yes, yes I am &rarr;</a>
-			<br />
-			<br />
-			<h3>Have an account already?</h3>
-			<a class="success button" href="/login">Log In</a>
-		</div>
+				<h4 style="margin-top: 20px;">Get the time back you spend talking to uninterested tech talent.</h4>
+
+				<p>Our candidates know</p>
+				<ul>
+				 <li>What location they want to work?</li>
+				 <li>For how much?</li>
+				 <li>and What stack they prefer?</li>
+				</ul>
+			</div>
 		<script type="text/javascript" src="/js/jquery.min.js"></script>
 		<script type="text/javascript" src="/js/libs.js"></script>
 	</body>

@@ -6,15 +6,37 @@ module.exports = function(app, passport, CandidateModel, RecruiterModel) {
 	app.use(passport.session())
 
 	passport.serializeUser(function(user, done) {
-			done(null, user._id)
+			if(user.isRecruiter) {
+				var serializedObj = 
+				done(null, {
+					id: user._id,
+					isRecruiter: true
+				})
+			}
+			else {
+				done(null, {
+					id: user._id,
+					isRecruiter: false
+				})
+			}
 	})
 
-	passport.deserializeUser(function(id, done) {
-		CandidateModel.findById(id, function(err, user) {
-			if(err) throw err
+	passport.deserializeUser(function(serializedObj, done) {
 
-			done(null, user)
-		})
+		if(serializedObj.isRecruiter) {
+			RecruiterModel.findById(serializedObj.id, function(err, user) {
+				if(err) throw err
+
+				done(null, user)
+			})
+		}
+		else {
+			CandidateModel.findById(serializedObj.id, function(err, user) {
+				if(err) throw err
+
+				done(null, user)
+			})
+		}
 	})
 
 	passport.use('candidate-strategy', new LocalStrategy({usernameField: 'emailAddress'},function(emailAddress, password, done) {
@@ -38,22 +60,22 @@ module.exports = function(app, passport, CandidateModel, RecruiterModel) {
 		})
 	}))
 
-	passport.use('recruiter-strategy', new LocalStrategy(function(username, password, done) {
+	passport.use('recruiter-strategy', new LocalStrategy({usernameField: 'emailAddress'},function(emailAddress, password, done) {
 		RecruiterModel
-		.findOne({username: username })
+		.findOne({emailAddress: emailAddress })
 		.exec(function(err, user) {
 			if(err) {
 				done(new Error('ouch!'))
 			}
 			else if(!user) {
-				done(null, null)
+				done(null, null, {message: 'Invalid username or password'})
 			}
 			else {
 				if(password == user.password) {
 					done(null, user)
 				}
 				else {
-					done(null, null)
+					done(null, null, {message: 'Invalid username or password'})
 				}
 			}
 		})

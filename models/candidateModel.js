@@ -1,8 +1,10 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
-var passportLocalMongoose = require('passport-local-mongoose');
 var crypto = require('crypto');
 var base64url = require('base64url');
+var slug = require('slug');
+
+slug.defaults.mode ='pretty';
 
 module.exports = function() {
 	var getAuthToken = function() {
@@ -19,8 +21,7 @@ module.exports = function() {
 		},
 		userName: {
 			type: 'String',
-			require: true,
-			//unique: true
+			require: true		
 		},
 		emailAddress: {
 			type: 'String',
@@ -41,17 +42,24 @@ module.exports = function() {
 			require: true,
 			unique: true
 		},
+		urlSlug: {
+			type: 'String'
+		},
 		location: {
 			type: 'String',
 			require: true
 		},
-		isAuthenticated: {
+		emailVerified: {
 			type: 'Boolean',
 			default: false
 		},
 		stack: {
 			type: ['String'],
 			require: true
+		},
+		isRecruiter: {
+			type: 'Boolean',
+			default: false
 		},
 		compensation: {
 			type: 'String',
@@ -61,6 +69,11 @@ module.exports = function() {
 			type: 'String',
 			default : Date.now()
 		}
+	})
+
+	CandidateSchema.pre('save', function (next) {
+		this.urlSlug = slug(this.userName)
+		next()
 	})
 
 	return mongoose.model('Candidate', CandidateSchema)
