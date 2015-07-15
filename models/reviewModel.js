@@ -12,7 +12,8 @@ var ReviewSchema = new Schema({
 		}, 'Value must be in increments of .5']
 	},
 	employer: {
-		type: String
+		type: String,
+		default: null
 	},
 	createdAt: {
 		type: Date,
@@ -20,10 +21,12 @@ var ReviewSchema = new Schema({
 	},
 	writtenBy: {
 		type: Schema.ObjectId,
+		ref: 'Candidate',
 		require: true
 	},
 	recruiterId: {
 		type: Schema.ObjectId,
+		ref: 'Recruiter',
 		require: true
 	}
 })

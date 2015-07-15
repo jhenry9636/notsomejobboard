@@ -11,11 +11,12 @@ var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
 var expressSession = require('express-session');
 
-var nodeMailer = require('nodemailer')
+var nodeMailer = require('nodemailer');
 
-var CandidateModel = require('./models/candidateModel.js')()
-var RecruiterModel = require('./models/recruiterModel.js')()
-var ReviewModel = require('./models/reviewModel.js')
+var CandidateModel = require('./models/candidateModel.js')();
+var RecruiterModel = require('./models/recruiterModel.js')();
+var ReviewModel = require('./models/reviewModel.js');
+var ContactModel = require('./models/contactModel.js')();
 
 var db = mongoose.connect('mongodb://jarrad:when!23@ds045242.mongolab.com:45242/whenrecruited');
 
@@ -42,19 +43,25 @@ app.use('/api/candidate', candidateRouter)
 var recruiterRouter = require('./routes/recruiter.js')(RecruiterModel, passport, nodeMailer)
 app.use('/api/recruiter', recruiterRouter)
 
-var reviewRouter = require('./routes/review.js')(ReviewModel)
-app.use('/api/review', reviewRouter)
+var reviewRouter = require('./routes/reviews.js')(ReviewModel)
+app.use('/api/reviews', reviewRouter)
 
 var loginRouter = require('./routes/login.js')(passport)
 app.use('/login', loginRouter)
 
+// Log Route
 require('./routes/logout.js')(app)
+
+var fakerRouter = require('./routes/faker.js')(CandidateModel, RecruiterModel)
+app.use('/faker', fakerRouter)
 
 var verifyRouter = require('./routes/verify.js')(CandidateModel, RecruiterModel)
 app.use('/verify', verifyRouter)
 
 var dashboardRouter = require('./routes/dashboard.js')(CandidateModel, RecruiterModel, passport)
 app.use('/dashboard', dashboardRouter)
+
+require('./routes/contact.js')(app, ContactModel)
 
 
 

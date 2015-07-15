@@ -43,6 +43,10 @@ module.exports = function() {
 			require: true,
 			unique: true
 		},
+		contactRequests: [{
+			type: Schema.Types.ObjectId,
+			ref: 'ContactRequest'
+		}],
 		urlSlug: {
 			type: 'String'
 		},

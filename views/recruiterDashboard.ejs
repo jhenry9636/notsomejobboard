@@ -22,42 +22,11 @@
 		<h1 class="subheader header"><%= user.firstName %>'s Dashboard</h1>
 		<div class="row">
 			<div class="small-3 columns">
-				<table>
-				  <thead>
-				    <tr>
-				      <th>Table Header</th>
-				      <th>Table Header</th>
-				      <th>Table Header</th>
-				      <th>Table Header</th>
-				    </tr>
-				  </thead>
-				  <tbody>
-				    <tr>
-				      <td>Content</td>
-				      <td>This is longer content</td>
-				      <td>Content</td>
-				      <td>Content</td>
-				    </tr>
-				    <tr>
-				      <td>Content</td>
-				      <td>This is longer content</td>
-				      <td>Content</td>
-				      <td>Content</td>
-				    </tr>
-				    <tr>
-				      <td>Content</td>
-				      <td>This is longer content</td>
-				      <td>Content</td>
-				      <td>Content</td>
-				    </tr>
-				    <tr>
-				      <td>Content</td>
-				      <td>This is longer content</td>
-				      <td>Content</td>
-				      <td>Content</td>
-				    </tr>
-				  </tbody>
-				</table>
+			<form action='/contact' method="post">
+				<input type="text" name="recipient" placeholder="Recipient?" />
+				<input type="hidden" name="originator" value="<%= user._id %>" />
+				<button>Send Request</button>
+			</form>
 			</div>
 			<div class="small-3 columns">
 				<table>

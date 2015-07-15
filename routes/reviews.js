@@ -45,6 +45,17 @@ module.exports = function(ReviewsModel) {
 			})
 		})
 
+	reviewRouter.route('/candidate/:candidateId')
+		.get(function(req, res) {
+			ReviewsModel.find({writtenBy: req.params.candidateId}, function(err, reviews) {
+				if(err) throw err
+
+				res.send(reviews)
+
+			})
+		})
+
+
 	return reviewRouter
 }
 

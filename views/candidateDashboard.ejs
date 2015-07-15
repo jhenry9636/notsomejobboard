@@ -19,13 +19,18 @@
 		</div>
 		<% }%>
 
-		<h1 class="subheader header"><%= user.firstName %>'s Dashboard</h1>
+		<h1 class="subheader header" style="margin: 40px 0px 21px 20px;"><%= user.firstName %>'s Dashboard</h1>
 		<div class="row">
-			<div class="small-3 columns">
+			<div class="small-4 columns">
+				<form action='/contact' method="post">
+					<input type="text" name="recipient" placeholder="Recipient?" />
+					<input type="hidden" name="originator" value="<%= user._id %>" />
+				</form>
+			</div>
+			<div class="small-4 columns">
 				<table>
 				  <thead>
 				    <tr>
-				      <th>Table Header</th>
 				      <th>Table Header</th>
 				      <th>Table Header</th>
 				      <th>Table Header</th>
@@ -36,34 +41,24 @@
 				      <td>Content</td>
 				      <td>This is longer content</td>
 				      <td>Content</td>
-				      <td>Content</td>
 				    </tr>
 				    <tr>
 				      <td>Content</td>
 				      <td>This is longer content</td>
 				      <td>Content</td>
-				      <td>Content</td>
 				    </tr>
 				    <tr>
 				      <td>Content</td>
 				      <td>This is longer content</td>
-				      <td>Content</td>
-				      <td>Content</td>
-				    </tr>
-				    <tr>
-				      <td>Content</td>
-				      <td>This is longer content</td>
-				      <td>Content</td>
 				      <td>Content</td>
 				    </tr>
 				  </tbody>
 				</table>
 			</div>
-			<div class="small-3 columns">
+			<div class="small-4 columns">
 				<table>
 				  <thead>
 				    <tr>
-				      <th>Table Header</th>
 				      <th>Table Header</th>
 				      <th>Table Header</th>
 				      <th>Table Header</th>
@@ -74,100 +69,15 @@
 				      <td>Content</td>
 				      <td>This is longer content</td>
 				      <td>Content</td>
-				      <td>Content</td>
 				    </tr>
 				    <tr>
 				      <td>Content</td>
 				      <td>This is longer content</td>
 				      <td>Content</td>
-				      <td>Content</td>
 				    </tr>
 				    <tr>
 				      <td>Content</td>
 				      <td>This is longer content</td>
-				      <td>Content</td>
-				      <td>Content</td>
-				    </tr>
-				    <tr>
-				      <td>Content</td>
-				      <td>This is longer content</td>
-				      <td>Content</td>
-				      <td>Content</td>
-				    </tr>
-				  </tbody>
-				</table>
-			</div>
-			<div class="small-3 columns">
-				<table>
-				  <thead>
-				    <tr>
-				      <th>Table Header</th>
-				      <th>Table Header</th>
-				      <th>Table Header</th>
-				      <th>Table Header</th>
-				    </tr>
-				  </thead>
-				  <tbody>
-				    <tr>
-				      <td>Content</td>
-				      <td>This is longer content</td>
-				      <td>Content</td>
-				      <td>Content</td>
-				    </tr>
-				    <tr>
-				      <td>Content</td>
-				      <td>This is longer content</td>
-				      <td>Content</td>
-				      <td>Content</td>
-				    </tr>
-				    <tr>
-				      <td>Content</td>
-				      <td>This is longer content</td>
-				      <td>Content</td>
-				      <td>Content</td>
-				    </tr>
-				    <tr>
-				      <td>Content</td>
-				      <td>This is longer content</td>
-				      <td>Content</td>
-				      <td>Content</td>
-				    </tr>
-				  </tbody>
-				</table>
-			</div>
-			<div class="small-3 columns">
-				<table>
-				  <thead>
-				    <tr>
-				      <th>Table Header</th>
-				      <th>Table Header</th>
-				      <th>Table Header</th>
-				      <th>Table Header</th>
-				    </tr>
-				  </thead>
-				  <tbody>
-				    <tr>
-				      <td>Content</td>
-				      <td>This is longer content</td>
-				      <td>Content</td>
-				      <td>Content</td>
-				    </tr>
-				    <tr>
-				      <td>Content</td>
-				      <td>This is longer content</td>
-				      <td>Content</td>
-				      <td>Content</td>
-				    </tr>
-				    <tr>
-				      <td>Content</td>
-				      <td>This is longer content</td>
-				      <td>Content</td>
-				      <td>Content</td>
-				    </tr>
-				    <tr>
-				      <td>Content</td>
-				      <td>This is longer content</td>
-				      <td>Content</td>
 				      <td>Content</td>
 				    </tr>
 				  </tbody>
@@ -176,5 +86,18 @@
 		</div>
 		<script type="text/javascript" src="/js/jquery.min.js"></script>
 		<script type="text/javascript" src="/js/libs.js"></script>
+		<script type="text/javascript" src="/js/backbone.js"></script>
+		<script type="text/javascript">
+			(function() {
+				var ReviewPostView = Backbone.View.extend({
+				  
+				});
+
+				var ReviewCollection = Backbone.Collection.extend({
+				  
+				});
+
+			}())
+		</script>
 	</body>
 </html>

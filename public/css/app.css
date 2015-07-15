@@ -28,6 +28,11 @@
   margin-left: 50px;
 }
 
+.row {
+  margin: 0px !important;
+  padding: 0px !important;
+}
+
 .candidate-signin p {
   margin: 10px 30px;
 }
