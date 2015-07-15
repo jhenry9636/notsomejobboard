@@ -4,18 +4,19 @@ var moment = require('moment');
 
 
 module.exports = function() {
+
 	var ContactSchema = new Schema({
 		recipient: {
-			type: Schema.Types.ObjectId,
-			require: 'Candidate'
+			type: Schema.ObjectId,
+			ref: 'Candidate'
 		},
 		originator: {
-			type: Schema.Types.ObjectId,
-			require: 'Recruiter'
+			type: Schema.ObjectId,
+			ref: 'Recruiter'
 		},
 		createdAt: {
 			type: 'String',
-			default : moment.valueOf()
+			default : moment().valueOf()
 		},
 		expiresAt: {
 			type: 'String'
@@ -23,7 +24,8 @@ module.exports = function() {
 	})
 
 	ContactSchema.pre('save', function (next) {
-		this.expiresAt = moment(this.createdAt).days(3).valueOf();
+		this.expiresAt = moment(
+			new Date().setMilliseconds(this.createdAt)).days(3).valueOf();
 		next();
 	})
 

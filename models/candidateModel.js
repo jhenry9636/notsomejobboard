@@ -34,7 +34,7 @@ module.exports = function() {
 			require: true
 		},
 		reviewsWritten: [{
-			type: Schema.Types.ObjectId,
+			type: Schema.ObjectId,
 			ref: 'Review'
 		}],
 		authToken : {
@@ -44,7 +44,7 @@ module.exports = function() {
 			unique: true
 		},
 		contactRequests: [{
-			type: Schema.Types.ObjectId,
+			type: Schema.ObjectId,
 			ref: 'ContactRequest'
 		}],
 		urlSlug: {

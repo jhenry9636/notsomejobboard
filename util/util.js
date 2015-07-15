@@ -3,6 +3,7 @@ module.exports = function(req, res, next) {
 		console.error('verify', req.user)
 		req.flash('message', 'Please log in to continue.')
 		res.redirect('/login')
+		res.end();
 	}
 	next()
 }

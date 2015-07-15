@@ -13,23 +13,23 @@ module.exports = function() {
 
 	var RecruiterSchema = new Schema({
 		firstName: {
-			type: String,
+			type: 'String',
 			require: true
 		},
 		lastName: {
-			type: String,
+			type: 'String',
 			require: true
 		},
 		userName: {
-			type: String,
+			type: 'String',
 			require: true
 		},
 		contactRequests: [{
-			type: Schema.Types.ObjectId,
+			type: Schema.ObjectId,
 			ref: 'ContactRequest'
 		}],
 		candidates: [{
-			type: Schema.Types.ObjectId,
+			type: Schema.ObjectId,
 			ref: 'Candidate'
 		}],
 		authToken : {
