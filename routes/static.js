@@ -11,7 +11,7 @@ module.exports = function(app, passport) {
 		res.render('faq')
 	})
 
-	app.get('/contact', function(req, res) {
+	app.get('/contactus', function(req, res) {
 		res.render('contact')
 	})
 

@@ -41,6 +41,7 @@ module.exports = function() {
 			type: 'String',
 			default: getAuthToken,
 			require: true,
+			expires: '1h',
 			unique: true
 		},
 		contactRequests: [{

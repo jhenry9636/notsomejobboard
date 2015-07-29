@@ -9,6 +9,15 @@ module.exports = function(app, ContactModel) {
 
 	//TODO: Finish this.
 
+	app.get('/contact/', authenticationCheck, function(req, res) {
+			ContactModel.find({})
+				.select('-originator.isRecruiter')
+			    .populate('originator recipient', 'firstName lastName companyName _id')
+				.exec(function(err, contacts) {
+					res.send(contacts)
+				})
+		})
+
 	app.get('/contact/:candidateId', authenticationCheck, function(req, res) {
 			var query = ContactModel.find({recipient: req.params.candidateId})
 			query.populate('originator', 'firstName lastName companyName _id')
@@ -22,7 +31,7 @@ module.exports = function(app, ContactModel) {
 	app.post('/contact/', authenticationCheck, function(req, res) {
 			var contact = new ContactModel(req.body);
 			contact.save(function(err) {
-				console.log(err)
+				if(err) throw err
 				req.flash('message', 'The candidate was sent your request to contact.')
 				res.redirect('/dashboard/recruiter/'+req.user._id)
 			});

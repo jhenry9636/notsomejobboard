@@ -52,7 +52,7 @@ app.use('/login', loginRouter)
 // Log Route
 require('./routes/logout.js')(app)
 
-var fakerRouter = require('./routes/faker.js')(CandidateModel, RecruiterModel)
+var fakerRouter = require('./routes/faker.js')(CandidateModel, RecruiterModel, ContactModel)
 app.use('/faker', fakerRouter)
 
 var verifyRouter = require('./routes/verify.js')(CandidateModel, RecruiterModel)
