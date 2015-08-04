@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>WhenRecruited.com</title>
+		<link rel="stylesheet" type="text/css" href="/css/app.css">
+		<link rel="stylesheet" type="text/css" href="/css/foundation.css">
+	</head>
+	<body>
+		<nav class="top-bar" data-topbar role="navigation">
+			<header>
+				<% if(user) { %> 
+					<a href="/logout" style="float: right; color: #fff; font-size: 13px; padding-right: 15px;">Log Out</a>
+					<a style="float: right; color: #fff; font-size: 13px; padding-right: 15px;" href="/dashboard/candidate/<%= user._id %>">Hi, <%= user.firstName %></a>
+				<% } else { %>
+					<a href="/login" data-reveal-id="log-in" style="float: right; color: #fff; font-size: 13px; padding-right: 20px;">Log In</a>
+				<% } %>
+				<a href="/" style="color: #fff;">Welcome to WhenRecruited.com</a>
+			</header>
+		</nav>
+		<% if(message.length) { %>
+		<div data-alert class="alert-box">
+		  <h5 style="color:#fff"><%= message %></h5>
+		</div>
+		<% }%>
+		<div id="search"></div>
+		<script type="text/javascript" src="/js/jquery.min.js"></script>
+		<script type="text/javascript" src="/js/libs.js"></script>
+	</body>
+</html>

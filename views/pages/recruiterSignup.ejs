@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>WhenRecruited.com</title>
+		<link rel="stylesheet" type="text/css" href="/css/app.css">
+		<link rel="stylesheet" type="text/css" href="/css/foundation.css">
+	</head>
+	<body>
+		<nav class="top-bar" data-topbar role="navigation">
+			<header>
+				<% if(user) { %> 
+					<a href="/logout" style="float: right; color: #fff; font-size: 13px; padding-right: 15px;">Log Out</a>
+					<a style="float: right; color: #fff; font-size: 13px; padding-right: 15px;" href="/dashboard/candidate/<%= user._id %>">Hi, <%= user.firstName %></a>
+				<% } else { %>
+					<a href="/login" data-reveal-id="log-in" style="float: right; color: #fff; font-size: 13px; padding-right: 20px;">Log In</a>
+				<% } %>
+				<a href="/" style="color: #fff;">Welcome to WhenRecruited.com</a>
+			</header>
+		</nav>
+		<% if(message.length) { %>
+		<div data-alert class="alert-box">
+		  <h5 style="color:#fff"><%= message %></h5>
+		</div>
+		<% }%>
+		<div class="row">
+			<div class="small-6 columns">
+				<form style="margin-top: 50px;" method="post" action="/api/recruiter">
+					<input type="text" placeholder="First Name" name="firstName">
+					<input type="text" placeholder="Last Name" name="lastName">
+					<input type="text" placeholder="Email Address" name="emailAddress">
+					<input type="text" placeholder="Username" name="userName">
+					<input type="password" placeholder="Password" name="password">
+					<br />
+					<input type="text" placeholder="Company?" name="companyName">
+					<button type="submit">Sign Up!</a>
+				</form>
+			</div>
+			<div class="small-6 columns">
+				<div class="panel" style="margin-top: 50px;">
+				  <h5>Sign up today!</h5>
+				</div>
+				<h2 style="margin-top: 20px">Warm leads at your fingertips.</h2>
+
+				<h4 style="margin-top: 20px;">Get the time back you spend talking to uninterested tech talent.</h4>
+
+				<p>Our candidates know</p>
+				<ul>
+				 <li>What location they want to work?</li>
+				 <li>For how much?</li>
+				 <li>and What stack they prefer?</li>
+				</ul>
+			</div>
+		<script type="text/javascript" src="/js/jquery.min.js"></script>
+		<script type="text/javascript" src="/js/libs.js"></script>
+	</body>
+</html>
