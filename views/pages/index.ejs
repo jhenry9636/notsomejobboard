@@ -50,16 +50,17 @@
             <div class="container intro">
                 <div class="row">
                     <div class="col-sm-7">
-                        <h2 class="title">Job boards are evil and don't care about what you need.</h2>
-                        <p class="sub-title">Sign up today and stop getting phone calls and emails about opportunites you would never consider. </p>
-                        <p class="sub-title">Only hear about opportunites that match </p> 
-
-
+                        <h2 class="title">Job boards are evil. We are not a job board.</h2>
+                        <p class="sub-title">Sign up today and stop getting phone calls and emails about employment opportunites you would never consider. </p>
+                        <h3>3 easy steps to job hunting bliss.</h4>
+                        <p class="sub-title">Step - 1: Set your desired compensation, location, technologies and other requirements in your profile.<i class="fa fa-commenting"></i></p>
+                        <p class="sub-title">Step - 2: Approve each request  from recruiting professionals for your contact information based on a clear description of compensation, location, and technologies for every opportunity.</p>
+                        <p class="sub-title">Step - 3: Upon completion, review and rate your experience with each recruiting professional to help other candidates work with the best.</p>
                         <a class="btn btn-cta btn-cta-secondary" href="tour.html">Learn More</a>
 
                     </div>
                     <div class="col-sm-5">
-                        <p class="summary">Duh ... Duh .. Duh ..., its the dreaded <span>"we-have-a-gig-you-arent-remotely-interested-in-that-doesn't-pay-what-you-want-in-a-city-2000-miles-away"</span> email correspondence to a developer.</p>
+                        <p class="summary">Yep, its the dreaded <span>"we-have-a-gig-you-arent-remotely-interested-in-that-doesn't-pay-close-to-what-you-want-in-a-city-2000-miles-away"</span> email correspondence to a developer.</p>
                         <img src="images/email.png" style="width: 100%;" />
                     </div>
                 </div>
@@ -435,21 +436,6 @@
                 </div>
             </div><!--//container-->        
         </section><!--//faq-->
-        
-        <!-- ******SIGNUP****** --> 
-        <section id="signup" class="signup">
-            <div class="container text-center">
-                <h2 class="title">Ready to kickstart your business with Tempo?</h2>
-                <p class="summary">Sign up to try Tempo FREE for 30 days! No credit card needed.</p>
-                <form class="signup-form" method="post" action="#">
-                    <div class="form-group">
-                        <label class="sr-only" for="semail2">Your email</label>
-                        <input type="email" id="semail2" name="semail2" class="form-control" placeholder="Enter your email address" required>
-                    </div>
-                    <button type="submit" class="btn btn-cta btn-cta-primary">SIGN UP</button>
-                </form><!--//signup-form-->
-            </div>
-        </section><!--//signup-->
             
     </div><!--//wrapper-->
     
@@ -505,145 +491,10 @@
             </div><!--//container-->
         </div><!--//bottom-bar-->
     </footer><!--//footer-->
+
+    <% include ../partials/modals.ejs %>
+
     
-    <!-- Login Modal -->
-    <div class="modal modal-login" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 id="loginModalLabel" class="modal-title text-center">Log in to your account</h4>
-                </div>
-                <div class="modal-body">
-                    <div class="social-login text-center">                        
-                        <ul class="list-unstyled social-login">
-                            <li><button class="twitter-btn btn" type="button"><i class="fa fa-twitter"></i>Log in with Twitter</button></li>
-                            <li><button class="facebook-btn btn" type="button"><i class="fa fa-facebook"></i>Log in with Facebook</button></li>
-                            <li><button class="google-btn btn" type="button"><i class="fa fa-google-plus"></i>Log in with Google</button></li>
-                        </ul>
-                    </div>
-                    <div class="divider"><span>Or</span></div>
-                    <div class="login-form-container">
-                        <form class="login-form">                
-                            <div class="form-group email">
-                                <label class="sr-only" for="login-email">Your email</label>
-                                <input id="login-email" name="login-email" type="email" class="form-control login-email" placeholder="Your email">
-                            </div><!--//form-group-->
-                            <div class="form-group password">
-                                <label class="sr-only" for="login-password">Password</label>
-                                <input id="login-password" name="login-password" type="password" class="form-control login-password" placeholder="Password">
-                                <p class="forgot-password">
-                                    <a href="#" id="resetpass-link" data-toggle="modal" data-target="#resetpass-modal">Forgot password?</a>
-                                </p>
-                            </div><!--//form-group-->
-                            <button type="submit" class="btn btn-block btn-cta-primary">Log in</button>
-                            <div class="checkbox remember">
-                                <label>
-                                    <input type="checkbox"> Remember me
-                                </label>
-                            </div><!--//checkbox-->
-                        </form>
-                    </div><!--//login-form-container-->
-                </div><!--//modal-body-->
-                <div class="modal-footer">
-                    <p>New to Tempo? <a class="signup-link" id="signup-link" href="#">Sign up now</a></p>                    
-                </div><!--//modal-footer-->
-            </div><!--//modal-content-->
-        </div><!--//modal-dialog-->
-    </div><!--//modal-->
-    
-    <!-- Signup Modal -->
-    <div class="modal modal-signup" id="signup-modal" tabindex="-1" role="dialog" aria-labelledby="signupModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 id="signupModalLabel" class="modal-title text-center">New to Tempo? Sign up now.</h4>
-                    <p class="intro text-center">It only takes 3 minutes!</p>
-                    <p></p>
-                </div>
-                <div class="modal-body">
-                    <div class="social-login text-center">                        
-                        <ul class="list-unstyled social-login">
-                            <li><button class="twitter-btn btn" type="button"><i class="fa fa-twitter"></i>Sign up with Twitter</button></li>
-                            <li><button class="facebook-btn btn" type="button"><i class="fa fa-facebook"></i>Sign up with Facebook</button></li>
-                            <li><button class="google-btn btn" type="button"><i class="fa fa-google-plus"></i>Sign up with Google</button></li>
-                        </ul>
-                        <p class="note">Don't worry, we won't post anything without your permission.</p>
-                    </div>
-                    <div class="divider"><span>Or</span></div>
-                    <div class="login-form-container">
-                        <form class="login-form">                
-                            <div class="form-group email">
-                                <label class="sr-only" for="signup-email">Your email</label>
-                                <input id="signup-email" name="signup-email" type="email" class="form-control login-email" placeholder="Your email">
-                            </div><!--//form-group-->
-                            <div class="form-group password">
-                                <label class="sr-only" for="signup-password">Your password</label>
-                                <input id="signup-password" name="signup-password" type="password" class="form-control login-password" placeholder="Password">
-                            </div><!--//form-group-->
-                            <button type="submit" class="btn btn-block btn-cta-primary">Sign up</button>
-                            <p class="note">By signing up, you agree to our terms of services and privacy policy.</p>
-                        </form>
-                    </div><!--//login-form-container-->
-                </div><!--//modal-body-->
-                <div class="modal-footer">
-                    <p>Already have an account? <a class="login-link" id="login-link" href="#">Log in</a></p>                    
-                </div><!--//modal-footer-->
-            </div><!--//modal-content-->
-        </div><!--//modal-dialog-->
-    </div><!--//modal-->
-    
-    <!-- Reset Password Modal -->
-    <div class="modal modal-resetpass" id="resetpass-modal" tabindex="-1" role="dialog" aria-labelledby="resetpassModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 id="resetpassModalLabel" class="modal-title text-center">Password Reset</h4>
-                </div>
-                <div class="modal-body">
-                    <div class="resetpass-form-container">
-                        <p class="intro">Please enter your email address below and we'll email you a link to a page where you can easily create a new password.</p>
-                        <form class="resetpass-form">                
-                            <div class="form-group email">
-                                <label class="sr-only" for="reg-email">Your email</label>
-                                <input id="reg-email" name="reg-email" type="email" class="form-control login-email" placeholder="Your email">
-                            </div><!--//form-group-->
-                            <button type="submit" class="btn btn-block btn-cta-primary">Reset Password</button>
-                        </form>
-                    </div><!--//login-form-container-->
-                </div><!--//modal-body-->
-                <div class="modal-footer">
-                    <p>I want to <a class="back-to-login-link" id="back-to-login-link" href="#">return to login</a></p>                    
-                </div><!--//modal-footer-->
-            </div><!--//modal-content-->
-        </div><!--//modal-dialog-->
-    </div><!--//modal-->
-    
-    <!-- *****CONFIGURE STYLE****** -->
-    <div class="config-wrapper">
-        <div class="config-wrapper-inner">
-            <a id="config-trigger" class="config-trigger" href="#"><i class="fa fa-cog"></i></a>
-            <div id="config-panel" class="config-panel">
-                <h5>Choose Colour</h5>
-                <ul id="color-options" class="list-unstyled list-inline">
-                    <li class="theme-1 active" ><a data-style="css/styles.css" href="#"></a></li>
-                    <li class="theme-2"><a data-style="css/styles-2.css" href="#"></a></li>
-                    <li class="theme-3"><a data-style="css/styles-3.css" href="#"></a></li>
-                    <li class="theme-4"><a data-style="css/styles-4.css" href="#"></a></li>                   
-                    <li class="theme-5"><a data-style="css/styles-5.css" href="#"></a></li>                     
-                    <li class="theme-6"><a data-style="css/styles-6.css" href="#"></a></li>
-                    <li class="theme-7"><a data-style="css/styles-7.css" href="#"></a></li>
-                    <li class="theme-8"><a data-style="css/styles-8.css" href="#"></a></li>                    
-                    <li class="theme-9"><a data-style="css/styles-9.css" href="#"></a></li>
-                    <li class="theme-10"><a data-style="css/styles-10.css" href="#"></a></li>
-                </ul><!--//color-options-->
-                <a id="config-close" class="close" href="#"><i class="fa fa-times-circle"></i></a>
-            </div><!--//configure-panel-->
-        </div><!--//config-wrapper-inner-->
-    </div><!--//config-wrapper-->
- 
     <!-- Javascript -->          
     <script type="text/javascript" src="plugins/jquery-1.11.2.min.js"></script>
     <script type="text/javascript" src="plugins/jquery-migrate-1.2.1.min.js"></script>
