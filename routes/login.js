@@ -5,7 +5,9 @@ module.exports = function(passport) {
 	loginRouter.get('/', function(req, res) {
 		res.render('login', {
 			errors: req.flash('errors'),
-			message: req.flash('message')
+			message: req.flash('message'),
+			user: req.user,
+			page: 'login'
 		})
 	})
 	.get('/candidate', function(req, res) {

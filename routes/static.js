@@ -3,16 +3,23 @@ module.exports = function(app, passport) {
 		res.render('index', {
 			message: req.flash('message'),
 			isAuthenticated: req.isAuthenticated(),
-			user: req.user
+			user: req.user,
+			page: 'home'
 		})
 	})
 
 	app.get('/faq', function(req, res) {
-		res.render('faq')
+		res.render('faq', {
+			page: 'faq',
+			user: req.user
+		})
 	})
 
 	app.get('/contact', function(req, res) {
-		res.render('contact')
+		res.render('contact', {
+			page: 'contact',
+			user: req.user
+		})
 	})
 
 	app.get('/signup/recruiter', function(req, res) {

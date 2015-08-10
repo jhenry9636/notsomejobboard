@@ -375,9 +375,8 @@ select {
   color: #6dbd63 !important;
 }
 .header .main-nav .nav .nav-item.active a {
-  color: #51a746;
+  color: #6dbd63;
   background: none;
-  font-weight: bold;
 }
 .header .main-nav .nav .nav-item.nav-item-cta .btn-cta-primary {
   -webkit-transition: all 0.4s ease-in-out;
@@ -1743,6 +1742,10 @@ a.btn-cta-primary, .btn-cta-primary
 
 .contact-main, .contact-form-section {
   background-color: #fff;
+}
+
+.dropdown-toggle .fa {
+  margin-right: 5px;
 }
 
 
