@@ -11,12 +11,20 @@ module.exports = function(app, passport) {
 		res.render('faq')
 	})
 
-	app.get('/contactus', function(req, res) {
+	app.get('/contact', function(req, res) {
 		res.render('contact')
 	})
 
 	app.get('/signup/recruiter', function(req, res) {
 		res.render('recruiterSignup', {
+			user: req.user,
+			errors: req.flash('errors'),
+			message: req.flash('message')
+		})
+	})
+
+	app.get('/signup/candidate', function(req, res) {
+		res.render('candidateSignup', {
 			user: req.user,
 			errors: req.flash('errors'),
 			message: req.flash('message')

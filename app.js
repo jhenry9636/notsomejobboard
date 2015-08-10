@@ -49,7 +49,7 @@ app.use('/api/reviews', reviewRouter)
 var loginRouter = require('./routes/login.js')(passport)
 app.use('/login', loginRouter)
 
-// Log Route
+// Log Out Route
 require('./routes/logout.js')(app)
 
 var fakerRouter = require('./routes/faker.js')(CandidateModel, RecruiterModel, ContactModel)

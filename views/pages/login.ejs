@@ -29,23 +29,24 @@
                 <h4>Log in to your account</h4>
                 <div class="social-login text-center">       
                     <ul class="list-unstyled social-login">
+                        <li><button class="linkedin-btn btn" type="button"><i class="fa fa-linkedin"></i>Log in with LinkedIn</button></li>
                         <li><button class="google-btn btn" type="button"><i class="fa fa-google-plus"></i>Log in with Google</button></li>
                         <li><button class="github-btn btn" type="button"><i class="fa fa-github"></i></i>Log in with GitHub</button></li>
                     </ul>
                 </div>
                 <div class="or-divider"><span>Or</span></div>
                 <div class="login-form-container">
-                    <% if(errors) { %>
+                    <% if(errors.length) { %>
                     <div class="alert alert-danger" role="alert">
                       <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
                       <span class="sr-only">Error:</span>
-                      Enter a valid email address
+                      <%= errors %>
                     </div>
                     <% } %>
                     <form class="login-form" action="/login/candidate" method="post">       
                         <div class="form-group email">
                             <label class="sr-only" for="email">Your email</label>
-                            <input id="login-email" name="email" type="email" class="form-control login-email" placeholder="Your email">
+                            <input id="login-email" name="emailAddress" type="email" class="form-control login-email" placeholder="Your email">
                         </div><!--//form-group-->
                         <div class="form-group password">
                             <label class="sr-only" for="password">Password</label>
@@ -58,14 +59,14 @@
                     </form>
                 </div><!--//login-form-container-->
             </div>
-            <div class="signup-container">
-                <h4>Create an account</h4>
+            <div class="signup-panel">
+                <h4>Don't have an account? Sign up today!</h4>
                 <ul>
                   <li>Step - 1: Set your desired compensation, location, technologies and other requirements in your profile.</li>
                   <li>Step - 2: Approve each request for contact information based on ratings and reviews from others candidates with the recruiting professional and a clear description of compensation, location, and technologies for every opportunity.</li>
                   <li>Step - 3: Upon completion, review and rate your experience with each recruiting professional to help other candidates work with the best.</li>
                 </ul>
-                <button type="submit" class="btn btn-block btn-cta-primary">Sign Up</button>
+                <a class="btn btn-block btn-cta-primary" href="/signup/candidate">Sign Up</a>
             </div><!--//sign-up-form-container-->
             <div class="clearfix"></div>
           </div>
