@@ -52,20 +52,17 @@ module.exports = function() {
 			type: 'String'
 		},
 		location: {
-			type: 'String',
-			require: true
+			type: 'String'
 		},
 		emailVerified: {
 			type: 'Boolean',
 			default: false
 		},
 		stack: {
-			type: ['String'],
-			require: true
+			type: ['String']
 		},
 		compensation: {
-			type: 'String',
-			require: true
+			type: 'String'
 		},
 		joinedAt: {
 			type: 'String',

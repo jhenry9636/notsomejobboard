@@ -47,7 +47,7 @@ module.exports = function(app, passport, CandidateModel, RecruiterModel) {
 				done(new Error('ouch!'))
 			}
 			else if(!candidate) {
-				done(null, null, {message: 'Invalid username or password'})
+				done(null, null, {message: 'We could not locate a user with that email address.'})
 			}
 			else {
 				console.log('result ', candidate.comparePassword(password))
@@ -55,7 +55,7 @@ module.exports = function(app, passport, CandidateModel, RecruiterModel) {
 					done(null, candidate)
 				}
 				else {
-					done(null, null, {message: 'Invalid username or password'})
+					done(null, null, {message: 'Invalid password'})
 				}
 			}
 		})
@@ -69,14 +69,14 @@ module.exports = function(app, passport, CandidateModel, RecruiterModel) {
 				done(new Error('ouch!'))
 			}
 			else if(!recruiter) {
-				done(null, null, {message: 'Invalid username or password'})
+				done(null, null, {message: 'We could not locate a user with that email address.'})
 			}
 			else {
 				if(recruiter.comparePassword(password)) {
 					done(null, recruiter)
 				}
 				else {
-					done(null, null, {message: 'Invalid username or password'})
+					done(null, null, {message: 'Invalid password'})
 				}
 			}
 		})

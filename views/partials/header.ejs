@@ -1,7 +1,7 @@
         <header id="header" class="header">  
             <div class="container">            
                 <h1 class="logo pull-left">
-                    <a href="index.html">
+                    <a href="/">
                         <span class="logo-title">DontHateRecruiters.com</span>
                     </a>
                 </h1><!--//logo-->              
@@ -16,10 +16,20 @@
                     </div><!--//navbar-header-->            
                     <div class="navbar-collapse collapse" id="navbar-collapse">
                         <ul class="nav navbar-nav">
-                            <li class="active nav-item"><a href="index.html">Home</a></li> 
-                            <li class="nav-item"><a href="contact.html">Contact</a></li>                            
-                            <li class="nav-item"><button type="button" class="login-trigger btn btn-link" data-toggle="modal" data-target="#login-modal">Log in</button></li>
-                            <li class="nav-item nav-item-cta last"><button type="button" class="btn btn-cta btn-cta-primary" data-toggle="modal" data-target="#signup-modal" >Get Started</button></li>
+                            <li class="nav-item <%= page == 'home' ? 'active' : '' %>"><a href="/">Home</a></li> 
+                            <li class="<%= page == 'contact' ? 'active' : '' %> nav-item"><a href="/contact">Contact</a></li>
+                            <% if(typeof user !== 'undefined') { %>
+                                <li class="nav-item dropdown">
+                                <a class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="0" data-close-others="false" href="blog.html"><i class="fa fa-user"></i><%= user.firstName %> <i class="fa fa-angle-down"></i></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="/dashboard/candidate/<%= user._id %>">My Dashboard</a></li>  
+                                    <li><a href="/logout">Log Out</a></li>
+                                </ul>
+                            </li>
+                            <% } else { %>
+                                <li class="nav-item <%= page == 'login' ? 'active' : '' %>"><a href="/login">Log In</a></li>
+                                <li class="nav-item nav-item-cta last"><a href="/signup/candidate" class="btn btn-cta btn-cta-primary">Get Started</a></li>
+                            <% } %> 
                         </ul><!--//nav-->
                     </div><!--//navabr-collapse-->
                 </nav><!--//main-nav-->           

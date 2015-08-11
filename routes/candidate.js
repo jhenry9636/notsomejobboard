@@ -13,10 +13,11 @@ module.exports = function(CandidateModel, passport, nodemailer) {
 				})
 		})
 		.post(function(req, res) {
+				console.log(req.body)
+
 			var candidate = new CandidateModel(req.body);
 			candidate.save(function(err, candidate) {
 				if(err) throw err
-				
 				var transporter = nodemailer.createTransport({
 				    service: 'gmail',
 				    auth: {

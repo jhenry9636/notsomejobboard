@@ -1,56 +1,80 @@
 <!DOCTYPE html>
-<html>
-	<head>
-		<title>WhenRecruited.com</title>
-		<link rel="stylesheet" type="text/css" href="/css/app.css">
-		<link rel="stylesheet" type="text/css" href="/css/foundation.css">
-	</head>
-	<body>
-		<nav class="top-bar" data-topbar role="navigation">
-			<header>
-				<a href="/" style="color: #fff;">Welcome to WhenRecruited.com</a>
-			</header>
-		</nav>
-		<% if(errors.length) { %>
-		<div data-alert class="alert-box alert">
-		  <h5 style="color:#fff"><%= errors %></h5>
-		</div>
-		<% }%>
-		<% if(message.length) { %>
-		<div data-alert class="alert-box">
-		  <h5 style="color:#fff"><%= message %></h5>
-		</div>
-		<% }%>
-		<br />
-		<br />
-		<div class="row">
-			<div class="columns small-6">
-				<h2>Candidate Login</h2>
-				<form action="/login/candidate" method="post">
-					<input type="text" name="emailAddress" placeholder="Email Address" />
-					<br />
-					<input type="password" name="password" placeholder="Password" />
-					<br />
-					<button type="submit">Log In</a>
-				</form>
-			</div>
-			<div class="columns small-6">
-				<h2>Recruiter Login</h2>
-				<form action="/login/recruiter" method="post">
-					<input type="text" name="emailAddress" placeholder="Email" />
-					<br />
-					<input type="password" name="password" placeholder="Password" />
-					<br />
-					<button type="submit">Log In</a>
-				</form>
-			</div>
-		</div>
-		<div class="row">
-			<br />
-			<h5>Don't have an account yet? ... </h5>
-			<a href="/" class="button info">Sign me up!</a>
-		</div>
-		<script type="text/javascript" src="/js/jquery.min.js"></script>
-		<script type="text/javascript" src="/js/libs.js"></script>
-	</body>
-</html>
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->  
+<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->  
+<!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->  
+<head>
+    <title>DontHateRecruiters.com</title>  
+    <% include ../partials/head.ejs %>  
+</head> 
+
+<body class="home-page">
+
+    <!-- * Facebook Like button script starts -->
+    <div id="fb-root"></div>
+    <script>(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.0";
+    fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
+    <!-- * Facebook Like button script ends -->
+    
+    <div class="wrapper">
+    <% include ../partials/header.ejs %>
+        <!-- ******//Login ****** --> 
+        <section class="section">
+          <div class="section-inner">
+            <div class="login-container">
+                <h4>Log in to your account</h4>
+                <div class="social-login text-center">       
+                    <ul class="list-unstyled social-login">
+                        <li><button class="linkedin-btn btn" type="button"><i class="fa fa-linkedin"></i>Log in with LinkedIn</button></li>
+                        <li><button class="google-btn btn" type="button"><i class="fa fa-google-plus"></i>Log in with Google</button></li>
+                        <li><button class="github-btn btn" type="button"><i class="fa fa-github"></i></i>Log in with GitHub</button></li>
+                    </ul>
+                </div>
+                <div class="or-divider"><span>Or</span></div>
+                <div class="login-form-container">
+                    <% if(errors.length) { %>
+                    <div class="alert alert-danger" role="alert">
+                      <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                      <span class="sr-only">Error:</span>
+                      <%= errors %>
+                    </div>
+                    <% } %>
+                    <form class="login-form" action="/login/candidate" method="post">       
+                        <div class="form-group email">
+                            <label class="sr-only" for="email">Your email</label>
+                            <input id="login-email" name="emailAddress" type="email" class="form-control login-email" placeholder="Your email">
+                        </div><!--//form-group-->
+                        <div class="form-group password">
+                            <label class="sr-only" for="password">Password</label>
+                            <input id="password" name="password" type="password" class="form-control login-password" placeholder="Password">
+                            <p class="forgot-password">
+                                <a href="#" id="resetpass-link" data-toggle="modal" data-target="#resetpass-modal">Forgot password?</a>
+                            </p>
+                        </div><!--//form-group-->
+                        <button type="submit" class="btn btn-block btn-cta-primary">Log in</button>
+                    </form>
+                </div><!--//login-form-container-->
+            </div>
+            <div class="signup-panel">
+                <h4>Don't have an account? Sign up today!</h4>
+                <ul>
+                  <li>Step - 1: Set your desired compensation, location, technologies and other requirements in your profile.</li>
+                  <li>Step - 2: Approve each request for contact information based on ratings and reviews from others candidates with the recruiting professional and a clear description of compensation, location, and technologies for every opportunity.</li>
+                  <li>Step - 3: Upon completion, review and rate your experience with each recruiting professional to help other candidates work with the best.</li>
+                </ul>
+                <a class="btn btn-block btn-cta-primary" href="/signup/candidate">Sign Up</a>
+            </div><!--//sign-up-form-container-->
+            <div class="clearfix"></div>
+          </div>
+        </section>   
+    </div><!--//wrapper-->
+    <% include ../partials/footer.ejs %>  
+    <% include ../partials/modals.ejs %>
+    <% include ../partials/javascript.ejs %>          
+</body>
+</html> 
+

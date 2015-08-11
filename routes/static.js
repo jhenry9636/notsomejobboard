@@ -3,20 +3,35 @@ module.exports = function(app, passport) {
 		res.render('index', {
 			message: req.flash('message'),
 			isAuthenticated: req.isAuthenticated(),
-			user: req.user
+			user: req.user,
+			page: 'home'
 		})
 	})
 
 	app.get('/faq', function(req, res) {
-		res.render('faq')
+		res.render('faq', {
+			page: 'faq',
+			user: req.user
+		})
 	})
 
-	app.get('/contactus', function(req, res) {
-		res.render('contact')
+	app.get('/contact', function(req, res) {
+		res.render('contact', {
+			page: 'contact',
+			user: req.user
+		})
 	})
 
 	app.get('/signup/recruiter', function(req, res) {
 		res.render('recruiterSignup', {
+			user: req.user,
+			errors: req.flash('errors'),
+			message: req.flash('message')
+		})
+	})
+
+	app.get('/signup/candidate', function(req, res) {
+		res.render('candidateSignup', {
 			user: req.user,
 			errors: req.flash('errors'),
 			message: req.flash('message')
