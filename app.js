@@ -64,10 +64,7 @@ app.use('/dashboard', dashboardRouter)
 require('./routes/contact.js')(app, ContactModel)
 
 
-
-
-
 var port = 3333
-app.listen(port, function() {
+app.listen(port, function(err) {
 	console.log('Running .... ' + port)
 })
