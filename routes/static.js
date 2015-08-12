@@ -26,6 +26,7 @@ module.exports = function(app, passport) {
 		res.render('recruiterSignup', {
 			user: req.user,
 			errors: req.flash('errors'),
+			page: 'recruiterSignup',
 			message: req.flash('message')
 		})
 	})
@@ -33,6 +34,7 @@ module.exports = function(app, passport) {
 	app.get('/signup/candidate', function(req, res) {
 		res.render('candidateSignup', {
 			user: req.user,
+			page: 'candidateSignup',
 			errors: req.flash('errors'),
 			message: req.flash('message')
 		})

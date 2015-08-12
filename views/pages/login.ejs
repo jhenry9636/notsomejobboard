@@ -23,18 +23,10 @@
     <div class="wrapper">
     <% include ../partials/header.ejs %>
         <!-- ******//Login ****** --> 
-        <section class="section">
+        <section class="section login-section">
           <div class="section-inner">
             <div class="login-container">
-                <h4>Log in to your account</h4>
-                <div class="social-login text-center">       
-                    <ul class="list-unstyled social-login">
-                        <li><button class="linkedin-btn btn" type="button"><i class="fa fa-linkedin"></i>Log in with LinkedIn</button></li>
-                        <li><button class="google-btn btn" type="button"><i class="fa fa-google-plus"></i>Log in with Google</button></li>
-                        <li><button class="github-btn btn" type="button"><i class="fa fa-github"></i></i>Log in with GitHub</button></li>
-                    </ul>
-                </div>
-                <div class="or-divider"><span>Or</span></div>
+                <h2 class="title">Log in to your account</h2>
                 <div class="login-form-container">
                     <% if(errors.length) { %>
                     <div class="alert alert-danger" role="alert">
@@ -60,7 +52,7 @@
                 </div><!--//login-form-container-->
             </div>
             <div class="signup-panel">
-                <h4>Don't have an account? Sign up today!</h4>
+                <h2>Don't have an account? <br />Sign up today!</h2>
                 <ul>
                   <li>Step - 1: Set your desired compensation, location, technologies and other requirements in your profile.</li>
                   <li>Step - 2: Approve each request for contact information based on ratings and reviews from others candidates with the recruiting professional and a clear description of compensation, location, and technologies for every opportunity.</li>

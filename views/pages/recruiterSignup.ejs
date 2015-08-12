@@ -1,56 +1,71 @@
 <!DOCTYPE html>
-<html>
-	<head>
-		<title>WhenRecruited.com</title>
-		<link rel="stylesheet" type="text/css" href="/css/app.css">
-		<link rel="stylesheet" type="text/css" href="/css/foundation.css">
-	</head>
-	<body>
-		<nav class="top-bar" data-topbar role="navigation">
-			<header>
-				<% if(user) { %> 
-					<a href="/logout" style="float: right; color: #fff; font-size: 13px; padding-right: 15px;">Log Out</a>
-					<a style="float: right; color: #fff; font-size: 13px; padding-right: 15px;" href="/dashboard/candidate/<%= user._id %>">Hi, <%= user.firstName %></a>
-				<% } else { %>
-					<a href="/login" data-reveal-id="log-in" style="float: right; color: #fff; font-size: 13px; padding-right: 20px;">Log In</a>
-				<% } %>
-				<a href="/" style="color: #fff;">Welcome to WhenRecruited.com</a>
-			</header>
-		</nav>
-		<% if(message.length) { %>
-		<div data-alert class="alert-box">
-		  <h5 style="color:#fff"><%= message %></h5>
-		</div>
-		<% }%>
-		<div class="row">
-			<div class="small-6 columns">
-				<form style="margin-top: 50px;" method="post" action="/api/recruiter">
-					<input type="text" placeholder="First Name" name="firstName">
-					<input type="text" placeholder="Last Name" name="lastName">
-					<input type="text" placeholder="Email Address" name="emailAddress">
-					<input type="text" placeholder="Username" name="userName">
-					<input type="password" placeholder="Password" name="password">
-					<br />
-					<input type="text" placeholder="Company?" name="companyName">
-					<button type="submit">Sign Up!</a>
-				</form>
-			</div>
-			<div class="small-6 columns">
-				<div class="panel" style="margin-top: 50px;">
-				  <h5>Sign up today!</h5>
-				</div>
-				<h2 style="margin-top: 20px">Warm leads at your fingertips.</h2>
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->  
+<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->  
+<!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->  
+<head>
+    <title>DontHateRecruiters.com</title>  
+    <% include ../partials/head.ejs %>  
+</head> 
 
-				<h4 style="margin-top: 20px;">Get the time back you spend talking to uninterested tech talent.</h4>
+<body class="home-page">
 
-				<p>Our candidates know</p>
-				<ul>
-				 <li>What location they want to work?</li>
-				 <li>For how much?</li>
-				 <li>and What stack they prefer?</li>
-				</ul>
-			</div>
-		<script type="text/javascript" src="/js/jquery.min.js"></script>
-		<script type="text/javascript" src="/js/libs.js"></script>
-	</body>
-</html>
+    <!-- * Facebook Like button script starts -->
+    <div id="fb-root"></div>
+    <script>(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.0";
+    fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
+    <!-- * Facebook Like button script ends -->
+    
+    <div class="wrapper">
+    <% include ../partials/header.ejs %>
+        <!-- ******//Recruiter Login ****** --> 
+        <section class="section recruiter-signup">
+          <div class="section-inner">
+			<h2 class="title">Don't waste valuable time. Warm prequalified leads.</h2>
+            <div class="login-container">
+                <div class="login-form-container">
+                    <% if(errors.length) { %>
+                    <div class="alert alert-danger" role="alert">
+                      <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                      <span class="sr-only">Error:</span>
+                      <%= errors %>
+                    </div>
+                    <% } %>
+                    <form class="login-form" action="/login/candidate" method="post">       
+                        <div class="form-group email">
+                            <label class="sr-only" for="email">Your email</label>
+                            <input id="login-email" name="emailAddress" type="email" class="form-control login-email" placeholder="Your email">
+                        </div><!--//form-group-->
+                        <div class="form-group password">
+                            <label class="sr-only" for="password">Password</label>
+                            <input id="password" name="password" type="password" class="form-control login-password" placeholder="Password">
+                            <p class="forgot-password">
+                                <a href="#" id="resetpass-link" data-toggle="modal" data-target="#resetpass-modal">Forgot password?</a>
+                            </p>
+                        </div><!--//form-group-->
+                        <button type="submit" class="btn btn-block btn-cta-primary">Log in</button>
+                    </form>
+                </div><!--//login-form-container-->
+            </div>
+            <div class="signup-panel">
+                <ul>
+                  <li>Step - 1: Set your desired compensation, location, technologies and other requirements in your profile.</li>
+                  <li>Step - 2: Approve each request for contact information based on ratings and reviews from others candidates with the recruiting professional and a clear description of compensation, location, and technologies for every opportunity.</li>
+                  <li>Step - 3: Upon completion, review and rate your experience with each recruiting professional to help other candidates work with the best.</li>
+                </ul>
+                <a class="btn btn-block btn-cta-primary" href="/signup/candidate">Sign Up</a>
+            </div><!--//sign-up-form-container-->
+            <div class="clearfix"></div>
+          </div>
+        </section> 
+    </div><!--//wrapper-->
+    <% include ../partials/footer.ejs %>  
+    <% include ../partials/modals.ejs %>
+    <% include ../partials/javascript.ejs %>          
+</body>
+</html> 
+

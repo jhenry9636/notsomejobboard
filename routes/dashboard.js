@@ -10,6 +10,7 @@ module.exports = function(CandidateModel, RecruiterModel, passport) {
 				res.render('candidateDashboard', {
 					errors: req.flash('errors'),
 					message: req.flash('message'),
+					page: 'candidateDashboard',
 					user: req.user
 				})
 			})
@@ -20,6 +21,7 @@ module.exports = function(CandidateModel, RecruiterModel, passport) {
 				res.render('recruiterDashboard', {
 					errors: req.flash('errors'),
 					message: req.flash('message'),
+					page: 'recruiterDashboard',
 					user: req.user
 				})
 			})
