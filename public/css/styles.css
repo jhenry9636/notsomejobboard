@@ -1232,7 +1232,9 @@ select {
   margin-bottom: 30px;
   font-size: 28px;
 }
-.contact-main .intro {
+.intro {
+  text-align: center;
+  display: block;
   margin-bottom: 30px;
   color: #999999;
 }

@@ -39,7 +39,7 @@ module.exports = function(CandidateModel, RecruiterModel, ContactModel) {
 					firstName: faker.name.firstName(),
 					lastName: faker.name.lastName(),
 					userName: faker.internet.userName(),
-					password: 123,
+					password: 1234,
 					emailAddress: faker.internet.email(),
 					compensation: faker.finance.amount(),
 					location: faker.address.streetAddress() + ' ' + faker.address.city(),
@@ -52,7 +52,7 @@ module.exports = function(CandidateModel, RecruiterModel, ContactModel) {
 					firstName: faker.name.firstName(),
 					lastName: faker.name.lastName(),
 					userName: faker.internet.userName(),
-					password: 123,
+					password: 1234,
 					emailAddress: faker.internet.email(),
 					companyName: faker.company.companyName(),
 					emailVerified: true
