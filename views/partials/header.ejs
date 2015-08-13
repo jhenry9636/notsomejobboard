@@ -16,7 +16,7 @@
                     </div><!--//navbar-header-->            
                     <div class="navbar-collapse collapse" id="navbar-collapse">
                         <ul class="nav navbar-nav">
-                            <li class="nav-item for-recruiters <%= page == 'forRecruiters' ? 'active' : '' %>"><a href="/signup/recruiter"><i class="fa fa-users"></i> For Recruiters</a></li>
+                            <li class="nav-item for-recruiters <%= page == 'recruiterSignup' ? 'active' : '' %>"><a href="/signup/recruiter"><i class="fa fa-users"></i> For Recruiters</a></li>
                             <li class="<%= page == 'contact' ? 'active' : '' %> nav-item"><a href="/contact">Contact</a></li>
                             <% if(typeof user !== 'undefined') { %>
                                 <li class="nav-item dropdown">

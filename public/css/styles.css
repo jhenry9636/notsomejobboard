@@ -356,6 +356,7 @@ select {
   background-color: #fff;
 }
 .header .main-nav .nav .nav-item {
+  text-transform: uppercase;
   font-weight: normal;
   font-size: 16px;
 }
@@ -423,7 +424,6 @@ select {
   background: none;
 }
 .header .main-nav .nav .nav-item.active {
-  font-weight: 800;
   color: #6dbd63;
 }
 .header .main-nav .nav .nav-item.last {
@@ -1761,14 +1761,16 @@ a.btn-cta-primary, .btn-cta-primary
 }
 
 .signup-container .form-type {
-  float: left;
-  margin-bottom: 20px;
+  margin: 0px auto 0px auto;
+  margin-bottom: 7px;
 }
 
 .signup-container .form-type button {
   padding: 8px 20px 8px 8px;
   outline: none;
   font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1px;
   font-family: 'Lato', arial, sans-serif;
   -webkit-transition: none;
   -moz-transition: none;
@@ -1879,10 +1881,6 @@ a.btn-cta-primary, .btn-cta-primary
 
 .sign-up-list li:first-child {
   margin-top: 0px;
-}
-
-.signup-column:first-child {
-  border-right: 1px solid #ccc;
 }
 
 .signup-column {
