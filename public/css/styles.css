@@ -1768,6 +1768,8 @@ a.btn-cta-primary, .btn-cta-primary
 .signup-container .form-type button {
   padding: 8px 20px 8px 8px;
   outline: none;
+  font-weight: 800;
+  font-family: 'Lato', arial, sans-serif;
   -webkit-transition: none;
   -moz-transition: none;
   -ms-transition: none;
@@ -1776,7 +1778,13 @@ a.btn-cta-primary, .btn-cta-primary
 
 .signup-container .form-type button .fa {
   visibility: hidden;
-  color: #6dbd63;
+  color: #fff;
+}
+
+.signup-container .form-type button.active {
+  background-color: #6dbd63;
+  color: #fff;
+  font-weight: 800;
 }
 
 .signup-container .form-type button.active .fa {
@@ -1859,8 +1867,25 @@ a.btn-cta-primary, .btn-cta-primary
   width: 100%;
 }
 
+.sign-up-list {
+  width: 80%;
+}
+
 .sign-up-list li {
   margin: 10px 0px;
   text-align: left;
   list-style: none;
+}
+
+.sign-up-list li:first-child {
+  margin-top: 0px;
+}
+
+.signup-column:first-child {
+  border-right: 1px solid #ccc;
+}
+
+.signup-column {
+  margin-top: 20px;
+  padding: 0px 42px;
 }

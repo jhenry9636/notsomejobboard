@@ -32,13 +32,13 @@
                             <label for="firstName" class="control-label col-xs-4"></label>
                             <div class="col-xs-8">
                                 <div id="form-type" class="form-type btn-group" role="group" aria-label="...">
-                                  <button type="button" class="btn btn-default active"><i class="fa fa-check"></i>I'm an awesome techie</button>
-                                  <button type="button" class="btn btn-default"><i class="fa fa-check"></i>I'm an awesome recruiter</button>
+                                  <button type="button" class="btn btn-default active"><i class="fa fa-check" data-value="techie"></i>I'm an awesome techie</button>
+                                  <button type="button" class="btn btn-default" data-value="recruiter"><i class="fa fa-check"></i>I'm an awesome recruiter</button>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-sm-6 columns">
+                    <div style="border-right: 1px solid #ccc;" class="col-sm-6 signup-column columns">
                         <form class="form-horizontal" method="post" action="/api/candidate">
                             <div class="form-group">
                                 <label for="firstName" class="control-label col-xs-4">First Name</label>
@@ -91,7 +91,7 @@
                             <button type="submit" class="btn btn-block btn-cta-primary">Sign Up</button>
                         </form>
                     </div>
-                    <div class="col-sm-6 columns">
+                    <div class="col-sm-6 signup-column columns">
                         <ul class="sign-up-list">
                             <li>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</li>
                             <li>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.</li>
