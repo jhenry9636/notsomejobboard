@@ -88,6 +88,16 @@ $(document).ready(function() {
 		
 	});
 
+    $('#dashboard-tabs').find('li').click(function() {
+        $(this).siblings().removeClass('active')
+        $(this).addClass('active')
+    })
+
+    $('#form-type').find('button').click(function() {
+        $(this).siblings().removeClass('active')
+        $(this).addClass('active')
+    })
+
 
 
 });

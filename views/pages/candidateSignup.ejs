@@ -24,59 +24,81 @@
     <% include ../partials/header.ejs %>
         <!-- ******//Signup ****** --> 
         <section class="section signup-section">
+            <h2 class="title text-center" style="margin-bottom: 25px;">Get Started</h2>
             <div class="signup-container">
-                <h2 class="title text-center" style="margin-bottom: 25px;">Get Started</h2>
-                <form class="form-horizontal" method="post" action="/api/candidate">
-                    <div class="form-group">
-                        <label for="firstName" class="control-label col-xs-4">First Name</label>
-                        <div class="col-xs-8">
-                            <input type="text" class="form-control" name="firstName" id="firstName" placeholder="First Name">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <label for="firstName" class="control-label col-xs-4"></label>
+                            <div class="col-xs-8">
+                                <div id="form-type" class="form-type btn-group" role="group" aria-label="...">
+                                  <button type="button" class="btn btn-default active"><i class="fa fa-check"></i>I'm an awesome techie</button>
+                                  <button type="button" class="btn btn-default"><i class="fa fa-check"></i>I'm an awesome recruiter</button>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label for="lastName" class="control-label col-xs-4">Last Name</label>
-                        <div class="col-xs-8">
-                            <input type="text" class="form-control" name="lastName" id="lastName" placeholder="Last Name ">
-                        </div>
+                    <div class="col-sm-6 columns">
+                        <form class="form-horizontal" method="post" action="/api/candidate">
+                            <div class="form-group">
+                                <label for="firstName" class="control-label col-xs-4">First Name</label>
+                                <div class="col-xs-8">
+                                    <input type="text" class="form-control" name="firstName" id="firstName" placeholder="First Name">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="lastName" class="control-label col-xs-4">Last Name</label>
+                                <div class="col-xs-8">
+                                    <input type="text" class="form-control" name="lastName" id="lastName" placeholder="Last Name ">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="emailAddress" class="control-label col-xs-4">Email Address</label>
+                                <div class="col-xs-8">
+                                    <input type="email" class="form-control" name="emailAddress" id="emailAddress" placeholder="Email Address">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="userName" class="control-label col-xs-4">Username</label>
+                                <div class="col-xs-8">
+                                    <input type="text" class="form-control" name="userName" id="userName" placeholder="Username">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="password" class="control-label col-xs-4">Password</label>
+                                <div class="col-xs-8">
+                                    <input type="password" class="form-control" name="password" id="password" placeholder="Password">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="rate" class="control-label col-xs-4">Rate</label>
+                                <div class="col-xs-8">
+                                    <input type="text" class="form-control" name="rate" id="rate" placeholder="Rate">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="location" class="control-label col-xs-4">Location</label>
+                                <div class="col-xs-8">
+                                    <input type="text" class="form-control" name="location" id="location" placeholder="Location">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="tech" class="control-label col-xs-4">Tech Stack</label>
+                                <div class="col-xs-8">
+                                    <input type="text" class="form-control" name="tech" id="tech" placeholder="Technology Stack">
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-block btn-cta-primary">Sign Up</button>
+                        </form>
                     </div>
-                    <div class="form-group">
-                        <label for="emailAddress" class="control-label col-xs-4">Email Address</label>
-                        <div class="col-xs-8">
-                            <input type="email" class="form-control" name="emailAddress" id="emailAddress" placeholder="Email Address">
-                        </div>
+                    <div class="col-sm-6 columns">
+                        <ul class="sign-up-list">
+                            <li>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</li>
+                            <li>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.</li>
+                            <li>Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur?</li>
+                        </ul>
                     </div>
-                    <div class="form-group">
-                        <label for="userName" class="control-label col-xs-4">Username</label>
-                        <div class="col-xs-8">
-                            <input type="text" class="form-control" name="userName" id="userName" placeholder="Username">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="password" class="control-label col-xs-4">Password</label>
-                        <div class="col-xs-8">
-                            <input type="password" class="form-control" name="password" id="password" placeholder="Password">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="rate" class="control-label col-xs-4">Rate</label>
-                        <div class="col-xs-8">
-                            <input type="text" class="form-control" name="rate" id="rate" placeholder="Rate">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="location" class="control-label col-xs-4">Location</label>
-                        <div class="col-xs-8">
-                            <input type="text" class="form-control" name="location" id="location" placeholder="Location">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="tech" class="control-label col-xs-4">Tech Stack</label>
-                        <div class="col-xs-8">
-                            <input type="text" class="form-control" name="tech" id="tech" placeholder="Technology Stack">
-                        </div>
-                    </div>
-                    <button type="submit" class="btn btn-block btn-cta-primary">Sign Up</button>
-                </form>
+                </div>
             </div>
         </section>  
     </div><!--//wrapper-->
