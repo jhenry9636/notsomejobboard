@@ -358,7 +358,7 @@ select {
 .header .main-nav .nav .nav-item {
   text-transform: uppercase;
   font-weight: normal;
-  font-size: 16px;
+  font-size: 14px;
 }
 
 .header .main-nav .nav .nav-item .btn-link {
@@ -1473,6 +1473,7 @@ select {
     float: none !important;
   }
   .main-nav .navbar-collapse {
+    margin-top: 3px;
     float: none;
     text-align: center;
   }
@@ -1765,6 +1766,10 @@ a.btn-cta-primary, .btn-cta-primary
   margin-bottom: 7px;
 }
 
+.signup-container #recruiter-form {
+  display: none;
+}
+
 .signup-container .form-type button {
   padding: 8px 20px 8px 8px;
   outline: none;
@@ -1777,7 +1782,9 @@ a.btn-cta-primary, .btn-cta-primary
   -ms-transition: none;
   -o-transition: none;
 }
-
+.signup-container .form-type button:focus {
+  outline: none;
+}
 .signup-container .form-type button .fa {
   visibility: hidden;
   color: #fff;
@@ -1886,4 +1893,8 @@ a.btn-cta-primary, .btn-cta-primary
 .signup-column {
   margin-top: 20px;
   padding: 0px 42px;
+}
+
+.search-panel {
+  background-color: #F5F5F5;
 }

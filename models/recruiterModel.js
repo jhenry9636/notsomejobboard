@@ -22,7 +22,19 @@ module.exports = function() {
 		},
 		userName: {
 			type: 'String',
+			require: true		
+		},
+		emailAddress: {
+			type: String,
 			require: true
+		},
+		password: {
+			type: String,
+			require: true
+		},
+		companyName: {
+			type: String,
+			default: null
 		},
 		contactRequests: [{
 			type: Schema.ObjectId,
@@ -42,28 +54,17 @@ module.exports = function() {
 			type: 'Boolean',
 			default: false
 		},
-		emailAddress: {
-			type: String,
-			require: true
-		},
-		password: {
-			type: String,
-			require: true
-		},
 		joinedDate: {
 			type: Date,
 			default : Date.now()
-		},
-		companyName: {
-			type: String,
-			default: null
 		},
 		isRecruiter: {
 			type: 'Boolean',
 			default: true
 		},
 		urlSlug: {
-			type: 'String'
+			type: 'String',
+			default: ''
 		}
 
 	})
@@ -86,6 +87,7 @@ module.exports = function() {
 
 
 	RecruiterSchema.pre('save', function (next) {
+		console.log('here',this.urlSlug)
 		this.urlSlug = slug(this.userName)
 		next()
 	})

@@ -1,149 +1,49 @@
 <!DOCTYPE html>
-<html>
-	<head>
-		<title>WhenRecruited.com</title>
-		<link rel="stylesheet" type="text/css" href="/css/app.css">
-		<link rel="stylesheet" type="text/css" href="/css/foundation.css">
-	</head>
-	<body>
-		<nav class="top-bar" data-topbar role="navigation">
-			<header>
-				<a href="/logout" style="float: right; color: #fff; font-size: 13px; padding-right: 15px;">Log Out</a>
-				<span style="float: right; color: #fff; font-size: 13px; padding-right: 15px;">Hi, <%= user.firstName %></span>
-				<a href="/" style="color: #fff;">Welcome to WhenRecruited.com</a>
-			</header>
-		</nav>
-		<% if(message.length) { %>
-		<div data-alert class="alert-box">
-		  <h5 style="color:#fff"><%= message %></h5>
-		</div>
-		<% }%>
-		<h3>Add more credits to your account.</h3>
-		<h1 class="subheader header"><%= user.firstName %>'s Dashboard</h1>
-		<div class="row">
-			<div class="small-3 columns">
-			<form action='/contact' method="post">
-				<input type="text" name="recipient" placeholder="Recipient?" />
-				<input type="hidden" name="originator" value="<%= user._id %>" />
-				<button>Send Request</button>
-			</form>
-			</div>
-			<div class="small-3 columns">
-				<table>
-				  <thead>
-				    <tr>
-				      <th>Table Header</th>
-				      <th>Table Header</th>
-				      <th>Table Header</th>
-				      <th>Table Header</th>
-				    </tr>
-				  </thead>
-				  <tbody>
-				    <tr>
-				      <td>Content</td>
-				      <td>This is longer content</td>
-				      <td>Content</td>
-				      <td>Content</td>
-				    </tr>
-				    <tr>
-				      <td>Content</td>
-				      <td>This is longer content</td>
-				      <td>Content</td>
-				      <td>Content</td>
-				    </tr>
-				    <tr>
-				      <td>Content</td>
-				      <td>This is longer content</td>
-				      <td>Content</td>
-				      <td>Content</td>
-				    </tr>
-				    <tr>
-				      <td>Content</td>
-				      <td>This is longer content</td>
-				      <td>Content</td>
-				      <td>Content</td>
-				    </tr>
-				  </tbody>
-				</table>
-			</div>
-			<div class="small-3 columns">
-				<table>
-				  <thead>
-				    <tr>
-				      <th>Table Header</th>
-				      <th>Table Header</th>
-				      <th>Table Header</th>
-				      <th>Table Header</th>
-				    </tr>
-				  </thead>
-				  <tbody>
-				    <tr>
-				      <td>Content</td>
-				      <td>This is longer content</td>
-				      <td>Content</td>
-				      <td>Content</td>
-				    </tr>
-				    <tr>
-				      <td>Content</td>
-				      <td>This is longer content</td>
-				      <td>Content</td>
-				      <td>Content</td>
-				    </tr>
-				    <tr>
-				      <td>Content</td>
-				      <td>This is longer content</td>
-				      <td>Content</td>
-				      <td>Content</td>
-				    </tr>
-				    <tr>
-				      <td>Content</td>
-				      <td>This is longer content</td>
-				      <td>Content</td>
-				      <td>Content</td>
-				    </tr>
-				  </tbody>
-				</table>
-			</div>
-			<div class="small-3 columns">
-				<table>
-				  <thead>
-				    <tr>
-				      <th>Table Header</th>
-				      <th>Table Header</th>
-				      <th>Table Header</th>
-				      <th>Table Header</th>
-				    </tr>
-				  </thead>
-				  <tbody>
-				    <tr>
-				      <td>Content</td>
-				      <td>This is longer content</td>
-				      <td>Content</td>
-				      <td>Content</td>
-				    </tr>
-				    <tr>
-				      <td>Content</td>
-				      <td>This is longer content</td>
-				      <td>Content</td>
-				      <td>Content</td>
-				    </tr>
-				    <tr>
-				      <td>Content</td>
-				      <td>This is longer content</td>
-				      <td>Content</td>
-				      <td>Content</td>
-				    </tr>
-				    <tr>
-				      <td>Content</td>
-				      <td>This is longer content</td>
-				      <td>Content</td>
-				      <td>Content</td>
-				    </tr>
-				  </tbody>
-				</table>
-			</div>
-		</div>
-		<script type="text/javascript" src="/js/jquery.min.js"></script>
-		<script type="text/javascript" src="/js/libs.js"></script>
-	</body>
-</html>
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->  
+<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->  
+<!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->  
+<head>
+    <title>DontHateRecruiters.com</title>  
+    <% include ../partials/head.ejs %>  
+</head> 
+
+<body class="home-page">
+    <div class="wrapper">
+    	<% include ../partials/header.ejs %>
+        <section class="section">
+        	<div class="container">
+        		<div class="dashboard-container">
+        		<div class="row">
+        			<div class="col-sm-2 menu-column">
+			    		<ul id="dashboard-tabs" class="dashboard-tabs">
+							<li class="contact-link active"><i class="fa fa-search"></i> Search</li>
+                            <li class="favorite-link"><i class="fa fa-envelope-o"></i> Contact Requests Sent</li>
+							<li class="location-link"><i class="fa fa-user"></i></i> Candidates I am working with</li>
+							<li class="reviews-link"><i class="fa fa-tags"></i> Saved Candidates</li>
+			    		</ul>
+        			</div>
+        			<div class="col-sm-10 dashboard-body">
+                        <div class="search-panel">
+                            <div class="row">
+                                <div class="col-sm-3">
+                                <div class="form-group">
+                                    <label for="firstName" class="control-label col-xs-3"></label>
+                                    <div class="col-xs-9">
+                                        <input type="text" class="form-control" name="firstName" id="firstName" placeholder="First Name">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+        			</div>
+        		</div>
+	    		</div>
+        	</div>
+    	</section>
+    </div><!--//wrapper-->
+    <% include ../partials/footer.ejs %>  
+    <% include ../partials/modals.ejs %>
+    <% include ../partials/javascript.ejs %>          
+</body>
+</html> 
+
