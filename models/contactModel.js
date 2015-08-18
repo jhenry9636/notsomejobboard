@@ -20,6 +20,9 @@ module.exports = function() {
 		},
 		expiresAt: {
 			type: 'String'
+		},
+		zipCode: {
+			type: 'String'
 		}
 	})
 

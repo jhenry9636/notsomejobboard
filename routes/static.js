@@ -22,19 +22,10 @@ module.exports = function(app, passport) {
 		})
 	})
 
-	app.get('/signup/recruiter', function(req, res) {
-		res.render('recruiterSignup', {
+	app.get('/signup/', function(req, res) {
+		res.render('signUp', {
 			user: req.user,
-			errors: req.flash('errors'),
-			page: 'recruiterSignup',
-			message: req.flash('message')
-		})
-	})
-
-	app.get('/signup/candidate', function(req, res) {
-		res.render('candidateSignup', {
-			user: req.user,
-			page: 'candidateSignup',
+			page: 'signup',
 			errors: req.flash('errors'),
 			message: req.flash('message')
 		})

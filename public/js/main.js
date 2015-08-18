@@ -93,10 +93,16 @@ $(document).ready(function() {
         $(this).addClass('active')
     })
 
-    $('#form-type').find('button').click(function() {
+    $('#form-type').find('button').click(function(ev) {
         $(this).siblings().removeClass('active')
         $(this).addClass('active')
+
+        $('.form-horizontal').hide();
+        $('#' + $(ev.currentTarget).data('value')).show();
     })
+
+
+
 
 
 

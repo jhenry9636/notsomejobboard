@@ -88,6 +88,7 @@ module.exports = function() {
 
 
 	CandidateSchema.pre('save', function (next) {
+		console.log('here',this)
 		this.urlSlug = slug(this.userName)
 		next()
 	})

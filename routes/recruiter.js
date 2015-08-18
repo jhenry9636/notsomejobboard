@@ -31,8 +31,8 @@ module.exports = function(RecruiterModel, passport, nodemailer) {
 				    html: '<a href="http://127.0.0.1:3333/verify/recruiter?token='+recruiter.authToken+'">Confirm</a>'
 				}, function(err) {
 					if(err) throw err
-					
-					res.redirect('/confirm')
+					req.flash('message', 'You have successfully sign up. Enter your credentials to log in.')
+					res.redirect('/login/recruiter')
 
 				});
 
