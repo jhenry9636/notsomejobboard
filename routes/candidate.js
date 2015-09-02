@@ -12,33 +12,11 @@ module.exports = function(CandidateModel, passport, nodemailer) {
 					res.status(200).json(candidates)
 				})
 		})
-		.post(function(req, res) {
-				console.log(req.body)
-
-			var candidate = new CandidateModel(req.body);
-			candidate.save(function(err, candidate) {
-				if(err) throw err
-				var transporter = nodemailer.createTransport({
-				    service: 'gmail',
-				    auth: {
-				        user: 'jarrad.henry@gmail.com',
-				        pass: 'welcome!23'
-				    }
-				});
-				transporter.sendMail({
-				    from: 'support',
-				    to: candidate.emailAddress,
-				    subject: 'Please confirm your email address',
-				    html: '<a href="http://127.0.0.1:3333/verify/candidate?token='+candidate.authToken+'">Confirm</a>'
-				}, function(err) {
-					if(err) throw err
-					req.flash('message', 'You have successfully sign up. Enter your credentials to log in.')
-					res.redirect('/login')
-
-				});
-
-			})
-		})
+		.post(passport.authenticate('candidate-signup', {
+	        successRedirect : '/dashboard/candidate',
+	        failureRedirect : '/',
+	        failureFlash : true
+		}))
 
 
 	candidateRouter.route('/:candidateId')

@@ -18,7 +18,7 @@ module.exports = function(passport) {
 	.post('/candidate',
 		function(req, res, next) {
 
-			passport.authenticate('candidate-strategy', function(err, user, info) {
+			passport.authenticate('candidate-login', function(err, user, info) {
 				if (err) { return next(err); }
 
 				if (!user) { 		
@@ -28,7 +28,7 @@ module.exports = function(passport) {
 
 				req.logIn(user, function(err) {
 				  if (err) { return next(err); }
-				  return res.redirect('/dashboard/candidate/' + req.user._id);
+				  return res.redirect('/dashboard/candidate');
 				});
 			})(req, res, next);
 

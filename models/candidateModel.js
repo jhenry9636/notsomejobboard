@@ -13,25 +13,51 @@ module.exports = function() {
 	}
 	var CandidateSchema = new Schema({
 		firstName: {
-			type: 'String',
-			require: true
+			type: String
 		},
 		lastName: {
-			type: 'String',
-			require: true
+			type: String
 		},
-		userName: {
-			type: 'String',
-			require: true		
+		local: {
+			emailAddress: {
+				type: String
+			},
+			password: {
+				type: String
+			}
 		},
-		emailAddress: {
-			type: 'String',
-			require: true,
-			//unique: true
+		linkedIn: {
+			id: {
+				type: String
+			},
+			token: {
+				type: String
+			},
+			emailAddress: {
+				type: String
+			}
 		},
-		password: {
-			type: 'String',
-			require: true
+		github: {
+			id: {
+				type: String
+			},
+			token: {
+				type: String
+			},
+			emailAddress: {
+				type: String
+			}
+		},
+		google: {
+			id: {
+				type: String
+			},
+			token: {
+				type: String
+			},
+			emailAddress: {
+				type: String
+			}
 		},
 		reviewsWritten: [{
 			type: Schema.ObjectId,
@@ -40,9 +66,7 @@ module.exports = function() {
 		authToken : {
 			type: 'String',
 			default: getAuthToken,
-			require: true,
 			expires: '1h',
-			unique: true
 		},
 		contactRequests: [{
 			type: Schema.ObjectId,
@@ -70,32 +94,21 @@ module.exports = function() {
 		}
 	})
 
-	CandidateSchema.pre('save', function(next) {
-		var candidate = this;
 
-		if (!candidate.isModified('password')) return next();
-
-		bcrypt.genSalt(10, function(err, salt) {
-		if (err) return next(err);
-
-		bcrypt.hash(candidate.password, salt, function(err, hash) {
-			if (err) return next(err);
-				candidate.password = hash;
-				next();
-			});
-		});
-	});
-
-
-	CandidateSchema.pre('save', function (next) {
-		console.log('here',this)
-		this.urlSlug = slug(this.userName)
-		next()
-	})
-
-	CandidateSchema.methods.comparePassword = function(candidatePassword) {
-		return bcrypt.compareSync(candidatePassword, this.password)
+	CandidateSchema.methods.generateHash = function(password) {
+		return bcrypt.hashSync(password, bcrypt.genSaltSync(15), null);
 	};
+
+	CandidateSchema.methods.validPassword = function(password) {
+		return bcrypt.compareSync(password, this.local.password);
+	};
+
+	// CandidateSchema.pre('save', function (next) {
+	// 	console.log('here',this)
+	// 	this.urlSlug = slug(this.userName)
+	// 	next()
+	// })
+
 
 	return mongoose.model('Candidate', CandidateSchema)
 }

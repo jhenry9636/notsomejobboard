@@ -3,32 +3,33 @@ module.exports = function(grunt) {
   // Project configuration.
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
-    uglify: {
-      options: {
-        banner: '/* Foundation */'
-      },
-      build: {
-        src: 'bower_components/foundation/js/foundation.js',
-        dest: 'public/js/libs.js'
+    connect : {
+      server: {
+        options: {
+          port: 3000,
+          protocol: 'http',
+          hostname: 'localhost',
+          base: 'public',
+          directory: null,
+          open: 'http://localhost:3000',
+          keepalive: true
+        }
       }
     },
-    cssmin: {
-       dist: {
-          options: {
-             banner: '/*! MyLib.js 1.0.0 | Aurelio De Rosa (@AurelioDeRosa) | MIT Licensed */'
-          },
-          files: {
-             'dist/css/style.min.css': ['src/css/**/*.css']
-          }
-      }
+    ejs: {
+      all: {
+        src: ['views/*.ejs', 'views/partials/*.ejs'],
+        dest: 'public/html',
+        expand: true,
+        ext: '.html',
+      },
     }
   });
 
-  // Load the plugin that provides the "uglify" task.
-  grunt.loadNpmTasks('grunt-contrib-uglify');
-  grunt.loadNpmTasks('grunt-contrib-cssmin');
+  grunt.loadNpmTasks('grunt-contrib-connect');
+  grunt.loadNpmTasks('grunt-ejs');
 
   // Default task(s).
-  grunt.registerTask('default', ['uglify', 'cssmin']);
+  grunt.registerTask('default', ['ejs','connect']);
 
 };
