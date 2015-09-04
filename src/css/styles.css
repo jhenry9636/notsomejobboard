@@ -1833,6 +1833,16 @@ a.btn-cta-primary, .btn-cta-primary
 }
 
 .dashboard-tabs li:first-child {
+  border: 1px solid #ccc;
+  -webkit-border-top-radius: 12px; 
+  -moz-border-top-radius: 12px; 
+  border-top-radius: 12px;
+  -webkit-outline-top-radius: 12px; 
+  -moz-outline-top-radius: 12px; 
+  outline-top-radius: 12px;
+}
+
+.dashboard-tabs li:first-child {
   border-top: none;
 }
 
