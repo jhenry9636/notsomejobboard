@@ -1,7 +1,6 @@
 $(document).ready(function() {
 
     /* ======= FAQ accordion ======= */
-
     function toggleIcon(e) {
     $(e.target)
         .prev('.panel-heading')

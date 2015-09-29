@@ -51,12 +51,6 @@ app.use('/api/reviews', authenticationCheck, reviewRouter)
 var loginRouter = require('./routes/login.js')(passport)
 app.use('/login', loginRouter)
 
-var authenticationRouter = require('./routes/authentication.js')(app, passport)
-app.use('/auth', authenticationRouter)
-
-var authorizationRouter = require('./routes/authorization.js')(app, passport)
-app.use('/connect', authorizationRouter)
-
 // Log Out Route
 require('./routes/logout.js')(app)
 
@@ -74,5 +68,6 @@ require('./routes/contact.js')(app, ContactModel)
 
 var port = 3333
 app.listen(port, function(err) {
+	if(err) throw err;
 	console.log('Running .... ' + port)
 })

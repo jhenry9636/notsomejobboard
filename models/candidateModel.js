@@ -5,88 +5,58 @@ var bcrypt = require('bcryptjs');
 var base64url = require('base64url');
 var slug = require('slug');
 
-slug.defaults.mode ='pretty';
-
 module.exports = function() {
 	var getAuthToken = function() {
 		return base64url(crypto.randomBytes(70))
 	}
 	var CandidateSchema = new Schema({
 		firstName: {
-			type: String
+			type: 'String',
+			require: true
 		},
 		lastName: {
-			type: String
+			type: 'String',
+			require: true
 		},
-		local: {
-			emailAddress: {
-				type: String
-			},
-			password: {
-				type: String
-			}
+		userName: {
+			type: 'String',
+			require: true,
+			//unique: true
 		},
-		linkedIn: {
-			id: {
-				type: String
-			},
-			token: {
-				type: String
-			},
-			emailAddress: {
-				type: String
-			}
+		emailAddress: {
+			type: 'String',
+			require: true,
+			//unique: true
 		},
-		github: {
-			id: {
-				type: String
-			},
-			token: {
-				type: String
-			},
-			emailAddress: {
-				type: String
-			}
-		},
-		google: {
-			id: {
-				type: String
-			},
-			token: {
-				type: String
-			},
-			emailAddress: {
-				type: String
-			}
+		password: {
+			type: 'String',
+			require: true
 		},
 		reviewsWritten: [{
-			type: Schema.ObjectId,
+			type: Schema.Types.ObjectId,
 			ref: 'Review'
 		}],
 		authToken : {
 			type: 'String',
 			default: getAuthToken,
-			expires: '1h',
-		},
-		contactRequests: [{
-			type: Schema.ObjectId,
-			ref: 'ContactRequest'
-		}],
-		urlSlug: {
-			type: 'String'
+			require: true,
+			unique: true
 		},
 		location: {
-			type: 'String'
+			type: 'String',
+			require: true
 		},
-		emailVerified: {
+		isAuthenticated: {
 			type: 'Boolean',
 			default: false
 		},
 		stack: {
-			type: ['String']
+			type: ['String'],
+			require: true
 		},
 		compensation: {
-			type: 'String'
+			type: 'String',
+			require: true
 		},
 		joinedAt: {
 			type: 'String',
@@ -100,15 +70,8 @@ module.exports = function() {
 	};
 
 	CandidateSchema.methods.validPassword = function(password) {
-		return bcrypt.compareSync(password, this.local.password);
+		return bcrypt.compareSync(password, this.password);
 	};
-
-	// CandidateSchema.pre('save', function (next) {
-	// 	console.log('here',this)
-	// 	this.urlSlug = slug(this.userName)
-	// 	next()
-	// })
-
 
 	return mongoose.model('Candidate', CandidateSchema)
 }

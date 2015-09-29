@@ -20,6 +20,7 @@
     "express": "^4.13.0",
     "express-session": "^1.11.3",
     "faker": "^3.0.0",
+    "grunt-contrib-watch": "^0.6.1",
     "lodash": "^3.10.0",
     "moment": "^2.10.3",
     "mongo": "^0.1.0",
@@ -37,8 +38,10 @@
     "uglify": "^0.1.5"
   },
   "devDependencies": {
+    "grunt-concurrent": "^2.0.3",
     "grunt-contrib-connect": "^0.11.2",
     "grunt-contrib-cssmin": "^0.12.3",
-    "grunt-ejs": "^0.3.0"
+    "grunt-contrib-uglify": "^0.9.2",
+    "grunt-nodemon": "^0.4.0"
   }
 }

@@ -18,7 +18,7 @@ module.exports = function(passport) {
 	.post('/candidate',
 		function(req, res, next) {
 
-			passport.authenticate('candidate-login', function(err, user, info) {
+			passport.authenticate('candidate-strategy', function(err, user, info) {
 				if (err) { return next(err); }
 
 				if (!user) { 		

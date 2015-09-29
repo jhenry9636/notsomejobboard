@@ -12,11 +12,36 @@ module.exports = function(CandidateModel, passport, nodemailer) {
 					res.status(200).json(candidates)
 				})
 		})
-		.post(passport.authenticate('candidate-signup', {
-	        successRedirect : '/dashboard/candidate',
-	        failureRedirect : '/',
-	        failureFlash : true
-		}))
+		.post(function(req, res) {
+			var candidate = new CandidateModel();
+			candidate.firstName = req.body.firstName
+			candidate.lastName = req.body.lastName
+			candidate.emailAddress = req.body.emailAddress
+			candidate.password = candidate.generateHash(req.body.password)
+			candidate.save(function(err, candidate) {
+				if(err) throw err
+				
+				var transporter = nodemailer.createTransport({
+				    service: 'gmail',
+				    auth: {
+				        user: 'jarrad.henry@gmail.com',
+				        pass: 'today!11'
+				    }
+				});
+				transporter.sendMail({
+				    from: 'support',
+				    to: candidate.emailAddress,
+				    subject: 'Please confirm your email address',
+				    html: '<a href="http://127.0.0.1:3333/verify/candidate?token='+candidate.authToken+'">Confirm</a>'
+				}, function(err) {
+					if(err) throw err
+					
+					res.redirect('/confirm')
+
+				});
+
+			})
+		})
 
 
 	candidateRouter.route('/:candidateId')
@@ -28,7 +53,6 @@ module.exports = function(CandidateModel, passport, nodemailer) {
 				res.send(candidate);
 			})
 		})
-
 		.delete(function(req, res) {
 			var id = req.params.candidateId;
 
@@ -42,4 +66,3 @@ module.exports = function(CandidateModel, passport, nodemailer) {
 		})
 	return candidateRouter
 }
-

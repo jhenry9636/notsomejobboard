@@ -25,7 +25,7 @@ module.exports = function(CandidateModel, RecruiterModel) {
 				    service: 'gmail',
 				    auth: {
 				        user: 'jarrad.henry@gmail.com',
-				        pass: 'welcome!23'
+				        pass: 'today!11'
 				    }
 				});
 				transporter.sendMail({
