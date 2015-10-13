@@ -1,19 +1,51 @@
 module.exports = function(grunt) {
 
-  // Project configuration.
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
-    // configure nodemon
     nodemon: {
-      dev: {
+      build: {
         script: 'app.js'
       }
     },
     uglify: {
-      dest: {
+      scripts: {
         files: {
-          'public/app.min.js': ['bower_components/backbone/backbone-min.js']
+          'public/js/scripts.min.js': 'src/scripts/*.js'
         }
+      },
+      app: {
+        files: {
+          'public/js/app.min.js': 'src/js/*.js'
+        }
+      }
+    },
+    clean: {
+      css: {
+        src: ['public/css']
+      },
+      js: {
+        src: ['public/js']
+      }
+    },
+    less: {
+      options: {
+        compress: true
+      },
+      build: {
+        files: {
+          'public/css/main.css': 'src/less/*.less'
+        }
+      },
+      plugins: {
+        files: {
+          'public/css/plugins.css': 'src/less/plugins/*.less'
+        }        
+      }
+    },
+    copy: {
+      images: {
+        src: 'src/images',
+        dest: 'public/images'
       }
     },
     watch: {
@@ -24,13 +56,13 @@ module.exports = function(grunt) {
           spawn: false
         }
       },
-      // css: {
-      //   files: ['src/css/*.css'],
-      //   tasks: ['default'],
-      //   options: {
-      //     spawn: false
-      //   }
-      // },
+      less: {
+        files: ['src/less/*.less'],
+        tasks: ['less'],
+        options: {
+          spawn: false
+        }
+      }
     },
     concurrent: {
       dev: {
@@ -42,13 +74,17 @@ module.exports = function(grunt) {
     }
   });
 
-  // load nodemon
   grunt.loadNpmTasks('grunt-nodemon');
   grunt.loadNpmTasks('grunt-concurrent');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-uglify');
+  grunt.loadNpmTasks('grunt-contrib-cssmin');
+  grunt.loadNpmTasks('grunt-contrib-less');
+  grunt.loadNpmTasks('grunt-contrib-clean');
+  grunt.loadNpmTasks('grunt-contrib-less');
+  grunt.loadNpmTasks('grunt-contrib-copy');
 
   // register the nodemon task when we run grunt
-  grunt.registerTask('default', ['concurrent']); 
+  grunt.registerTask('default', ['clean','uglify', 'less', 'copy', 'concurrent']); 
 
 };
