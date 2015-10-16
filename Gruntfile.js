@@ -1,6 +1,23 @@
 module.exports = function(grunt) {
 
+  var config = {
+    'public' :  {
+      'css': 'public/css',
+      'js': 'public/js',
+      'scripts': 'public/scripts',
+      'images': 'public/images'
+    },
+    'src' :  {
+      'less': 'src/less',
+      'js': 'src/js',
+      'scripts': 'src/scripts',
+      'images': 'src/images'
+    }
+  }
+
+
   grunt.initConfig({
+    config: config,
     pkg: grunt.file.readJSON('package.json'),
     nodemon: {
       build: {
@@ -10,21 +27,28 @@ module.exports = function(grunt) {
     uglify: {
       scripts: {
         files: {
-          'public/js/scripts.min.js': 'src/scripts/*.js'
+          '<%= config.public.scripts %>/scripts.min.js': 
+            ['<%= config.src.scripts %>/*.js', '<%= config.src.js %>/.js']
         }
       },
       app: {
         files: {
-          'public/js/app.min.js': 'src/js/*.js'
+          '<%= config.public.js %>/app.min.js': '<%= config.src.js %>/*.js'
         }
+      }
+    },
+    bower_concat: {
+      all: {
+        dest: 'src/scripts/bower.js',
+        cssDest: 'src/less/plugins/bower.less'
       }
     },
     clean: {
       css: {
-        src: ['public/css']
+        src: ['<%= config.public.css %>']
       },
       js: {
-        src: ['public/js']
+        src: ['<%= config.public.js %>']
       }
     },
     less: {
@@ -33,31 +57,31 @@ module.exports = function(grunt) {
       },
       build: {
         files: {
-          'public/css/main.css': 'src/less/*.less'
+          '<%= config.public.css %>/main.css': '<%= config.src.less %>/*.less'
         }
       },
       plugins: {
         files: {
-          'public/css/plugins.css': 'src/less/plugins/*.less'
+          '<%= config.public.css %>/plugins.css': '<%= config.src.less %>/plugins/*.less'
         }        
       }
     },
     copy: {
       images: {
-        src: 'src/images',
-        dest: 'public/images'
+        src: '<%= config.src.images %>',
+        dest: '<%= config.public.images %>'
       }
     },
     watch: {
       scripts: {
-        files: ['src/js/*.js'],
+        files: ['<%= config.src.js %>/*.js'],
         tasks: ['uglify'],
         options: {
           spawn: false
         }
       },
       less: {
-        files: ['src/less/*.less'],
+        files: ['<%= config.src.less %>/*.less'],
         tasks: ['less'],
         options: {
           spawn: false
@@ -74,17 +98,9 @@ module.exports = function(grunt) {
     }
   });
 
-  grunt.loadNpmTasks('grunt-nodemon');
-  grunt.loadNpmTasks('grunt-concurrent');
-  grunt.loadNpmTasks('grunt-contrib-watch');
-  grunt.loadNpmTasks('grunt-contrib-uglify');
-  grunt.loadNpmTasks('grunt-contrib-cssmin');
-  grunt.loadNpmTasks('grunt-contrib-less');
-  grunt.loadNpmTasks('grunt-contrib-clean');
-  grunt.loadNpmTasks('grunt-contrib-less');
-  grunt.loadNpmTasks('grunt-contrib-copy');
+  require('load-grunt-tasks')(grunt)
 
   // register the nodemon task when we run grunt
-  grunt.registerTask('default', ['clean','uglify', 'less', 'copy', 'concurrent']); 
+  grunt.registerTask('default', ['clean','bower_concat', 'uglify', 'less', 'copy', 'concurrent']); 
 
 };
