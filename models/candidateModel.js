@@ -12,25 +12,25 @@ module.exports = function() {
 	var CandidateSchema = new Schema({
 		firstName: {
 			type: 'String',
-			require: true
+			// require: true
 		},
 		lastName: {
 			type: 'String',
-			require: true
+			// require: true
 		},
 		userName: {
 			type: 'String',
-			require: true,
+			// require: true,
 			//unique: true
 		},
 		emailAddress: {
 			type: 'String',
-			require: true,
+			// require: true,
 			//unique: true
 		},
 		password: {
 			type: 'String',
-			require: true
+			// require: true
 		},
 		reviewsWritten: [{
 			type: Schema.Types.ObjectId,
@@ -39,24 +39,34 @@ module.exports = function() {
 		authToken : {
 			type: 'String',
 			default: getAuthToken,
-			require: true,
-			unique: true
+			// require: true,
+			// unique: true
 		},
 		location: {
 			type: 'String',
-			require: true
+			// require: true
 		},
 		isAuthenticated: {
 			type: 'Boolean',
 			default: false
 		},
-		stack: {
-			type: ['String'],
-			require: true
-		},
-		compensation: {
+		position: [{
 			type: 'String',
-			require: true
+			default: false
+		}],
+		technologies: [{
+			type: 'String',
+			default: false
+		}],
+		pay: {
+			emplyType: {
+				type: 'String',
+				// require: true
+			},
+			comp: {
+				type: 'String',
+				// require: true
+			}
 		},
 		joinedAt: {
 			type: 'String',

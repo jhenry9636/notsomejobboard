@@ -14,9 +14,14 @@ module.exports = function(CandidateModel, passport, nodemailer) {
 		})
 		.post(function(req, res) {
 			var candidate = new CandidateModel();
+			console.log(req.body)
 			candidate.firstName = req.body.firstName
 			candidate.lastName = req.body.lastName
 			candidate.emailAddress = req.body.emailAddress
+			candidate.position = req.body.position.split(',')
+			candidate.technologies = req.body.technologies.split(',')
+			candidate.pay.emplyType = req.body.emplyType
+			candidate.pay.comp = req.body.comp
 			candidate.password = candidate.generateHash(req.body.password)
 			candidate.save(function(err, candidate) {
 				if(err) throw err

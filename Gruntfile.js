@@ -39,6 +39,7 @@ module.exports = function(grunt) {
     },
     bower_concat: {
       all: {
+        exclude: 'requirejs',
         dest: 'src/scripts/bower.js',
         cssDest: 'src/less/plugins/bower.less'
       }
@@ -70,7 +71,11 @@ module.exports = function(grunt) {
       images: {
         src: '<%= config.src.images %>',
         dest: '<%= config.public.images %>'
-      }
+      },
+      requirejs: {
+        src: 'bower_components/requirejs/require.js',
+        dest: '<%= config.public.scripts %>/require.js'
+      },
     },
     watch: {
       scripts: {
@@ -101,6 +106,6 @@ module.exports = function(grunt) {
   require('load-grunt-tasks')(grunt)
 
   // register the nodemon task when we run grunt
-  grunt.registerTask('default', ['clean','bower_concat', 'uglify', 'less', 'copy', 'concurrent']); 
+  grunt.registerTask('default', ['clean','bower_concat', 'uglify', 'copy:requirejs', 'less', 'copy:images', 'concurrent']); 
 
 };

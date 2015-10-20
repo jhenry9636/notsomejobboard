@@ -20,7 +20,7 @@ var ContactModel = require('./models/contactModel.js')();
 
 var authenticationCheck = require('./util/util.js')
 
-var db = mongoose.connect('mongodb://jarrad:when!23@ds045242.mongolab.com:45242/whenrecruited');
+var db = mongoose.connect('mongodb://jhenry:1234@ds045242.mongolab.com:45242/whenrecruited');
 
 app.use(bodyParser.urlencoded({
 	extended: false,
