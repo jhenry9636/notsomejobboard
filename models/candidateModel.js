@@ -52,11 +52,15 @@ module.exports = function() {
 		},
 		position: [{
 			type: 'String',
-			default: false
+			default: null
 		}],
 		technologies: [{
 			type: 'String',
-			default: false
+			default: null
+		}],
+		contactRequests: [{
+			type: Schema.ObjectId,
+			ref: 'ContactRequest'
 		}],
 		pay: {
 			emplyType: {

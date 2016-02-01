@@ -17,11 +17,13 @@ module.exports = function(passport) {
 	})
 	.post('/candidate',
 		function(req, res, next) {
-
+			console.log(req)
+			console.log(res)
 			passport.authenticate('candidate-strategy', function(err, user, info) {
 				if (err) { return next(err); }
 
-				if (!user) { 		
+				if (!user) {
+					console.o 		
 					req.flash('errors', 'Invalid email address or password.')
 					return res.redirect('/login'); 
 				}

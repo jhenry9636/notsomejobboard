@@ -14,26 +14,26 @@ module.exports = function() {
 	var RecruiterSchema = new Schema({
 		firstName: {
 			type: 'String',
-			require: true
+			// require: true
 		},
 		lastName: {
 			type: 'String',
-			require: true
+			// require: true
 		},
 		userName: {
 			type: 'String',
-			require: true		
+			// require: true		
 		},
 		emailAddress: {
-			type: String,
-			require: true
+			type: 'String',
+			// require: true
 		},
 		password: {
-			type: String,
-			require: true
+			type: 'String',
+			// require: true
 		},
 		companyName: {
-			type: String,
+			type: 'String',
 			default: null
 		},
 		contactRequests: [{
@@ -61,39 +61,15 @@ module.exports = function() {
 		isRecruiter: {
 			type: 'Boolean',
 			default: true
-		},
-		urlSlug: {
-			type: 'String',
-			default: ''
 		}
-
 	})
 
-	RecruiterSchema.pre('save', function(next) {
-		var recruiter = this;
+	RecruiterSchema.methods.generateHash = function(password) {
+		return bcrypt.hashSync(password, bcrypt.genSaltSync(15), null);
+	};
 
-		if (!recruiter.isModified('password')) return next();
-
-		bcrypt.genSalt(10, function(err, salt) {
-		if (err) return next(err);
-
-		bcrypt.hash(recruiter.password, salt, function(err, hash) {
-			if (err) return next(err);
-				recruiter.password = hash;
-				next();
-			});
-		});
-	});
-
-
-	RecruiterSchema.pre('save', function (next) {
-		console.log('here',this.urlSlug)
-		this.urlSlug = slug(this.userName)
-		next()
-	})
-
-	RecruiterSchema.methods.comparePassword = function(recruiterPassword) {
-		return bcrypt.compareSync(recruiterPassword, this.password)
+	RecruiterSchema.methods.validPassword = function(password) {
+		return bcrypt.compareSync(password, this.password);
 	};
 
 	return mongoose.model('Recruiter', RecruiterSchema)

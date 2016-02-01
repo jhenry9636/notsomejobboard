@@ -5,6 +5,8 @@ var moment = require('moment');
 
 module.exports = function() {
 
+	var now = moment();
+
 	var ContactSchema = new Schema({
 		recipient: {
 			type: Schema.ObjectId,
@@ -16,13 +18,15 @@ module.exports = function() {
 		},
 		createdAt: {
 			type: 'String',
-			default : moment().valueOf()
+			default : now.valueOf()
 		},
 		expiresAt: {
-			type: 'String'
+			type: 'String',
+			default : now.add(5, 'd').valueOf()
 		},
 		zipCode: {
-			type: 'String'
+			type: 'String',
+			default: null
 		}
 	})
 

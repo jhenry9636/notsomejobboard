@@ -5,11 +5,11 @@ var _ = require('lodash');
 var authenticationCheck = require('../util/util.js')
 
 
-module.exports = function(app, ContactModel) {
+module.exports = function(app, ContactModel, CandidateModel) {
 
 	//TODO: Finish this.
 
-	app.get('/contact/', authenticationCheck, function(req, res) {
+	app.get('/contacts/', authenticationCheck, function(req, res) {
 			ContactModel.find({})
 				.select('-originator.isRecruiter')
 			    .populate('originator recipient', 'firstName lastName companyName _id')
@@ -18,7 +18,7 @@ module.exports = function(app, ContactModel) {
 				})
 		})
 
-	app.get('/contact/:candidateId', authenticationCheck, function(req, res) {
+	app.get('/contacts/:candidateId', authenticationCheck, function(req, res) {
 			var query = ContactModel.find({recipient: req.params.candidateId})
 			query.populate('originator', 'firstName lastName companyName _id')
 			query.select('-recipient -_id -originator.isRecruiter')
@@ -28,13 +28,14 @@ module.exports = function(app, ContactModel) {
 			})
 		})
 
-	app.post('/contact/', authenticationCheck, function(req, res) {
-			var contact = new ContactModel(req.body);
-			contact.save(function(err) {
-				if(err) throw err
-				req.flash('message', 'The candidate was sent your request to contact.')
-				res.redirect('/dashboard/recruiter/'+req.user._id)
-			});
+	app.get('/contact/:candidateId', authenticationCheck, function(req, res) {
+			CandidateModel.findById(req.params.candidateId, function(err, candidate) {
+				console.log(req.user)
+				// candidate.contactRequests.push(new ContactModel({
+
+				// }))
+			})		
+
 		})
 
 	return app

@@ -38,11 +38,12 @@ require('./configs/passport.js')(app, passport, CandidateModel, RecruiterModel, 
 require('./configs/views.js')(app)
 require('./routes/static.js')(app)
 
-
-var candidateRouter = require('./routes/candidate.js')(CandidateModel, passport, nodeMailer)
+var candidateCtrl = require('./controllers/candidateCtrl.js')(CandidateModel, passport, nodeMailer)
+var candidateRouter = require('./routes/candidate.js')(candidateCtrl)
 app.use('/api/candidate', authenticationCheck, candidateRouter)
 
-var recruiterRouter = require('./routes/recruiter.js')(RecruiterModel, passport, nodeMailer)
+var recruiterCtrl = require('./controllers/recruiterCtrl.js')(RecruiterModel, passport, nodeMailer)
+var recruiterRouter = require('./routes/recruiter.js')(recruiterCtrl)
 app.use('/api/recruiter', authenticationCheck, recruiterRouter)
 
 var reviewRouter = require('./routes/reviews.js')(ReviewModel)
@@ -63,7 +64,7 @@ app.use('/verify', verifyRouter)
 var dashboardRouter = require('./routes/dashboard.js')(CandidateModel, RecruiterModel, passport)
 app.use('/dashboard', authenticationCheck, dashboardRouter)
 
-require('./routes/contact.js')(app, ContactModel)
+require('./routes/contact.js')(app, ContactModel, CandidateModel)
 
 
 var port = 3333

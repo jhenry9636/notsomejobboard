@@ -12,94 +12,85 @@ module.exports = function(CandidateModel, RecruiterModel, ContactModel) {
 		.get(function(req, res) {
 
 			var candidateArr = [];
-			var recuiterArr = [];
+			var recruiterArr = [];
 			var contactArr = [];
 
-			function getCandidateAndRecruiterIds(cb) {
-				CandidateModel.find()
-					.select('_id')
-					.exec(function(err, candiates) {
-						if(err) throw err;
-						RecruiterModel.find()
-							.select('_id')
-							.exec(function(err, recruiters) {
-								if(err) throw err;
-								console.log('Ids have been fetched ...')
-								cb(candiates, recruiters)
-							})
+			var candidateIds = [];
+			var recruiterIds = [];
+
+			CandidateModel.find()
+				.exec(function(err, candidates) {
+
+					_.each(candidates, function(candidate) {
+						candidateArr.push(candidate._id)
 					})
-			}
 
-
-
-
-
-			for(var i = 0; i<=req.params.fakeRecoudCount; i+=1) {
-				candidateArr.push({
-					firstName: faker.name.firstName(),
-					lastName: faker.name.lastName(),
-					userName: faker.internet.userName(),
-					password: 1234,
-					emailAddress: faker.internet.email(),
-					compensation: faker.finance.amount(),
-					location: faker.address.streetAddress() + ' ' + faker.address.city(),
-					stack: faker.lorem.words(),
-					emailVerified: true
-
-				})
-
-				recuiterArr.push({
-					firstName: faker.name.firstName(),
-					lastName: faker.name.lastName(),
-					userName: faker.internet.userName(),
-					password: 1234,
-					emailAddress: faker.internet.email(),
-					companyName: faker.company.companyName(),
-					emailVerified: true
-				})
-
-
-
-
-			}
-			CandidateModel.create(candidateArr, function(err, candidates) {
-				if(err) throw err;
-				console.log('Yippee! Total of '+candidates.length+' candidates were saved.')
-				RecruiterModel.create(recuiterArr, function(err, recruiters) {
-					if(err) throw err;
-					console.log('Yippee! Total of '+recruiters.length+' recruiters were saved.')
-					getCandidateAndRecruiterIds(function(candidatesIds, recruiterIds) {
-
-
-						for(var i = 0; i<=200; i+=1) {
-							contactArr.push({
-								recipient: _.sample(candidatesIds)._id,
-								originator: _.sample(recruiterIds)._id
+					RecruiterModel.find()
+						.exec(function(err, recruiters) {
+							_.each(candidates, function(candidate) {
+								recruiterArr.push(candidate._id)
 							})
-						}
 
-						ContactModel.create(contactArr, function(err, contacts) {
-							if(err) throw err
-							console.log('Yippee! Total of '+contacts.length+' contacts were saved.')
-							res.end();
+							console.log('Candidates', candidateArr)
+							console.log('Recruiters', recruiterArr)
+							for(var i = 0; i<=req.params.fakeRecoudCount; i+=1) {
+								
+								candidateArr.push({
+									firstName: faker.name.firstName(),
+									lastName: faker.name.lastName(),
+									userName: faker.internet.userName(),
+									emailAddress: faker.internet.email(),
+									password: 1234,
+									//reviewsWritten: faker.commerce.productAdjective(),
+									pay: {
+										emplyType: 'contract',
+										comp: faker.finance.amount()
+									},
+									location: faker.address.streetAddress() + ' ' + faker.address.city(),
+									emailVerified: true,
+									position: faker.name.jobTitle(),
+									technologies: faker.lorem.words()
+								})
+
+								recruiterArr.push({
+									firstName: faker.name.firstName(),
+									lastName: faker.name.lastName(),
+									userName: faker.internet.userName(),
+									emailAddress: faker.internet.email(),
+									password: 1234,
+									companyName: faker.company.companyName(),
+									candidates: [],
+									emailVerified: 'yes',
+									joinedDate: faker.date.past(),
+									isRecruiter: 'yes'
+								})
+
+							}
+
+							CandidateModel.create(candidateArr, function(err, candidates) {
+								if(err) throw err;
+								console.log(err)
+								console.log('Yippee! Total of '+candidates.length+' candidates were saved.')
+							})
+
+							RecruiterModel.create(recruiterArr, function(err, recruiters) {
+								if(err) throw err;
+								console.log(err)
+								console.log('Yippee! Total of '+recruiters.length+' recruiters were saved.')
+							})
+
+
+
 						})
 
-					})
 				})
-			})
+
 		})
 
 	fakerRouter.route('/clear')
 		.get(function(req, res) {
 			CandidateModel.remove({}, function(err) {
 				if(err) throw err
-				RecruiterModel.remove({}, function(err) {
-					if(err) throw err
-					ContactModel.remove({}, function(err) {
-						if(err) throw err
-						res.send('All done!')
-					})
-				})
 			})
 		})
 

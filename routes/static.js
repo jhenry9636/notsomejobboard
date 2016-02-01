@@ -35,8 +35,4 @@ module.exports = function(app, passport) {
 		res.render('review')
 	})
 
-	app.get('/confirm', function(req, res) {
-		res.render('emailConfirmation')
-	})
-
 }
