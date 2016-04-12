@@ -13,29 +13,30 @@ var expressSession = require('express-session');
 
 var nodeMailer = require('nodemailer');
 
-var CandidateModel = require('./models/candidateModel.js')();
-var RecruiterModel = require('./models/recruiterModel.js')();
-var ReviewModel = require('./models/reviewModel.js');
-var ContactModel = require('./models/contactModel.js')();
+var CandidateModel = require('./models/developer.model.js')();
+var RecruiterModel = require('./models/recruiter.model.js')();
+var ReviewModel = require('./models/review.model.js');
+var ContactModel = require('./models/contact.model.js')();
 
-var authenticationCheck = require('./util/util.js')
+var authenticationCheck = require('./common/util.js');
 
 var db = mongoose.connect('mongodb://jhenry:1234@ds045242.mongolab.com:45242/whenrecruited');
 
 app.use(bodyParser.urlencoded({
 	extended: false,
-}))
-app.use(cookieParser())
+}));
+app.use(cookieParser());
 app.use(expressSession({
 	secret: 'dean milton',
 	resave: false,
 	saveUninitialized: false
-}))
-app.use(flash())
-app.use(express.static('public'))
+}));
 
-require('./configs/passport.js')(app, passport, CandidateModel, RecruiterModel, nodeMailer)
-require('./configs/views.js')(app)
+app.use(flash());
+app.use(express.static(__dirname + '/public'));
+
+require('./config/passport.js')(app, passport, CandidateModel, RecruiterModel, nodeMailer)
+require('./config/views.js')(app)
 require('./routes/static.js')(app)
 
 var candidateCtrl = require('./controllers/candidateCtrl.js')(CandidateModel, passport, nodeMailer)
