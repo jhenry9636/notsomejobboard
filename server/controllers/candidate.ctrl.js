@@ -38,22 +38,27 @@ module.exports = function(CandidateModel, passport, nodemailer) {
 			})
 		},
 		get: function(req, res) {
-
 			CandidateModel.find()
 				.exec(function(err, candidates) {
 					if(err) throw err
+					console.log(err)
+					console.log('in here')
+					console.log(candidates)
 					res.status(200).json(candidates)
 				})
 		},
 		getOne: function(req, res) {
 
-			CandidateModel.findById(req.params.candidateId, function(err, candidate) {
-				if(err) throw err
-				res.send(candidate);
+			CandidateModel.findById(req.params.candidateId,
+				function(err, candidate) {
+				 if(err) throw err
+				 res.send(candidate);
 			})
 		},
 		update: function(req, res) {
-			CandidateModel.findById(req.params.candidateId, function(err, candidate) {
+			CandidateModel.findById(
+				req.params.candidateId,
+				function(err, candidate) {
 				if(err) throw err
 
 				if(req.body.firstName) {
@@ -87,7 +92,9 @@ module.exports = function(CandidateModel, passport, nodemailer) {
 			})
 		},
 		delete: function(req, res) {
-			CandidateModel.findByIdAndRemove(req.params.candidateId, function(err, candidate) {
+			CandidateModel.findByIdAndRemove(
+				req.params.candidateId,	
+				function(err, candidate) {
 				if(err) throw err
 				res.status(204).send(candidate)
 			})

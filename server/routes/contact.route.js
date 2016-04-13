@@ -2,10 +2,8 @@ var express = require('express');
 var contactRequestRouter = express.Router();
 var nodemailer = require('nodemailer');
 var _ = require('lodash');
-var authenticationCheck = require('../util/util.js')
 
-
-module.exports = function(app, ContactModel, CandidateModel) {
+module.exports = function(app, ContactModel, CandidateModel, authenticationCheck) {
 
 	//TODO: Finish this.
 

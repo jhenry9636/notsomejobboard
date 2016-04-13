@@ -15,6 +15,7 @@ module.exports = function(RecruiterModel, passport, nodemailer) {
 				        pass: 'welcome!23'
 				    }
 				});
+			
 				transporter.sendMail({
 				    from: 'support',
 				    to: recruiter.emailAddress,

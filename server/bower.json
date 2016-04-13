@@ -1,17 +1,22 @@
 {
-  "name": "whenrecruited",
-  "version": "0.0.0",
+  "name": "notsomejobboard",
+  "description": "",
+  "main": "server.js",
+  "authors": [
+    "Jarrad Henry <jarrad.henry@gmail.com>"
+  ],
+  "license": "ISC",
   "homepage": "https://github.com/jhenry9636/whenrecruited",
-  "license": "MIT",
+  "moduleType": [],
   "ignore": [
     "**/.*",
     "node_modules",
-    "bower_components",
+    "public/vendor",
     "test",
     "tests"
   ],
   "dependencies": {
-    "backbone": "~1.2.1",
-    "foundation": "~5.5.2"
+    "toastr": "^2.1.2",
+    "angular": "^1.5.3"
   }
 }
