@@ -70,7 +70,7 @@ module.exports = function(RecruiterModel, passport, nodemailer) {
 					recruiter.pay.comp = req.body.comp
 				}
 				if(req.body.password) {
-					recruiter.password = recruiter.generateHash(req.body.password)
+					recruiter.password = passwordGenerator.generateHash(req.body.password)
 				}
 				recruiter.save(function(err, recruiter) {
 					if(err) throw err

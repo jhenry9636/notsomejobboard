@@ -18,12 +18,7 @@ var RecruiterModel = require('./models/recruiter.model.js')();
 var ReviewModel = require('./models/review.model.js')();
 var ContactModel = require('./models/contact.model.js')();
 
-var authenticationCheck = require('./common/util.js');
-
-
-app.use(bodyParser.urlencoded({
-	extended: false,
-}));
+app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());
 app.use(expressSession({
 	secret: 'dean milton',
@@ -34,13 +29,15 @@ app.use(expressSession({
 app.use(flash());
 app.use(express.static(__dirname + '/public'));
 
+var authenticationCheck = require('./common/authCheck.js');
+
 require('./config/mongoose.config.js')(mongoose)
 require('./config/passport.config.js')(app, passport, CandidateModel, RecruiterModel, nodeMailer)
 require('./config/views.config.js')(app)
 require('./routes/static.route.js')(app)
 
-var candidateCtrl = require('./controllers/candidate.ctrl.js')(CandidateModel, passport, nodeMailer)
-var candidateRouter = require('./routes/candidate.route.js')(candidateCtrl)
+var candidateCtrl = require('./controllers/developer.ctrl.js')(CandidateModel, passport, nodeMailer)
+var candidateRouter = require('./routes/developer.route.js')(candidateCtrl)
 app.use('/api/candidate', authenticationCheck, candidateRouter)
 
 var recruiterCtrl = require('./controllers/recruiter.ctrl.js')(RecruiterModel, passport, nodeMailer)
@@ -68,7 +65,7 @@ app.use('/dashboard', authenticationCheck, dashboardRouter)
 require('./routes/contact.route.js')(app, ContactModel, CandidateModel, authenticationCheck)
 
 
-var port = 3333
+var port = 80;
 app.listen(port, function(err) {
 	if(err) throw err;
 	console.log('Running on port ' + port)

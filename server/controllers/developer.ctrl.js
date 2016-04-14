@@ -1,26 +1,28 @@
-
+var passwordGenerator = require('../common/passwordGenerator.js')();
 
 module.exports = function(CandidateModel, passport, nodemailer) {
 
 	return {
 		create: function(req, res) {
 			var candidate = new CandidateModel();
+			var req = req.body;
+			console.log(req.body)
+			candidate.firstName = req.firstName
+			candidate.lastName = req.lastName
+			candidate.emailAddress = req.emailAddress
+			// candidate.position = req.position.split(',')
+			// candidate.technologies = req.technologies.split(',')
+			candidate.pay.emplyType = req.emplyType
+			candidate.pay.comp = req.comp
+			candidate.password = passwordGenerator.generateHash(req.password)
 
-			candidate.firstName = req.body.firstName
-			candidate.lastName = req.body.lastName
-			candidate.emailAddress = req.body.emailAddress
-			candidate.position = req.body.position.split(',')
-			candidate.technologies = req.body.technologies.split(',')
-			candidate.pay.emplyType = req.body.emplyType
-			candidate.pay.comp = req.body.comp
-			candidate.password = candidate.generateHash(req.body.password)
 			candidate.save(function(err, candidate) {
 				if(err) throw err
 				var transporter = nodemailer.createTransport({
 				    service: 'gmail',
 				    auth: {
 				        user: 'jarrad.henry@gmail.com',
-				        pass: 'today!11'
+				        pass: 'Welcome!23'
 				    }
 				});
 				transporter.sendMail({
@@ -41,15 +43,11 @@ module.exports = function(CandidateModel, passport, nodemailer) {
 			CandidateModel.find()
 				.exec(function(err, candidates) {
 					if(err) throw err
-					console.log(err)
-					console.log('in here')
-					console.log(candidates)
 					res.status(200).json(candidates)
 				})
 		},
 		getOne: function(req, res) {
-
-			CandidateModel.findById(req.params.candidateId,
+			CandidateModel.findById(req.params.developId,
 				function(err, candidate) {
 				 if(err) throw err
 				 res.send(candidate);
@@ -85,6 +83,9 @@ module.exports = function(CandidateModel, passport, nodemailer) {
 				if(req.body.password) {
 					candidate.password = candidate.generateHash(req.body.password)
 				}
+
+				console.log('mongo')
+
 				candidate.save(function(err, candidate) {
 					if(err) throw err
 					res.send(candidate);
