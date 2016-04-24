@@ -1,4 +1,4 @@
-module.exports = function(mongoose) {
+module.exports = function(env, mongoose) {
   mongoose.connect('mongodb://jhenry:deanmilton@ds045242.mlab.com:45242/whenrecruited');
   var db = mongoose.connection;
   db.on('error', function(err) {

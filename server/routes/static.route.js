@@ -1,16 +1,6 @@
 module.exports = function(app, passport) {
 	app.get('/', function(req, res) {
-
-		res.json({
-			"status": 'okay'
-		})
-
-		// res.render('index', {
-		// 	message: req.flash('message'),
-		// 	isAuthenticated: req.isAuthenticated(),
-		// 	user: req.user,
-		// 	page: 'home'
-		// })
+		res.render('index')
 	})
 
 	app.get('/faq', function(req, res) {

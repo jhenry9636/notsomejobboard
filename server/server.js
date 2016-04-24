@@ -4,6 +4,7 @@ var session = require('express-session');
 var passport = require('passport');
 var passportLocal = require('passport-local').Strategy;
 var flash = require('connect-flash');
+var path = require('path');
 
 var app = express();
 
@@ -12,6 +13,7 @@ var cookieParser = require('cookie-parser');
 var expressSession = require('express-session');
 
 var nodeMailer = require('nodemailer');
+var expressHandlebars  = require('express-handlebars');
 
 var CandidateModel = require('./models/developer.model.js')();
 var RecruiterModel = require('./models/recruiter.model.js')();
@@ -31,9 +33,11 @@ app.use(express.static(__dirname + '/public'));
 
 var authenticationCheck = require('./common/authCheck.js');
 
-require('./config/mongoose.config.js')(mongoose)
+var env = process.env.NODE_ENV = process.env.NODE_ENV || 'dev';
+
+require('./config/mongoose.config.js')(env, mongoose)
 require('./config/passport.config.js')(app, passport, CandidateModel, RecruiterModel, nodeMailer)
-require('./config/views.config.js')(app)
+require('./config/views.config.js')(app, expressHandlebars, path)
 require('./routes/static.route.js')(app)
 
 var candidateCtrl = require('./controllers/developer.ctrl.js')(CandidateModel, passport, nodeMailer)
@@ -65,7 +69,7 @@ app.use('/dashboard', authenticationCheck, dashboardRouter)
 require('./routes/contact.route.js')(app, ContactModel, CandidateModel, authenticationCheck)
 
 
-var port = 80;
+var port = process.env.PORT || 8080;
 app.listen(port, function(err) {
 	if(err) throw err;
 	console.log('Running on port ' + port)

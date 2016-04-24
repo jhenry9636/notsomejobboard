@@ -9,7 +9,7 @@
   //Heroku configuration
   "engines": {
     "node":"0.12.x",
-    "npm": "2.11.2"
+    "npm": "2.11.x"
   },
   "author": "",
   "license": "ISC",
