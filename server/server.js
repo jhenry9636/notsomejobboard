@@ -6,7 +6,7 @@ var passportLocal = require('passport-local').Strategy;
 var flash = require('connect-flash');
 var path = require('path');
 
-var app = express();
+var server = express();
 
 var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
@@ -20,57 +20,56 @@ var RecruiterModel = require('./models/recruiter.model.js')();
 var ReviewModel = require('./models/review.model.js')();
 var ContactModel = require('./models/contact.model.js')();
 
-app.use(bodyParser.urlencoded({extended: false}));
-app.use(cookieParser());
-app.use(expressSession({
+server.use(bodyParser.urlencoded({extended: false}));
+server.use(cookieParser());
+server.use(expressSession({
 	secret: 'dean milton',
 	resave: false,
 	saveUninitialized: false
 }));
 
-app.use(flash());
-app.use(express.static(__dirname + '/public'));
-
+server.use(flash());
+server.use(express.static(path.join(__dirname, '../public')));
 var authenticationCheck = require('./common/authCheck.js');
 
 var env = process.env.NODE_ENV = process.env.NODE_ENV || 'dev';
 
 require('./config/mongoose.config.js')(env, mongoose)
-require('./config/passport.config.js')(app, passport, CandidateModel, RecruiterModel, nodeMailer)
-require('./config/views.config.js')(app, expressHandlebars, path)
-require('./routes/static.route.js')(app)
+require('./config/passport.config.js')(server, passport, CandidateModel, RecruiterModel, nodeMailer)
+require('./config/views.config.js')(server, expressHandlebars, path)
+require('./routes/static.route.js')(server)
 
 var candidateCtrl = require('./controllers/developer.ctrl.js')(CandidateModel, passport, nodeMailer)
 var candidateRouter = require('./routes/developer.route.js')(candidateCtrl)
-app.use('/api/candidate', authenticationCheck, candidateRouter)
+server.use('/api/candidate', authenticationCheck, candidateRouter)
 
 var recruiterCtrl = require('./controllers/recruiter.ctrl.js')(RecruiterModel, passport, nodeMailer)
 var recruiterRouter = require('./routes/recruiter.route.js')(recruiterCtrl)
-app.use('/api/recruiter', authenticationCheck, recruiterRouter)
+server.use('/api/recruiter', authenticationCheck, recruiterRouter)
 
 var reviewRouter = require('./routes/reviews.route.js')(ReviewModel)
-app.use('/api/reviews', authenticationCheck, reviewRouter)
+server.use('/api/reviews', authenticationCheck, reviewRouter)
 
 var loginRouter = require('./routes/login.route.js')(passport)
-app.use('/login', loginRouter)
+server.use('/login', loginRouter)
 
 // Log Out Route
-require('./routes/logout.route.js')(app)
+require('./routes/logout.route.js')(server)
 
 var fakerRouter = require('./routes/faker.route.js')(CandidateModel, RecruiterModel, ContactModel)
-app.use('/faker', fakerRouter)
+server.use('/faker', fakerRouter)
 
 var verifyRouter = require('./routes/verify.route.js')(CandidateModel, RecruiterModel)
-app.use('/verify', verifyRouter)
+server.use('/verify', verifyRouter)
 
 var dashboardRouter = require('./routes/dashboard.route.js')(CandidateModel, RecruiterModel, passport)
-app.use('/dashboard', authenticationCheck, dashboardRouter)
+server.use('/dashboard', authenticationCheck, dashboardRouter)
 
-require('./routes/contact.route.js')(app, ContactModel, CandidateModel, authenticationCheck)
+require('./routes/contact.route.js')(server, ContactModel, CandidateModel, authenticationCheck)
 
 
 var port = process.env.PORT || 8080;
-app.listen(port, function(err) {
+server.listen(port, function(err) {
 	if(err) throw err;
 	console.log('Running on port ' + port)
 })

@@ -17,6 +17,7 @@
   ],
   "dependencies": {
     "toastr": "^2.1.2",
-    "angular": "^1.5.3"
+    "angular": "^1.5.3",
+    "foundation": "^5.5.3"
   }
 }
