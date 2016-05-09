@@ -1,0 +1,6 @@
+{
+  "name": "NotSomeJobBoard.com",
+  "description": "A website to help front end developers find jobs faster.",
+  "repository": "https://github.com/jhenry9636/notsomejobboard.git",
+  "keywords": ["front-end", "job board"]
+}
