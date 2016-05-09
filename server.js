@@ -12,10 +12,10 @@ var fs = require('fs');
 var server = express();
 
 // This line is from the Node.js HTTPS documentation.
-var cert = {
-  key: fs.readFileSync(__dirname + '/key.pem'),
-  cert: fs.readFileSync(__dirname + '/cert.pem')
-};
+// var cert = {
+//   key: fs.readFileSync(__dirname + '/key.pem'),
+//   cert: fs.readFileSync(__dirname + '/cert.pem')
+// };
 
 var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
