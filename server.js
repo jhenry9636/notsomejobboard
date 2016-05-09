@@ -5,8 +5,17 @@ var passport = require('passport');
 var passportLocal = require('passport-local').Strategy;
 var flash = require('connect-flash');
 var path = require('path');
+var https = require('https');
+var http = require('http');
+var fs = require('fs');
 
 var server = express();
+
+// This line is from the Node.js HTTPS documentation.
+var cert = {
+  key: fs.readFileSync(__dirname + '/key.pem'),
+  cert: fs.readFileSync(__dirname + '/cert.pem')
+};
 
 var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
@@ -69,7 +78,15 @@ require(__dirname + '/server/routes/contact.route.js')(server, ContactModel, Can
 
 
 var port = process.env.PORT || 8080;
-server.listen(port, function(err) {
-	if(err) throw err;
-	console.log('Running on port ' + port)
-})
+
+http.createServer(server).listen(port, function(err) {
+  if(err) throw err;
+  console.log('Running on port ' + port)
+});
+
+// Create an HTTPS service identical to the HTTP service.
+// https.createServer(cert, server).listen(port, function(err) {
+//   if(err) throw err;
+//   console.log('Running on port ' + 9090)
+// });
+
