@@ -30,7 +30,7 @@ server.use(expressSession({
 
 server.use(flash());
 server.use(express.static(path.join(__dirname, '/public')));
-var authenticationCheck = require(__dirname + '/server/common/authCheck.js');
+var authenticationCheck = require(__dirname + '/server/common/authcheck.js');
 
 var env = process.env.NODE_ENV = process.env.NODE_ENV || 'dev';
 
