@@ -27,6 +27,9 @@ process.env.PWD = process.cwd()
 
 server.use(express.static(path.join(process.env.PWD, '/public')));
 
+console.log(express.static(path.join(process.env.PWD, '/public')))
+console.log(path.join(process.env.PWD, '/public'))
+
 server.use(bodyParser.urlencoded({extended: false}));
 server.use(cookieParser());
 server.use(expressSession({
@@ -74,6 +77,7 @@ server.use('/dashboard', authenticationCheck, dashboardRouter)
 require(process.env.PWD + '/server/routes/contact.route.js')(server, ContactModel, CandidateModel, authenticationCheck)
 
 
+// Get the port from Heroku
 var port = process.env.PORT || 8080;
 
 
