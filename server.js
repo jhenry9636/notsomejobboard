@@ -76,8 +76,8 @@ var port = process.env.PORT || 8080;
 
 //This line is from the Node.js HTTPS documentation.
 var cert = {
-  key: fs.readFileSync(__dirname + 'certs/key.pem'),
-  cert: fs.readFileSync(__dirname + 'certs/cert.pem')
+  key: fs.readFileSync(__dirname + '/certs/key.pem'),
+  cert: fs.readFileSync(__dirname + '/certs/cert.pem')
 };
 
 var httpsServer = https.createServer(cert, server);
