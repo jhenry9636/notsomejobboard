@@ -9,16 +9,16 @@ angular.module('myApp', [])
 
 function FirstCtrl($scope, $http){
 
-//     $http({
-//   method: 'GET',
-//   url: 'http://localhost:8080/api/candidate'
-// }).then(function successCallback(response) {
-//   console.log(response)
-//   $scope.devs = response.data
+    $http({
+  method: 'GET',
+  url: 'https://localhost:8080/api/candidate'
+}).then(function successCallback(response) {
+  console.log(response)
+  $scope.devs = response.data
 
-//   }, function errorCallback(response) {
-//     // called asynchronously if an error occurs
-//     // or server returns response with an error status.
-//   })
+  }, function errorCallback(response) {
+    // called asynchronously if an error occurs
+    // or server returns response with an error status.
+  })
 
 } 
