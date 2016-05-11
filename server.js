@@ -25,6 +25,8 @@ var ContactModel = require(process.env.PWD + '/server/models/contact.model.js')(
 
 process.env.PWD = process.cwd()
 
+server.use(express.static(path.join(process.env.PWD, '/public')));
+
 server.use(bodyParser.urlencoded({extended: false}));
 server.use(cookieParser());
 server.use(expressSession({
@@ -34,7 +36,6 @@ server.use(expressSession({
 }));
 
 server.use(flash());
-server.use(express.static(path.join(process.env.PWD, '/public')));
 var authenticationCheck = require(process.env.PWD + '/server/common/authcheck.js');
 
 var env = process.env.NODE_ENV = process.env.NODE_ENV || 'dev';
