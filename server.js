@@ -8,6 +8,7 @@ var path = require('path');
 var http = require('http');
 var https = require('https');
 var fs = require('fs');
+var enforceSSL = require('express-sslify');
 
 var server = express();
 
@@ -18,17 +19,12 @@ var expressSession = require('express-session');
 var nodeMailer = require('nodemailer');
 var expressHandlebars  = require('express-handlebars');
 
-var CandidateModel = require(process.env.PWD + '/server/models/developer.model.js')();
-var RecruiterModel = require(process.env.PWD + '/server/models/recruiter.model.js')();
-var ReviewModel = require(process.env.PWD + '/server/models/review.model.js')();
-var ContactModel = require(process.env.PWD + '/server/models/contact.model.js')();
+var CandidateModel = require(__dirname + '/server/models/developer.model.js')();
+var RecruiterModel = require(__dirname + '/server/models/recruiter.model.js')();
+var ReviewModel = require(__dirname + '/server/models/review.model.js')();
+var ContactModel = require(__dirname + '/server/models/contact.model.js')();
 
-process.env.PWD = process.cwd()
-
-server.use(express.static(path.join(process.env.PWD, '/public')));
-
-console.log(express.static(path.join(process.env.PWD, '/public')))
-console.log(path.join(process.env.PWD, '/public'))
+server.use(enforceSSL.HTTPS({ trustProtoHeader: true }))
 
 server.use(bodyParser.urlencoded({extended: false}));
 server.use(cookieParser());
@@ -39,52 +35,52 @@ server.use(expressSession({
 }));
 
 server.use(flash());
-var authenticationCheck = require(process.env.PWD + '/server/common/authcheck.js');
+server.use(express.static(path.join(__dirname, '/public')));
+var authenticationCheck = require(__dirname + '/server/common/authcheck.js');
 
 var env = process.env.NODE_ENV = process.env.NODE_ENV || 'dev';
 
-require(process.env.PWD + '/server/config/mongoose.config.js')(env, mongoose)
-require(process.env.PWD + '/server/config/passport.config.js')(server, passport, CandidateModel, RecruiterModel, nodeMailer)
-require(process.env.PWD + '/server/config/views.config.js')(server, expressHandlebars, path)
-require(process.env.PWD + '/server/routes/static.route.js')(server)
+require(__dirname + '/server/config/mongoose.config.js')(env, mongoose)
+require(__dirname + '/server/config/passport.config.js')(server, passport, CandidateModel, RecruiterModel, nodeMailer)
+require(__dirname + '/server/config/views.config.js')(server, expressHandlebars, path)
+require(__dirname + '/server/routes/static.route.js')(server)
 
-var candidateCtrl = require(process.env.PWD + '/server/controllers/developer.ctrl.js')(CandidateModel, passport, nodeMailer)
-var candidateRouter = require(process.env.PWD + '/server/routes/developer.route.js')(candidateCtrl)
+var candidateCtrl = require(__dirname + '/server/controllers/developer.ctrl.js')(CandidateModel, passport, nodeMailer)
+var candidateRouter = require(__dirname + '/server/routes/developer.route.js')(candidateCtrl)
 server.use('/api/candidate', authenticationCheck, candidateRouter)
 
-var recruiterCtrl = require(process.env.PWD + '/server/controllers/recruiter.ctrl.js')(RecruiterModel, passport, nodeMailer)
-var recruiterRouter = require(process.env.PWD + '/server/routes/recruiter.route.js')(recruiterCtrl)
+var recruiterCtrl = require(__dirname + '/server/controllers/recruiter.ctrl.js')(RecruiterModel, passport, nodeMailer)
+var recruiterRouter = require(__dirname + '/server/routes/recruiter.route.js')(recruiterCtrl)
 server.use('/api/recruiter', authenticationCheck, recruiterRouter)
 
-var reviewRouter = require(process.env.PWD + '/server/routes/reviews.route.js')(ReviewModel)
+var reviewRouter = require(__dirname + '/server/routes/reviews.route.js')(ReviewModel)
 server.use('/api/reviews', authenticationCheck, reviewRouter)
 
-var loginRouter = require(process.env.PWD + '/server/routes/login.route.js')(passport)
+var loginRouter = require(__dirname + '/server/routes/login.route.js')(passport)
 server.use('/login', loginRouter)
 
 // Log Out Route
-require(process.env.PWD + '/server/routes/logout.route.js')(server)
+require(__dirname + '/server/routes/logout.route.js')(server)
 
-var fakerRouter = require(process.env.PWD + '/server/routes/faker.route.js')(CandidateModel, RecruiterModel, ContactModel)
+var fakerRouter = require(__dirname + '/server/routes/faker.route.js')(CandidateModel, RecruiterModel, ContactModel)
 server.use('/faker', fakerRouter)
 
-var verifyRouter = require(process.env.PWD + '/server/routes/verify.route.js')(CandidateModel, RecruiterModel)
+var verifyRouter = require(__dirname + '/server/routes/verify.route.js')(CandidateModel, RecruiterModel)
 server.use('/verify', verifyRouter)
 
-var dashboardRouter = require(process.env.PWD + '/server/routes/dashboard.route.js')(CandidateModel, RecruiterModel, passport)
+var dashboardRouter = require(__dirname + '/server/routes/dashboard.route.js')(CandidateModel, RecruiterModel, passport)
 server.use('/dashboard', authenticationCheck, dashboardRouter)
 
-require(process.env.PWD + '/server/routes/contact.route.js')(server, ContactModel, CandidateModel, authenticationCheck)
+require(__dirname + '/server/routes/contact.route.js')(server, ContactModel, CandidateModel, authenticationCheck)
 
 
-// Get the port from Heroku
 var port = process.env.PORT || 8080;
 
 
 //This line is from the Node.js HTTPS documentation.
 var cert = {
-  key: fs.readFileSync(process.env.PWD + '/certs/key.pem'),
-  cert: fs.readFileSync(process.env.PWD + '/certs/cert.pem')
+  key: fs.readFileSync(__dirname + '/certs/key.pem'),
+  cert: fs.readFileSync(__dirname + '/certs/cert.pem')
 };
 
 var httpsServer = https.createServer(cert, server);

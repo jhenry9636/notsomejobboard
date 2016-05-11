@@ -25,6 +25,7 @@
     "express": "^4.13.0",
     "express-handlebars": "^3.0.0",
     "express-session": "^1.11.3",
+    "express-sslify": "^1.0.1",
     "faker": "^3.0.0",
     "grunt-concurrent": "^2.0.3",
     "grunt-contrib-copy": "^1.0.0",
