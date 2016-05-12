@@ -29,8 +29,6 @@
     "faker": "^3.0.0",
     "grunt-bower-concat": "^1.0.0",
     "grunt-concurrent": "^2.0.3",
-    "grunt-contrib-copy": "^1.0.0",
-    "grunt-contrib-cssmin": "^0.14.0",
     "grunt-contrib-less": "^1.0.1",
     "grunt-contrib-watch": "^1.0.0",
     "grunt-nodemon": "^0.4.0",
