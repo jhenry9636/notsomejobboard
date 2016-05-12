@@ -27,6 +27,7 @@
     "express-session": "^1.11.3",
     "express-sslify": "^1.0.1",
     "faker": "^3.0.0",
+    "finalhandler": "^0.4.1",
     "lodash": "^4.10.0",
     "merge-descriptors": "^1.0.1",
     "moment": "^2.10.3",
