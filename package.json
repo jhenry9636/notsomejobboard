@@ -25,7 +25,10 @@
     "ejs": "^2.3.1",
     "express": "^4.13.0",
     "express-session": "^1.13.0",
-    "mongoose": "^4.4.16"
+    "express-sslify": "^1.0.1",
+    "mongoose": "^4.4.16",
+    "passport": "^0.3.2",
+    "passport-local": "^1.0.0"
   },
   "devDependencies": {}
 }
