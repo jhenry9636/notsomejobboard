@@ -11,7 +11,7 @@ function FirstCtrl($scope, $http){
 
     $http({
   method: 'GET',
-  url: 'https://localhost:8080/api/candidate'
+  url: '/api/candidate'
 }).then(function successCallback(response) {
   console.log(response)
   $scope.devs = response.data
