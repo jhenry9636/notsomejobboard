@@ -8,7 +8,6 @@ var path = require('path');
 var http = require('http');
 var https = require('https');
 var fs = require('fs');
-var enforceSSL = require('express-sslify');
 
 var server = express();
 
@@ -27,20 +26,6 @@ var ContactModel = require(process.env.PWD + '/server/models/contact.model.js')(
 var env = process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 
 process.env.PWD = process.cwd();
-
-server.use(enforceSSL.HTTPS({ trustProtoHeader: true }))
-
-var forceSsl = function (req, res, next) {
-  if (req.headers['x-forwarded-proto'] !== 'https') {
-      return res.redirect(['https://', req.get('Host'), req.url].join(''));
-  }
-  return next();
-};
-
-if (env === 'production') {
-    console.log('Forcing SSL')
-    server.use(forceSsl);
-}
 
 server.use(bodyParser.urlencoded({extended: false}));
 server.use(cookieParser());
@@ -97,9 +82,10 @@ var cert = {
   cert: fs.readFileSync(process.env.PWD + '/certs/cert.pem')
 };
 
-var httpsServer = https.createServer(cert, server);
+var httpServer = http.createServer(server);
 
-httpsServer.listen(port, function(){
+httpServer.listen(port, function(err){
+    if(err) throw err
     console.log("server running at https: " + port)
 });
 
