@@ -27,6 +27,7 @@
     "express-session": "^1.13.0",
     "express-sslify": "^1.0.1",
     "mongoose": "^4.4.16",
+    "nodemailer": "^2.4.1",
     "passport": "^0.3.2",
     "passport-local": "^1.0.0"
   },
