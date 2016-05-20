@@ -24,7 +24,23 @@ var RecruiterModel = require(process.env.PWD + '/server/models/recruiter.model.j
 var ReviewModel = require(process.env.PWD + '/server/models/review.model.js')();
 var ContactModel = require(process.env.PWD + '/server/models/contact.model.js')();
 
+var env = process.env.NODE_ENV = process.env.NODE_ENV || 'development';
+
+process.env.PWD = process.cwd();
+
 server.use(enforceSSL.HTTPS({ trustProtoHeader: true }))
+
+var forceSsl = function (req, res, next) {
+  if (req.headers['x-forwarded-proto'] !== 'https') {
+      return res.redirect(['https://', req.get('Host'), req.url].join(''));
+  }
+  return next();
+};
+
+if (env === 'production') {
+    console.log('Forcing SSL')
+    server.use(forceSsl);
+}
 
 server.use(bodyParser.urlencoded({extended: false}));
 server.use(cookieParser());
@@ -37,10 +53,6 @@ server.use(expressSession({
 server.use(flash());
 server.use(express.static(path.join(process.env.PWD, '/public')));
 var authenticationCheck = require(process.env.PWD + '/server/common/authcheck.js');
-
-var env = process.env.NODE_ENV = process.env.NODE_ENV || 'dev';
-
-process.env.PWD = process.cwd();
 
 require(process.env.PWD + '/server/config/mongoose.config.js')(env, mongoose)
 require(process.env.PWD + '/server/config/passport.config.js')(server, passport, CandidateModel, RecruiterModel, nodeMailer)
