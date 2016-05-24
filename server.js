@@ -8,6 +8,10 @@ var config = require('./server/config/config')[env];
 
 require('./server/config/express')(server, config);
 
+
+require('./server/config/mongoose')(config);
+
+
 require('./server/routes/developer')(server);
 
 

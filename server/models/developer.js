@@ -13,7 +13,7 @@ module.exports = function() {
     password: String,
     address1: String,
     address2: String,
-    technologyStack: [String],
+    technologies: [String],
     locations: [{
       type : Schema.ObjectId,
       ref : 'Location'
@@ -24,7 +24,7 @@ module.exports = function() {
     }],
     compensationType: String,
     compensationMin: String,
-    hasValidated: {
+    validated: {
       default: false,
       type: Boolean
     },
