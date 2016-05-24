@@ -17,6 +17,10 @@ module.exports = function() {
       type: Schema.ObjectId,
       ref: 'Request'
     }],
+		reviews: [{
+			type: Schema.ObjectId,
+			ref: 'Review'
+		}]
 		hasValidated: {
 			default: false,
 			type: Boolean

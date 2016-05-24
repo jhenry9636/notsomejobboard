@@ -11,8 +11,13 @@ require('./server/config/express')(server, config);
 
 require('./server/config/mongoose')(config);
 
+require('./server/config/views')(server);
+
 
 require('./server/routes/developer')(server);
+
+
+require('./server/routes/signup')(server);
 
 
 server.listen(config.port);

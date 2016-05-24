@@ -3,7 +3,9 @@ var encrypt = require('../common/encryption');
 
 
 exports.getAll = function(req, res) {
-  var query = Developer.find();
+  var query = Developer.find(
+    {validated: false},
+    '-password -_id -salt -__v -va');
 
   query.exec(function(err, collection) {
     if(err) throw err;
@@ -17,8 +19,6 @@ exports.getAll = function(req, res) {
 exports.create = function(req, res) {
   var userData = req.body;
   var developer = new Developer();
-
-  console.log(userData)
 
   developer.givenName = userData.firstName;
   developer.familyName = userData.lastName;
@@ -36,8 +36,10 @@ exports.create = function(req, res) {
 
   developer.save(function(err, developer) {
     if(err) throw err;
-    console.log('User saved ::')
-    console.dir(developer)
+    
+    res.send({
+      success: true
+    })
   })
 
 

@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
+var encrypt = require('../common/encryption')
 
 module.exports = function() {
 
@@ -32,8 +33,18 @@ module.exports = function() {
     joinedAt: {
       type: Date,
       default: Date.now
-    }
+    },
+    roles : [String]
   })
+
+  developerSchema.methods = {
+    authenticate: function(passwordToMatch) {
+      return encrypt.hashPwd(this.salt, passwordToMatch) === this.password;
+    },
+    hasRole: function(role) {
+      return this.roles.indexOf(role) > -1;
+    }
+  };
 
   return mongoose.model('Developer', developerSchema)
 }
