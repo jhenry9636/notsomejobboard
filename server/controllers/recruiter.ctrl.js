@@ -7,14 +7,18 @@ exports.getAll = function(req, res) {
 		'-password -_id -salt -__v');
 
 	query.exec(function(err, collection) {
-		if(err){
-			console.log(err)
-			throw err
-		}
-		res.send({
-			sucesss : true,
-			data: collection
-		})
+    if(err){
+      res.status(400).send({
+        success: false,
+        reason: err.toString()
+      })
+    }
+    else {
+      res.send({
+        success: true,
+        data: collection
+      })
+    }
 	})
 };
 
@@ -46,14 +50,29 @@ exports.create = function(req, res) {
         success: true
       })
     }
-
-
 	})
 
 
 
 };
 
-exports.update = function() {
+exports.updateUser = function(req, res) {
+  var userUpdates = req.body;
 
+  // if(req.user._id != userUpdates._id) {
+  //   res.status(403);
+  //   return res.end();
+  // }
+
+  req.user.firstName = userUpdates.firstName;
+  req.user.lastName = userUpdates.lastName;
+  req.user.username = userUpdates.username;
+  if(userUpdates.password && userUpdates.password.length > 0) {
+    req.user.salt = encrypt.createSalt();
+    req.user.hashed_pwd = encrypt.hashPwd(req.user.salt, userUpdates.password);
+  }
+  req.user.save(function(err) {
+    if(err) { res.status(400); return res.send({reason:err.toString()});}
+    res.send(req.user);
+  });
 };

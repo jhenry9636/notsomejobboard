@@ -1,22 +1,8 @@
 var Developer = require(process.env.PWD + '/server/models/developer.js')();
 var bcrypt = require('bcrypt')
 
-exports.getAll = function(req, res) {
-  //TODO: only return validated records
-  var query = Developer.find(
-    null,
-    '-password -_id -salt -__v -va -roles -validated');
 
-  query.exec(function(err, collection) {
-    if(err) throw err;
-    res.send({
-      sucesss : true,
-      data: collection
-    })
-  })
-};
-
-exports.create = function(req, res) {
+exports.add = function(req, res) {
   var userData = req.body;
   var developer = new Developer();
 
@@ -34,23 +20,180 @@ exports.create = function(req, res) {
   developer.compMin = userData.compMin;
 
   developer.save(function(err, developer) {
-    if(err){
-      res.status(400).send({
+    if(err) {
+      return res.status(400).send({
         success: false,
         reason: err.toString()
       })
     }
-    else {
-      res.send({
-        success: true
+
+    return res.send({
+      success: true
+    })
+
+  })
+};
+
+
+exports.delete = function(req, res) {
+
+  Developer.findOneAndRemove({primaryEmail: req.body.email}, function(err, developer) {
+    if(!developer) {
+      return res.status(404).send({
+        success: false,
+        reason: new Error('User not found')
       })
     }
+
+    if(err) {
+      return res.status(400).send({
+        success: false,
+        reason: err.toString()
+      })
+    }
+
+    return res.send({
+      success: true
+    })
+
+  })
+};
+
+
+exports.update = function(req, res) {
+  var userUpdates = req.body;
+
+  if(req.user._id != userUpdates._id) {
+    res.status(403);
+    return res.end();
+  }
+
+  if(!developer) {
+    return res.status(404).send({
+      success: false,
+      reason: new Error('User not found')
+    })
+  }
+
+  if(err) {
+    return res.status(400).send({
+      success: false,
+      reason: err.toString()
+    })
+  }
+
+  req.user.givenName = userData.givenName;
+  req.user.familyName = userData.familyName;
+  req.user.zipCode = userData.zipCode;
+  req.user.primaryPhone = userData.primaryPhone;
+  req.user.primaryEmail = userData.primaryEmail;
+  req.user.password = userData.password;
+  req.user.address1 = userData.address1;
+  req.user.address2 = userData.address2;
+  req.user.technologyStack = userData.technologyStack;
+  req.user.locations = userData.locations;
+  req.user.compType = userData.compType;
+  req.user.compMin = userData.compMin;
+
+
+  req.user.save(function(err, developer) {
+    if(err) {
+      return res.status(400).send({
+        success: false,
+        reason: err.toString()
+      })
+    }
+
+    return res.send({
+      success: true
+    })
+
   })
 
-};
 
-exports.update = function() {
 
 };
+
+exports.getOne = function(req, res) {
+  //TODO: only return validated records
+  var query = Developer.findOne({primaryEmail: req.body.email},
+    '-password -_id -salt -__v -va -roles -validated');
+
+  query.exec(function(err, developer) {
+    if(developer) {
+      return res.status(400).send({
+        success: false,
+        reason: new Error('User not found')
+      })
+    }
+
+    if(err) {
+      return res.status(400).send({
+        success: false,
+        reason: err.toString()
+      })
+    }
+
+    return res.send({
+      success: true,
+      data: developer
+    })
+
+  })
+};
+
+
+exports.getById = function(req, res) {
+  //TODO: only return validated records
+  var query = Developer.findById(
+    req.params.developerId,
+    '-password -_id -salt -__v -va -roles -validated');
+
+  query.exec(function(err, developer) {
+
+    if(developer) {
+      return res.status(404).send({
+        success: false,
+        reason: new Error('User not found')
+      })
+    }
+
+    if(err){
+      return res.status(400).send({
+        success: false,
+        reason: err.toString()
+      })
+    }
+
+    return res.send({
+      success: true,
+      data: developer
+    })
+
+  })
+};
+
+exports.getAll = function(req, res) {
+  //TODO: only return validated records
+  var query = Developer.find(
+    null,
+    '-password -_id -salt -__v -va -roles -validated');
+
+  query.exec(function(err, collection) {
+    if(err) throw err;
+    return res.send({
+      sucesss : true,
+      data: collection
+    })
+  })
+};
+
+
+
+
+
+
+
+
 
 

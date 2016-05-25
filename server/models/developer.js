@@ -58,8 +58,6 @@ module.exports = function() {
 
   developerSchema.pre('save', function(next) {
     var user = this;
-    console.log('fired')
-    console.log(user.isModified('password'))
 
     // only hash the password if it has been modified (or is new)
     if (!user.isModified('password')) return next();
