@@ -1,6 +1,4 @@
 var Recruiter = require(process.env.PWD + '/server/models/recruiter.js')();
-var encrypt = require('../common/encryption');
-
 
 exports.getAll = function(req, res) {
   //TODO: only return validated records
@@ -28,8 +26,7 @@ exports.create = function(req, res) {
 	recruiter.familyName = userData.familyName;
 	recruiter.companyPrimaryPhone = userData.companyPrimaryPhone;
 	recruiter.primaryEmail = userData.primaryEmail;
-	recruiter.salt = encrypt.createSalt();
-	recruiter.password = encrypt.hashPwd(recruiter.salt, userData.password);
+  recruiter.password = userData.password;
 	recruiter.companyName = userData.companyName;
 	recruiter.companyAddress1 = userData.companyAddress1;
 	recruiter.companyAddress2 = userData.companyAddress2;
@@ -41,7 +38,7 @@ exports.create = function(req, res) {
 		if(err){
 			res.status(400).send({
 				success: false,
-				error: err.errors
+				reason: err.toString()
 			})
 		}
     else {

@@ -31,7 +31,16 @@ exports.requiredField = [function(val) {
 exports.state = [
   "AK","AL","AR","AZ","CA","CO","CT","DC","DE","FL","GA","GU","HI","IA","ID", "IL","IN","KS","KY","LA","MA","MD","ME","MH","MI","MN","MO","MS","MT","NC","ND","NE","NH","NJ","NM","NV","NY", "OH","OK","OR","PA","PR","PW","RI","SC","SD","TN","TX","UT","VA","VI","VT","WA","WI","WV","WY"]
 
-exports. phoneNumber = [
+exports.phoneNumber = [
   /^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$/,
   'Must provide a valid phone number'
+]
+
+exports.password = [function(val) {
+  return (val.length >= 6)
+}, "Password must be six characters"]
+
+exports.compType = [
+  'fullTime',
+  'contract'
 ]
