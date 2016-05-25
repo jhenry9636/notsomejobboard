@@ -9,5 +9,5 @@ module.exports = function(server) {
       .post(developerCtrl.create)
 
 
-  server.use('/api/', developerRouter)
+  server.use('/api', developerRouter)
 }

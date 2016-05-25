@@ -3,8 +3,9 @@ var encrypt = require('../common/encryption');
 
 
 exports.getAll = function(req, res) {
+  //TODO: only return validated records
   var query = Developer.find(
-    {validated: false},
+    null,
     '-password -_id -salt -__v -va');
 
   query.exec(function(err, collection) {
@@ -36,7 +37,7 @@ exports.create = function(req, res) {
 
   developer.save(function(err, developer) {
     if(err) throw err;
-    
+
     res.send({
       success: true
     })

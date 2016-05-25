@@ -15,6 +15,7 @@ require('./server/config/views')(server);
 
 
 require('./server/routes/developer')(server);
+require('./server/routes/recruiter')(server);
 
 
 require('./server/routes/signup')(server);

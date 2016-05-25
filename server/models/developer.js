@@ -7,13 +7,15 @@ module.exports = function() {
   var developerSchema = new Schema({
     givenName: String,
     familyName : String,
-    zipCode: String,
     primaryPhone: String,
     secondaryPhone: String,
     primaryEmail: String,
     password: String,
     address1: String,
     address2: String,
+    state: String,
+    city: String,
+    zipCode: String,
     technologies: [String],
     locations: [{
       type : Schema.ObjectId,
