@@ -63,17 +63,20 @@ module.exports = function() {
     },
     sentContactRequests: [{
       type: Schema.ObjectId,
-      ref: 'Request'
+      ref: 'Request',
+      validate: validator.isObjectId
     }],
     approvedContactRequests: [{
       type: Schema.ObjectId,
-      ref: 'Request'
+      ref: 'Request',
+      validate: validator.isObjectId
     }],
 		reviews: [{
 			type: Schema.ObjectId,
-			ref: 'Review'
-		}],
-		hasValidated: {
+			ref: 'Review',
+      validate: validator.isObjectId
+    }],
+    hasVerifiedEmail: {
 			default: false,
 			type: Boolean
 		},
@@ -111,6 +114,18 @@ module.exports = function() {
       cb(null, isMatch);
     });
   };
+
+  recruiterSchema.set('toJSON', {
+    transform: function(doc, ret, options) {
+      delete ret.password;
+      delete ret.salt;
+      delete ret.__v;
+      delete ret.roles;
+      delete ret.hasVerifiedEmail;
+
+      return ret
+    }
+  })
 
 	mongoose.model('Recruiter', recruiterSchema)
 }

@@ -6,23 +6,23 @@ var validator = require('../common/validators');
 module.exports = function() {
 
   var requestSchema = new Schema({
+    clientName: {
+      type: String
+    },
     recipient: {
       type : Schema.ObjectId,
       ref : 'Developer',
-      required: true,
-      validator: validator.requiredField
+      required: true
     },
     sender: {
       type : Schema.ObjectId,
       ref : 'Recruiter',
-      require: true,
-      validator: validator.requiredField
+      require: true
     },
     location: {
       type: Schema.ObjectId,
       ref: 'Location',
-      require: true,
-      validator: validator.requiredField
+      require: true
     },
     compType: {
       type: String,
@@ -43,6 +43,13 @@ module.exports = function() {
       type: Date,
       default: Date.now
     },
+  })
+
+  requestSchema.set('toJSON', {
+    transform: function(doc, ret, options) {
+
+      return ret
+    }
   })
 
 	return mongoose.model('Request', requestSchema)

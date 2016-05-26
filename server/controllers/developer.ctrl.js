@@ -107,8 +107,7 @@ exports.update = function(req, res) {
 
 exports.getOne = function(req, res) {
   //TODO: only return validated records
-  var query = Developer.findOne({primaryEmail: req.body.email},
-    '-password -_id -salt -__v -va -roles -validated');
+  var query = Developer.findOne({primaryEmail: req.body.email});
 
   query.exec(function(err, developer) {
     if(developer) {
@@ -166,9 +165,7 @@ exports.getById = function(req, res) {
 
 exports.getAll = function(req, res) {
   //TODO: only return validated records
-  var query = Developer.find(
-    null,
-    '-password -_id -salt -__v -va -roles -validated');
+  var query = Developer.find();
 
   query.exec(function(err, collection) {
     if(err){

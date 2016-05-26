@@ -2,7 +2,7 @@ var express = require('express');
 var recruiterRouter = express.Router();
 var recruiterCtrl = require('../controllers/recruiter.ctrl.js');
 
-module.exports = function(server) {
+module.exports = function() {
 
   recruiterRouter.route('/')
     .get(recruiterCtrl.getAll)
@@ -20,5 +20,5 @@ module.exports = function(server) {
     .get(recruiterCtrl.getById)
 
   //TODO: Add auth check
-  server.use('/api/recruiter', recruiterRouter)
+  return recruiterRouter
 }

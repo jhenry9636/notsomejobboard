@@ -41,6 +41,11 @@ exports.password = [function(val) {
 }, "Password must be six characters"]
 
 exports.compType = [
-  'fullTime',
+  'fulltime',
   'contract'
 ]
+
+exports.isObjectId = [function(val) {
+    return (val.length >= 6) && /^[0-9a-fA-F]{24}$/.test(val);
+  }, "Must provide a valid Object Id"]
+

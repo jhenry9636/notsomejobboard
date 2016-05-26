@@ -2,7 +2,7 @@ var express = require('express');
 var developerRouter = express.Router();
 var developerCtrl = require('../controllers/developer.ctrl.js');
 
-module.exports = function(server) {
+module.exports = function() {
 
   developerRouter.route('/')
     .get(developerCtrl.getAll)
@@ -20,5 +20,5 @@ module.exports = function(server) {
     .get(developerCtrl.getById)
 
   //TODO: Add auth check
-  server.use('/api/developer', developerRouter)
+  return developerRouter
 }

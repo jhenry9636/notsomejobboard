@@ -37,13 +37,15 @@ module.exports = function() {
     primaryPhone: String,
     location: {
       type : Schema.ObjectId,
-      ref : 'Location'
+      ref : 'Location',
+      validate: validator.isObjectId
     },
     receivedContactRequests: [{
       type : Schema.ObjectId,
-      ref : 'Request'
+      ref : 'Request',
+      validate: validator.isObjectId
     }],
-    validated: {
+    hasVerifiedEmail: {
       default: false,
       type: Boolean
     },
@@ -90,6 +92,30 @@ module.exports = function() {
     return this.roles.indexOf(role) > -1;
   }
 
+  developerSchema.set('toJSON', {
+    transform: function(doc, ret, options) {
+      delete ret.password;
+      delete ret.isDeveloper;
+      delete ret.salt;
+      delete ret.__v;
+      delete ret.roles;
+      delete ret.hasVerifiedEmail;
+
+      return ret
+    }
+  })
+
+
+  // specify the transform schema option
+  if (!developerSchema.options.toObject) developerSchema.options.toObject = {};
+  developerSchema.options.toObject.transform = function (doc, ret, options) {
+    // remove the _id of every document before returning the result
+    delete ret._id;
+    delete ret.password;
+    delete ret.isDeveloper;
+    delete ret.salt;
+    delete ret.hasVerifiedEmail;
+  }
   
   mongoose.model('Developer', developerSchema)
 }

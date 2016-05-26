@@ -15,14 +15,9 @@ require('./server/config/models');
 
 require('./server/config/passport')(server, config);
 
-
 require('./server/config/views')(server, config);
 
-
-require('./server/routes/developer')(server);
-require('./server/routes/recruiter')(server);
-require('./server/routes/static')(server);
-
+require('./server/config/routes')(server);
 
 require('./server/routes/login')(server);
 
