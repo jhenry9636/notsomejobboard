@@ -21,6 +21,8 @@ require('./server/config/routes')(server);
 
 require('./server/routes/login')(server);
 
+require('./server/util/dummy')();
+
 
 server.listen(config.port);
 console.log('Listening on port ' + config.port + '...');
