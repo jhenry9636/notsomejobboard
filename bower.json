@@ -7,17 +7,18 @@
   ],
   "license": "ISC",
   "homepage": "https://github.com/jhenry9636/notsomejobboard",
-  "moduleType": [],
+  "private": true,
   "ignore": [
     "**/.*",
     "node_modules",
+    "bower_components",
     "public/vendor",
     "test",
     "tests"
   ],
   "dependencies": {
-    "toastr": "^2.1.2",
-    "angular": "^1.5.3",
-    "foundation": "^5.5.3"
+    "components-font-awesome": "^4.6.3",
+    "bootstrap": "^3.3.6",
+    "angular": "^1.5.5"
   }
 }

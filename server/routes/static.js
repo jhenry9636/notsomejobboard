@@ -5,8 +5,8 @@ module.exports = function(server) {
     res.render('index')
   })
 
-  server.get('/developer/signin', function(req, res) {
-
+  server.get('/developer/login', function(req, res) {
+    res.render('dev')
   })
 
   server.get('/', function(req, res) {

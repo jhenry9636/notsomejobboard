@@ -170,9 +170,15 @@ exports.getAll = function(req, res) {
     '-password -_id -salt -__v -va -roles -validated');
 
   query.exec(function(err, collection) {
-    if(err) throw err;
+    if(err){
+      return res.status(400).send({
+        success: false,
+        reason: err.toString()
+      })
+    }
+
     return res.send({
-      sucesss : true,
+      success: true,
       collection: collection
     })
   })

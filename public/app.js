@@ -14,7 +14,7 @@ function FirstCtrl($scope, $http){
   url: '/api/developer'
 }).then(function successCallback(response) {
   console.log(response)
-  $scope.devs = response.data
+  $scope.devs = response.data.collection
 
   }, function errorCallback(response) {
     // called asynchronously if an error occurs

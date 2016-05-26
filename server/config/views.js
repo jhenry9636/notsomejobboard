@@ -3,12 +3,12 @@ var path = require('path');
 
 module.exports = function(server, config) {
 
-  server.engine('.hb', expressHandlebars({
-    extname: '.hb',
+  server.engine('.handlebars', expressHandlebars({
+    extname: '.handlebars',
     layoutsDir: config.rootPath + 'server/views/layouts',
     defaultLayout: 'main'
   }));
-  server.set('view engine', '.hb');
+  server.set('view engine', '.handlebars');
 
   server.set('views', path.join(__dirname, '../views'));
 
