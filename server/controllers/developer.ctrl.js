@@ -1,11 +1,12 @@
-var Developer = require(process.env.PWD + '/server/models/developer.js')();
+var mongoose = require('mongoose');
+var Developer = mongoose.model('Developer')
 var bcrypt = require('bcrypt')
 
 
 exports.add = function(req, res) {
   var userData = req.body;
   var developer = new Developer();
-
+  console.log(developer)
   developer.givenName = userData.givenName;
   developer.familyName = userData.familyName;
   developer.zipCode = userData.zipCode;

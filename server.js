@@ -6,10 +6,15 @@ var server = express();
 
 var config = require('./server/config/config')[env];
 
+
 require('./server/config/express')(server, config);
 
-
 require('./server/config/mongoose')(config);
+
+require('./server/config/models');
+
+require('./server/config/passport')(server, config);
+
 
 require('./server/config/views')(server, config);
 
@@ -19,7 +24,7 @@ require('./server/routes/recruiter')(server);
 require('./server/routes/static')(server);
 
 
-require('./server/routes/signup')(server);
+require('./server/routes/login')(server);
 
 
 server.listen(config.port);

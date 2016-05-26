@@ -1,5 +1,6 @@
-var Recruiter = require(process.env.PWD + '/server/models/recruiter.js')();
-
+var mongoose = require('mongoose');
+var Recruiter = mongoose.model('Recruiter');
+var bcrypt = require('bcrypt');
 
 exports.add = function() {
   var userData = req.body;

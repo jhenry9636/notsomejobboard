@@ -112,5 +112,5 @@ module.exports = function() {
     });
   };
 
-	return mongoose.model('Recruiter', recruiterSchema)
+	mongoose.model('Recruiter', recruiterSchema)
 }

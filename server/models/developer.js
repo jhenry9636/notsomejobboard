@@ -1,5 +1,4 @@
 var mongoose = require('mongoose');
-var uniqueValidator = require('mongoose-unique-validator');
 var Schema = mongoose.Schema;
 var validator = require('../common/validators');
 var bcrypt = require('bcrypt');
@@ -92,5 +91,5 @@ module.exports = function() {
   }
 
   
-  return mongoose.model('Developer', developerSchema)
+  mongoose.model('Developer', developerSchema)
 }

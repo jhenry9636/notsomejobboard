@@ -1,3 +1,5 @@
+var authCheck = require('../common/authcheck.js')
+
 
 module.exports = function(server) {
 
@@ -5,15 +7,15 @@ module.exports = function(server) {
     res.render('index')
   })
 
-  server.get('/developer/signup', function(req, res) {
+  server.get('/page/signup', function(req, res) {
     res.render('developer.new.handlebars')
   })
 
-  server.get('/developer/login', function(req, res) {
+  server.get('/page/login', function(req, res) {
     res.render('developer.login.handlebars')
   })
 
-  server.get('/developer/dashboard', function(req, res) {
+  server.get('/page/dashboard', authCheck.isAuthenticated, function(req, res) {
     res.render('developer.dashboard.handlebars', {
       user: req.user
     })

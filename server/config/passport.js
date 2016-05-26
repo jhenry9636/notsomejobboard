@@ -1,16 +1,51 @@
 var RecruiterStrategy = require('passport-local').Strategy;
 var DeveloperStrategy = require('passport-local').Strategy;
+var mongoose = require('mongoose');
+var passport = require('passport');
 var Recruiter = mongoose.model('Recruiter');
 var Developer = mongoose.model('Developer');
 
 module.exports = function() {
 
-  passport.use(new RecruiterStrategy(
+  passport.use('developer', new DeveloperStrategy({
+      usernameField: 'primaryEmail'
+    },
+    function(emailAddress, password, done) {
+      Developer.findOne({primaryEmail: emailAddress}).exec(function(err, developer) {
+        if(err) {
+          return done(err, false)
+        }
+
+        if(!developer) {
+          return done(null, false)
+        }
+
+        developer.comparePassword(password, function(err, isMatch) {
+          if(err) throw err;
+
+          if(!isMatch) {
+            return done(null, false)
+          }
+
+          if(isMatch) {
+            return done(null, developer)
+          }
+
+        })
+
+      })
+    }
+  ));
+
+  passport.use('recruiter', new RecruiterStrategy({
+    usernameField: 'primaryEmail'
+  },
     function(emailAddress, password, done) {
       Recruiter.findOne({primaryEmail: emailAddress}).exec(function(err, recruiter) {
         if(err) {
           return done(err, false)
         }
+        console.log('Recruiter password matches: '+recruiter.comparePassword(password))
         if(recruiter && recruiter.comparePassword(password)) {
           return done(null, user);
         } else {
