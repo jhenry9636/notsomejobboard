@@ -11,11 +11,12 @@ require('./server/config/express')(server, config);
 
 require('./server/config/mongoose')(config);
 
-require('./server/config/views')(server);
+require('./server/config/views')(server, config);
 
 
 require('./server/routes/developer')(server);
 require('./server/routes/recruiter')(server);
+require('./server/routes/static')(server);
 
 
 require('./server/routes/signup')(server);

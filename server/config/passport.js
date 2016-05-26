@@ -8,6 +8,9 @@ module.exports = function() {
   passport.use(new RecruiterStrategy(
     function(emailAddress, password, done) {
       Recruiter.findOne({primaryEmail: emailAddress}).exec(function(err, recruiter) {
+        if(err) {
+          return done(err, false)
+        }
         if(recruiter && recruiter.comparePassword(password)) {
           return done(null, user);
         } else {
@@ -18,19 +21,47 @@ module.exports = function() {
   ));
 
   passport.serializeUser(function(user, done) {
-    if(user) {
-      done(null, user._id);
+    var obj = {
+      primaryEmail: user.primaryEmail
+    }
+
+    //Checking if user is a recruiter or dev
+    if(user.isDeveloper) {
+      obj.isDev = true
+      done(null, obj);
+    }
+    else {
+      done(null, obj);
     }
   });
 
-  passport.deserializeUser(function(id, done) {
-    User.findOne({_id:id}).exec(function(err, user) {
-      if(user) {
-        return done(null, user);
-      } else {
-        return done(null, false);
-      }
-    })
+  passport.deserializeUser(function(serializedObj, done) {
+
+    if(serializedObj.isDev) {
+      Developer.findOne(
+        {primaryEmail: serializedObj.primaryEmail }).exec(function(err, developer) {
+        if(err) {
+          return done(err, false)
+        }
+        if(!developer) {
+          return done(null, false);
+        }
+        return done(null, developer);
+      })
+    }
+    else {
+      Recruiter.findOne(
+        {primaryEmail: serializedObj.primaryEmail }).exec(function(err, recruiter) {
+        if(err) {
+          return done(err, false)
+        }
+        if(!recruiter) {
+          return done(null, false);
+        }
+        return done(null, recruiter);
+      })
+    }
+
   })
 
 }

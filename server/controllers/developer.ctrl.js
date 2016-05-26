@@ -64,15 +64,7 @@ exports.update = function(req, res) {
   var userUpdates = req.body;
 
   if(req.user._id != userUpdates._id) {
-    res.status(403);
-    return res.end();
-  }
-
-  if(!developer) {
-    return res.status(404).send({
-      success: false,
-      reason: new Error('User not found')
-    })
+    return res.status(403).end();
   }
 
   if(err) {
@@ -96,7 +88,7 @@ exports.update = function(req, res) {
   req.user.compMin = userData.compMin;
 
 
-  req.user.save(function(err, developer) {
+  req.user.save(function(err) {
     if(err) {
       return res.status(400).send({
         success: false,
@@ -105,13 +97,11 @@ exports.update = function(req, res) {
     }
 
     return res.send({
-      success: true
+      success: true,
+      collection: req.user
     })
 
   })
-
-
-
 };
 
 exports.getOne = function(req, res) {
@@ -136,7 +126,7 @@ exports.getOne = function(req, res) {
 
     return res.send({
       success: true,
-      data: developer
+      collection: developer
     })
 
   })
@@ -167,7 +157,7 @@ exports.getById = function(req, res) {
 
     return res.send({
       success: true,
-      data: developer
+      collection: developer
     })
 
   })
@@ -183,7 +173,7 @@ exports.getAll = function(req, res) {
     if(err) throw err;
     return res.send({
       sucesss : true,
-      data: collection
+      collection: collection
     })
   })
 };

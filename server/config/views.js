@@ -1,11 +1,12 @@
 var expressHandlebars = require('express-handlebars');
 var path = require('path');
 
-module.exports = function(server) {
+module.exports = function(server, config) {
 
   server.engine('.hb', expressHandlebars({
     extname: '.hb',
-    layoutsDir: path.join(__dirname, '../views/layouts')
+    layoutsDir: config.rootPath + 'server/views/layouts',
+    defaultLayout: 'main'
   }));
   server.set('view engine', '.hb');
 

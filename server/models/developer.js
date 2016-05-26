@@ -53,6 +53,10 @@ module.exports = function() {
       type: Date,
       default: Date.now
     },
+    isDeveloper: {
+      type: Boolean,
+      default: true
+    },
     roles : [String]
   })
 

@@ -4,10 +4,21 @@ var recruiterCtrl = require('../controllers/recruiter.ctrl.js');
 
 module.exports = function(server) {
 
-  recruiterRouter.route('/recruiter')
+  recruiterRouter.route('/')
     .get(recruiterCtrl.getAll)
-    .post(recruiterCtrl.create)
 
+  recruiterRouter.route('/add')
+    .post(recruiterCtrl.add)
 
-  server.use('/api', recruiterRouter)
+  recruiterRouter.route('/delete')
+    .post(recruiterCtrl.delete)
+
+  recruiterRouter.route('/update')
+    .post(recruiterCtrl.update)
+
+  recruiterRouter.route('/:developerId')
+    .get(recruiterCtrl.getById)
+
+  //TODO: Add auth check
+  server.use('/api/recruiter', recruiterRouter)
 }
