@@ -49,6 +49,7 @@ var developerSchema = new Schema({
     default: false,
     type: Boolean
   },
+
   salt: String,
   joinedAt: {
     type: Date,

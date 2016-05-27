@@ -8,7 +8,7 @@ exports.add = function() {
 
   recruiter.givenName = userData.givenName;
   recruiter.familyName = userData.familyName;
-  recruiter.companyPrimaryPhone = userData.companyPrimaryPhone;
+  recruiter.primaryPhone = userData.primaryPhone;
   recruiter.primaryEmail = userData.primaryEmail;
   recruiter.password = userData.password;
   recruiter.companyName = userData.companyName;
@@ -92,7 +92,7 @@ exports.update = function(req, res) {
 
 exports.getOne = function(req, res) {
   //TODO: only return validated records
-  var query = Recruiter.findOne({primaryEmail: req.body.email});
+  var query = Recruiter.findOne({primaryEmail: req.body.primaryEmail});
 
   query.exec(function(err, recruiter) {
     if(!recruiter) {
@@ -120,11 +120,10 @@ exports.getOne = function(req, res) {
 
 exports.getById = function(req, res) {
   //TODO: only return validated records
-  var query = Recruiter.findById(req.params.developerId);
+  var query = Recruiter.findById(req.params.developerId,
+    function(err, recruiter) {
 
-  query.exec(function(err, recruiter) {
-
-    if(recruiter) {
+    if(!recruiter) {
       return res.status(404).send({
         success: false,
         reason: new Error('User not found')

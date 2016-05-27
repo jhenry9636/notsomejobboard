@@ -119,6 +119,8 @@ exports.getAll = function(req, res) {
     '-__v');
 
   query.populate('recipient')
+  query.populate('sender')
+  query.sort({createdAt: 'desc'})
   query.exec(function(err, collection) {
     if(err){
       return res.status(400).send({

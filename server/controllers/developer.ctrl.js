@@ -107,7 +107,7 @@ exports.update = function(req, res) {
 
 exports.getOne = function(req, res) {
   //TODO: only return validated records
-  var query = Developer.findOne({primaryEmail: req.body.email});
+  var query = Developer.findOne({primaryEmail: req.body.primaryEmail});
 
   query.exec(function(err, developer) {
     if(developer) {
@@ -135,13 +135,12 @@ exports.getOne = function(req, res) {
 
 exports.getById = function(req, res) {
   //TODO: only return validated records
-  var query = Developer.findById(
-    req.params.developerId,
-    '-password -_id -salt -__v -va -roles -validated');
+  console.log(req.params.developerId)
 
-  query.exec(function(err, developer) {
+  Developer.findById(req.params.developerId,
+    function(err, developer) {
 
-    if(developer) {
+    if(!developer) {
       return res.status(404).send({
         success: false,
         reason: new Error('User not found')

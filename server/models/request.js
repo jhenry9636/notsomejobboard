@@ -3,9 +3,6 @@ var Schema = mongoose.Schema;
 var validator = require('../common/validators');
 
 var requestSchema = new Schema({
-  clientName: {
-    type: String
-  },
   recipient: {
     type : Schema.ObjectId,
     ref : 'Developer',
@@ -35,6 +32,9 @@ var requestSchema = new Schema({
     type: String,
     require: true,
     validate: validator.requiredField
+  },
+  clientName: {
+    type: String
   },
   createdAt: {
     type: Date,

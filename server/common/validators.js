@@ -32,7 +32,7 @@ exports.state = [
   "AK","AL","AR","AZ","CA","CO","CT","DC","DE","FL","GA","GU","HI","IA","ID", "IL","IN","KS","KY","LA","MA","MD","ME","MH","MI","MN","MO","MS","MT","NC","ND","NE","NH","NJ","NM","NV","NY", "OH","OK","OR","PA","PR","PW","RI","SC","SD","TN","TX","UT","VA","VI","VT","WA","WI","WV","WY"]
 
 exports.phoneNumber = [
-  /^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$/,
+  /^\s*(?:\+?(\d{1,3}))?[-. (]*(\d{3})[-. )]*(\d{3})[-. ]*(\d{4})(?: *x(\d+))?\s*$/,
   'Must provide a valid phone number'
 ]
 
@@ -49,3 +49,42 @@ exports.isObjectId = [function(val) {
     return (val.length >= 6) && /^[0-9a-fA-F]{24}$/.test(val);
   }, "Must provide a valid Object Id"]
 
+exports.technologies = ['HTML',
+  'HTML4',
+  'HTML5',
+  'CSS 3',
+  'Javascript',
+  'Ajax',
+  'jQuery',
+  'Bootstrap',
+  'Foundation',
+  'React',
+  'Flux',
+  'W3C',
+  'UX / Usability',
+  'Website Performance',
+  'Website Optimization',
+  'Modernizr',
+  'ECMAScript 6',
+  'Browserify',
+  'Mocha',
+  'QUnit',
+  'JSLint',
+  'Sass',
+  'Less',
+  'Stylus',
+  'Git',
+  'Github',
+  'Subversion',
+  'Canvas',
+  'Geolocation',
+  'Video',
+  'Accessibility',
+  'Yeoman',
+  'Grunt',
+  'Gulp',
+  'Make',
+  'SASS',
+  'LESS',
+  'Stylus',
+  'Web Workers']
