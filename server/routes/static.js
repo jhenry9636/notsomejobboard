@@ -1,5 +1,6 @@
 var express = require('express');
 var staticRouter = express.Router();
+var authenticationCheck = require('../common/authcheck.js')
 
 module.exports = function() {
 
@@ -12,7 +13,9 @@ module.exports = function() {
 
   staticRouter.route('/join')
     .get(function(req, res) {
-      res.render('join')
+      res.render('join', {
+        user: req.user
+      })
     })
   
   staticRouter.route('/contact')
@@ -23,9 +26,11 @@ module.exports = function() {
     })
 
   staticRouter.route('/dashboard')
-    .get(function(req, res) {
+    .get(authenticationCheck, function(req, res) {
+
       res.render('dashboard', {
-        user: req.user
+        user: req.user,
+        pageType: 'dashboard'
       })
     })
 
