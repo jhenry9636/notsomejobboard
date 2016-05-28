@@ -8,11 +8,11 @@ var authenticationCheck = require('../common/authcheck.js')
 
 module.exports = function(server) {
 
-  server.use('/api/developer', developerRouter)
+  server.use('/api/developer', authenticationCheck, developerRouter)
 
-  server.use('/api/recruiter', recruiterRouter)
+  server.use('/api/recruiter', authenticationCheck, recruiterRouter)
 
-  server.use('/api/request', requestRouter)
+  server.use('/api/request', authenticationCheck, requestRouter)
 
   server.use('/login', loginRouter)
 

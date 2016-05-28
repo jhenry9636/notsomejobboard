@@ -4,7 +4,7 @@ var logoutRouter = express.Router();
 module.exports = function() {
 
   logoutRouter.route('/logout')
-    .post(function(req, res) {
+    .get(function(req, res) {
       req.logout();
       res.redirect('/');
     })

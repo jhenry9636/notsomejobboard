@@ -15,6 +15,11 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
+                <% if(user) {%>
+                <li><a href="#">Hey, <%= user.givenName %></a></li>
+                <li><a href="/dashboard">My Dashboard</a></li>
+                <li><a href="/logout">Logout</a></li>
+                <%} else { %>
                 <li class="hidden">
                     <a href="#page-top"></a>
                 </li>
@@ -24,10 +29,10 @@
                 <li>
                     <a href="/contact">Contact</a>
                 </li>
-                <li>{{ this }}</li>
                 <li>
                     <a href="#login" class="portfolio-link" data-toggle="modal">Login</a>
                 </li>
+                <%} %>
 
             </ul>
         </div>
