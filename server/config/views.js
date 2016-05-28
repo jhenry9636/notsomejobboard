@@ -6,7 +6,8 @@ module.exports = function(server, config) {
   server.engine('.handlebars', expressHandlebars({
     extname: '.handlebars',
     layoutsDir: config.rootPath + 'server/views/layouts',
-    defaultLayout: 'main'
+    defaultLayout: 'main',
+    partialsDir: config.rootPath + 'server/views/partials'
   }));
   server.set('view engine', '.handlebars');
 

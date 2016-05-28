@@ -23,6 +23,10 @@ module.exports = function(server) {
     res.render('index')
   })
 
+  server.get('/contact', function(req, res) {
+    res.render('contact')
+  })
+
   server.get('/page/signup', function(req, res) {
     res.render('developer.new.handlebars')
   })
