@@ -27,19 +27,15 @@ module.exports = function(server) {
     res.render('contact')
   })
 
-  server.get('/page/signup', function(req, res) {
-    res.render('developer.new.handlebars')
+  server.get('/signup', function(req, res) {
+    res.render('signup')
   })
 
-  server.get('/page/login', function(req, res) {
+  server.get('/login', function(req, res) {
     res.render('developer.login.handlebars')
   })
 
-  server.get('/page/dashboard', authenticationCheck.isAuthenticated, function(req, res) {
-    res.render('developer.dashboard.handlebars', {
-      user: req.user
-    })
-  })
+
 
 
 }
