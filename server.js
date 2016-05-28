@@ -21,7 +21,7 @@ require('./server/config/routes')(server);
 
 require('./server/routes/login')(server);
 
-require('./server/common/dummy')();
+//require('./server/common/dummy')();
 
 
 server.listen(config.port);

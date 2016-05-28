@@ -1,12 +1,12 @@
 
 {{> head}}
 <body id="page-top" class="index">
-  {{> nav}}
+  {{> nav user=user}}
   {{{body}}}
-  {{> footer}}
-  {{> scrollTop}}
-  {{> modals}}
-  {{> scripts}}
+  {{> footer user=user}}
+  {{> scrollTop user=user}}
+  {{> modals user=user}}
+  {{> scripts user=user}}
 </body>
 
 </html>

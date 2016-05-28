@@ -14,12 +14,12 @@ module.exports = function(server) {
         }
 
         if (!developer) {
-          return res.redirect('/page/login');
+          return res.redirect('/');
         }
 
         req.logIn(developer, function(err) {
           if (err) { return next(err); }
-          return res.redirect('/page/dashboard');
+          return res.redirect('/dashboard');
         });
       });
 
@@ -35,13 +35,12 @@ module.exports = function(server) {
         }
 
         if (!recruiter) {
-          console.log('nothing')
-          return res.redirect('/page/login');
+          return res.redirect('/');
         }
 
         req.logIn(recruiter, function(err) {
           if (err) { return next(err); }
-          return res.redirect('/page/dashboard');
+          return res.redirect('/dashboard');
         });
       });
 
