@@ -27,7 +27,8 @@ exports.add = function() {
     }
     else {
       res.send({
-        success: true
+        success: true,
+        collection: recruiter
       })
     }
   })
@@ -52,7 +53,8 @@ exports.delete = function(req, res) {
     }
 
     return res.send({
-      success: true
+      success: true,
+      collection: recruiter
     })
 
   })
@@ -120,7 +122,7 @@ exports.getOne = function(req, res) {
 
 exports.getById = function(req, res) {
   //TODO: only return validated records
-  var query = Recruiter.findById(req.params.developerId,
+  var query = Recruiter.findById(req.params.recruiterId,
     function(err, recruiter) {
 
     if(!recruiter) {

@@ -16,7 +16,7 @@ module.exports = function() {
   recruiterRouter.route('/update')
     .post(recruiterCtrl.update)
 
-  recruiterRouter.route('/:developerId')
+  recruiterRouter.route('/:recruiterId')
     .get(recruiterCtrl.getById)
 
   //TODO: Add auth check
