@@ -138,13 +138,6 @@ header .intro-text .skills {
         transition: all .3s;
     }
 
-    .navbar-fixed-top.navbar-shrink {
-        padding: 10px 0;
-    }
-
-    .navbar-fixed-top.navbar-shrink .navbar-brand {
-        font-size: 1.5em;
-    }
 }
 
 .navbar {
@@ -462,4 +455,24 @@ footer .footer-below {
     font-weight:norma;
     font-size: 14px;
     text-transform: none;
+}
+
+
+
+
+
+
+
+/***
+
+Wizard Indicator
+
+***/
+
+#join .navbar {
+  background: #fff;
+}
+
+#join .navbar a {
+  color: #18bc9c;
 }

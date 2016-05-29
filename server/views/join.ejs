@@ -1,26 +1,52 @@
 <% include ./partials/head %>
-<body ng-app="nsj">
+<body ng-app="nsj.wizard.slider" id="join">
 <!-- Join  -->
+<!-- Navigation -->
+<nav class="navbar navbar-default navbar-fixed-top">
     <div class="container">
-        <div class="row">
-            <div class="col-sm-12" ng-controller="myCtrl as vm">
-                {{vm.test}}
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">NotSomeJobboard.com</a>
+        </div>
 
-                <input type="text" ng-model="vm.test"/>
-            </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+
+                <li>
+                    <a href="#login" class="portfolio-link" data-toggle="modal">Login</a>
+                </li>
+
+
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container-fluid -->
+</nav>
+
+    <div class="container-fluid join-container">
+        <div class="row">
+            <nsj-slider></nsj-slider>
         </div>
     </div>
 
 
 
 <script src="/vendor/angular/angular.min.js"></script>
-<script src="/app.module.js"></script>
+
+<script src="/wizard/slider/slider.module.js"></script>
+<script src="/wizard/slider/slider.controller.js"></script>
+<script src="/wizard/slider/slider.directive.js"></script>
 
 
-<script src="/wizard/slider.module.js"></script>
-<script src="/wizard/slider.controller.js"></script>
-<script src="/wizard/slider.directive.js"></script>
-<script src="/wizard/slider.service.js"></script>
+
 <% include ./partials/scripts.ejs %>
 <% include ./partials/modals.ejs %>
 </body>

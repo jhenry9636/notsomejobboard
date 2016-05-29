@@ -1,6 +1,8 @@
 (function() {
   'use strict'
 
-  angular.module('nsj', ['nsj-slide'])
+  angular.module('nsj', [
+    'nsj.wizard'
+  ])
 
 })()

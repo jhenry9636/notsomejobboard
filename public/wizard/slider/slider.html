@@ -1,3 +1,15 @@
-<ul ng-controller="SliderController as vm">
-  <h2>{{vm.test}}</h2>
+<ul class="wizard-indicator">
+  <li ng-show="currentStep <= 1">Step 1</li>
+  <li ng-show="currentStep <= 2">Step 2</li>
+  <li ng-show="currentStep <= 3">Step 3</li>
+  <li ng-show="currentStep <= 4">Step 4</li>
+  <li ng-show="currentStep <= 5">Step 5</li>
 </ul>
+
+
+<br />
+<br />
+<br />
+
+
+<br /><br /><br /><br /><input ng-model="currentStep" />

@@ -1,26 +1,22 @@
 (function () {
   'use strict'
 
-  angular.module('nsj.slider')
-    .directive('nsjSlider', slider)
+  angular.module('nsj.wizard.slider')
+    .directive('nsjSlider', nsjSlider)
 
-  function slider() {
-    var directive = {
-      link: link,
-      templateUrl: './slider.html',
-      restrict: 'E',
-      controller: SliderController,
-      controllerAs: vm
-    };
-    return directive;
+  function nsjSlider() {
 
-    function link(scope, element, attrs) {
-      var vm = this;
-
-      vm.test = 'Jarrad'
-
-      return vm
+    return {
+      scope: true,
+      templateUrl: '/wizard/slider/slider.html',
+      controller: 'SliderController',
+      controllerAs: 'vm'
     }
+
+
   }
+
+
+
 
 })()

@@ -1,12 +1,13 @@
 (function() {
   'use strict'
 
-  angular.module('nsj')
-    .controller('myCtrl', function() {
-      var vm = this;
-      
-      vm.test = 'time'
-    })
+  angular.module('nsj.wizard.slider')
+    .controller('SliderController', SliderController)
+
+  function SliderController() {
+    var vm = this;
+    
+  }
 
 
 
