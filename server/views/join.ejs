@@ -1,11 +1,27 @@
 <% include ./partials/head %>
-<% include ./partials/nav %>
-<!-- Contact Section -->
-<section ng-app="nsj-slider">
-    <nsj-slider></nsj-slider>
-</section>
-<% include ./partials/footer %>
+<body ng-app="nsj">
+<!-- Join  -->
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12" ng-controller="myCtrl as vm">
+                {{vm.test}}
+
+                <input type="text" ng-model="vm.test"/>
+            </div>
+        </div>
+    </div>
+
+
+
 <script src="/vendor/angular/angular.min.js"></script>
 <script src="/app.module.js"></script>
+
+
+<script src="/wizard/slider.module.js"></script>
+<script src="/wizard/slider.controller.js"></script>
+<script src="/wizard/slider.directive.js"></script>
+<script src="/wizard/slider.service.js"></script>
 <% include ./partials/scripts.ejs %>
 <% include ./partials/modals.ejs %>
+</body>
+</html>
