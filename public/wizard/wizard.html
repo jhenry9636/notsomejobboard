@@ -1,0 +1,53 @@
+  <div class="wizard-wrapper">
+    <div class="row">
+      <div class="col-sm-12">
+        <div id="wizard-progress" class="col-sm-12 wizard-progress">
+
+        </div>
+      </div>
+    </div>
+    <div class="row wizard-indicator-row">
+      <div class="col-sm-12 ">
+        <ul id="wizard-indicator" class="wizard-indicator">
+          <li ng-show="vm.hasLocation">
+            <span class="step-name">Location:</span>
+            <span>{{vm.location}}</span>
+          </li>
+          <li ng-show="vm.hasTech">
+            <span class="step-name">Technologies:</span>
+            <span>{{vm.tech}}</span>
+          </li>
+          <li ng-show="vm.hasComp">
+            <span class="step-name">Pay:</span>
+            <span>{{vm.comp}}</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="wizard-step-container" ng-class="{'active': vm.currentStep == 'location'}">
+          <h3>Tell us, anywhere in the world.</h3>
+          <input type="text" placeholder="Whats your dream location?" ng-model="vm.location" />
+          <button type="submit" class="btn btn-success btn-lg" ng-click="vm.setLocation()">I'm done</button>
+        </div>
+        <div class="wizard-step-container" ng-class="{'active': vm.currentStep == 'tech'}">
+          <h3>Talk about some really cool projects you've done</h3>
+          <input type="text" placeholder="What technologies have you used?" ng-model="vm.tech" />
+          <button type="submit" class="btn btn-success btn-lg" ng-click="vm.setTech()">I'm done</button>
+        </div>
+        <div class="wizard-step-container" ng-class="{'active': vm.currentStep == 'comp'}">
+          <h3>Lets talk moula</h3>
+          <input type="text" placeholder="What do you what to make?" ng-model="vm.comp"/>
+          <button type="submit" class="btn btn-success btn-lg" ng-click="vm.setComp()">I'm done</button>
+        </div>
+        <div class="wizard-step-container" ng-class="{'active': vm.currentStep == 'creds'}">
+          <h3>Enter a username and password to save this information.</h3>
+          <input type="text" placeholder="Email Address" />
+          <input type="password" placeholder="Password?" />
+          <button type="submit" class="btn btn-success btn-lg">I'm done</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
