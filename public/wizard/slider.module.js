@@ -1,5 +1,5 @@
 (function () {
   'use strict'
 
-  angular.module('notsome.wizard')
+  angular.module('nsj.wizard')
 })()

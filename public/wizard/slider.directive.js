@@ -1,7 +1,7 @@
 (function () {
   'use strict'
 
-  angular.module('notsome.wizard')
+  angular.module('nsj.wizard')
     .directive('nsj-slider', slider)
 
   function slider() {
