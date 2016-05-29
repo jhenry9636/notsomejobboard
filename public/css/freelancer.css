@@ -459,20 +459,82 @@ footer .footer-below {
 
 
 
-
-
-
-
 /***
 
 Wizard Indicator
 
 ***/
 
+
+
 #join .navbar {
   background: #fff;
+  margin-bottom: 0px;
+  padding-bottom: 0px;
+}
+
+.wizard-wrapper {
+  margin-top: 78px;
 }
 
 #join .navbar a {
   color: #18bc9c;
+}
+
+
+.wizard-progress {
+  width: inherit;
+  height: 5px;
+  background: #0C9EEF;
+}
+
+.wizard-indicator-row {
+  background: #F0F4F9;
+}
+
+.wizard-indicator {
+  width: 100%;
+  height: 75px;
+  padding: 20px 0px 0px 0px;
+  margin: 0px;
+}
+
+.wizard-indicator li {
+  color: #5B6675;
+  float: left;
+  width: 20%;
+  list-style: none;
+}
+
+.wizard-indicator li {
+  display: block
+}
+
+.wizard-indicator li span {
+  display: block;
+}
+
+.wizard-indicator li span.step-name {
+  text-transform: uppercase;
+  font-size: 12px;
+}
+
+.wizard-step-container {
+  display: none;
+  text-align: center;
+}
+
+.wizard-step-container.active {
+  display: block;
+}
+
+.wizard-step-container h3 {
+  margin-top: 100px;
+}
+
+.wizard-step-container input {
+  height: 60px;
+  width: 420px;
+  margin-top: 60px;
+  padding: 20px
 }

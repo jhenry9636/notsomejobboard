@@ -1,5 +1,5 @@
 (function () {
   'use strict'
 
-  angular.module('nsj.slider', [])
+  angular.module('nsj.wizard', [])
 })()
