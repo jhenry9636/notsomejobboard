@@ -597,6 +597,9 @@ input[type="url"], textarea
   border: 1px solid #000;
 }
 
+.navbar-brand:hover {
+  color: #fff;
+}
 
 @media (max-width: 576px) {
   .wizard-indicator {

@@ -43,7 +43,7 @@
         </div>
 
         <div class="wizard-step-container" ng-class="{'active': vm.currentStep == 'tech'}">
-          <h3>What technologies have you utilized?</h3>
+          <h3>What technologies are you using?</h3>
           <p>Next we'll ask about some projects where the selected technologies were used.</p>
           <ul class="wizard-tech">
             <li>Angular</li>
@@ -106,10 +106,12 @@
 
 
         <div class="wizard-step-container" ng-class="{'active': vm.currentStep == 'comp'}">
-          <h3>Lets talk moula.</h3>
+          <h3>Lets talk moula!</h3>
+          <p>Specify your desired compensation.</p>
           <p></p>
           <form novalidate="">
             <div class="row control-group row-form">
+
               <div class="form-group col-xs-12 floating-label-form-group controls">
                 <label>Lets talk moula?</label>
                 <input type="text" class="form-control" placeholder="e.g. $100,000" ng-model="vm.comp" id="name" required="" data-validation-required-message="Please enter your name.">
