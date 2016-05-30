@@ -521,3 +521,17 @@ Wizard Indicator
   margin: 10px 0px 10px 0px;
   padding: 20px
 }
+
+.row-form {
+  padding: 0px 20px 0px 20px;
+  margin-right: 0px;
+  margin-left: 0px;
+}
+
+.row-form form {
+ margin: 0px 20px 0px 20px;
+}
+
+.floating-label-form-group-with-value label {
+  text-align: left;
+}
