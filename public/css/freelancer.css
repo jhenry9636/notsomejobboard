@@ -123,23 +123,6 @@ header .intro-text .skills {
     }
 }
 
-@media(min-width:768px) {
-    .navbar-fixed-top {
-        padding: 8px 0;
-        -webkit-transition: padding .3s;
-        -moz-transition: padding .3s;
-        transition: padding .3s;
-    }
-
-    .navbar-fixed-top .navbar-brand {
-        font-size: 1.6em;
-        -webkit-transition: all .3s;
-        -moz-transition: all .3s;
-        transition: all .3s;
-    }
-
-}
-
 .navbar {
     text-transform: uppercase;
     font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
@@ -468,24 +451,21 @@ Wizard Indicator
 
 
 #join .navbar {
-  background: #fff;
-  margin-bottom: 0px;
-  padding-bottom: 0px;
+
 }
 
 .wizard-wrapper {
-  margin-top: 78px;
+  margin-top: 61px;
 }
-
-#join .navbar a {
-  color: #18bc9c;
-}
-
 
 .wizard-progress {
-  width: inherit;
+  width: 0%;
   height: 5px;
   background: #0C9EEF;
+  -webkit-transition: width 1s ease-in-out;
+  -moz-transition: width 1s ease-in-out;
+  -o-transition: width 1s ease-in-out;
+  transition: width 1s ease-in-out;
 }
 
 .wizard-indicator-row {
@@ -497,17 +477,20 @@ Wizard Indicator
   height: 75px;
   padding: 20px 0px 0px 0px;
   margin: 0px;
+  text-align: center;
 }
 
 .wizard-indicator li {
+  visibility: hidden;
+  display: inline-block;
+  cursor: pointer;
   color: #5B6675;
-  float: left;
   width: 20%;
   list-style: none;
 }
 
-.wizard-indicator li {
-  display: block
+.wizard-indicator li.active {
+  visibility: visible;
 }
 
 .wizard-indicator li span {
@@ -535,6 +518,6 @@ Wizard Indicator
 .wizard-step-container input {
   height: 60px;
   width: 420px;
-  margin-top: 60px;
+  margin: 10px 0px 10px 0px;
   padding: 20px
 }

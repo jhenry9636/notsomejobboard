@@ -1,23 +1,16 @@
   <div class="wizard-wrapper">
-    <div class="row">
-      <div class="col-sm-12">
-        <div id="wizard-progress" class="col-sm-12 wizard-progress">
-
-        </div>
-      </div>
-    </div>
     <div class="row wizard-indicator-row">
       <div class="col-sm-12 ">
         <ul id="wizard-indicator" class="wizard-indicator">
-          <li ng-show="vm.hasLocation">
+          <li ng-class="{'active': vm.hasLocation}" ng-click="vm.goToLocation()">
             <span class="step-name">Location:</span>
             <span>{{vm.location}}</span>
           </li>
-          <li ng-show="vm.hasTech">
+          <li ng-class="{'active': vm.hasTech}" ng-click="vm.goToTech()">
             <span class="step-name">Technologies:</span>
             <span>{{vm.tech}}</span>
           </li>
-          <li ng-show="vm.hasComp">
+          <li ng-class="{'active': vm.hasComp}" ng-click="vm.goToComp()">
             <span class="step-name">Pay:</span>
             <span>{{vm.comp}}</span>
           </li>
@@ -25,21 +18,32 @@
       </div>
     </div>
     <div class="row">
+      <div class="col-sm-12">
+        <div id="wizard-progress" class="wizard-progress"></div>
+      </div>
+    </div>
+    <div class="row">
       <div class="col-xs-12">
         <div class="wizard-step-container" ng-class="{'active': vm.currentStep == 'location'}">
-          <h3>Tell us, anywhere in the world.</h3>
-          <input type="text" placeholder="Whats your dream location?" ng-model="vm.location" />
-          <button type="submit" class="btn btn-success btn-lg" ng-click="vm.setLocation()">I'm done</button>
+          <h3>In what location do you want to work?</h3>
+          <p>Be Specific :)</p>
+          <input type="text" placeholder="e.g. Downtown Chicago, Times Square, Starbucks 3rd st. ..." ng-model="vm.location" />
+          <br />
+          <button type="submit" class="btn btn-success btn-lg" ng-click="vm.setLocation()">I'm Finished</button>
         </div>
         <div class="wizard-step-container" ng-class="{'active': vm.currentStep == 'tech'}">
           <h3>Talk about some really cool projects you've done</h3>
           <input type="text" placeholder="What technologies have you used?" ng-model="vm.tech" />
-          <button type="submit" class="btn btn-success btn-lg" ng-click="vm.setTech()">I'm done</button>
+          <br />
+          <button type="submit" class="btn btn-success btn-lg" ng-click="vm.setTech()">I'm Finished</button>
+          <button type="submit" class="btn btn-link btn-lg" ng-click="vm.goToLocation()"">Go Back.</button>
         </div>
         <div class="wizard-step-container" ng-class="{'active': vm.currentStep == 'comp'}">
           <h3>Lets talk moula</h3>
           <input type="text" placeholder="What do you what to make?" ng-model="vm.comp"/>
-          <button type="submit" class="btn btn-success btn-lg" ng-click="vm.setComp()">I'm done</button>
+          <br />
+          <button type="submit" class="btn btn-success btn-lg" ng-click="vm.setComp()">I'm Finished</button>
+          <button type="submit" class="btn btn-link btn-lg" ng-click="vm.goToTech()"">Go back.</button>
         </div>
         <div class="wizard-step-container" ng-class="{'active': vm.currentStep == 'creds'}">
           <h3>Enter a username and password to save this information.</h3>
