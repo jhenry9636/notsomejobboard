@@ -264,6 +264,7 @@ section.success a.active {
 .floating-label-form-group input,
 .floating-label-form-group textarea {
     z-index: 1;
+    text-align: left;
     position: relative;
     padding-right: 0;
     padding-left: 0;
@@ -279,17 +280,16 @@ section.success a.active {
     display: block;
     z-index: 0;
     position: relative;
-    top: 2em;
     margin: 0;
     font-size: .85em;
     line-height: 1.764705882em;
-    vertical-align: middle;
+    vertical-align: left;
     vertical-align: baseline;
     opacity: 0;
-    -webkit-transition: top .3s ease,opacity .3s ease;
-    -moz-transition: top .3s ease,opacity .3s ease;
-    -ms-transition: top .3s ease,opacity .3s ease;
-    transition: top .3s ease,opacity .3s ease;
+    -webkit-transition: left .3s ease,opacity .3s ease;
+    -moz-transition: left .3s ease,opacity .3s ease;
+    -ms-transition: left .3s ease,opacity .3s ease;
+    transition: left .3s ease,opacity .3s ease;
 }
 
 .floating-label-form-group::not(:first-child) {
@@ -300,10 +300,12 @@ section.success a.active {
 .floating-label-form-group-with-value label {
     top: 0;
     opacity: 1;
+    text-align: left;
 }
 
 .floating-label-form-group-with-focus label {
     color: #18bc9c;
+    text-align: left;
 }
 
 form .row:first-child .floating-label-form-group {
@@ -497,30 +499,48 @@ Wizard Indicator
   display: block;
 }
 
+.wizard-indicator li span:nth-child(2) {
+  font-weight: 800;
+}
+
 .wizard-indicator li span.step-name {
   text-transform: uppercase;
-  font-size: 12px;
+  font-size: 16px;
 }
 
 .wizard-step-container {
-  display: none;
+  opacity: 0;
+  overflow: hidden;
+  height: 0;
+  transition: opacity .25s ease-in-out;
+  -moz-transition: opacity .25s ease-in-out;
+  -webkit-transition: opacity .25s ease-in-out;
   text-align: center;
 }
 
 .wizard-step-container.active {
   display: block;
+  opacity: 1;
+  overflow: visible;
+  height: auto;
 }
 
 .wizard-step-container h3 {
-  margin-top: 100px;
+  margin-top: 52px;
+  margin-bottom: 31px;
 }
 
 .wizard-step-container input {
-  height: 60px;
-  width: 420px;
+  height: 35px;
+  width: 100%;
   margin: 10px 0px 10px 0px;
   padding: 20px
 }
+
+.wizard-step-container textarea {
+  margin-left: 20px;
+}
+
 
 .row-form {
   padding: 0px 20px 0px 20px;
@@ -534,4 +554,38 @@ Wizard Indicator
 
 .floating-label-form-group-with-value label {
   text-align: left;
+  opacity: 0;
 }
+
+@media (max-width: 576px) {
+  .wizard-indicator {
+    padding-top: 3px;
+    height: 47px;
+  }
+
+  .wizard-step-container h3 {
+    margin-top: 50px;
+  }
+
+  .wizard-step-container input {
+    margin: 0px;
+    padding: 0px;
+    height: 20px;
+    font-size: 14px;
+  }
+
+  .wizard-step-container textarea {
+    font-size: 14px;
+    margin: 0px;
+    padding: 0px;
+  }
+
+  .wizard-indicator li {
+    width: 25%;
+  }
+
+  .wizard-indicator li span.step-name {
+    font-size: 14px;
+  }
+
+  }

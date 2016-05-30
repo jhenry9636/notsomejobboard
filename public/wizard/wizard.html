@@ -29,11 +29,10 @@
 
         <div class="wizard-step-container" ng-class="{'active': vm.currentStep == 'location'}">
           <h3>In what location do you want to work?</h3>
-          <p>Be Specific :)</p>
           <form novalidate="">
             <div class="row control-group row-form">
               <div class="form-group col-xs-12 floating-label-form-group controls">
-                <label>Enter a location</label>
+                <label>Be specific :)</label>
                 <input type="text" class="form-control" placeholder="e.g. Downtown Chicago" ng-model="vm.location" id="name" required="" data-validation-required-message="Please enter your name.">
                 <p class="help-block text-danger"></p>
               </div>
@@ -46,17 +45,39 @@
 
 
         <div class="wizard-step-container" ng-class="{'active': vm.currentStep == 'tech'}">
-          <h3>Talk about some really cool projects you've done</h3>
-          <p>Be Specific :)</p>
-          <form novalidate="">
-            <div class="row control-group row-form">
-              <div class="form-group col-xs-12 floating-label-form-group controls">
-                <label>What technologies have you used?</label>
-                <input type="text" class="form-control" placeholder="What technologies have you used?" ng-model="vm.tech" id="name" required="" data-validation-required-message="Please enter your name.">
-                <p class="help-block text-danger"></p>
-              </div>
+          <h3>Tell us about some projects you are proud of.</h3>
+          <div class="row">
+            <div class="col-lg-8">
+              <form novalidate="">
+                <div class="row control-group row-form">
+                  <div class="form-group col-xs-12 floating-label-form-group controls">
+                    <label>What technologies have you used?</label>
+                    <input type="text" class="form-control" placeholder="Project Name" ng-model="vm.tech" id="name" required="" data-validation-required-message="Please enter your name.">
+                    <p class="help-block text-danger"></p>
+                  </div>
+                </div>
+                <div class="row control-group row-form">
+                  <div class="form-group col-xs-12 floating-label-form-group controls">
+                    <label>What technologies have you used?</label>
+                    <input type="text" class="form-control" placeholder="Company" ng-model="vm.tech" id="name" required="" data-validation-required-message="Please enter your name.">
+                    <p class="help-block text-danger"></p>
+                  </div>
+                </div>
+                <div class="row control-group row-form">
+                  <div class="form-group col-xs-12 floating-label-form-group controls">
+                    <label>What technologies have you used?</label>
+                    <fieldset class="form-group">
+                      <label>What technologies have you used?</label>
+                      <textarea class="form-control" id="exampleTextarea" placeholder="Describe the project. How'd you use the specified technologies?" ng-model="vm.tech" rows="3"></textarea>
+                    </fieldset>
+                    <p class="help-block text-danger"></p>
+                  </div>
+                </div>
+              </form>
             </div>
-          </form>
+            <div class="col-lg-4"></div>
+          </div>
+
           <br />
           <button type="submit" class="btn btn-success btn-lg" ng-click="vm.setTech()">I'm Finished</button>
           <button type="submit" class="btn btn-link btn-lg" ng-click="vm.goToLocation()"">Go Back.</button>
@@ -66,7 +87,16 @@
 
         <div class="wizard-step-container" ng-class="{'active': vm.currentStep == 'comp'}">
           <h3>Lets talk moula</h3>
-          <input type="text" placeholder="What do you what to make?" ng-model="vm.comp"/>
+          <p>What is your desired compensation?</p>
+          <form novalidate="">
+            <div class="row control-group row-form">
+              <div class="form-group col-xs-12 floating-label-form-group controls">
+                <label>Lets talk moula?</label>
+                <input type="text" class="form-control" placeholder="e.g. $100,000" ng-model="vm.comp" id="name" required="" data-validation-required-message="Please enter your name.">
+                <p class="help-block text-danger"></p>
+              </div>
+            </div>
+          </form>
           <br />
           <button type="submit" class="btn btn-success btn-lg" ng-click="vm.setComp()">I'm Finished</button>
           <button type="submit" class="btn btn-link btn-lg" ng-click="vm.goToTech()"">Go back.</button>
@@ -74,7 +104,8 @@
 
 
         <div class="wizard-step-container" ng-class="{'active': vm.currentStep == 'creds'}">
-          <h3>Enter a username and password for career search bliss.</h3>
+          <h3>You're done.</h3>
+          <p>Enter a email address and password to create an account.</p>
           <input type="text" placeholder="Email Address" />
           <input type="password" placeholder="Password?" />
           <button type="submit" class="btn btn-success btn-lg">I'm done</button>
