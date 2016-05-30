@@ -576,16 +576,27 @@ input[type="url"], textarea
 }
 
 .wizard-tech li {
+  margin: 4px;
+  border: none;
+  outline: none;
+  background: #3B5998;
+  color: #fff;
   cursor: pointer;
   display: inline-block;
   border-radius: 5px;
+  border: 1px solid #3B5998;
   padding: 10px 20px;
   list-style: none;
   width: auto;
-  font-size: 20px;
-  border: 1px solid #000;
-
+  font-size: 18px;
 }
+
+.wizard-tech li:hover {
+  color: #000;
+  background: #fff;
+  border: 1px solid #000;
+}
+
 
 @media (max-width: 576px) {
   .wizard-indicator {
