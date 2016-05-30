@@ -1,25 +1,23 @@
-  <div class="wizard-wrapper">
-    <div class="row wizard-indicator-row">
-      <div class="col-sm-12 ">
-        <ul id="wizard-indicator" class="wizard-indicator">
-          <li ng-class="{'active': vm.hasLocation}" ng-click="vm.goToLocation()">
-            <span class="step-name">Location:</span>
-            <span>{{vm.location}}</span>
-          </li>
-          <li ng-class="{'active': vm.hasTech}" ng-click="vm.goToTech()">
-            <span class="step-name">Technologies:</span>
-            <span>{{vm.tech}}</span>
-          </li>
-          <li ng-class="{'active': vm.hasProjects}" ng-click="vm.goToProjects()">
-            <span class="step-name">Projects:</span>
-            <span>{{vm.projects}}</span>
-          </li>
-          <li ng-class="{'active': vm.hasComp}" ng-click="vm.goToComp()">
-            <span class="step-name">Pay:</span>
-            <span>{{vm.comp}}</span>
-          </li>
-        </ul>
-      </div>
+  <div class="wizard-wrapper container-fluid">
+    <div class="wizard-indicator-row">
+      <ul id="wizard-indicator" class="wizard-indicator">
+        <li ng-class="{'active': vm.hasLocation}" ng-click="vm.goToLocation()">
+          <span class="step-name">Location:</span>
+          <span>{{vm.location}}</span>
+        </li>
+        <li ng-class="{'active': vm.hasTech}" ng-click="vm.goToTech()">
+          <span class="step-name">Technologies:</span>
+          <span>{{vm.tech}}</span>
+        </li>
+        <li ng-class="{'active': vm.hasProjects}" ng-click="vm.goToProjects()">
+          <span class="step-name">Projects:</span>
+          <span>{{vm.projects}}</span>
+        </li>
+        <li ng-class="{'active': vm.hasComp}" ng-click="vm.goToComp()">
+          <span class="step-name">Pay:</span>
+          <span>{{vm.comp}}</span>
+        </li>
+      </ul>
     </div>
     <div class="row">
       <div class="col-sm-12">
@@ -32,8 +30,8 @@
 
 
         <div class="wizard-step-container" ng-class="{'active': vm.currentStep == 'location'}">
-          <h3>In what location do you want to work?</h3>
-          <p>We want to make sure you only hear about opportunites near this location.</p>
+          <h3>In what location would you like to work?</h3>
+          <p>We want to make sure you only hear about opportunities near this location.</p>
           <form novalidate="">
             <div class="row control-group row-form">
               <div class="form-group col-xs-12 floating-label-form-group controls">
@@ -44,12 +42,12 @@
             </div>
           </form>
           <br />
-          <button type="submit" class="btn btn-success btn-lg" ng-click="vm.setLocation()">I'm Finished</button>
+          <button type="submit" class="btn btn-success btn-lg" ng-click="vm.setLocation()">Okay I'm done</button>
         </div>
 
         <div class="wizard-step-container" ng-class="{'active': vm.currentStep == 'tech'}">
-          <h3>Select some technologies you have utilized?</h3>
-          <p>Next we'll ask about some projects where you used these technologies.</p>
+          <h3>Select some of your favorite technologies.</h3>
+          <p>Next we'll ask about some projects where the selected technologies were used.</p>
           <ul class="wizard-tech">
             <li>Angular</li>
             <li>React.js</li>
@@ -60,15 +58,16 @@
             <li>Angular</li>
           </ul>
           <br />
-          <button type="submit" class="btn btn-success btn-lg" ng-click="vm.setTech()">I'm Finished</button>
+          <button type="submit" class="btn btn-success btn-lg" ng-click="vm.setTech()">Okay I'm done</button>
           <button type="submit" class="btn btn-link btn-lg" ng-click="vm.goToLocation()"">Go Back.</button>
         </div>
 
 
         <div class="wizard-step-container" ng-class="{'active': vm.currentStep == 'projects'}">
           <h3>Tell us about some projects you are proud of.</h3>
+          <p>Brag a little ... hiring managers like to hear about specific contributions.</p>
           <div class="row">
-            <div class="col-lg-8">
+            <div class="col-lg-6">
               <form novalidate="">
                 <div class="row control-group row-form">
                   <div class="form-group col-xs-12 floating-label-form-group controls">
@@ -84,6 +83,10 @@
                     <p class="help-block text-danger"></p>
                   </div>
                 </div>
+              </form>
+            </div>
+            <div class="col-lg-6">
+              <form novalidate="">
                 <div class="row control-group row-form">
                   <div class="form-group col-xs-12 floating-label-form-group controls">
                     <label>What technologies have you used?</label>
@@ -96,19 +99,18 @@
                 </div>
               </form>
             </div>
-            <div class="col-lg-4"></div>
           </div>
 
           <br />
-          <button type="submit" class="btn btn-success btn-lg" ng-click="vm.setProjects()">I'm Finished</button>
+          <button type="submit" class="btn btn-success btn-lg" ng-click="vm.setProjects()">Okay I'm done</button>
           <button type="submit" class="btn btn-link btn-lg" ng-click="vm.goToTech()"">Go Back.</button>
         </div>
 
 
 
         <div class="wizard-step-container" ng-class="{'active': vm.currentStep == 'comp'}">
-          <h3>Lets talk moula</h3>
-          <p>What is your desired compensation?</p>
+          <h3>Lets talk moula.</h3>
+          <p></p>
           <form novalidate="">
             <div class="row control-group row-form">
               <div class="form-group col-xs-12 floating-label-form-group controls">
@@ -119,7 +121,7 @@
             </div>
           </form>
           <br />
-          <button type="submit" class="btn btn-success btn-lg" ng-click="vm.setComp()">I'm Finished</button>
+          <button type="submit" class="btn btn-success btn-lg" ng-click="vm.setComp()">Okay I'm done</button>
           <button type="submit" class="btn btn-link btn-lg" ng-click="vm.goToProjects()"">Go back.</button>
         </div>
 

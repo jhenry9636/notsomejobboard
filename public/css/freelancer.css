@@ -450,7 +450,12 @@ Wizard Indicator
 
 ***/
 
-
+input[type="text"], input[type="password"], input[type="date"],
+input[type="datetime"], input[type="datetime-local"], input[type="month"],
+input[type="week"], input[type="email"], input[type="number"],
+input[type="search"], input[type="tel"], input[type="time"],
+input[type="url"], textarea
+{ font-size: 16px; }
 
 #join .navbar {
 
@@ -461,6 +466,7 @@ Wizard Indicator
 }
 
 .wizard-progress {
+  margin: 0px -30px 0px -30px;
   width: 0%;
   height: 5px;
   background: #0C9EEF;
@@ -471,6 +477,7 @@ Wizard Indicator
 }
 
 .wizard-indicator-row {
+  margin: 0px -30px 0px -30px;
   background: #F0F4F9;
 }
 
@@ -500,12 +507,13 @@ Wizard Indicator
 }
 
 .wizard-indicator li span:nth-child(2) {
-  font-weight: 800;
+  font-weight: normal;
 }
 
 .wizard-indicator li span.step-name {
   text-transform: uppercase;
   font-size: 16px;
+  font-weight: 800;
 }
 
 .wizard-step-container {
@@ -533,28 +541,26 @@ Wizard Indicator
 .wizard-step-container p {
   padding: 0px 10px 0px 10px;
   color: #818a91;
-  font-size: 14px;
+  font-size: 16px;
   margin-top: 10px;
   margin-bottom: 30px;
 }
 
+.wizard-step-container form {
+  display: block;
+}
+
 .wizard-step-container input {
   height: 35px;
-  width: 100%;
-  margin: 10px 0px 10px 0px;
-  padding: 20px
+  width: auto;
+  margin: 0px 0px 0px 0px;
+  padding: 0px;
 }
 
 .wizard-step-container textarea {
   margin-left: 20px;
 }
 
-
-.row-form {
-  padding: 0px 20px 0px 20px;
-  margin-right: 0px;
-  margin-left: 0px;
-}
 
 .row-form form {
  margin: 0px 20px 0px 20px;
@@ -584,7 +590,7 @@ Wizard Indicator
 @media (max-width: 576px) {
   .wizard-indicator {
     padding-top: 3px;
-    height: 47px;
+    height: 55px;
   }
 
   .wizard-step-container h3 {
@@ -611,5 +617,12 @@ Wizard Indicator
   .wizard-indicator li span.step-name {
     font-size: 14px;
   }
+
+  input[type="text"], input[type="password"], input[type="date"],
+  input[type="datetime"], input[type="datetime-local"], input[type="month"],
+  input[type="week"], input[type="email"], input[type="number"],
+  input[type="search"], input[type="tel"], input[type="time"],
+  input[type="url"], textarea
+  { font-size: 16px; }
 
 }
