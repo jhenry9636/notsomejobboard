@@ -16,10 +16,11 @@
 
     function link($scope, element, attrs, controllers) {
 
-      $scope.setLocationProgress = setLocationProgress
+      $scope.setLocationProgress = setLocationProgress;
+      $scope.setProjectsProgress = setProjectsProgress;
       $scope.setWidth = setWidth;
-      $scope.setTechProgress = setTechProgress
-      $scope.setCompProgress= setCompProgress
+      $scope.setTechProgress = setTechProgress;
+      $scope.setCompProgress= setCompProgress;
 
       function setWidth(width) {
         element.find('#wizard-progress').css({
@@ -28,15 +29,19 @@
       }
 
       function setLocationProgress() {
-        setWidth('25%')
+        setWidth('20%')
       }
 
       function setTechProgress() {
-        setWidth('50%')
+        setWidth('40%')
+      }
+
+      function setProjectsProgress() {
+        setWidth('60%')
       }
 
       function setCompProgress() {
-        setWidth('75%')
+        setWidth('80%')
       }
     }
 

@@ -31,6 +31,9 @@ var developerSchema = new Schema({
     type: String,
     enum: validator.compType
   },
+  technologies: {
+    type: String
+  },
   compMin: {
     type: String
   },

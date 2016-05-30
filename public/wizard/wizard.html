@@ -10,6 +10,10 @@
             <span class="step-name">Technologies:</span>
             <span>{{vm.tech}}</span>
           </li>
+          <li ng-class="{'active': vm.hasProjects}" ng-click="vm.goToProjects()">
+            <span class="step-name">Projects:</span>
+            <span>{{vm.projects}}</span>
+          </li>
           <li ng-class="{'active': vm.hasComp}" ng-click="vm.goToComp()">
             <span class="step-name">Pay:</span>
             <span>{{vm.comp}}</span>
@@ -29,6 +33,7 @@
 
         <div class="wizard-step-container" ng-class="{'active': vm.currentStep == 'location'}">
           <h3>In what location do you want to work?</h3>
+          <p>You will only hear about opportunites near this location, promise.</p>
           <form novalidate="">
             <div class="row control-group row-form">
               <div class="form-group col-xs-12 floating-label-form-group controls">
@@ -38,13 +43,28 @@
               </div>
             </div>
           </form>
-
           <br />
           <button type="submit" class="btn btn-success btn-lg" ng-click="vm.setLocation()">I'm Finished</button>
         </div>
 
-
         <div class="wizard-step-container" ng-class="{'active': vm.currentStep == 'tech'}">
+          <h3>Select some technologies you have utilized?</h3>
+          <ul class="wizard-tech">
+            <li>Angular</li>
+            <li>React.js</li>
+            <li>Angular</li>
+            <li>Angular</li>
+            <li>Angular</li>
+            <li>Angular</li>
+            <li>Angular</li>
+          </ul>
+          <br />
+          <button type="submit" class="btn btn-success btn-lg" ng-click="vm.setTech()">I'm Finished</button>
+          <button type="submit" class="btn btn-link btn-lg" ng-click="vm.goToLocation()"">Go Back.</button>
+        </div>
+
+
+        <div class="wizard-step-container" ng-class="{'active': vm.currentStep == 'projects'}">
           <h3>Tell us about some projects you are proud of.</h3>
           <div class="row">
             <div class="col-lg-8">
@@ -52,14 +72,14 @@
                 <div class="row control-group row-form">
                   <div class="form-group col-xs-12 floating-label-form-group controls">
                     <label>What technologies have you used?</label>
-                    <input type="text" class="form-control" placeholder="Project Name" ng-model="vm.tech" id="name" required="" data-validation-required-message="Please enter your name.">
+                    <input type="text" class="form-control" placeholder="Project Name" ng-model="vm.projects" id="name" required="" data-validation-required-message="Please enter your name.">
                     <p class="help-block text-danger"></p>
                   </div>
                 </div>
                 <div class="row control-group row-form">
                   <div class="form-group col-xs-12 floating-label-form-group controls">
                     <label>What technologies have you used?</label>
-                    <input type="text" class="form-control" placeholder="Company" ng-model="vm.tech" id="name" required="" data-validation-required-message="Please enter your name.">
+                    <input type="text" class="form-control" placeholder="Company" ng-model="vm.projects" id="name" required="" data-validation-required-message="Please enter your name.">
                     <p class="help-block text-danger"></p>
                   </div>
                 </div>
@@ -68,7 +88,7 @@
                     <label>What technologies have you used?</label>
                     <fieldset class="form-group">
                       <label>What technologies have you used?</label>
-                      <textarea class="form-control" id="exampleTextarea" placeholder="Describe the project. How'd you use the specified technologies?" ng-model="vm.tech" rows="3"></textarea>
+                      <textarea class="form-control" id="exampleTextarea" placeholder="Describe the project. How'd you use the specified technologies?" ng-model="vm.projects" rows="3"></textarea>
                     </fieldset>
                     <p class="help-block text-danger"></p>
                   </div>
@@ -79,8 +99,8 @@
           </div>
 
           <br />
-          <button type="submit" class="btn btn-success btn-lg" ng-click="vm.setTech()">I'm Finished</button>
-          <button type="submit" class="btn btn-link btn-lg" ng-click="vm.goToLocation()"">Go Back.</button>
+          <button type="submit" class="btn btn-success btn-lg" ng-click="vm.setProjects()">I'm Finished</button>
+          <button type="submit" class="btn btn-link btn-lg" ng-click="vm.goToTech()"">Go Back.</button>
         </div>
 
 
@@ -99,7 +119,7 @@
           </form>
           <br />
           <button type="submit" class="btn btn-success btn-lg" ng-click="vm.setComp()">I'm Finished</button>
-          <button type="submit" class="btn btn-link btn-lg" ng-click="vm.goToTech()"">Go back.</button>
+          <button type="submit" class="btn btn-link btn-lg" ng-click="vm.goToProjects()"">Go back.</button>
         </div>
 
 

@@ -527,7 +527,15 @@ Wizard Indicator
 
 .wizard-step-container h3 {
   margin-top: 52px;
-  margin-bottom: 31px;
+  margin-bottom: 0px;
+}
+
+.wizard-step-container p {
+  padding: 0px 10px 0px 10px;
+  color: #818a91;
+  font-size: 14px;
+  margin-top: 10px;
+  margin-bottom: 30px;
 }
 
 .wizard-step-container input {
@@ -555,6 +563,22 @@ Wizard Indicator
 .floating-label-form-group-with-value label {
   text-align: left;
   opacity: 0;
+}
+
+.wizard-tech {
+  padding: 0px;
+}
+
+.wizard-tech li {
+  cursor: pointer;
+  display: inline-block;
+  border-radius: 5px;
+  padding: 10px 20px;
+  list-style: none;
+  width: auto;
+  font-size: 20px;
+  border: 1px solid #000;
+
 }
 
 @media (max-width: 576px) {
@@ -588,4 +612,4 @@ Wizard Indicator
     font-size: 14px;
   }
 
-  }
+}

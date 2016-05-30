@@ -16,9 +16,11 @@
     vm.goToLocation = goToLocation;
     vm.goToComp = goToComp;
     vm.goToTech = goToTech;
+    vm.goToProjects = goToProjects;
     vm.setLocation = setLocation;
     vm.setComp = setComp;
     vm.setTech = setTech;
+    vm.setProjects = setProjects
     vm.location = ''
     vm.tech = ''
     vm.comp = ''
@@ -31,21 +33,30 @@
       $scope.setLocationProgress();
     }
 
+    function setTech() {
+      vm.hasTech = true;
+      vm.currentStep = 'projects';
+      $scope.setTechProgress();
+    }
+
+    function setProjects() {
+      vm.hasProjects = true;
+      vm.currentStep = 'comp';
+      $scope.setProjectsProgress();
+    }
+
     function setComp() {
       vm.hasComp = true;
       vm.currentStep = 'creds';
       $scope.setCompProgress();
     }
 
-    function setTech() {
-      vm.hasTech = true;
-      vm.currentStep = 'comp';
-      $scope.setTechProgress();
-    }
+
 
     function goToLocation() {
       vm.hasLocation = false;
       vm.hasTech = false;
+      vm.hasProjects = false;
       vm.hasComp = false;
       vm.currentStep = 'location';
       $scope.setWidth('0%')
@@ -54,14 +65,22 @@
     function goToTech() {
       vm.hasTech = false;
       vm.hasComp = false;
+      vm.hasProjects = false;
       vm.currentStep = 'tech';
-      $scope.setWidth('25%')
+      $scope.setWidth('20%')
+    }
+
+    function goToProjects() {
+      vm.hasTech = false;
+      vm.hasComp = false;
+      vm.currentStep = 'tech';
+      $scope.setWidth('40%')
     }
 
     function goToComp() {
       vm.hasComp = false;
       vm.currentStep = 'comp';
-      $scope.setWidth('50%')
+      $scope.setWidth('60%')
     }
 
   }
