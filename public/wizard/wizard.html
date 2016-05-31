@@ -1,4 +1,4 @@
-  <div class="wizard-wrapper container-fluid">
+<div class="wizard-wrapper container-fluid">
     <div class="wizard-indicator-row">
       <ul id="wizard-indicator" class="wizard-indicator">
         <li ng-class="{'active': vm.hasLocation}" ng-click="vm.goToLocation()">
@@ -27,8 +27,10 @@
 
 
         <div class="wizard-step-container" ng-class="{'active': vm.currentStep == 'location'}">
+          <h1>{{vm.test}}</h1>
+          <a href="" ng-click="updateTest">click here</a>
           <h3>In which location would you like to work?</h3>
-          <p>We want to make sure you only hear about opportunities near this location.</p>
+          <p>We want to make sure you only hear about opportunities near this location.{{vm.currentStep}}</p>
           <form novalidate="">
             <div class="row control-group row-form">
               <div class="form-group col-xs-12 floating-label-form-group controls">
@@ -44,7 +46,7 @@
 
         <div class="wizard-step-container" ng-class="{'active': vm.currentStep == 'tech'}">
           <h3>What technologies are you using?</h3>
-          <p>Next we'll ask about some projects where the selected technologies were used.</p>
+          <p>Next we'll ask about projects where the selected technologies were used.</p>
           <ul class="wizard-tech">
             <li>Angular</li>
             <li>React.js</li>
