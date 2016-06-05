@@ -1,34 +1,30 @@
 <div class="wizard-wrapper container-fluid">
     <div class="wizard-indicator-row">
       <ul id="wizard-indicator" class="wizard-indicator">
-        <li ng-class="{'active': vm.hasLocation}" ng-click="vm.goToLocation()">
+        <li ng-class="{'active': vm.currentStep > 0}" ng-click="vm.goToLocation()">
           <span class="step-name">Location:</span>
           <span>{{vm.location}}</span>
         </li>
-        <li ng-class="{'active': vm.hasTech}" ng-click="vm.goToTech()">
+        <li ng-class="{'active': vm.currentStep > 1}" ng-click="vm.goToTech()">
           <span class="step-name">Technologies:</span>
           <span>{{vm.tech}}</span>
         </li>
-        <li ng-class="{'active': vm.hasProjects}" ng-click="vm.goToProjects()">
+        <li ng-class="{'active': vm.currentStep > 2}" ng-click="vm.goToProjects()">
           <span class="step-name">Projects:</span>
           <span>{{vm.projects}}</span>
         </li>
-        <li ng-class="{'active': vm.hasComp}" ng-click="vm.goToComp()">
+        <li ng-class="{'active': vm.currentStep > 3}" ng-click="vm.goToComp()">
           <span class="step-name">Pay:</span>
           <span>{{vm.comp}}</span>
         </li>
       </ul>
     </div>
-    <div id="wizard-progress" class="wizard-progress"></div>
+    <div id="wizard-progress" class="wizard-progress">{{vm.getCurrentStep().stepName}}
+    </div>
     </div>
     <div class="row">
       <div class="col-xs-12">
-
-
-
-        <div class="wizard-step-container" ng-class="{'active': vm.currentStep == 'location'}">
-          <h1>{{vm.test}}</h1>
-          <a href="" ng-click="updateTest">click here</a>
+        <div class="wizard-step-container" ng-class="{'active': vm.currentStep == 0}">
           <h3>In which location would you like to work?</h3>
           <p>We want to make sure you only hear about opportunities near this location.{{vm.progress}}</p>
           <form novalidate="">
@@ -41,10 +37,10 @@
             </div>
           </form>
           <br />
-          <button type="submit" class="btn btn-success btn-lg" ng-click="vm.setLocation()">Okay I'm done</button>
+          <button type="submit" class="btn btn-success btn-lg" ng-click="vm.nextStep()">Okay I'm done</button>
         </div>
 
-        <div class="wizard-step-container" ng-class="{'active': vm.currentStep == 'tech'}">
+        <div class="wizard-step-container" ng-class="{'active': vm.currentStep == 1}">
           <h3>What technologies are you using?</h3>
           <p>Next we'll ask about projects where the selected technologies were used.</p>
           <ul class="wizard-tech">
@@ -57,12 +53,12 @@
             <li>Angular</li>
           </ul>
           <br />
-          <button type="submit" class="btn btn-success btn-lg" ng-click="vm.setTech()">Okay I'm done</button>
-          <button type="submit" class="btn btn-link btn-lg" ng-click="vm.goToLocation()"">Go Back.</button>
+          <button type="submit" class="btn btn-success btn-lg" ng-click="vm.nextStep()">Okay I'm done</button>
+          <button type="submit" class="btn btn-link btn-lg" ng-click="vm.previousStep()">Go Back.</button>
         </div>
 
 
-        <div class="wizard-step-container" ng-class="{'active': vm.currentStep == 'projects'}">
+        <div class="wizard-step-container" ng-class="{'active': vm.currentStep == 2}">
           <h3>Tell us about some projects you are proud of.</h3>
           <p>Brag a little ... hiring managers like to hear about specific contributions.</p>
           <div class="row">
@@ -101,13 +97,13 @@
           </div>
 
           <br />
-          <button type="submit" class="btn btn-success btn-lg" ng-click="vm.setProjects()">Okay I'm done</button>
-          <button type="submit" class="btn btn-link btn-lg" ng-click="vm.goToTech()"">Go Back.</button>
+          <button type="submit" class="btn btn-success btn-lg" ng-click="vm.nextStep()">Okay I'm done</button>
+          <button type="submit" class="btn btn-link btn-lg" ng-click="vm.previousStep()">Go Back.</button>
         </div>
 
 
 
-        <div class="wizard-step-container" ng-class="{'active': vm.currentStep == 'comp'}">
+        <div class="wizard-step-container" ng-class="{'active': vm.currentStep == 3}">
           <h3>Lets talk moula!</h3>
           <p>Specify your desired compensation.</p>
           <p></p>
@@ -122,12 +118,12 @@
             </div>
           </form>
           <br />
-          <button type="submit" class="btn btn-success btn-lg" ng-click="vm.setComp()">Okay I'm done</button>
-          <button type="submit" class="btn btn-link btn-lg" ng-click="vm.goToProjects()"">Go back.</button>
+          <button type="submit" class="btn btn-success btn-lg" ng-click="vm.nextStep()">Okay I'm done</button>
+          <button type="submit" class="btn btn-link btn-lg" ng-click="vm.previousStep()">Go Back.</button>
         </div>
 
 
-        <div class="wizard-step-container" ng-class="{'active': vm.currentStep == 'creds'}">
+        <div class="wizard-step-container" ng-class="{'active': vm.currentStep == 4}">
           <h3>You're done.</h3>
           <p>Enter a email address and password to create an account.</p>
           <input type="text" placeholder="Email Address" />

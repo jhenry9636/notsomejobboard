@@ -16,7 +16,6 @@
     }
 
     function link($scope, element, attrs, controllers) {
-      console.log($scope)
     }
 
 
@@ -25,36 +24,28 @@
   WizardController.$inject = ['wizardService'];
 
   function WizardController(wizardService) {
+
     var vm = this;
 
     vm.currentStep = wizardService.currentStep;
-    vm.setCurrentStep = wizardService.setCurrentStep;
-    vm.hasLocation = wizardService.hasLocation;
-    vm.hasComp = wizardService.hasComp;
-    vm.hasTech = wizardService.hasTech;
-    vm.hasProjects = wizardService.hasProjects;
-    vm.shouldShowIndicator = wizardService.shouldShowIndicator;
-    vm.goToLocation = wizardService.goToLocation;
-    vm.goToComp = wizardService.goToComp;
-    vm.goToTech = wizardService.goToTech;
-    vm.goToProjects = wizardService.goToProjects;
-    vm.setLocation = wizardService.setLocation;
-    vm.setComp = wizardService.setComp;
-    vm.setTech = wizardService.setTech;
-    vm.setProjects = wizardService.setProjects;
-    vm.location = wizardService.location;
-    vm.tech = wizardService.tech;
-    vm.comp = wizardService.comp;
+    vm.nextStep = nextStep;
+    vm.previousStep = previousStep;
+    vm.location = '';
+    vm.tech = '';
+    vm.comp = '';
+    vm.projects = '';
 
-    vm.setLocation = function() {
-      wizardService.setCurrentStep('tech');
-      vm.currentStep = wizardService.currentStep;
-      vm.hasLocation = wizard.hasLocation;
-      vm.currentStep = wizardService.currentStep;
-      vm.shouldShowIndicator = wizardService.shouldShowIndicator;
-      vm.progressWidth = wizardService.progressWidth;
+    function nextStep() {
+      wizardService.nextStep().then(function(step) {
+        vm.currentStep = step;
+      })
     }
 
+    function previousStep() {
+      wizardService.previousStep().then(function(step) {
+        vm.currentStep = step;
+      })
+    }
 
   }
 
