@@ -10,6 +10,7 @@
     var vm = this;
     
     vm.currentStep = wizardService.currentStep;
+    vm.setCurrentStep = wizardService.setCurrentStep;
     vm.hasLocation = wizardService.hasLocation;
     vm.hasComp = wizardService.hasComp;
     vm.hasTech = wizardService.hasTech;
@@ -26,6 +27,7 @@
     vm.location = wizardService.location;
     vm.tech = wizardService.tech;
     vm.comp = wizardService.comp;
+
 
   }
 

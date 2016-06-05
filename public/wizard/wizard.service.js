@@ -8,7 +8,9 @@
 
     var service =  {
       progressWidth: '0%',
+      setProgressWidth: setProgressWidth,
       currentStep: 'location',
+      setCurrentStep: setCurrentStep,
       hasLocation: false,
       hasComp: false,
       hasTech: false,
@@ -24,65 +26,107 @@
       setProjects: setProjects,
       location: '',
       tech: '',
-      comp: ''
+      comp: '',
+      progress: 'test'
     }
 
     return service
 
+    function setProgressWidth(width) {
+      service.progressWidth  = width;
+      return service.progressWidth;
+    }
+
+    function setCurrentStep(currentStep) {
+      service.currentStep = currentStep;
+      return service.currentStep;
+    }
 
     function setLocation() {
-      vm.hasLocation = true;
-      vm.currentStep = 'tech';
-      vm.shouldShowIndicator = true;
-      vm.progressWidth = "20%";
+      var defer = $q.defer();
+
+      service.hasLocation = true;
+      service.currentStep = 'tech';
+      service.shouldShowIndicator = true;
+      service.progressWidth = "20%";
+      defer.resolve();
+      return defer.promise
     }
 
     function setTech() {
-      vm.hasTech = true;
-      vm.currentStep = 'projects';
-      vm.progressWidth = "40%"
+      var defer = $q.defer();
+
+      service.hasTech = true;
+      service.currentStep = 'projects';
+      service.progressWidth = "40%";
+      defer.resolve();
+      return defer.promise
     }
 
     function setProjects() {
-      vm.hasProjects = true;
-      vm.currentStep = 'comp';
-      vm.progressWidth = "60%"
+      var defer = $q.defer();
+
+      service.hasProjects = true;
+      service.currentStep = 'comp';
+      service.progressWidth = "60%";
+      defer.resolve();
+      return defer.promise
     }
 
     function setComp() {
-      vm.hasComp = true;
-      vm.currentStep = 'creds';
-      vm.progressWidth = "80%"
+      var defer = $q.defer();
+
+      service.hasComp = true;
+      service.currentStep = 'creds';
+      service.progressWidth = "80%";
+      defer.resolve();
+      return defer.promise
     }
 
     function goToLocation() {
-      vm.hasLocation = false;
-      vm.hasTech = false;
-      vm.hasProjects = false;
-      vm.hasComp = false;
-      vm.currentStep = 'location';
-      vm.progressWidth = '0%'
+      var defer = $q.defer();
+
+      service.hasLocation = false;
+      service.hasTech = false;
+      service.hasProjects = false;
+      service.hasComp = false;
+      service.currentStep = 'location';
+      service.progressWidth = '0%'
+      defer.resolve();
+      return defer.promise
     }
 
     function goToTech() {
-      vm.hasTech = false;
-      vm.hasComp = false;
-      vm.hasProjects = false;
-      vm.currentStep = 'tech';
-      vm.progressWidth = '20%'
+      var defer = $q.defer();
+
+      service.hasTech = false;
+      service.hasComp = false;
+      service.hasProjects = false;
+      service.currentStep = 'tech';
+      service.progressWidth = '20%'
+      defer.resolve();
+      return defer.promise
     }
 
     function goToProjects() {
-      vm.hasTech = false;
-      vm.hasComp = false;
-      vm.currentStep = 'tech';
-      vm.progressWidth = '20%'
+      var defer = $q.defer();
+
+      service.hasTech = false;
+      service.hasComp = false;
+      service.currentStep = 'tech';
+      service.progressWidth = '20%'
+      defer.resolve();
+      return defer.promise
     }
 
     function goToComp() {
-      vm.hasComp = false;
-      vm.currentStep = 'comp';
-      vm.progressWidth = '20%'
+      var defer = $q.defer();
+
+      service.hasComp = false;
+      service.currentStep = 'comp';
+      service.progressWidth = '20%'
+      defer.resolve();
+      return defer.promise
     }
   }
 })()
