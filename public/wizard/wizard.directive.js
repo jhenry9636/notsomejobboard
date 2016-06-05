@@ -30,10 +30,17 @@
     vm.currentStep = wizardService.currentStep;
     vm.nextStep = nextStep;
     vm.previousStep = previousStep;
+    vm.setStep = setStep;
     vm.location = '';
     vm.tech = '';
     vm.comp = '';
     vm.projects = '';
+
+    function setStep(newStep) {
+      wizardService.setStep(newStep).then(function(step) {
+        vm.currentStep = step;
+      })
+    }
 
     function nextStep() {
       wizardService.nextStep().then(function(step) {

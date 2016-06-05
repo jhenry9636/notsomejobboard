@@ -21,6 +21,7 @@
 
     var service = {
       steps: steps,
+      setStep: setStep,
       currentStep: 0,
       nextStep: nextStep,
       previousStep: previousStep
@@ -41,7 +42,13 @@
       deferred.resolve(currentStep)
       return deferred.promise
     }
-    
+
+    function setStep(index) {
+      var deferred = $q.defer();
+      service.currentStep = index;
+      deferred.resolve(service.currentStep)
+      return deferred.promise
+    }
     
 
 

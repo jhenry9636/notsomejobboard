@@ -1,19 +1,19 @@
 <div class="wizard-wrapper container-fluid">
     <div class="wizard-indicator-row">
       <ul id="wizard-indicator" class="wizard-indicator">
-        <li ng-class="{'active': vm.currentStep > 0}" ng-click="vm.goToLocation()">
+        <li ng-class="{'active': vm.currentStep > 0}" ng-click="vm.setStep(0)">
           <span class="step-name">Location:</span>
           <span>{{vm.location}}</span>
         </li>
-        <li ng-class="{'active': vm.currentStep > 1}" ng-click="vm.goToTech()">
+        <li ng-class="{'active': vm.currentStep > 1}" ng-click="vm.setStep(1)">
           <span class="step-name">Technologies:</span>
           <span>{{vm.tech}}</span>
         </li>
-        <li ng-class="{'active': vm.currentStep > 2}" ng-click="vm.goToProjects()">
+        <li ng-class="{'active': vm.currentStep > 2}" ng-click="vm.setStep(2)">
           <span class="step-name">Projects:</span>
           <span>{{vm.projects}}</span>
         </li>
-        <li ng-class="{'active': vm.currentStep > 3}" ng-click="vm.goToComp()">
+        <li ng-class="{'active': vm.currentStep > 3}" ng-click="vm.setStep(3)">
           <span class="step-name">Pay:</span>
           <span>{{vm.comp}}</span>
         </li>
@@ -56,20 +56,6 @@
           <div class="row">
             <div class="col-lg-6">
               <input type="text" ng-model="vm.projects" placeholder="e.g. Awesome project">
-            </div>
-            <div class="col-lg-6">
-              <form novalidate="">
-                <div class="row control-group row-form">
-                  <div class="form-group col-xs-12 floating-label-form-group controls">
-                    <label>What technologies have you used?</label>
-                    <fieldset class="form-group">
-                      <label>What technologies have you used?</label>
-                      <textarea class="form-control" id="exampleTextarea" placeholder="Describe the project. How'd you use the specified technologies?" ng-model="vm.projects" rows="3"></textarea>
-                    </fieldset>
-                    <p class="help-block text-danger"></p>
-                  </div>
-                </div>
-              </form>
             </div>
           </div>
 

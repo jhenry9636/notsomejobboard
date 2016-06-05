@@ -461,6 +461,7 @@ input[type="search"], input[type="tel"], input[type="time"],
 input[type="url"], textarea {
   font-size: 16px;
   -webkit-appearance: none;
+  border-radius: 5px;
 }
 
 #join .navbar {
@@ -547,7 +548,7 @@ input[type="url"], textarea {
 .wizard-step-container p {
   padding: 0px 10px 0px 10px;
   color: #818a91;
-  font-size: 16px;
+  font-size: 18px;
   margin-top: 10px;
   margin-bottom: 30px;
 }
