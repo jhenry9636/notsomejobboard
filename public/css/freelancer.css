@@ -442,7 +442,11 @@ footer .footer-below {
     text-transform: none;
 }
 
-
+form .row .form-group,
+form .floating-label-form-group{
+  padding: 0px;
+  height: auto;
+}
 
 /***
 
@@ -551,10 +555,10 @@ input[type="url"], textarea
 }
 
 .wizard-step-container input {
-  height: 35px;
-  width: auto;
-  margin: 0px 0px 0px 0px;
-  padding: 0px;
+  width: 400px;
+  font-size: 16px;
+  margin: 10px 0px 40px 0px;
+  padding: 20px 10px;
 }
 
 .wizard-step-container textarea {

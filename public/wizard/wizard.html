@@ -27,15 +27,7 @@
         <div class="wizard-step-container" ng-class="{'active': vm.currentStep == 0}">
           <h3>In which location would you like to work?</h3>
           <p>We want to make sure you only hear about opportunities near this location.{{vm.progress}}</p>
-          <form novalidate="">
-            <div class="row control-group row-form">
-              <div class="form-group col-xs-12 floating-label-form-group controls">
-                <label>Be specific :)</label>
-                <input type="text" class="form-control" placeholder="e.g. Downtown Chicago" ng-model="vm.location" id="name" required="" data-validation-required-message="Please enter your name.">
-                <p class="help-block text-danger"></p>
-              </div>
-            </div>
-          </form>
+          <input type="text" ng-model="vm.location" placeholder="e.g. Downtown Chicago">
           <br />
           <button type="submit" class="btn btn-success btn-lg" ng-click="vm.nextStep()">Okay I'm done</button>
         </div>
