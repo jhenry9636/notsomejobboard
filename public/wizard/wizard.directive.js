@@ -8,6 +8,7 @@
 
     return {
       link: link,
+      transclude: true,
       scope: true,
       templateUrl: '/wizard/wizard.html',
       controller: WizardController,
@@ -25,7 +26,6 @@
 
   function WizardController(wizardService) {
     var vm = this;
-
 
     vm.currentStep = wizardService.currentStep;
     vm.setCurrentStep = wizardService.setCurrentStep;
@@ -45,8 +45,6 @@
     vm.location = wizardService.location;
     vm.tech = wizardService.tech;
     vm.comp = wizardService.comp;
-    
-    wizardService.set
 
     vm.setLocation = function() {
       wizardService.setCurrentStep('tech');
