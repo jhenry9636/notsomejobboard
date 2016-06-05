@@ -6,7 +6,16 @@
   
   function nsjWizardIndicator() {
     return {
-      templateUrl: './'
+      templateUrl: './wizard.html',
+      scope: {
+        
+      },
+      controller: wizardIndicatorCtrl,
+      controllerAs: vm
     }
+  }
+
+  function wizardIndicatorCtrl() {
+
   }
 })()
