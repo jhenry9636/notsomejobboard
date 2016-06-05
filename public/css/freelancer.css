@@ -458,8 +458,10 @@ input[type="text"], input[type="password"], input[type="date"],
 input[type="datetime"], input[type="datetime-local"], input[type="month"],
 input[type="week"], input[type="email"], input[type="number"],
 input[type="search"], input[type="tel"], input[type="time"],
-input[type="url"], textarea
-{ font-size: 16px; }
+input[type="url"], textarea {
+  font-size: 16px;
+  -webkit-appearance: none;
+}
 
 #join .navbar {
 
@@ -637,12 +639,5 @@ input[type="url"], textarea
   .wizard-indicator li span.step-name {
     font-size: 14px;
   }
-
-  input[type="text"], input[type="password"], input[type="date"],
-  input[type="datetime"], input[type="datetime-local"], input[type="month"],
-  input[type="week"], input[type="email"], input[type="number"],
-  input[type="search"], input[type="tel"], input[type="time"],
-  input[type="url"], textarea
-  { font-size: 16px; }
-
+  
 }
