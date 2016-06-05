@@ -556,6 +556,7 @@ input[type="url"], textarea
 
 .wizard-step-container input {
   width: 400px;
+  box-shadow: none;
   font-size: 16px;
   margin: 10px 0px 40px 0px;
   padding: 20px 10px;
