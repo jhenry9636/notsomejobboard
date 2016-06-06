@@ -612,6 +612,14 @@ textarea {
   margin: 4px;
   border: none;
   outline: none;
+  display: inline-block;
+  list-style: none;
+  width: auto;
+}
+
+.wizard-tech li button {
+  border: none;
+  outline: none;
   background: #3B5998;
   color: #fff;
   cursor: pointer;
@@ -619,7 +627,6 @@ textarea {
   border-radius: 5px;
   border: 1px solid #3B5998;
   padding: 10px 38px 10px 38px;
-  list-style: none;
   width: auto;
   font-size: 18px;
 }
@@ -630,13 +637,13 @@ textarea {
   left: 11px;
 }
 
-.wizard-tech li:hover {
+.wizard-tech li:hover button {
   color: #fff;
   background: #15A589;
   border: 1px solid #15A589;
 }
 
-.wizard-tech li.selected {
+.wizard-tech li.selected button {
   color: #000;
   background: #fff;
   border: 1px solid #000;
