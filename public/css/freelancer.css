@@ -575,10 +575,10 @@ textarea {
 
 .wizard-step-container textarea {
   width: 100%;
-  margin: 10px auto 0px auto;
+  margin: 0px auto 0px auto;
   padding: 20px 20px 0px 20px;
   border: 1px solid #aebcce;
-  height: 212px;
+  height: 280px;
 }
 
 .wizard-projects-right {
@@ -646,6 +646,21 @@ textarea {
   color: #fff;
 }
 
+.tech-used {
+  text-align: left;
+}
+
+.tech-used-wrapper {
+  text-align: left;
+  border: 1px solid #aebcce;
+  border-radius: 5px;
+  padding: 10px 20px;
+}
+
+.tech-used-wrapper span {
+  color: #A9A9A9;
+}
+
 @media (max-width: 576px) {
   .wizard-indicator {
     padding-top: 3px;
@@ -681,4 +696,10 @@ textarea {
     font-size: 14px;
   }
 
+}
+
+@media only screen and (max-width : 766px) {
+  .wizard-step-container textarea {
+    margin-top: 10px;
+  }
 }
