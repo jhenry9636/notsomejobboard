@@ -9,15 +9,17 @@
   function wizardService($q) {
 
     var steps = [{
-      stepName: 'location'
+      stepName: 'location',
+      progressWidth: '25%'
     },{
-      stepName: 'tech'
+      stepName: 'tech',
+      progressWidth: '50%'
     },{
-      stepName: 'projects'
+      stepName: 'projects',
+      progressWidth: '75%'
     },{
-      stepName: 'comp'
-    },{
-      stepName: 'creds'
+      stepName: 'comp',
+      progressWidth: '100%'
     }];
 
 

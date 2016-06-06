@@ -26,6 +26,7 @@
     vm.nextStep = nextStep;
     vm.previousStep = previousStep;
     vm.setStep = setStep;
+    vm.getProgressWidth = getProgressWidth;
     vm.skills = skillsService.skills;
     vm.selectedSkills = skillsService.selectedSkills;
     vm.addSkill = addSkill;
@@ -39,6 +40,7 @@
     function setStep(newStep) {
       wizardService.setStep(newStep).then(function(step) {
         vm.currentStep = step;
+        vm.progressWidth = ((step / 4) * 100) + '%';
       })
     }
 
@@ -51,6 +53,7 @@
     function previousStep() {
       wizardService.previousStep().then(function(step) {
         vm.currentStep = step;
+        vm.progressWidth = ((step / 4) * 100) + '%';
       })
     }
 
@@ -74,6 +77,10 @@
       skillsService.removeSkill(skill).then(function(skills) {
         vm.selectedSkills = skills;
       })
+    }
+
+    function getProgressWidth() {
+       return ((vm.currentStep / 4) * 100) + '%';
     }
 
   }

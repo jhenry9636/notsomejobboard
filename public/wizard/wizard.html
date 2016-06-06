@@ -19,8 +19,7 @@
         </li>
       </ul>
     </div>
-    <div id="wizard-progress" class="wizard-progress">{{vm.getCurrentStep().stepName}}
-    </div>
+    <div id="wizard-progress" class="wizard-progress" style="width: {{vm.getProgressWidth()}}"></div>
     </div>
     <div class="row">
       <div class="col-xs-12">
@@ -79,7 +78,7 @@
 
 
         <div class="wizard-step-container" ng-class="{'active': vm.currentStep == 4}">
-          <h3>You're done.</h3>
+          <h3>... and you're done.</h3>
           <p>Enter a email address and password to create an account.</p>
           <input type="text" placeholder="Email Address" />
           <input type="password" placeholder="Password?" />
