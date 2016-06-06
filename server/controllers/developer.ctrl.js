@@ -6,7 +6,6 @@ var bcrypt = require('bcrypt')
 exports.add = function(req, res) {
   var userData = req.body;
   var developer = new Developer();
-  console.log(developer)
   developer.givenName = userData.givenName;
   developer.familyName = userData.familyName;
   developer.zipCode = userData.zipCode;
@@ -15,7 +14,7 @@ exports.add = function(req, res) {
   developer.password = userData.password;
   developer.address1 = userData.address1;
   developer.address2 = userData.address2;
-  developer.technologyStack = userData.technologyStack;
+  developer.tech = userData.tech;
   developer.locations = userData.locations;
   developer.compType = userData.compType;
   developer.compMin = userData.compMin;

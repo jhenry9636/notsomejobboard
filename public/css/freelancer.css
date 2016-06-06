@@ -514,13 +514,13 @@ input[type="url"], textarea {
 }
 
 .wizard-indicator li span:nth-child(2) {
-  font-weight: normal;
+  font-weight: 800;
 }
 
 .wizard-indicator li span.step-name {
   text-transform: uppercase;
-  font-size: 16px;
-  font-weight: 800;
+  font-size: 14px;
+  font-weight: normal;
 }
 
 .wizard-step-container {
@@ -562,7 +562,7 @@ input[type="url"], textarea {
   box-shadow: none;
   font-size: 16px;
   margin: 10px 0px 40px 0px;
-  padding: 20px 10px;
+  padding: 20px 10px 20px 20px;
   border: 1px solid #aebcce;
 }
 
@@ -604,6 +604,12 @@ input[type="url"], textarea {
   color: #000;
   background: #fff;
   border: 1px solid #000;
+}
+
+.wizard-tech li.selected {
+  color: #fff;
+  background: #15A589;
+  border: 1px solid #15A589;
 }
 
 .navbar-brand:hover {

@@ -27,12 +27,14 @@ var developerSchema = new Schema({
     required: [true, 'Password field is required.'],
     validate: validator.password
   },
+  tech: {
+    type: [String],
+    required: [true, 'Technologies field is required.'],
+    validate: validator.requiredField
+  },
   compType: {
     type: String,
     enum: validator.compType
-  },
-  technologies: {
-    type: String
   },
   compMin: {
     type: String

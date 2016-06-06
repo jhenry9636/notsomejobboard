@@ -36,13 +36,9 @@
           <h3>What technologies are you using?</h3>
           <p>Next we'll ask about projects where the selected technologies were used.</p>
           <ul class="wizard-tech">
-            <li>Angular</li>
-            <li>React.js</li>
-            <li>Angular</li>
-            <li>Angular</li>
-            <li>Angular</li>
-            <li>Angular</li>
-            <li>Angular</li>
+            <li ng-repeat="skill in vm.skills"
+                ng-click="vm.handleSkillToggle(skill)"
+                ng-class="{'selected': vm.selectedSkills.indexOf(skill) > -1}">{{skill}}</li>
           </ul>
           <br />
           <button type="submit" class="btn btn-success btn-lg" ng-click="vm.nextStep()">Okay I'm done</button>

@@ -5,6 +5,7 @@
     .factory('wizardService', wizardService)
 
   wizardService.$inject = ['$q'];
+
   function wizardService($q) {
 
     var steps = [{
@@ -19,10 +20,11 @@
       stepName: 'creds'
     }];
 
+
     var service = {
       steps: steps,
-      setStep: setStep,
       currentStep: 0,
+      setStep: setStep,
       nextStep: nextStep,
       previousStep: previousStep
     }

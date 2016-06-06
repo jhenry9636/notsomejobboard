@@ -7,7 +7,6 @@
   function nsjWizard() {
 
     return {
-      link: link,
       transclude: true,
       scope: true,
       templateUrl: '/wizard/wizard.html',
@@ -15,15 +14,11 @@
       controllerAs: 'vm'
     }
 
-    function link($scope, element, attrs, controllers) {
-    }
-
-
   }
 
-  WizardController.$inject = ['wizardService'];
+  WizardController.$inject = ['wizardService', 'skillsService'];
 
-  function WizardController(wizardService) {
+  function WizardController(wizardService, skillsService) {
 
     var vm = this;
 
@@ -31,6 +26,11 @@
     vm.nextStep = nextStep;
     vm.previousStep = previousStep;
     vm.setStep = setStep;
+    vm.skills = skillsService.skills;
+    vm.selectedSkills = skillsService.selectedSkills;
+    vm.addSkill = addSkill;
+    vm.removeSkill = removeSkill;
+    vm.handleSkillToggle = handleSkillToggle;
     vm.location = '';
     vm.tech = '';
     vm.comp = '';
@@ -51,6 +51,27 @@
     function previousStep() {
       wizardService.previousStep().then(function(step) {
         vm.currentStep = step;
+      })
+    }
+
+    function handleSkillToggle(skill) {
+      if(vm.selectedSkills.indexOf(skill) > -1) {
+        vm.removeSkill(skill)
+      }
+      else {
+        vm.addSkill(skill)
+      }
+    }
+
+    function addSkill(skill) {
+      skillsService.addSkill(skill).then(function(skills) {
+        vm.selectedSkills = skills;
+      })
+    }
+
+    function removeSkill(skill) {
+      skillsService.removeSkill(skill).then(function(skills) {
+        vm.selectedSkills = skills;
       })
     }
 
