@@ -561,7 +561,7 @@ textarea {
 }
 
 .wizard-step-container input {
-  width: 400px;
+  width: 100%;
   box-shadow: none;
   font-size: 16px;
   margin: 10px auto 40px auto;
@@ -607,6 +607,8 @@ textarea {
 }
 
 .wizard-tech li {
+  cursor: pointer;
+  position: relative;
   margin: 4px;
   border: none;
   outline: none;
@@ -616,10 +618,16 @@ textarea {
   display: inline-block;
   border-radius: 5px;
   border: 1px solid #3B5998;
-  padding: 10px 20px;
+  padding: 10px 38px 10px 38px;
   list-style: none;
   width: auto;
   font-size: 18px;
+}
+
+.wizard-tech li .fa {
+  position: absolute;
+  top: 14px;
+  left: 11px;
 }
 
 .wizard-tech li:hover {
@@ -648,10 +656,13 @@ textarea {
     margin-top: 50px;
   }
 
+  .wizard-step-container span {
+    font-size: 11px;
+  }
+
   .wizard-step-container input {
     height: 30px;
     font-size: 14px;
-    width: 72%;
   }
 
   .wizard-step-container textarea {

@@ -20,7 +20,6 @@
       </ul>
     </div>
     <div id="wizard-progress" class="wizard-progress" style="width: {{vm.getProgressWidth()}}"></div>
-    </div>
     <div class="row">
       <div class="col-xs-12">
         <div class="wizard-step-container" ng-class="{'active': vm.currentStep == 0}">
@@ -33,11 +32,14 @@
 
         <div class="wizard-step-container" ng-class="{'active': vm.currentStep == 1}">
           <h3>What technologies are you using?</h3>
-          <p>Next we'll ask about projects where the selected technologies were used.</p>
+          <p>In the next step we'll ask about projects where the selected technologies were used.</p>
           <ul class="wizard-tech">
             <li ng-repeat="skill in vm.skills"
                 ng-click="vm.handleSkillToggle(skill)"
-                ng-class="{'selected': vm.selectedSkills.indexOf(skill) > -1}">{{skill}}</li>
+                ng-class="{'selected': vm.selectedSkills.indexOf(skill) > -1}">
+              {{skill}}
+              <i ng-if="vm.selectedSkills.indexOf(skill) > -1" class="fa fa-check" aria-hidden="true"></i>
+            </li>
           </ul>
           <br />
           <button type="submit" class="btn btn-success btn-lg" ng-click="vm.nextStep()">Okay I'm done</button>
@@ -47,7 +49,7 @@
 
         <div class="wizard-step-container wizard-projects" ng-class="{'active': vm.currentStep == 2}">
           <h3>Tell us about some projects you are proud of.</h3>
-          <p>Brag a little ... hiring managers like to hear about specific contributions.</p>
+          <p>Brag a little. :) <br />Hiring managers like to hear about specific contributions.</p>
           <div class="row">
             <div class="col-sm-6 wizard-projects-right">
               <input type="text" ng-model="vm.projects" placeholder="Enter a project name ...">
