@@ -5,11 +5,11 @@
     .factory('skillsService', skillsService)
 
   skillsService.$inject = ['$q']
-  
+
   function skillsService($q) {
     var skills = ["Angular 2", "Angular Material Design", "Angular.js", "Backbone.js",
       "Bootstrap", "CSS 3", "CSS 3 Animations", "Can.js", "EJS", "ES6", "Ember.js",
-      "Foundation", "HTML 5", "Handlebars.js", "Jade", "jQuery", "Knockout.js", "LESS", "Lodash.js",
+      "Foundation", "HTML", "HTML 5", "Handlebars.js", "Jade", "jQuery", "Knockout.js", "LESS", "Lodash.js",
       "Meteor.js", "Mustache.js", "Node.js", "Polymer.js", "React.js", "SASS", "Stylus",
       "TypeScript", "Underscore.js", "Vue.js", "Web Components"];
 

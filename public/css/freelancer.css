@@ -601,15 +601,16 @@ input[type="url"], textarea {
 }
 
 .wizard-tech li:hover {
-  color: #000;
-  background: #fff;
-  border: 1px solid #000;
-}
-
-.wizard-tech li.selected {
   color: #fff;
   background: #15A589;
   border: 1px solid #15A589;
+}
+
+.wizard-tech li.selected {
+  color: #000;
+  background: #fff;
+  font-weight: 800;
+  border: 1px solid #000;
 }
 
 .navbar-brand:hover {
