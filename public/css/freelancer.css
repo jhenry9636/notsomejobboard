@@ -464,6 +464,10 @@ input[type="url"], textarea {
   border-radius: 5px;
 }
 
+textarea {
+  resize: none;
+}
+
 #join .navbar {
 
 }
@@ -486,23 +490,25 @@ input[type="url"], textarea {
 .wizard-indicator-row {
   margin: 0px -30px 0px -30px;
   background: #F0F4F9;
+  text-align: center;
 }
 
 .wizard-indicator {
-  width: 100%;
+  width: 80%;
   height: 75px;
-  padding: 20px 0px 0px 0px;
-  margin: 0px;
+  padding: 0px;
+  margin: auto;
   text-align: center;
 }
 
 .wizard-indicator li {
   visibility: hidden;
-  display: inline-block;
+  float: left;
   cursor: pointer;
   color: #5B6675;
-  width: 20%;
+  width: 25%;
   list-style: none;
+  min-height: 72px;
 }
 
 .wizard-indicator li.active {
@@ -518,6 +524,7 @@ input[type="url"], textarea {
 }
 
 .wizard-indicator li span.step-name {
+  margin-top: 4px;
   text-transform: uppercase;
   font-size: 14px;
   font-weight: normal;
@@ -566,8 +573,16 @@ input[type="url"], textarea {
   border: 1px solid #aebcce;
 }
 
+.wizard-projects input {
+  margin-bottom: 0px;
+}
+
 .wizard-step-container textarea {
-  margin-left: 20px;
+  width: 100%;
+  margin: 10px 0px 0px 0px;
+  padding: 20px 0px 0px 20px;
+  border: 1px solid #aebcce;
+  height: 52vh;
 }
 
 
@@ -619,7 +634,7 @@ input[type="url"], textarea {
 @media (max-width: 576px) {
   .wizard-indicator {
     padding-top: 3px;
-    height: 55px;
+    height: 77px;
   }
 
   .wizard-step-container h3 {
@@ -627,23 +642,24 @@ input[type="url"], textarea {
   }
 
   .wizard-step-container input {
-    margin: 0px;
-    padding: 0px;
-    height: 20px;
+    height: 30px;
     font-size: 14px;
+    width: 72%;
   }
 
   .wizard-step-container textarea {
     font-size: 14px;
-    margin: 0px;
-    padding: 0px;
+  }
+
+  .wizard-indicator {
+    width: 100%;
   }
 
   .wizard-indicator li {
     width: 25%;
   }
 
-  .wizard-indicator li span.step-name {
+  .wizard-indicator li span {
     font-size: 14px;
   }
 
