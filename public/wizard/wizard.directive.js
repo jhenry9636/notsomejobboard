@@ -29,6 +29,7 @@
     vm.getProgressWidth = getProgressWidth;
     vm.skills = skillsService.skills;
     vm.selectedSkills = skillsService.selectedSkills;
+    vm.resetSkills = resetSkills;
     vm.addSkill = addSkill;
     vm.removeSkill = removeSkill;
     vm.handleSkillToggle = handleSkillToggle;
@@ -81,6 +82,13 @@
 
     function getProgressWidth() {
        return ((vm.currentStep / 4) * 100) + '%';
+    }
+
+    function resetSkills() {
+      skillsService.resetSkills().then(function(skills) {
+        vm.selectedSkills = skills;
+        vm.tech = '';
+      })
     }
 
   }

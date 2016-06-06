@@ -19,7 +19,8 @@
       skills: skills,
       selectedSkills: selectedSkills,
       addSkill: addSkill,
-      removeSkill: removeSkill
+      removeSkill: removeSkill,
+      resetSkills: resetSkills
     };
 
     return service
@@ -38,6 +39,15 @@
       if(index > -1) {
         selectedSkills.splice(index, 1)
       }
+
+      deferred.resolve(selectedSkills);
+      return deferred.promise
+    }
+
+    function resetSkills() {
+      var deferred = $q.defer();
+
+      selectedSkills = [];
 
       deferred.resolve(selectedSkills);
       return deferred.promise
