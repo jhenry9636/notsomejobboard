@@ -609,7 +609,6 @@ input[type="url"], textarea {
 .wizard-tech li.selected {
   color: #000;
   background: #fff;
-  font-weight: 800;
   border: 1px solid #000;
 }
 
