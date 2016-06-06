@@ -468,10 +468,6 @@ textarea {
   resize: none;
 }
 
-#join .navbar {
-
-}
-
 .wizard-wrapper {
   margin-top: 61px;
 }
@@ -568,7 +564,7 @@ textarea {
   width: 400px;
   box-shadow: none;
   font-size: 16px;
-  margin: 10px 0px 40px 0px;
+  margin: 10px auto 40px auto;
   padding: 20px 10px 20px 20px;
   border: 1px solid #aebcce;
 }
@@ -579,12 +575,23 @@ textarea {
 
 .wizard-step-container textarea {
   width: 100%;
-  margin: 10px 0px 0px 0px;
-  padding: 20px 0px 0px 20px;
+  margin: 10px auto 0px auto;
+  padding: 20px 20px 0px 20px;
   border: 1px solid #aebcce;
-  height: 52vh;
+  height: 212px;
 }
 
+.wizard-projects-right {
+  text-align: right;
+}
+
+.wizard-projects-right input {
+  width: 100%;
+}
+
+.wizard-projects-left {
+  text-align: left;
+}
 
 .row-form form {
  margin: 0px 20px 0px 20px;
