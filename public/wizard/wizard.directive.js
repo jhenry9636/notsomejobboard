@@ -32,7 +32,7 @@
     vm.removeSkill = removeSkill;
     vm.handleSkillToggle = handleSkillToggle;
     vm.location = '';
-    vm.tech = '';
+    vm.tech = skillsService.selectedSkills.join(',');
     vm.comp = '';
     vm.projects = '';
 
@@ -61,6 +61,7 @@
       else {
         vm.addSkill(skill)
       }
+      vm.tech = skillsService.selectedSkills[0]+', '+skillsService.selectedSkills[1]+' ...';
     }
 
     function addSkill(skill) {
