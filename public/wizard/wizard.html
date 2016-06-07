@@ -7,7 +7,7 @@
         </li>
         <li ng-class="{'active': vm.currentStep > 1}" ng-click="vm.setStep(1)">
           <span class="step-name">Technologies:</span>
-          <span>{{vm.tech}}</span>
+          <span>{{vm.selectedSkills[0]+', '+vm.selectedSkills[1]+' ...'}}</span>
         </li>
         <li ng-class="{'active': vm.currentStep > 2}" ng-click="vm.setStep(2)">
           <span class="step-name">Projects:</span>

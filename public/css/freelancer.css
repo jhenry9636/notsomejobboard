@@ -465,6 +465,7 @@ input[type="url"], textarea {
 }
 
 textarea {
+  font-size: 16px;
   resize: none;
 }
 
@@ -563,7 +564,6 @@ textarea {
 .wizard-step-container input {
   width: 100%;
   box-shadow: none;
-  font-size: 16px;
   margin: 10px auto 40px auto;
   padding: 20px 10px 20px 20px;
   border: 1px solid #aebcce;
@@ -730,7 +730,7 @@ textarea {
 
   .wizard-step-container input {
     height: 30px;
-    font-size: 14px;
+    font-size: 16px;
   }
 
   .wizard-step-container textarea {
