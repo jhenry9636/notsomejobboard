@@ -501,6 +501,7 @@ input[type="url"], textarea {
   width: 25%;
   list-style: none;
   min-height: 72px;
+  text-align: center;
 }
 
 .wizard-indicator li.active {
@@ -514,6 +515,7 @@ input[type="url"], textarea {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  margin: auto;
 }
 
 .wizard-indicator li span.step-name {
