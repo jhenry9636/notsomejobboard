@@ -464,11 +464,6 @@ input[type="url"], textarea {
   border-radius: 5px;
 }
 
-textarea {
-  font-size: 16px;
-  resize: none;
-}
-
 .wizard-wrapper {
   margin-top: 61px;
 }
@@ -755,4 +750,9 @@ textarea {
   .wizard-step-container textarea {
     margin-top: 10px;
   }
+}
+
+textarea {
+  font-size: 16px !important;
+  resize: none;
 }
