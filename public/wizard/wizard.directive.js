@@ -34,9 +34,11 @@
     vm.removeSkill = removeSkill;
     vm.handleSkillToggle = handleSkillToggle;
     vm.location = '';
-    vm.tech = skillsService.selectedSkills.join(',');
+    vm.tech = '';
     vm.comp = '';
     vm.projects = '';
+    vm.showTechList = false;
+    vm.toggleTechList = toggleTechList;
 
     function setStep(newStep) {
       wizardService.setStep(newStep).then(function(step) {
@@ -89,6 +91,10 @@
         vm.selectedSkills = skills;
         vm.tech = '';
       })
+    }
+
+    function toggleTechList() {
+      vm.showTechList = !vm.showTechList;
     }
 
   }

@@ -19,7 +19,7 @@
         </li>
       </ul>
     </div>
-    <div id="wizard-progress" class="wizard-progress" style="width: {{vm.getProgressWidth()}}"></div>
+    <div id="wizard-progress" class="wizard-progress" nsj-fade-indicator style="width: {{vm.getProgressWidth()}}"></div>
     <div class="row">
       <div class="col-xs-12">
         <div class="wizard-step-container" ng-class="{'active': vm.currentStep == 0}">
@@ -54,12 +54,24 @@
           <h3>Tell us about some projects you are proud of.</h3>
           <p>Brag a little. :) <br />Hiring managers like to hear about specific contributions.</p>
           <div class="row">
+            <div class="col-sm-12">
+              <ul class="wizard-tech" ng-show="vm.showTechList">
+                <li ng-repeat="skill in vm.selectedSkills"
+                    ng-class="{'selected': vm.selectedSkills.indexOf(skill) > -1}">
+                  <button>
+                    {{skill}}
+                    <i ng-if="vm.selectedSkills.indexOf(skill) > -1" class="fa fa-check" aria-hidden="true"></i>
+                  </button>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="row">
             <div class="col-sm-6 wizard-projects-right">
               <div class="tech-used-wrapper">
-                <span>Technologies Used:</span>
-                <br />
-                <button type="submit" class="btn btn-info btn-sm" ng-click="">Add Technologies</button>
+
               </div>
+              <button type="submit" class="btn btn-info btn-sm addSkills" ng-click="vm.toggleTechList()">Add Technologies</button>
               <input type="text" ng-model="vm.projects" placeholder="Enter a project name ...">
               <input type="text" ng-model="vm.projects" placeholder="Enter a client name ...">
               <input type="text" ng-model="vm.projects" placeholder="Enter a url (optional)...">
