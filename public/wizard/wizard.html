@@ -1,3 +1,29 @@
+<script type="application/javascript">
+  (function(doc) {
+
+    var addEvent = 'addEventListener',
+      type = 'gesturestart',
+      qsa = 'querySelectorAll',
+      scales = [1, 1],
+      meta = qsa in doc ? doc[qsa]('meta[name=viewport]') : [];
+
+    function fix() {
+      meta.content = 'width=device-width,minimum-scale=' + scales[0] + ',maximum-scale=' + scales[1];
+      doc.removeEventListener(type, fix, true);
+    }
+
+    if ((meta = meta[meta.length - 1]) && addEvent in doc) {
+      fix();
+      scales = [.25, 1.6];
+      doc[addEvent](type, fix, true);
+    }
+
+  }(document));
+
+
+
+</script>
+
 <div class="wizard-wrapper container-fluid">
     <div class="wizard-indicator-row">
       <ul id="wizard-indicator" class="wizard-indicator">
@@ -26,7 +52,7 @@
         <div class="wizard-step-container" ng-class="{'active': vm.currentStep == 0}">
           <h3>In which location would you like to work?</h3>
           <p>We want to make sure you only hear about opportunities near this location.{{vm.progress}}</p>
-          <input type="text" ng-model="vm.location" placeholder="e.g. Downtown Chicago">
+          <input type="text" ng-model="vm.location" placeholder="e.g. Downtown Chicago " autofocus>
           <br />
           <button type="submit" class="btn btn-success btn-lg" ng-click="vm.nextStep()">Okay I'm done</button>
         </div>
@@ -59,7 +85,7 @@
               <ul class="wizard-tech" ng-show="vm.showTechList">
                 <li ng-repeat="skill in vm.selectedSkills"
                     ng-class="{'selected': vm.selectedSkills.indexOf(skill) > -1}">
-                  <button>
+                  <button nsj-added-indicator>
                     {{skill}}
                     <i ng-if="vm.selectedSkills.indexOf(skill) > -1" class="fa fa-check" aria-hidden="true"></i>
                   </button>
@@ -73,7 +99,7 @@
 
               </div>
               <button type="submit" class="btn btn-info btn-sm addSkills" ng-click="vm.toggleTechList()">Add Technologies</button>
-              <input type="text" ng-model="vm.projects" placeholder="Enter a project name ...">
+              <input type="text" ng-model="vm.projects" placeholder="Enter a project name ..." autofocus>
               <input type="text" ng-model="vm.projects" placeholder="Enter a client name ...">
               <input type="text" ng-model="vm.projects" placeholder="Enter a url (optional)...">
             </div>
@@ -93,7 +119,7 @@
           <h3>Lets talk moula!</h3>
           <p>Specify your desired compensation.</p>
           <p></p>
-          <input type="text" ng-model="vm.comp" placeholder="e.g. $100,000">
+          <input type="text" ng-model="vm.comp" placeholder="e.g. $100,000" autofocus>
           <br />
           <button type="submit" class="btn btn-success btn-lg" ng-click="vm.nextStep()">Okay I'm done</button>
           <button type="submit" class="btn btn-link btn-lg" ng-click="vm.previousStep()">Go Back.</button>
