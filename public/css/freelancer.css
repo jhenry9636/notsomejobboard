@@ -509,10 +509,11 @@ input[type="url"], textarea {
 
 .wizard-indicator li span {
   display: block;
-}
-
-.wizard-indicator li span:nth-child(2) {
   font-weight: 800;
+  width: 97px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .wizard-indicator li span.step-name {
@@ -520,6 +521,8 @@ input[type="url"], textarea {
   text-transform: uppercase;
   font-size: 14px;
   font-weight: normal;
+  overflow: visible;
+  width: auto;
 }
 
 .wizard-step-container {
@@ -755,4 +758,8 @@ input[type="url"], textarea {
 textarea {
   font-size: 16px !important;
   resize: none;
+}
+
+button:active {
+  border: none;
 }
