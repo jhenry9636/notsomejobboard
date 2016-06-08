@@ -80,9 +80,21 @@
         <div class="wizard-step-container wizard-projects" ng-class="{'active': vm.currentStep == 2}">
           <h3>Tell us about some projects you are proud of.</h3>
           <p>Brag a little. :) <br />Hiring managers like to hear about specific contributions.</p>
+          <div class="wizard-project">
+            Project Name
+          </div>
+
+
+
           <div class="row">
-            <div class="col-sm-12">
-              <ul class="wizard-tech" ng-show="vm.showTechList">
+            <div class="col-sm-6 wizard-projects-right">
+              <input type="text" ng-model="vm.projects" placeholder="Enter a project name ..." autofocus>
+              <input type="text" ng-model="vm.projects" placeholder="Enter a client name ...">
+              <input type="text" ng-model="vm.projects" placeholder="Enter a url (optional)...">
+              <textarea placeholder="Talk about your contributions to the project. How did you use the selected technologies?"></textarea>
+            </div>
+            <div class="col-sm-6 wizard-projects-left">
+              <ul class="wizard-tech">
                 <li ng-repeat="skill in vm.selectedSkills"
                     ng-class="{'selected': vm.selectedSkills.indexOf(skill) > -1}">
                   <button nsj-added-indicator>
@@ -93,20 +105,7 @@
               </ul>
             </div>
           </div>
-          <div class="row">
-            <div class="col-sm-6 wizard-projects-right">
-              <div class="tech-used-wrapper">
-
-              </div>
-              <button type="submit" class="btn btn-info btn-sm addSkills" ng-click="vm.toggleTechList()">Add Technologies</button>
-              <input type="text" ng-model="vm.projects" placeholder="Enter a project name ..." autofocus>
-              <input type="text" ng-model="vm.projects" placeholder="Enter a client name ...">
-              <input type="text" ng-model="vm.projects" placeholder="Enter a url (optional)...">
-            </div>
-            <div class="col-sm-6 wizard-projects-left">
-              <textarea placeholder="Talk about your contributions to the project. How did you use the selected technologies?"></textarea>
-            </div>
-          </div>
+          <button type="submit" class="btn btn-warn btn-sm addSkills" ng-click="vm.toggleTechList()">Add Project</button>
 
           <br />
           <button type="submit" class="btn btn-success btn-lg" ng-click="vm.nextStep()">Okay I'm done</button>
