@@ -54,12 +54,21 @@
 
         <div class="wizard-step-container wizard-projects" ng-class="{'active': vm.currentStep == 1}">
           <h3>Tell us about some projects you are proud of.</h3>
-          <p>Brag a little. :) <br />Hiring managers like to hear about specific contributions.</p>
+          <p>Brag a little :) <br />Hiring managers like to hear about specific contributions.</p>
           <div class="wizard-project"
                ng-show="vm.projects.length"
                ng-repeat="project in vm.projects track by $index">
-            <h5 class="wizard-projectName">{{project.name}}</h5>
-            <span class="wizard-client" ng-show="project.client">{{project.client}}</span>
+            <div class="row">
+              <div class="col-sm-4">
+                <h5 class="wizard-project-name">
+                  <i class="fa fa-area-chart" aria-hidden="true"></i>
+                  {{project.name}}
+                </h5>
+              </div>
+              <div class="col-sm-8">
+                <h6 class="wizard-client" ng-show="project.client">{{project.client}}</h6>
+              </div>
+            </div>
           </div>
           <div class="row" ng-hide="true">
             <div class="wizard-project" ng-show="vm.projects.length">
@@ -74,7 +83,7 @@
               <input type="text" ng-model="vm.newProject.client" placeholder="Enter a client name ...">
               <input type="text" ng-model="vm.newProject.url" placeholder="Enter a url (optional)...">
               <textarea ng-model="vm.newProject.desc" placeholder="Talk about your contributions to the project. How did you use the selected technologies?"></textarea>
-              <button type="submit"  class="btn btn-sm" ng-click="vm.addProject(vm.newProject)">Add Project</button>
+              <button type="submit"  class="btn btn-sm add-project-desktop" ng-click="vm.addProject(vm.newProject)">Add Project</button>
             </div>
             <div class="col-sm-6 wizard-projects-left">
               <ul class="wizard-tech">
@@ -87,6 +96,7 @@
                   </button>
                 </li>
               </ul>
+              <button type="submit"  class="btn btn-sm add-project-mobile" ng-click="vm.addProject(vm.newProject)">Add Project</button>
             </div>
           </div>
           <br />

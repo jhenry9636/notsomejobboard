@@ -551,7 +551,7 @@ input[type="url"], textarea {
 
 .wizard-step-container p {
   padding: 0px 10px 0px 10px;
-  color: #818a91;
+  color: #676767;
   font-size: 18px;
   margin-top: 10px;
   margin-bottom: 30px;
@@ -617,7 +617,14 @@ input[type="url"], textarea {
 }
 
 .wizard-step-container h5 {
+  font-size: 20px;
   color: #888181;
+  text-transform: none;
+}
+
+.wizard-step-container h6 {
+  font-weight: normal;
+  line-height: 20px;
   text-transform: none;
 }
 
@@ -740,6 +747,12 @@ input[type="url"], textarea {
   border-radius: 5px;
 }
 
+.add-project-mobile {
+  display: none;
+}
+.add-project-desktop {
+  display: block;
+}
 
 @media (max-width: 576px) {
   .wizard-indicator {
@@ -756,7 +769,7 @@ input[type="url"], textarea {
   }
 
   .wizard-step-container input {
-    height: 30px;
+    height: 40px;
     font-size: 16px;
   }
 
@@ -781,6 +794,19 @@ input[type="url"], textarea {
 @media only screen and (max-width : 766px) {
   .wizard-step-container textarea {
     margin-top: 10px;
+  }
+  .wizard-step-container h5 {
+    margin:0px;
+  }
+
+  .wizard-step-container h6 {
+    margin:0px;
+  }
+  .add-project-mobile {
+    display: block;
+  }
+  .add-project-desktop {
+    display: none;
   }
 }
 
