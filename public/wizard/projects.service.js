@@ -17,18 +17,23 @@
 
     return service
 
-    function addProject(project) {
-      var defer = $q();
 
-      projects.push(project);
-      defer.resolve(projects);
+    function addProject(project) {
+      var deferred = $q.defer();
+
+      projects.push(angular.copy(project));
+      deferred.resolve(projects);
+      console.log(projects)
+      return deferred.promise;
     }
 
     function removeProject(project) {
-      var defer = $q();
+      var deferred = $q.defer();
 
       projects.splice(projects.indexOf(project), 1);
-      defer.resolve(projects);
+      deferred.resolve(projects);
+      console.log(projects)
+      return deferred.promise;
     }
 
   }

@@ -39,10 +39,7 @@
     vm.projects = projectsService.projects;
     vm.addProject = addProject;
     vm.removeProject = removeProject;
-    vm.projectName = '';
-    vm.projectClientName = '';
-    vm.projectUrl = '';
-    vm.projectDesc = '';
+    vm.project = {}
     vm.showTechList = false;
     vm.toggleTechList = toggleTechList;
 
