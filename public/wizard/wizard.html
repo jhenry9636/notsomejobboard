@@ -31,16 +31,11 @@
           <span class="step-name">Location:</span>
           <span>{{vm.location}}</span>
         </li>
-        <li ng-class="{'active': vm.currentStep > 1}" ng-click="vm.setStep(1)">
-          <span class="step-name">Technologies:</span>
-          <span>{{vm.selectedSkills[0]+','}}</span>
-          <span>{{vm.selectedSkills[1]+' ...'}}</span>
-        </li>
-        <li ng-class="{'active': vm.currentStep > 2}" ng-click="vm.setStep(2)">
+        <li ng-class="{'active': vm.currentStep > 1}" ng-click="vm.setStep(2)">
           <span class="step-name">Projects:</span>
           <span>{{vm.projects}}</span>
         </li>
-        <li ng-class="{'active': vm.currentStep > 3}" ng-click="vm.setStep(3)">
+        <li ng-class="{'active': vm.currentStep > 2}" ng-click="vm.setStep(3)">
           <span class="step-name">Pay:</span>
           <span>{{vm.comp}}</span>
         </li>
@@ -57,47 +52,29 @@
           <button type="submit" class="btn btn-success btn-lg" ng-click="vm.nextStep()">Okay I'm done</button>
         </div>
 
-        <div class="wizard-step-container" ng-class="{'active': vm.currentStep == 1}">
-          <h3>What technologies are you using?</h3>
-          <p>In the next step we'll ask about projects where the selected technologies were used.</p>
-          <ul class="wizard-tech">
-            <li ng-repeat="skill in vm.skills"
-                ng-click="vm.handleSkillToggle(skill)"
-                ng-class="{'selected': vm.selectedSkills.indexOf(skill) > -1}">
-              <button>
-                {{skill}}
-                <i ng-if="vm.selectedSkills.indexOf(skill) > -1" class="fa fa-check" aria-hidden="true"></i>
-              </button>
-            </li>
-          </ul>
-          <br />
-          <button type="submit" class="btn btn-success btn-lg" ng-click="vm.nextStep()">Okay I'm done</button>
-          <button type="submit" class="btn btn-info btn-lg" ng-click="vm.resetSkills()">Reset</button>
-          <button type="submit" class="btn btn-link btn-lg" ng-click="vm.previousStep()">Go Back.</button>
-        </div>
-
-
-        <div class="wizard-step-container wizard-projects" ng-class="{'active': vm.currentStep == 2}">
+        <div class="wizard-step-container wizard-projects" ng-class="{'active': vm.currentStep == 1}">
           <h3>Tell us about some projects you are proud of.</h3>
           <p>Brag a little. :) <br />Hiring managers like to hear about specific contributions.</p>
-          <div class="wizard-project">
-            Project Name
+          <div class="row">
+            <div class="wizard-project" ng-show="vm.projects.length">
+              <h5 class="wizard-project Name" ng-show="vm.projectName !== ''">{{vm.projectName}}</h5>
+              <h5 class="wizard-projectName" ng-hide="vm.projectName !== ''">(New Project)</h5>
+              <span class="wizard-client" ng-show="vm.projectClientName ">{{vm.projectClientName}}</span>
+            </div>
           </div>
-
-
-
           <div class="row">
             <div class="col-sm-6 wizard-projects-right">
-              <input type="text" ng-model="vm.projects" placeholder="Enter a project name ..." autofocus>
-              <input type="text" ng-model="vm.projects" placeholder="Enter a client name ...">
+              <input type="text" ng-model="vm.projectName" placeholder="Enter a project name ..." autofocus>
+              <input type="text" ng-model="vm.projectClientName" placeholder="Enter a client name ...">
               <input type="text" ng-model="vm.projects" placeholder="Enter a url (optional)...">
               <textarea placeholder="Talk about your contributions to the project. How did you use the selected technologies?"></textarea>
             </div>
             <div class="col-sm-6 wizard-projects-left">
               <ul class="wizard-tech">
-                <li ng-repeat="skill in vm.selectedSkills"
+                <li ng-repeat="skill in vm.skills"
+                    ng-click="vm.handleSkillToggle(skill)"
                     ng-class="{'selected': vm.selectedSkills.indexOf(skill) > -1}">
-                  <button nsj-added-indicator>
+                  <button>
                     {{skill}}
                     <i ng-if="vm.selectedSkills.indexOf(skill) > -1" class="fa fa-check" aria-hidden="true"></i>
                   </button>
@@ -106,7 +83,6 @@
             </div>
           </div>
           <button type="submit" class="btn btn-warn btn-sm addSkills" ng-click="vm.toggleTechList()">Add Project</button>
-
           <br />
           <button type="submit" class="btn btn-success btn-lg" ng-click="vm.nextStep()">Okay I'm done</button>
           <button type="submit" class="btn btn-link btn-lg" ng-click="vm.previousStep()">Go Back.</button>
@@ -114,7 +90,7 @@
 
 
 
-        <div class="wizard-step-container" ng-class="{'active': vm.currentStep == 3}">
+        <div class="wizard-step-container" ng-class="{'active': vm.currentStep == 2}">
           <h3>Lets talk moula!</h3>
           <p>Specify your desired compensation.</p>
           <p></p>
@@ -125,7 +101,7 @@
         </div>
 
 
-        <div class="wizard-step-container" ng-class="{'active': vm.currentStep == 4}">
+        <div class="wizard-step-container" ng-class="{'active': vm.currentStep == 3}">
           <h3>... aaand you're done.</h3>
           <p>Enter a email address and password to create an account.</p>
           <input type="text" placeholder="Email Address" />

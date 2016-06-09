@@ -16,9 +16,9 @@
 
   }
 
-  WizardController.$inject = ['wizardService', 'skillsService'];
+  WizardController.$inject = ['wizardService', 'skillsService', 'projectsService'];
 
-  function WizardController(wizardService, skillsService) {
+  function WizardController(wizardService, skillsService, projectsService) {
 
     var vm = this;
 
@@ -36,9 +36,16 @@
     vm.location = '';
     vm.tech = '';
     vm.comp = '';
-    vm.projects = '';
+    vm.projects = projectsService.projects;
+    vm.addProject = addProject;
+    vm.removeProject = removeProject;
+    vm.projectName = '';
+    vm.projectClientName = '';
+    vm.projectUrl = '';
+    vm.projectDesc = '';
     vm.showTechList = false;
     vm.toggleTechList = toggleTechList;
+
 
     function setStep(newStep) {
       wizardService.setStep(newStep).then(function(step) {
@@ -95,6 +102,18 @@
 
     function toggleTechList() {
       vm.showTechList = !vm.showTechList;
+    }
+
+    function addProject(project) {
+      projectsService.addProject(project).then(function(projects) {
+        vm.projects = projects;
+      })
+    }
+
+    function removeProject(project) {
+      projectsService.removeProject(project).then(function(projects) {
+        vm.projects = projects;
+      })
     }
 
   }
