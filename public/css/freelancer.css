@@ -561,6 +561,33 @@ input[type="url"], textarea {
   display: block;
 }
 
+.wizard-step-container .fa-pencil {
+  position: relative;
+}
+
+.wizard-edit, .wizard-remove {
+  display: block;
+  cursor: pointer;
+  position: relative;
+  top: 14px;
+  font-size: 15px;
+}
+
+.wizard-edit {
+  top: 17px;
+  font-size: 15px;
+}
+
+.wizard-remove {
+  top: 0px;
+  font-size: 15px;
+  left: -116px;
+}
+
+.wizard-remove .fa {
+  font-size: 14px;
+}
+
 .wizard-step-container input {
   width: 100%;
   box-shadow: none;
