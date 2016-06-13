@@ -37,12 +37,12 @@
     vm.tech = '';
     vm.comp = '';
     vm.projects = projectsService.projects;
-    vm.addProject = addProject;
-    vm.removeProject = removeProject;
     vm.project = {}
     vm.showTechList = false;
     vm.toggleTechList = toggleTechList;
-
+    vm.createHelper = createHelper;
+    vm.editingHelper = editingHelper;
+    vm.removeHelper = removeHelper;
 
     function setStep(newStep) {
       wizardService.setStep(newStep).then(function(step) {
@@ -101,16 +101,20 @@
       vm.showTechList = !vm.showTechList;
     }
 
-    function addProject(project) {
-      projectsService.addProject(project).then(function(projects) {
-        vm.projects = projects;
+    function createHelper(project) {
+      projectsService.createHelper(project);
+      vm.projects = projectsService.projects;
+    }
+
+    function editingHelper() {
+      projectsService.editingHelper().then(function() {
+        vm.projects = projectsService.projects
       })
     }
 
-    function removeProject(project) {
-      projectsService.removeProject(project).then(function(projects) {
-        vm.projects = projects;
-      })
+    function removeHelper(index) {
+      projectsService.removeHelper(index);
+      vm.projects = projectsService.projects;
     }
 
   }

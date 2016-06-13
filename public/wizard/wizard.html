@@ -41,7 +41,7 @@
         </li>
       </ul>
     </div>
-    <div id="wizard-progress" class="wizard-progress" nsj-fade-indicator style="width: {{vm.getProgressWidth()}}"></div>
+    <div id="wizard-progress" class="wizard-progress" style="width: {{vm.getProgressWidth()}}"></div>
     <div class="row">
       <div class="col-xs-12">
         <div class="wizard-step-container" ng-class="{'active': vm.currentStep == 0}">
@@ -55,36 +55,30 @@
         <div class="wizard-step-container wizard-projects" ng-class="{'active': vm.currentStep == 1}">
           <h3>Tell us about some projects you are proud of.</h3>
           <p>Brag a little :) <br />Hiring managers like to hear about specific contributions.</p>
-          <div class="wizard-project"
-               ng-show="vm.projects.length"
-               ng-repeat="project in vm.projects track by $index">
+          <div class="wizard-project" ng-repeat="project in vm.projects track by $index">
             <div class="row">
-              <div class="col-sm-4">
+              <div class="col-sm-12">
                 <h5 class="wizard-project-name">
                   <i class="fa fa-area-chart" aria-hidden="true"></i>
                   {{project.name}}
                 </h5>
-              </div>
-              <div class="col-sm-7">
                 <h6 class="wizard-client" ng-show="project.client">{{project.client}}</h6>
-              </div>
-              <div class="col-sm-1">
-                <span class="wizard-edit">
+                <span class="wizard-edit" ng-click="vm.editingHelper($index)">
                   <i class="fa fa-pencil" aria-hidden="true"></i>
                   Edit
                 </span>
-                <span class="wizard-remove">
+                <span class="wizard-remove" ng-click="vm.removeHelper($index)">
                   <i class="fa fa-times-circle-o" aria-hidden="true"></i>
                   Remove
                 </span>
               </div>
             </div>
-          </div>
-          <div class="row" ng-hide="true">
-            <div class="wizard-project" ng-show="vm.projects.length">
-              <h5 class="wizard-projectName" ng-show="vm.project.name !== ''">{{vm.project.name}}</h5>
-              <h5 class="wizard-projectName" ng-hide="vm.project.name !== ''">(New Project)</h5>
-              <span class="wizard-client" ng-show="vm.project.client ">{{vm.project.client}}</span>
+            <div class="row" ng-hide="isEditing($index)">
+              <div class="wizard-project" ng-show="vm.projects.length">
+                <h5 class="wizard-projectName" ng-show="vm.project.name !== ''">{{vm.project.name}}</h5>
+                <h5 class="wizard-projectName" ng-hide="vm.project.name !== ''">(New Project)</h5>
+                <span class="wizard-client" ng-show="vm.project.client ">{{vm.project.client}}</span>
+              </div>
             </div>
           </div>
           <div class="row">
@@ -93,7 +87,7 @@
               <input type="text" ng-model="vm.newProject.client" placeholder="Enter a client name ...">
               <input type="text" ng-model="vm.newProject.url" placeholder="Enter a url (optional)...">
               <textarea ng-model="vm.newProject.desc" placeholder="Talk about your contributions to the project. How did you use the selected technologies?"></textarea>
-              <button type="submit"  class="btn btn-sm add-project-desktop" ng-click="vm.addProject(vm.newProject)">Add Project</button>
+              <button type="submit"  class="btn btn-sm add-project-desktop" ng-click="vm.createHelper(vm.newProject)">Add Project</button>
             </div>
             <div class="col-sm-6 wizard-projects-left">
               <ul class="wizard-tech">
