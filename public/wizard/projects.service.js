@@ -28,7 +28,7 @@
     function setActiveProject(project) {
       activeProject = project;
     }
-    
+
     function editingHelper(index) {
       var currentEditProject = projects[index];
 
@@ -44,7 +44,7 @@
     }
 
     function createHelper(project) {
-      projects.unshift(project)
+      projects.unshift(angular.copy(project))
     }
 
 
