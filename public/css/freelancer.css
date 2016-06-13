@@ -807,11 +807,11 @@ input[type="url"], textarea {
 }
 
 .wizard-project.ng-leave {
-  -webkit-transition: 0.3s all;
-  -moz-transition: 0.3s all;
-  -ms-transition: 0.3s all;
-  -o-transition: 0.3s all;
-  transition: 0.3s all;
+  -webkit-transition: 0.3s opacity;
+  -moz-transition: 0.3s opacity;
+  -ms-transition: 0.3s opacity;
+  -o-transition: 0.3s opacity;
+  transition: 0.3s opacity;
   opacity: 1;
 }
 
