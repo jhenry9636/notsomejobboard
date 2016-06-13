@@ -729,13 +729,16 @@ input[type="url"], textarea {
 .wizard-tech li .fa {
   position: absolute;
   width:2px;
-  top: 14px;
+  top: 8px;
   left: 11px;
+  opacity: 0;
   transition: .2s all;
 }
 
 .wizard-tech li.selected .fa {
   width: 18px;
+  top: 14px;
+  opacity: 1;
   transition: .2s all;
 }
 
@@ -776,7 +779,6 @@ input[type="url"], textarea {
 }
 
 .wizard-project {
-  transition: all linear 2s;
   position: relative;
   margin: 10px 0px;
   text-align: left;
@@ -788,14 +790,21 @@ input[type="url"], textarea {
   border-radius: 5px;
 }
 
-.wizard-project.ng-enter {
- height: 0px;
+
+
+.wizard-project.repeat-enter-setup, .wizard-project.repeat-leave-setup {
+  -webkit-transition:all linear 0.3s;
+  -moz-transition:all linear 0.3s;
+  -ms-transition:all linear 0.3s;
+  -o-transition:all linear 0.3s;
+  transition:all linear 0.3s;
 }
 
-.wizard-project,
-.wizard-project.ng-enter-active {
-  height: 100px;
-}
+.wizard-project.repeat-enter-setup { line-height:0; opacity:0; }
+.wizard-project.repeat-enter-setup.repeat-enter-start { line-height:20px; opacity:1; }
+
+.wizard-project.repeat-leave-setup { opacity:1; line-height:20px; }
+.wizard-project.repeat-leave-setup.repeat-leave-start { opacity:0; line-height:0; }
 
 .add-project-mobile {
   display: none;
