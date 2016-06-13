@@ -731,12 +731,12 @@ input[type="url"], textarea {
   width:2px;
   top: 14px;
   left: 11px;
-  transition: .2s all ease-out;
+  transition: .2s all;
 }
 
 .wizard-tech li.selected .fa {
   width: 18px;
-  transition: 1s all ease-in;
+  transition: .2s all;
 }
 
 .wizard-tech li:hover button {
