@@ -10,7 +10,7 @@
     var projects = [];
     var currentEditProject = {};
     var currentRemoveProject = {};
-    var currentnewProject = {};
+    var currentEditProjectIndex = null;
     var activeProject = {};
 
 
@@ -18,9 +18,11 @@
       projects: projects,
       activeProject : activeProject,
       createHelper: createHelper,
-      editingHelper: editingHelper,
+      saveEdits: saveEdits,
       removeHelper: removeHelper,
-      setActiveProject: setActiveProject
+      setActiveProject: setActiveProject,
+      currentEditProject: currentEditProject,
+      setEditingProjectIndex: setEditingProjectIndex
     };
 
     return service
@@ -29,25 +31,25 @@
       activeProject = project;
     }
 
-    function editingHelper(index) {
-      var currentEditProject = projects[index];
+    function setEditingProjectIndex(index) {
+      alert(index)
+      currentEditProjectIndex = index;
+    }
 
-      currentEditProject.name = project.name;
-      currentEditProject.client = project.client;
-      currentEditProject.url = project.url;
-      currentEditProject.desc = project.desc;
+    function saveEdits(project) {
+      projects[currentEditProjectIndex].name = project.name;
+      projects[currentEditProjectIndex].client = project.client;
+      projects[currentEditProjectIndex].url = project.url;
+      projects[currentEditProjectIndex].desc = project.desc;
     }
 
     function removeHelper(index) {
-      projects
       projects.splice(index, 1)
     }
 
     function createHelper(project) {
       projects.unshift(angular.copy(project))
     }
-
-
 
   }
 })()

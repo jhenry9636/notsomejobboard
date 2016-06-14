@@ -63,7 +63,7 @@
                   {{project.name}}
                 </h5>
                 <h6 class="wizard-client" ng-show="project.client">{{project.client}}</h6>
-                <span class="wizard-edit" ng-click="vm.editingHelper($index)">
+                <span class="wizard-edit" ng-click="vm.setEditingProjectIndex($index)">
                   <i class="fa fa-pencil" aria-hidden="true"></i>
                   Edit
                 </span>
@@ -73,7 +73,7 @@
                 </span>
               </div>
             </div>
-            <div class="row" ng-hide="isEditing($index)">
+            <div class="row">
               <div class="wizard-project-item" ng-show="vm.projects.length">
                 <h5 class="wizard-projectName" ng-show="vm.project.name !== ''">{{vm.project.name}}</h5>
                 <h5 class="wizard-projectName" ng-hide="vm.project.name !== ''">(New Project)</h5>
@@ -82,13 +82,28 @@
             </div>
           </div>
           <div class="row">
+
+            <!-- Adding Project -->
+
             <div class="col-sm-6 wizard-projects-right">
-              <input type="text" ng-model="vm.newProject.name" placeholder="Enter a project name ..." autofocus>
-              <input type="text" ng-model="vm.newProject.client" placeholder="Enter a client name ...">
-              <input type="text" ng-model="vm.newProject.url" placeholder="Enter a url (optional)...">
-              <textarea ng-model="vm.newProject.desc" placeholder="Talk about your contributions to the project. How did you use the selected technologies?"></textarea>
-              <button type="submit"  class="btn btn-sm add-project-desktop" ng-click="vm.createHelper(vm.newProject)">Add Project</button>
+              <div ng-hide="vm.isEditing">
+                <input type="text" ng-model="vm.newProject.name" placeholder="Enter a project name ..." autofocus>
+                <input type="text" ng-model="vm.newProject.client" placeholder="Enter a client name ...">
+                <input type="text" ng-model="vm.newProject.url" placeholder="Enter a url (optional)...">
+                <textarea ng-model="vm.newProject.desc" placeholder="Talk about your contributions to the project. How did you use the selected technologies?"></textarea>
+                <button type="submit"  class="btn btn-sm add-project-desktop" ng-click="vm.createHelper(vm.newProject)">Add Project</button>
+              </div>
+              <div ng-show="vm.isEditing">
+                <input type="text" ng-model="vm.currentEditProject.name">
+                <input type="text" ng-model="vm.currentEditProject.client">
+                <input type="text" ng-model="vm.currentEditProject.url">
+                <textarea ng-model="vm.currentEditProject.desc"></textarea>
+                <button type="submit"  class="btn btn-sm add-project-desktop">Save Edits</button>
+              </div>
             </div>
+
+            <!-- Skills Add -->
+
             <div class="col-sm-6 wizard-projects-left">
               <ul class="wizard-tech">
                 <li ng-repeat="skill in vm.skills"
