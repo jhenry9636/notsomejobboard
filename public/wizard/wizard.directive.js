@@ -41,8 +41,11 @@
     vm.showTechList = false;
     vm.toggleTechList = toggleTechList;
     vm.createHelper = createHelper;
-    vm.editingHelper = editingHelper;
     vm.removeHelper = removeHelper;
+    vm.saveEdits = saveEdits;
+    vm.isEditing = false;
+    vm.setEditingProjectIndex = setEditingProjectIndex;
+    vm.currentEditProject = projectsService.currentEditProject;
 
     function setStep(newStep) {
       wizardService.setStep(newStep).then(function(step) {
@@ -106,15 +109,23 @@
       vm.projects = projectsService.projects;
     }
 
-    function editingHelper() {
-      projectsService.editingHelper().then(function() {
-        vm.projects = projectsService.projects
-      })
-    }
-
     function removeHelper(index) {
       projectsService.removeHelper(index);
       vm.projects = projectsService.projects;
+    }
+
+    function saveEdits(editingProject) {
+      projectsService.saveEdits(editingProject)
+    }
+
+    function saveEdits() {
+      projectsService.saveEdits()
+      vm.isEditing = false;
+    }
+
+    function setEditingProjectIndex(index) {
+      projectsService.setEditingProjectIndex(index)
+      vm.isEditing = true;
     }
 
   }
