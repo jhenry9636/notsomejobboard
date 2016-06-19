@@ -104,9 +104,13 @@
       vm.showTechList = !vm.showTechList;
     }
 
-    function createHelper(project) {
-      projectsService.createHelper(project);
+    function createHelper() {
+      projectsService.createHelper(vm.newProject);
       vm.projects = projectsService.projects;
+      vm.newProject.name = '';
+      vm.newProject.client = '';
+      vm.newProject.url = '';
+      vm.newProject.desc = '';
     }
 
     function removeHelper(index) {
@@ -114,19 +118,17 @@
       vm.projects = projectsService.projects;
     }
 
-    function saveEdits(editingProject) {
-      projectsService.saveEdits(editingProject)
-    }
-
     function saveEdits() {
-      projectsService.saveEdits()
+      projectsService.saveEdits(vm.currentEditProject)
       vm.isEditing = false;
     }
 
     function setEditingProjectIndex(index) {
       projectsService.setEditingProjectIndex(index)
       vm.isEditing = true;
+      vm.currentEditProject = projectsService.getCurrentlyEditingProject();
     }
+    
 
   }
 

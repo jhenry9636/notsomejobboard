@@ -8,7 +8,12 @@
 
   function projectsService($q) {
     var projects = [];
-    var currentEditProject = {};
+    var currentEditProject = {
+      name: null,
+      client: null,
+      url: null,
+      desc: null
+    };
     var currentRemoveProject = {};
     var currentEditProjectIndex = null;
     var activeProject = {};
@@ -22,21 +27,29 @@
       removeHelper: removeHelper,
       setActiveProject: setActiveProject,
       currentEditProject: currentEditProject,
-      setEditingProjectIndex: setEditingProjectIndex
+      currentEditProjectIndex: currentEditProjectIndex,
+      setEditingProjectIndex: setEditingProjectIndex,
+      getCurrentlyEditingProject: getCurrentlyEditingProject
     };
 
     return service
 
     function setActiveProject(project) {
+      console.log(project)
       activeProject = project;
     }
 
     function setEditingProjectIndex(index) {
-      alert(index)
       currentEditProjectIndex = index;
     }
 
+    function getCurrentlyEditingProject() {
+      return projects[currentEditProjectIndex]
+    }
+
     function saveEdits(project) {
+      console.log(projects[currentEditProjectIndex])
+      projects[currentEditProjectIndex]
       projects[currentEditProjectIndex].name = project.name;
       projects[currentEditProjectIndex].client = project.client;
       projects[currentEditProjectIndex].url = project.url;
