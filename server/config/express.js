@@ -28,6 +28,6 @@ module.exports = function(server, config) {
       compile: compile
     }
   ));
-  server.use(express.static(config.rootPath + '/public'));
+  server.use(express.static(config.rootPath + '/public/build'));
 
 }
