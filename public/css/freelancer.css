@@ -565,22 +565,22 @@ input[type="url"], textarea {
   position: relative;
 }
 
+.wizard-controls {
+  float: right;
+  top: 5px;
+  position: relative;
+  left: -15px;
+}
+
 .wizard-edit, .wizard-remove {
   width: 200px;
-  position: absolute;
   cursor: pointer;
   font-size: 15px;
   top: 16px;
 }
 
 .wizard-edit {
-  right: 0px;
-  font-size: 15px;
-}
-
-.wizard-remove {
-  right: -81px;
-  font-size: 15px;
+  margin-right: 13px;
 }
 
 .wizard-edit-wrapper .wizard-edit {
@@ -599,35 +599,6 @@ input[type="url"], textarea {
   margin-bottom: 0px;
 }
 
-.wizard-projects .wizard-tech {
-  -moz-transition-duration: 0.3s;
-  -webkit-transition-duration: 0.3s;
-  -o-transition-duration: 0.3s;
-  transition-duration: 0.3s;
-  -moz-transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
-  -webkit-transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
-  -o-transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
-  transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
-}
-
-.wizard-projects .wizard-tech.active {
-  -moz-transition-duration: 0.3s;
-  -webkit-transition-duration: 0.3s;
-  -o-transition-duration: 0.3s;
-  transition-duration: 0.3s;
-  -moz-transition-timing-function: ease-in;
-  -webkit-transition-timing-function: ease-in;
-  -o-transition-timing-function: ease-in;
-  transition-timing-function: ease-in;
-  max-height: 1000px;
-}
-
-.addSkills {
-  margin-top: 5px;
-  float: left;
-  width: 100%;
-  font-size: 16px;
-}
 
 .wizard-projects h4 {
   font-size: 20px;
@@ -643,7 +614,6 @@ input[type="url"], textarea {
 }
 
 .wizard-step-container h5 {
-  width: 28%;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -661,7 +631,7 @@ input[type="url"], textarea {
   overflow: hidden;
   text-overflow: ellipsis;
   text-transform: none;
-  margin-left: 15px;
+  margin: 12px 0px 12px 13px;
 }
 
 .wizard-projects-right {
@@ -687,11 +657,19 @@ input[type="url"], textarea {
 
 .wizard-tech {
   background: #F6F9FA;
-  margin-top: 10px;
-  padding: 20px 10px 20px 10px;
+  opacity: 0;
   border-radius: 5px;
+  padding: 20px 10px 20px 10px;
   border: 1px solid #d8d8d8;
   text-align: center;
+  height: 0px;
+  overflow: scroll;
+  transition: all 0.3s ease-in;
+}
+
+.wizard-tech.expand {
+  opacity: 1;
+  height: 200px;
 }
 
 .wizard-tech li {
@@ -736,7 +714,6 @@ input[type="url"], textarea {
 }
 
 .wizard-tech li.selected .fa {
-  width: 18px;
   top: 14px;
   opacity: 1;
   transition: .2s all;
@@ -780,17 +757,20 @@ input[type="url"], textarea {
 
 .wizard-project {
   position: relative;
-  margin: 10px 0px;
   text-align: left;
-  padding: 15px 10px;
   font-size: 20px;
-  line-height: 17px;
   background-color: #f5f5f5;
   border: 1px solid #d8d8d8;
   border-radius: 5px;
   opacity: 1;
+  padding: 0px 0px 0px 13px;
 }
 
+.wizard-project:after {
+  content: '';
+  display: block;
+  clear: both;
+}
 
 
 .wizard-project.ng-enter {
