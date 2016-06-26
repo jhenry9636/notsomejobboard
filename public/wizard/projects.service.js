@@ -16,30 +16,21 @@
 
     var service = {
       projects: projects,
-      activeProject : activeProject,
       createHelper: createHelper,
       saveEdits: saveEdits,
       removeHelper: removeHelper,
-      setActiveProject: setActiveProject,
-      currentEditProject: currentEditProject,
       setEditingProjectIndex: setEditingProjectIndex
     };
 
     return service
-
-    function setActiveProject(project) {
-      activeProject = project;
-    }
 
     function setEditingProjectIndex(index) {
       currentEditProjectIndex = index;
     }
 
     function saveEdits(project) {
-      projects[currentEditProjectIndex].name = project.name;
-      projects[currentEditProjectIndex].client = project.client;
-      projects[currentEditProjectIndex].url = project.url;
-      projects[currentEditProjectIndex].desc = project.desc;
+      debugger
+      projects[currentEditProjectIndex] = angular.copy(project)
     }
 
     function removeHelper(index) {
@@ -48,6 +39,7 @@
 
     function createHelper(project) {
       project.techUsed = skillsService.selectedSkills;
+      console.dir(project)
       projects.unshift(angular.copy(project))
       skillsService.resetSkills();
     }

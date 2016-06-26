@@ -20,7 +20,9 @@
       selectedSkills: selectedSkills,
       addSkill: addSkill,
       removeSkill: removeSkill,
-      resetSkills: resetSkills
+      resetSkills: resetSkills,
+      setSelectedSkills: setSelectedSkills,
+      getSelectedSkills: getSelectedSkills
     };
 
     return service
@@ -34,14 +36,14 @@
 
     function removeSkill(skill) {
       var index = selectedSkills.indexOf(skill);
-      var deferred = $q.defer();
 
       if(index > -1) {
         selectedSkills.splice(index, 1)
       }
+    }
 
-      deferred.resolve(selectedSkills);
-      return deferred.promise
+    function getSelectedSkills() {
+      return selectedSkills
     }
 
     function resetSkills() {
@@ -51,6 +53,10 @@
 
       deferred.resolve(selectedSkills);
       return deferred.promise
+    }
+
+    function setSelectedSkills(skills) {
+      selectedSkills = skills
     }
 
   }

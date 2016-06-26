@@ -47,6 +47,11 @@
     vm.cancelEdit = cancelEdit;
     vm.setEditingProjectIndex = setEditingProjectIndex;
     vm.currentEditProject = projectsService.currentEditProject;
+    vm.editingProject = {}
+    vm.editingProject.name = ''
+    vm.editingProject.client = ''
+    vm.editingProject.desc = ''
+    vm.editingProject.url = ''
 
     function setStep(newStep) {
       wizardService.setStep(newStep).then(function(step) {
@@ -85,9 +90,9 @@
     }
 
     function removeSkill(skill) {
-      skillsService.removeSkill(skill).then(function(skills) {
-        vm.selectedTech = skills;
-      })
+      skillsService.removeSkill(skill)
+      debugger
+      vm.selectedTech = skillsService.getSelectedSkills();
     }
 
     function getProgressWidth() {
@@ -129,17 +134,28 @@
       vm.projects = projectsService.projects;
     }
 
-    function saveEdits(editingProject) {
-      projectsService.saveEdits(editingProject)
-    }
-
     function saveEdits() {
-      projectsService.saveEdits()
+      vm.editingProject.techUsed = vm.selectedTech;
+      projectsService.saveEdits(vm.editingProject)
+      resetProject()
       vm.isEditing = false;
+      vm.editingProject.name = ''
+      vm.editingProject.client = ''
+      vm.editingProject.desc = ''
+      vm.editingProject.url = ''
     }
 
     function setEditingProjectIndex(index) {
-      projectsService.setEditingProjectIndex(index)
+
+      var currentlyEditing = projectsService.projects[index];
+      projectsService.setEditingProjectIndex(index);
+      vm.editingProject.name = currentlyEditing.name
+      vm.editingProject.client = currentlyEditing.client
+      vm.editingProject.desc = currentlyEditing.desc
+      vm.editingProject.url = currentlyEditing.url
+      skillsService.setSelectedSkills(currentlyEditing.techUsed)
+      debugger
+      vm.selectedTech = skillsService.getSelectedSkills()
       vm.isEditing = true;
     }
 

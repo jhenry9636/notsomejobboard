@@ -105,7 +105,7 @@
             <div ng-hide="vm.isEditing" class="project-form-wrapper">
               <h5 class="form-header">Create Project</h5>
               <div class="selected-tech-wrapper">
-                <button class="secondary-form-button" ng-click="vm.toggleTechList()">Select technologies utilized</button>
+                <button class="secondary-form-button" ng-click="vm.toggleTechList()">Select technologies</button>
                 <ul class="selected-tech">
                   <li ng-repeat="tech in vm.selectedTech track by $index"
                       ng-click="vm.handleSkillToggle(tech)">{{tech}}
@@ -122,7 +122,7 @@
             <div ng-show="vm.isEditing" class="project-form-wrapper">
               <h5 class="form-header">Edit Project</h5>
               <div class="selected-tech-wrapper">
-                <button class="secondary-form-button" ng-click="vm.toggleTechList()">Modify technologies utilized</button>
+                <button class="secondary-form-button" ng-click="vm.toggleTechList()">Update technologies</button>
                 <ul class="selected-tech">
                   <li ng-repeat="tech in vm.selectedTech track by $index"
                       ng-click="vm.handleSkillToggle(tech)">{{tech}}
@@ -130,11 +130,11 @@
                   </li>
                 </ul>
               </div>
-              <input type="text" ng-model="vm.newProject.name" placeholder="Enter a project name ..." autofocus>
-              <input type="text" ng-model="vm.newProject.client" placeholder="Enter a client name ...">
-              <input type="text" ng-model="vm.newProject.url" placeholder="Enter a url (optional)...">
-              <textarea ng-model="vm.newProject.desc" placeholder="Talk about your contributions to the project. How did you use the selected technologies?"></textarea>
-              <button class="btn btn-sm add-project-desktop secondary-form-button" ng-click="">Save Updates</button>
+              <input type="text" ng-model="vm.editingProject.name" placeholder="Enter a project name ..." autofocus>
+              <input type="text" ng-model="vm.editingProject.client" placeholder="Enter a client name ...">
+              <input type="text" ng-model="vm.editingProject.url" placeholder="Enter a url (optional)...">
+              <textarea ng-model="vm.editingProject.desc" placeholder="Talk about your contributions to the project. How did you use the selected technologies?"></textarea>
+              <button class="btn btn-sm add-project-desktop secondary-form-button" ng-click="vm.saveEdits()">Save Updates</button>
               <button class="btn btn-sm add-project-desktop info-form-button" ng-click="vm.cancelEdit()">Cancel</button>
             </div>
           </div>
