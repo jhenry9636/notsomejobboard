@@ -590,8 +590,8 @@ input[type="url"], textarea {
 .wizard-step-container input {
   width: 100%;
   box-shadow: none;
-  margin: 10px auto 40px auto;
-  padding: 10px 20px;
+  margin: 10px auto 0px auto;
+  padding: 4px 10px;
   border: 1px solid #aebcce;
 }
 
@@ -608,7 +608,7 @@ input[type="url"], textarea {
 .wizard-step-container textarea {
   width: 100%;
   margin: 10px auto 0px auto;
-  padding: 20px 20px 0px 20px;
+  padding: 5px 8px;
   border: 1px solid #aebcce;
   height: 217px;
 }
@@ -711,6 +711,7 @@ input[type="url"], textarea {
   left: 11px;
   opacity: 0;
   transition: .2s all;
+  color: #18bc9c;
 }
 
 .wizard-tech li.selected .fa {
@@ -763,6 +764,7 @@ input[type="url"], textarea {
   border: 1px solid #d8d8d8;
   border-radius: 5px;
   opacity: 1;
+  margin: 0px 0px 15px 0px;
   padding: 0px 0px 0px 13px;
 }
 
@@ -877,4 +879,109 @@ textarea {
 
 button:active {
   border: none;
+}
+
+.no-projects-added {
+  display: block;
+  text-align: left;
+  font-style: italic;
+  color: #a9a9a9;
+  font-size: 18px;
+  margin: 0px 0px 14px 0px;
+}
+
+.project-form-wrapper {
+  text-align: left;
+}
+
+button.secondary-form-button {
+  background: #0C9EEF;
+  border: 1px solid #0C9EEF;
+  padding: 6px 9px;
+  border-radius: 3px;
+  color: #fff;
+}
+
+button.info-form-button {
+  background: #fff;
+  border: none;
+  padding: 6px 9px;
+  color: #0C9EEF;
+}
+
+.add-project-desktop {
+  float: left;
+}
+
+.wizard-controls-footer {
+  margin: 60px 0px 0px 0px;
+}
+
+.col-txt-left {
+  text-align: left;
+}
+
+.project-col {
+  padding-right: 10px;
+}
+
+.form-col {
+  border-left: 1px solid #aebcce;
+}
+
+.form-col input,
+.form-col textarea,
+.form-col button {
+  margin-left: 10px;
+}
+
+.selected-tech {
+  padding: 0px 0px 0px 6px;
+}
+
+.selected-tech li {
+  cursor: pointer;
+  position: relative;
+  list-style: none;
+  display: inline-block;
+  border-radius: 10px;
+  padding: 7px 30px 7px 7px ;
+  color: #000;
+  background: #fff;
+  border: 1px solid #000;
+  margin: 0px 3px 5px 3px;
+}
+
+.selected-tech li .fa {
+  font-size: 20px;
+  position: absolute;
+  right: 4px;
+  top: 7px;
+  color: #18bc9c;
+}
+
+.selected-tech-wrapper .secondary-form-button {
+  float: left;
+  margin: 0px 10px 0px 9px;
+}
+
+h5.form-header {
+  margin: 0px 0px 20px 10px;
+  display: block;
+  float: none;
+}
+
+.close-tech {
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  margin-bottom: -1px;
+  border: 1px solid #d8d8d8;
+  border-bottom: none;
+  font-size: 20px;
+  background: #F6F9FA;
+  padding: 10px 20px;
+  color: #676767;
+}
+.tech-list-col {
+  text-align: right;
 }

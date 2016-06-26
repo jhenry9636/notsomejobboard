@@ -28,7 +28,7 @@
     vm.setStep = setStep;
     vm.getProgressWidth = getProgressWidth;
     vm.skills = skillsService.skills;
-    vm.selectedSkills = skillsService.selectedSkills;
+    vm.selectedTech = skillsService.selectedSkills;
     vm.resetSkills = resetSkills;
     vm.addSkill = addSkill;
     vm.removeSkill = removeSkill;
@@ -44,6 +44,7 @@
     vm.removeHelper = removeHelper;
     vm.saveEdits = saveEdits;
     vm.isEditing = false;
+    vm.cancelEdit = cancelEdit;
     vm.setEditingProjectIndex = setEditingProjectIndex;
     vm.currentEditProject = projectsService.currentEditProject;
 
@@ -68,7 +69,7 @@
     }
 
     function handleSkillToggle(skill) {
-      if(vm.selectedSkills.indexOf(skill) > -1) {
+      if(vm.selectedTech.indexOf(skill) > -1) {
         vm.removeSkill(skill)
       }
       else {
@@ -79,13 +80,13 @@
 
     function addSkill(skill) {
       skillsService.addSkill(skill).then(function(skills) {
-        vm.selectedSkills = skills;
+        vm.selectedTech = skills;
       })
     }
 
     function removeSkill(skill) {
       skillsService.removeSkill(skill).then(function(skills) {
-        vm.selectedSkills = skills;
+        vm.selectedTech = skills;
       })
     }
 
@@ -95,18 +96,32 @@
 
     function resetSkills() {
       skillsService.resetSkills().then(function(skills) {
-        vm.selectedSkills = skills;
-        vm.tech = '';
+        vm.selectedTech = skills;
       })
+    }
+
+    function resetProject() {
+      resetSkills();
+      vm.tech = '';
+      vm.showTechList = false;
+      vm.newProject.name = null;
+      vm.newProject.client = null;
+      vm.newProject.url = null;
+      vm.newProject.desc = null;
     }
 
     function toggleTechList() {
       vm.showTechList = !vm.showTechList;
     }
 
+    function cancelEdit() {
+      vm.isEditing = false
+    }
+
     function createHelper(project) {
       projectsService.createHelper(project);
       vm.projects = projectsService.projects;
+      resetProject();
     }
 
     function removeHelper(index) {

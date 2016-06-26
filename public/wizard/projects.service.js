@@ -4,9 +4,9 @@
   angular.module('nsj.wizard')
     .factory('projectsService', projectsService)
 
-  projectsService.$inject = ['$q'];
+  projectsService.$inject = ['$q', 'skillsService'];
 
-  function projectsService($q) {
+  function projectsService($q, skillsService) {
     var projects = [];
     var currentEditProject = {};
     var currentRemoveProject = {};
@@ -32,7 +32,6 @@
     }
 
     function setEditingProjectIndex(index) {
-      alert(index)
       currentEditProjectIndex = index;
     }
 
@@ -48,7 +47,9 @@
     }
 
     function createHelper(project) {
+      project.techUsed = skillsService.selectedSkills;
       projects.unshift(angular.copy(project))
+      skillsService.resetSkills();
     }
 
   }
