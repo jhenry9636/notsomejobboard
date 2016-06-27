@@ -84,7 +84,7 @@
             </ul>
           </div>
         </div>
-        <div class="row">
+        <div class="row wizard-row">
           <div class="col-sm-6 col-txt-left project-col">
             <span class="no-projects-added" ng-hide="vm.projects.length">No projects added.</span>
             <div class="wizard-project" ng-repeat="project in vm.projects track by $index">
@@ -193,9 +193,11 @@
       <div class="wizard-step-container" ng-class="{'active': vm.currentStep == 3}">
         <h3>... aaand you're done.</h3>
         <p>Enter a email address and password to create an account.</p>
+
+        <a href="#">Why ask so little information?</a>
         <div class="input-group">
-          <input type="text" class="form-control" ng-model="vm.location" placeholder="Email Address" />
-          <input type="text" class="form-control" ng-model="vm.location" placeholder="Password" />
+          <input type="text" class="form-control" ng-model="vm.email" placeholder="Email Address" />
+          <input type="text" class="form-control" ng-model="vm.password" placeholder="Password" />
         </div>
         <button type="submit" class="btn btn-success btn-lg">Create my account</button>
       </div>

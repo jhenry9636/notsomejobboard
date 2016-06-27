@@ -30,7 +30,6 @@
     }
 
     function saveEdits(project) {
-      debugger
       projects[currentEditProjectIndex] = angular.copy(project)
     }
 
@@ -40,7 +39,6 @@
 
     function createHelper(project) {
       project.techUsed = skillsService.selectedSkills;
-      console.dir(project)
       projects.push(angular.copy(project))
       skillsService.resetSkills();
     }

@@ -61,7 +61,7 @@
     function setStep(newStep) {
       wizardService.setStep(newStep).then(function(step) {
         vm.currentStep = step;
-        vm.progressWidth = ((step / 4) * 100) + '%';
+        vm.progressWidth = ((step / 3) * 100) + '%';
       })
     }
 
@@ -74,7 +74,7 @@
     function previousStep() {
       wizardService.previousStep().then(function(step) {
         vm.currentStep = step;
-        vm.progressWidth = ((step / 4) * 100) + '%';
+        vm.progressWidth = ((step / 3) * 100) + '%';
       })
     }
 
@@ -100,7 +100,7 @@
     }
 
     function getProgressWidth() {
-       return ((vm.currentStep / 4) * 100) + '%';
+       return ((vm.currentStep / 3) * 100) + '%';
     }
 
     function resetSkills() {
