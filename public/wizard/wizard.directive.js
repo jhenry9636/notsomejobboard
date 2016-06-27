@@ -52,6 +52,11 @@
     vm.editingProject.client = ''
     vm.editingProject.desc = ''
     vm.editingProject.url = ''
+    vm.fulltimeSelected = true;
+    vm.contractSelected= false;
+    vm.selectFulltime = selectFulltime;
+    vm.selectContract = selectContract;
+
 
     function setStep(newStep) {
       wizardService.setStep(newStep).then(function(step) {
@@ -91,7 +96,6 @@
 
     function removeSkill(skill) {
       skillsService.removeSkill(skill)
-      debugger
       vm.selectedTech = skillsService.getSelectedSkills();
     }
 
@@ -120,18 +124,19 @@
     }
 
     function cancelEdit() {
-      vm.isEditing = false
+      vm.isEditing = false;
+      resetProject();
     }
 
     function createHelper(project) {
       projectsService.createHelper(project);
-      vm.projects = projectsService.projects;
+      vm.projects = projectsService.getProjects();
       resetProject();
     }
 
     function removeHelper(index) {
       projectsService.removeHelper(index);
-      vm.projects = projectsService.projects;
+      vm.projects = projectsService.getProjects();
     }
 
     function saveEdits() {
@@ -154,10 +159,20 @@
       vm.editingProject.desc = currentlyEditing.desc
       vm.editingProject.url = currentlyEditing.url
       skillsService.setSelectedSkills(currentlyEditing.techUsed)
-      debugger
       vm.selectedTech = skillsService.getSelectedSkills()
       vm.isEditing = true;
     }
+
+    function selectFulltime() {
+      vm.fulltimeSelected = true;
+      vm.contractSelected= false;
+    }
+
+    function selectContract() {
+      vm.fulltimeSelected = false;
+      vm.contractSelected= true;
+    }
+
 
   }
 

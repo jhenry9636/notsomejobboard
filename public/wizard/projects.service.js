@@ -19,7 +19,8 @@
       createHelper: createHelper,
       saveEdits: saveEdits,
       removeHelper: removeHelper,
-      setEditingProjectIndex: setEditingProjectIndex
+      setEditingProjectIndex: setEditingProjectIndex,
+      getProjects : getProjects
     };
 
     return service
@@ -40,8 +41,12 @@
     function createHelper(project) {
       project.techUsed = skillsService.selectedSkills;
       console.dir(project)
-      projects.unshift(angular.copy(project))
+      projects.push(angular.copy(project))
       skillsService.resetSkills();
+    }
+
+    function getProjects() {
+      return projects.reverse();
     }
 
   }
