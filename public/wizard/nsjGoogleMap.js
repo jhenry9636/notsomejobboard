@@ -30,18 +30,24 @@
     autocomplete.addListener('place_changed', function() {
       var place = autocomplete.getPlace();
       var map = mapsService.getMap();
-      var lat = place.geometry.location.lat();
-      var lng = place.geometry.location.lng();
 
 
-      // If the place has a geometry, then present it on a map.
-      if (place.geometry.viewport) {
-        map.fitBounds(place.geometry.viewport);
-        map.panTo({lat: lat, lng: lng})
-      } else {
-        map.setCenter(place.geometry.location);
-        map.setZoom(17);
+      if(place.geometry) {
+        var lat = place.geometry.location.lat();
+        var lng = place.geometry.location.lng();
+
+
+        // If the place has a geometry, then present it on a map.
+        if (place.geometry.viewport) {
+          console.dir(place)
+          map.fitBounds(place.geometry.viewport);
+          map.panTo({lat: lat, lng: lng})
+        } else {
+          map.setCenter(place.geometry.location);
+          map.setZoom(17);
+        }
       }
+
     })
 
   }
