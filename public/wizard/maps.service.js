@@ -26,7 +26,6 @@
 
     function setMap(map) {
       service.map = map;
-      service.map.panBy(0, 30);
     }
 
     function getMap() {
