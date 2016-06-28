@@ -39,6 +39,12 @@
 
 <script src="/vendor/angular-animate/angular-animate.min.js"></script>
 
+<!-- TODO: Make API KEY a server variable -->
+<!-- Google Maps API -->
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true&libraries=places&key=AIzaSyBZnGkLJ3KtI-ZMBWmzMbpUjLFnoA1ej8s"></script>
+
+<!-- JS Source -->
+<script src="/vendor/angularjs-geolocation/dist/angularjs-geolocation.min.js"></script>
 
 <!-- NSJ Wizard -->
 <script src="/wizard/wizard.module.js"></script>
@@ -52,8 +58,14 @@
 <!-- NSJ Fade Indicator -->
 <script src="/wizard/nsjAddedIndicator.js"></script>
 
+<!-- NSJ Google Map -->
+<script src="/wizard/maps.service.js"></script>
+<script src="/wizard/nsjGoogleMap.js"></script>
+
 <script src="/wizard/wizard.service.js"></script>
 <script src="/wizard/wizard.directive.js"></script>
+
+<script src="/vendor/google-places/google-places.js"></script>
 
 <!-- NSJ Main -->
 <script src="/app.module.js"></script>

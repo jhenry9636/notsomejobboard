@@ -5,13 +5,14 @@ var bcrypt = require('bcrypt');
 var faker = require('faker');
 
 
-var developerSchema = new Schema({
+var developerSchema;
+developerSchema = new Schema({
   givenName: {
     type: String,
     required: [true, 'First name field is required.'],
     validate: validator.requiredField
   },
-  familyName : {
+  familyName: {
     type: String,
     required: [true, 'Last name field is required.'],
     validate: validator.requiredField
@@ -20,7 +21,7 @@ var developerSchema = new Schema({
     type: String,
     required: [true, 'Email address field is required.'],
     validate: validator.emailAddress,
-    index: { unique: true }
+    index: {unique: true}
   },
   password: {
     type: String,
@@ -40,21 +41,19 @@ var developerSchema = new Schema({
     type: String
   },
   primaryPhone: String,
-  location: {
-    type : Schema.ObjectId,
-    ref : 'Location',
-    validate: validator.isObjectId
-  },
   receivedContactRequests: [{
-    type : Schema.ObjectId,
-    ref : 'Request',
+    type: Schema.ObjectId,
+    ref: 'Request',
     validate: validator.isObjectId
   }],
   hasVerifiedEmail: {
     default: false,
     type: Boolean
   },
-
+  location: {
+    type: [Number],
+    required: true
+  },
   salt: String,
   joinedAt: {
     type: Date,
@@ -64,8 +63,10 @@ var developerSchema = new Schema({
     type: Boolean,
     default: true
   },
-  roles : [String]
-})
+  roles: [String]
+});
+
+developerSchema.index({location: '2dsphere'});
 
 developerSchema.pre('save', function(next) {
   var user = this;

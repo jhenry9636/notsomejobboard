@@ -53,8 +53,15 @@
       <div class="wizard-step-container" ng-class="{'active': vm.currentStep == 0}">
         <h3>In which location would you like to work?</h3>
         <p>We want to make sure you only hear about opportunities near this location.{{vm.progress}}</p>
-        <div class="input-group">
-          <input type="text" class="form-control" ng-model="vm.location" placeholder="e.g. Downtown Chicago" />
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="input-group">
+              <input type="text" id="autocomplete" class="form-control" ng-model="vm.location" placeholder="e.g. Downtown Chicago" />
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <nsj-google-map></nsj-google-map>
+          </div>
         </div>
         <br />
         <div class="wizard-controls-footer">

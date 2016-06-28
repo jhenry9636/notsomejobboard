@@ -1061,7 +1061,7 @@ h5.form-header {
 .comp-list li:nth-child(3) {
   border-top-left-radius: 0px;
   border-bottom-left-radius: 0px;
-  margin-left: -3px;
+  margin-left: -6px;
 }
 
 .comp-row {
@@ -1094,4 +1094,8 @@ h5.form-header {
 
 .step-pay span {
   display: inline;
+}
+
+.comp-list {
+  margin-left: -44px;
 }
