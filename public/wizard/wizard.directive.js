@@ -16,9 +16,9 @@
 
   }
 
-  WizardController.$inject = ['wizardService', 'skillsService', 'projectsService'];
+  WizardController.$inject = ['$scope', 'wizardService', 'skillsService', 'projectsService', 'mapsService'];
 
-  function WizardController(wizardService, skillsService, projectsService) {
+  function WizardController($scope, wizardService, skillsService, projectsService, mapsService) {
 
     var vm = this;
 
@@ -56,7 +56,7 @@
     vm.contractSelected= false;
     vm.selectFulltime = selectFulltime;
     vm.selectContract = selectContract;
-
+    vm.radius = '';
 
     function setStep(newStep) {
       wizardService.setStep(newStep).then(function(step) {
@@ -172,6 +172,10 @@
       vm.fulltimeSelected = false;
       vm.contractSelected= true;
     }
+
+    $scope.$watch('vm.radius', function(newValue) {
+      mapsService.setRadius(newValue)
+    });
 
 
   }

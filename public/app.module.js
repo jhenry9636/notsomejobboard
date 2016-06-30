@@ -3,7 +3,8 @@
 
   angular.module('nsj', [
     'ngAnimate',
-    'nsj.wizard'
+    'nsj.wizard',
+    'rzModule'
   ])
 
 })()

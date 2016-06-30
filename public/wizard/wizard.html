@@ -56,11 +56,19 @@
         <div class="row">
           <div class="col-sm-6">
             <div class="input-group">
-              <input type="text" id="autocomplete" class="form-control" ng-model="vm.location" placeholder="e.g. Downtown Chicago" />
+              <input type="text" id="autocomplete" class="form-control" ng-model="vm.location" placeholder="Enter a valid zip code" />
+            </div>
+            <div class="row">
+              <div class="sm-col-12">
+                <div style="padding: 0px 14px;">
+                  <h5 style="padding: 0px; margin: 20px 0px 10px 0px; text-align: center;">Radius</h5>
+                  <rzslider rz-slider-model="vm.radius" rz-slider-options="{floor: 0, ceil: 50, step: 5}"></rzslider>
+                </div>
+              </div>
             </div>
           </div>
           <div class="col-sm-6">
-            <nsj-google-map></nsj-google-map>
+            <nsj-google-map location="vm.location"></nsj-google-map>
           </div>
         </div>
         <br />

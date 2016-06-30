@@ -1099,3 +1099,18 @@ h5.form-header {
 .comp-list {
   margin-left: -44px;
 }
+
+.rzslider .rz-pointer {
+  border: 1px solid #a9a9a9;
+  background-color: #fff !important;
+  border-radius: 16px !important;
+}
+
+.rzslider .rz-pointer:after {
+  display: none;
+}
+
+.rzslider .rz-bar {
+  border-radius: 7px;
+  border: none;
+}
