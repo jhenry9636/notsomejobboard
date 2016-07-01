@@ -24,7 +24,7 @@
 
 </script>
 
-<div class="wizard-wrapper container-fluid">
+<div class="wizard-wrapper">
   <div class="wizard-indicator-row" ng-class="{'active': vm.currentStep > 0}">
     <ul id="wizard-indicator" class="wizard-indicator">
       <li ng-class="{'active': vm.currentStep > 0}" ng-click="vm.setStep(0)">
@@ -143,7 +143,7 @@
             <div ng-show="vm.isEditing" class="project-form-wrapper">
               <h5 class="form-header">Edit Project</h5>
               <div class="selected-tech-wrapper clearfix">
-                <button class="secondary-form-button" ng-click="vm.toggleTechList()">Add/Remove technologies</button>
+                <button class="secondary-form-button" ng-click="vm.toggleTechList()">Modify Technologies</button>
                 <ul class="selected-tech">
                   <li ng-repeat="tech in vm.selectedTech track by $index"
                       ng-click="vm.handleSkillToggle(tech)">{{tech}}

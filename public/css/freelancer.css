@@ -487,16 +487,9 @@ input[type="url"], textarea {
 }
 
 .wizard-indicator-row {
-  margin: -75px -30px 0px -30px;
+  margin: 0px -30px 0px -30px;
   background: #F0F4F9;
   text-align: center;
-  transition: .4s margin ease-in-out, .7s opacity ease-in-out;
-  opacity: 0,
-}
-
-.wizard-indicator-row.active {
-  opacity: 1;
-  margin: 0px 0px 0px 0px;
 }
 
 .wizard-indicator {

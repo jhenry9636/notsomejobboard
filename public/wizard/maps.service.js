@@ -7,6 +7,7 @@
   mapsService.inject = ['$q']
 
   function mapsService($q) {
+    var circle, point;
 
     var service = {
       map: null,
@@ -18,7 +19,10 @@
       initMap: initMap,
       initAutoComplete: initAutoComplete,
       setMap: setMap,
-      createMarker: createMarker
+      createMarker: createMarker,
+      point : point,
+      circle: circle,
+      clearMarkers: clearMarkers
     }
 
     return service
@@ -34,20 +38,18 @@
 
     function createMarker(lat, lng) {
       var pos,
-          circle,
-          point,
           markers = [];
 
       pos = new google.maps.LatLng(lat, lng);
 
-      point = new google.maps.Marker({
+      service.point = new google.maps.Marker({
         position: pos,
         map: getMap()
       });
 
       markers.push(point);
-
-      circle = new google.maps.Circle({
+      
+      service.circle = new google.maps.Circle({
         center: pos,
         map: getMap(),
         strokeColor: '#F0F4F9',
@@ -77,6 +79,7 @@
           var lat = place.geometry.location.lat();
           var lng = place.geometry.location.lng();
 
+
           // If the place has a geometry, then present it on a map.
           if (place.geometry.viewport) {
             getMap().fitBounds(place.geometry.viewport);
@@ -90,7 +93,8 @@
 
           function createMarker(lat, lng) {
             var pos = new google.maps.LatLng(lat, lng);
-            var marker = new google.maps.Marker({
+            
+            service.point = new google.maps.Marker({
               position: pos,
               map: getMap()
             });
@@ -100,7 +104,7 @@
 
             markers.push(marker);
 
-            marker = new google.maps.Circle({
+            service.circle = new google.maps.Circle({
               center: pos,
               map: getMap(),
               strokeColor: '#000',
@@ -134,6 +138,12 @@
 
     function setAutocomplete(autocomplete) {
       return service.autocomplete = autocomplete;
+    }
+
+    function clearMarkers() {
+      service.circle;
+      service.point;
+      debugger
     }
 
 
