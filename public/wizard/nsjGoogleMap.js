@@ -11,11 +11,14 @@
     }
   }
 
-  ctrl.$inject = ['mapsService']
+  ctrl.$inject = ['mapsService', '$rootScope']
 
-  function ctrl(mapsService) {
+  function ctrl(mapsService, $rootscope) {
     mapsService.initMap();
     mapsService.initAutoComplete();
+    mapsService.getAutocomplete().addListener('place_changed', function() {
+      $rootscope.$broadcast('nsj:location', mapsService.getAutocomplete().getPlace())
+    })
   }
 
 

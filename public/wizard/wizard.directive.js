@@ -16,9 +16,14 @@
 
   }
 
-  WizardController.$inject = ['$scope', 'wizardService', 'skillsService', 'projectsService', 'mapsService'];
+  WizardController.$inject = ['$scope',
+                              'wizardService',
+                              'skillsService',
+                              'projectsService',
+                              'mapsService',
+                              '$rootScope'];
 
-  function WizardController($scope, wizardService, skillsService, projectsService, mapsService) {
+  function WizardController($scope, wizardService, skillsService, projectsService, mapsService, $rootScope) {
 
     var vm = this;
 
@@ -173,10 +178,9 @@
       vm.contractSelected= true;
     }
 
-    $scope.$watch('vm.radius', function(newValue) {
-      mapsService.setRadius(newValue)
-    });
-
+    $rootScope.$on('nsj:location', function($scope, placeObj) {
+      vm.location = placeObj.formatted_address;
+    })
 
   }
 

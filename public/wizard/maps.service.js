@@ -77,15 +77,12 @@
           var lat = place.geometry.location.lat();
           var lng = place.geometry.location.lng();
 
-
           // If the place has a geometry, then present it on a map.
           if (place.geometry.viewport) {
             getMap().fitBounds(place.geometry.viewport);
             getMap().panTo({lat: lat, lng: lng})
             createMarker(lat, lng)
             getMap().setZoom(8);
-
-
           } else {
             getMap().setCenter(place.geometry.location);
             getMap().setZoom(17);
