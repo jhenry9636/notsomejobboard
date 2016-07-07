@@ -62,6 +62,7 @@
     vm.selectFulltime = selectFulltime;
     vm.selectContract = selectContract;
     vm.radius = 20;
+    vm.submitForm = submitForm;
 
     function setStep(newStep) {
       wizardService.setStep(newStep).then(function(step) {
@@ -70,7 +71,11 @@
       })
     }
 
-    function nextStep() {
+    function nextStep(isValid) {
+      if(!isValid) {
+        alert('nope')
+        return
+      }
       wizardService.nextStep().then(function(step) {
         vm.currentStep = step;
       })
@@ -178,6 +183,10 @@
       vm.contractSelected= true;
     }
 
+    function submitForm(isValid) {
+      debugger
+    }
+
     vm.slider = {
       options: {
         floor: 5,
@@ -202,10 +211,11 @@
         return;
       }
       mapsService.setRadius(newValue)
+      mapsService.setCenter();
     }, true)
 
-    $scope.$watch('vm.location', function(newValue, oldValue) {
-      if(!newValue.length) {
+    $scope.$watch('vm.location', function(newValue) {
+      if(newValue && !newValue.length) {
         vm.slider.options.disabled = true;
         mapsService.clearMarkers();
       }
