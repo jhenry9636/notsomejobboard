@@ -1114,3 +1114,7 @@ h5.form-header {
   border-radius: 7px;
   border: none;
 }
+
+.slider-wrapper.disabled {
+  opacity: .5;
+}

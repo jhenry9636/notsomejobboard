@@ -17,7 +17,10 @@
     mapsService.initMap();
     mapsService.initAutoComplete();
     mapsService.getAutocomplete().addListener('place_changed', function() {
-      $rootscope.$broadcast('nsj:location', mapsService.getAutocomplete().getPlace())
+      var place = mapsService.getAutocomplete().getPlace();
+      mapsService.clearMarkers();
+      mapsService.createMarker(place.geometry.location.lat(), place.geometry.location.lng());
+      $rootscope.$broadcast('nsj:location', place);
     })
   }
 

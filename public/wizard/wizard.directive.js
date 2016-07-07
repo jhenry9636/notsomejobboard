@@ -61,7 +61,7 @@
     vm.contractSelected= false;
     vm.selectFulltime = selectFulltime;
     vm.selectContract = selectContract;
-    vm.radius = '';
+    vm.radius = 20;
 
     function setStep(newStep) {
       wizardService.setStep(newStep).then(function(step) {
@@ -178,11 +178,42 @@
       vm.contractSelected= true;
     }
 
+    vm.slider = {
+      options: {
+        floor: 5,
+        ceil: 80,
+        disabled: true,
+        translate: function(value) {
+          return value + 'mi'
+        }
+      }
+    };
+
     $rootScope.$on('nsj:location', function($scope, placeObj) {
-      vm.location = placeObj.formatted_address;
+      $scope.currentScope.$apply(function() {
+        vm.location = placeObj.formatted_address;
+        vm.radius = '20';
+      })
     })
 
-  }
+    $scope.$watch('vm.radius', function(newValue, oldValue) {
+      if(!mapsService.getMap()) {
+        return;
+      }
+      mapsService.setRadius(newValue)
+
+      console.log(mapsService.getBounds())
+
+    }, true)
+
+    $scope.$watch('vm.location', function(newValue, oldValue) {
+      if(newValue.length == 5) {
+        vm.slider.options.disabled = false;
+      }
+    })
+
+
+    }
 
 
 })()

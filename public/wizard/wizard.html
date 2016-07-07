@@ -51,8 +51,8 @@
       <!-- Location -->
 
       <div class="wizard-step-container" ng-class="{'active': vm.currentStep == 0}">
-        <h3>In which location would you like to work?</h3>
-        <p>We want to make sure you only hear about opportunities near this location.{{vm.progress}}</p>
+        <h3>Where do you want to work?</h3>
+        <p>Select a location and increase the radius to help us determine where you are willing to commute.<br />We want to make sure you only hear about opportunities within this area.</p>
         <div class="row">
           <div class="col-sm-6">
             <div class="input-group">
@@ -62,7 +62,12 @@
               <div class="sm-col-12">
                 <div style="padding: 0px 14px;">
                   <h5 style="padding: 0px; margin: 20px 0px 10px 0px; text-align: center;">Radius</h5>
-                  <rzslider rz-slider-model="vm.radius" rz-slider-options="{floor: 0, ceil: 50, step: 5}"></rzslider>
+                    <div class="slider-wrapper" ng-class="{'disabled' : vm.location.length < 5}">
+                      <rzslider rz-slider-model="vm.radius"
+                            rz-slider-min="vm.slide.minValue"
+                            rz-slider-max="vm.slide.maxValue"
+                            rz-slider-options="vm.slider.options"></rzslider>
+                    </div>
                 </div>
               </div>
             </div>

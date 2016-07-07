@@ -7,10 +7,12 @@
   mapsService.inject = ['$q']
 
   function mapsService($q) {
-    var circle, point;
+
+    var kmRadius = 20;
 
     var service = {
       map: null,
+      markers: [],
       autocomplete: null,
       getMap: getMap,
       setMap: setMap,
@@ -20,9 +22,9 @@
       initAutoComplete: initAutoComplete,
       setMap: setMap,
       createMarker: createMarker,
-      point : point,
-      circle: circle,
-      clearMarkers: clearMarkers
+      clearMarkers: clearMarkers,
+      setRadius: setRadius,
+      getBounds: getBounds
     }
 
     return service
@@ -38,21 +40,22 @@
 
     function createMarker(lat, lng) {
       var pos,
-          markers = [];
+          circle,
+          point;
 
       pos = new google.maps.LatLng(lat, lng);
 
-      service.point = new google.maps.Marker({
+      point = new google.maps.Marker({
         position: pos,
         map: getMap()
       });
 
-      markers.push(point);
-      
-      service.circle = new google.maps.Circle({
+      service.markers[0] = service.point = point;
+
+      circle = new google.maps.Circle({
         center: pos,
         map: getMap(),
-        strokeColor: '#F0F4F9',
+        strokeColor: '#000',
         strokeWeight: 2,
         strokeOpacity: 0.5,
         fillColor: '#F0F4F9',
@@ -60,7 +63,7 @@
         radius: kmRadius * 1000
       });
 
-      markers.push(circle);
+      service.markers[1] = service.circle = circle;
     }
 
     function initAutoComplete() {
@@ -69,57 +72,9 @@
         componentRestrictions: {country: "us"}
       };
 
-      setAutocomplete(new google.maps.places.Autocomplete(document.getElementById('autocomplete'), options));
-
-
-      getAutocomplete().addListener('place_changed', function() {
-        var place = service.autocomplete.getPlace();
-
-        if(place.geometry) {
-          var lat = place.geometry.location.lat();
-          var lng = place.geometry.location.lng();
-
-
-          // If the place has a geometry, then present it on a map.
-          if (place.geometry.viewport) {
-            getMap().fitBounds(place.geometry.viewport);
-            getMap().panTo({lat: lat, lng: lng})
-            createMarker(lat, lng)
-            getMap().setZoom(8);
-          } else {
-            getMap().setCenter(place.geometry.location);
-            getMap().setZoom(17);
-          }
-
-          function createMarker(lat, lng) {
-            var pos = new google.maps.LatLng(lat, lng);
-            
-            service.point = new google.maps.Marker({
-              position: pos,
-              map: getMap()
-            });
-            var markers = [];
-
-            var kmRadius = 40;
-
-            markers.push(marker);
-
-            service.circle = new google.maps.Circle({
-              center: pos,
-              map: getMap(),
-              strokeColor: '#000',
-              strokeWeight: 2,
-              strokeOpacity: 0.5,
-              fillColor: '#f0f0f0',
-              fillOpacity: 0.5,
-              radius: kmRadius * 1000
-            });
-            markers.push(marker);
-          }
-        }
-
-      })
-
+      setAutocomplete(
+        new google.maps.places.Autocomplete(
+          document.getElementById('autocomplete'), options));
     }
 
     function initMap() {
@@ -141,9 +96,20 @@
     }
 
     function clearMarkers() {
-      service.circle;
-      service.point;
-      debugger
+      if(!service.markers.length) {
+        return
+      }
+      service.markers.forEach(function(marker) {
+        marker.setMap(null)
+      })
+    }
+
+    function setRadius(radius) {
+      service.markers[1].set('radius', radius * 1000)
+    }
+
+    function getBounds() {
+      return service.circle.getBounds();
     }
 
 
