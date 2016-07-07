@@ -1115,6 +1115,12 @@ h5.form-header {
   border: none;
 }
 
-.slider-wrapper.disabled {
+.slider-wrapper.disabled,
+#map.disabled {
   opacity: .5;
+}
+
+#map.disabled {
+  -webkit-filter: grayscale(100%); /* Chrome, Safari, Opera */
+  filter: grayscale(100%);
 }
