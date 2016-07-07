@@ -193,6 +193,7 @@
       $scope.currentScope.$apply(function() {
         vm.location = placeObj.formatted_address;
         vm.radius = '20';
+        vm.slider.options.disabled = false;
       })
     })
 
@@ -207,8 +208,9 @@
     }, true)
 
     $scope.$watch('vm.location', function(newValue, oldValue) {
-      if(newValue.length == 5) {
-        vm.slider.options.disabled = false;
+      if(!newValue.length) {
+        vm.slider.options.disabled = true;
+        mapsService.clearMarkers();
       }
     })
 

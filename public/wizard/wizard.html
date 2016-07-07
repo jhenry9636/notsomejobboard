@@ -62,7 +62,8 @@
               <div class="sm-col-12">
                 <div style="padding: 0px 14px;">
                   <h5 style="padding: 0px; margin: 20px 0px 10px 0px; text-align: center;">Radius</h5>
-                    <div class="slider-wrapper" ng-class="{'disabled' : vm.location.length < 5}">
+                    <div class="slider-wrapper"
+                         ng-class="{'disabled' : vm.slider.options.disabled}">
                       <rzslider rz-slider-model="vm.radius"
                             rz-slider-min="vm.slide.minValue"
                             rz-slider-max="vm.slide.maxValue"
