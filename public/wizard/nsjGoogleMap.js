@@ -20,6 +20,7 @@
       var place = mapsService.getAutocomplete().getPlace();
       mapsService.clearMarkers();
       mapsService.createMarker(place.geometry.location.lat(), place.geometry.location.lng());
+      mapsService.setCenter();
       $rootscope.$broadcast('nsj:location', place);
     })
   }

@@ -202,9 +202,6 @@
         return;
       }
       mapsService.setRadius(newValue)
-
-      console.log(mapsService.getBounds())
-
     }, true)
 
     $scope.$watch('vm.location', function(newValue, oldValue) {

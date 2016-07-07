@@ -24,7 +24,9 @@
       createMarker: createMarker,
       clearMarkers: clearMarkers,
       setRadius: setRadius,
-      getBounds: getBounds
+      getBounds: getBounds,
+      setCenter: setCenter,
+      getCircleProps: getCircleProps
     }
 
     return service
@@ -64,6 +66,19 @@
       });
 
       service.markers[1] = service.circle = circle;
+
+    }
+
+    function getCircleProps() {
+      var radius = service.circle.getRadius();
+      var lat = service.circle.getCenter().lat();
+      var lng = service.circle.getCenter().lng();
+
+      return {
+        radius: radius,
+        lat: lat,
+        lng: lng
+      }
     }
 
     function initAutoComplete() {
@@ -110,6 +125,10 @@
 
     function getBounds() {
       return service.circle.getBounds();
+    }
+
+    function setCenter() {
+      getMap().setCenter(service.circle.getCenter());
     }
 
 
