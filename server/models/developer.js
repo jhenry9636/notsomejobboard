@@ -50,6 +50,10 @@ developerSchema = new Schema({
     default: false,
     type: Boolean
   },
+  projects: {
+    type: [Object],
+    required: true
+  },
   location: {
     type: [Number],
     required: true

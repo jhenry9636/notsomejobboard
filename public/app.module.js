@@ -3,8 +3,10 @@
 
   angular.module('nsj', [
     'ngAnimate',
+    'ngMessages',
     'nsj.wizard',
-    'rzModule'
+    'rzModule',
+    'ui.utils.masks'
   ])
 
 })()

@@ -63,6 +63,7 @@
     vm.selectContract = selectContract;
     vm.radius = 20;
     vm.submitForm = submitForm;
+    vm.hasErrors = false;
 
     function setStep(newStep) {
       wizardService.setStep(newStep).then(function(step) {
@@ -73,12 +74,15 @@
 
     function nextStep(event, isValid) {
       event.preventDefault();
+      event.stopPropagation();
 
       if(!isValid) {
+        vm.hasErrors = true;
         return
       }
-      
+
       wizardService.nextStep().then(function(step) {
+        vm.hasErrors = false;
         vm.currentStep = step;
       })
     }
@@ -131,7 +135,9 @@
       vm.newProject.desc = null;
     }
 
-    function toggleTechList() {
+    function toggleTechList(event) {
+      event.preventDefault();
+      event.stopPropagation();
       vm.showTechList = !vm.showTechList;
     }
 
@@ -140,7 +146,17 @@
       resetProject();
     }
 
-    function createHelper(project) {
+    function createHelper(project, event, isValid) {
+      event.preventDefault();
+      event.stopPropagation();
+
+      if(!isValid) {
+        vm.hasErrors = true;
+        return false
+      }
+
+      vm.hasErrors = false;
+
       projectsService.createHelper(project);
       vm.projects = projectsService.getProjects();
       resetProject();
@@ -187,6 +203,7 @@
 
     function submitForm(event, isValid) {
       event.preventDefault();
+      event.stopPropagation();
       console.log(isValid)
     }
 
@@ -206,6 +223,7 @@
         vm.location = placeObj.formatted_address;
         vm.radius = '20';
         vm.slider.options.disabled = false;
+        vm.hasErrors = false;
       })
     })
 
@@ -218,7 +236,7 @@
     }, true)
 
     $scope.$watch('vm.location', function(newValue) {
-      if(newValue && !newValue.length) {
+      if(!newValue) {
         vm.slider.options.disabled = true;
         mapsService.clearMarkers();
       }

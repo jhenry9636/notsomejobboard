@@ -8,14 +8,11 @@ exports.add = function(req, res) {
   var developer = new Developer();
   developer.givenName = userData.givenName;
   developer.familyName = userData.familyName;
-  developer.zipCode = userData.zipCode;
   developer.primaryPhone = userData.primaryPhone;
   developer.primaryEmail = userData.primaryEmail;
   developer.password = userData.password;
-  developer.address1 = userData.address1;
-  developer.address2 = userData.address2;
-  developer.tech = userData.tech;
-  developer.locations = userData.locations;
+  developer.projects = userData.projects;
+  developer.location = userData.location;
   developer.compType = userData.compType;
   developer.compMin = userData.compMin;
 

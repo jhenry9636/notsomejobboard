@@ -1012,13 +1012,11 @@ h5.form-header {
   color:    #999 !important;
 }
 
-.input-group .form-control:first-child {
- margin-top: 10px;
-}
-
 .comp-wrapper {
   position: relative;
+  display: inline-block;
 }
+
 .comp-currency, .comp-unit {
   top: 0px;
   z-index: 9999;
@@ -1075,7 +1073,9 @@ h5.form-header {
 
 .comp-row .input-group input {
   text-align: right;
-  padding: 0px 49px;
+  padding: 0px 49px 0px 0px;
+  max-width: 143px;
+  float: right;
 }
 
 .comp-currency {
@@ -1115,6 +1115,15 @@ h5.form-header {
   border: none;
 }
 
+.help-block {
+  text-align: left;
+}
+
+.help-block p {
+  color: #e74c3c;
+  font-weight: 800;
+}
+
 .slider-wrapper.disabled,
 #map.disabled {
   opacity: .5;
@@ -1123,4 +1132,27 @@ h5.form-header {
 #map.disabled {
   -webkit-filter: grayscale(100%); /* Chrome, Safari, Opera */
   filter: grayscale(100%);
+}
+
+.help-block p {
+  margin: 2px 0px;
+  padding: 0px;
+}
+
+.form-col textarea,
+.form-col input {
+  margin-bottom: 10px;
+}
+
+.form-col input:first-child {
+  margin-top: 10px;
+}
+
+input.has-error,
+textarea.has-error{
+  border: 2px solid #e74c3c;
+}
+
+.error-wrapper {
+  margin-left: 10px;
 }
