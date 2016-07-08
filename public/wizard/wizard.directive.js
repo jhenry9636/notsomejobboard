@@ -71,11 +71,13 @@
       })
     }
 
-    function nextStep(isValid) {
+    function nextStep(event, isValid) {
+      event.preventDefault();
+
       if(!isValid) {
-        alert('nope')
         return
       }
+      
       wizardService.nextStep().then(function(step) {
         vm.currentStep = step;
       })
@@ -183,8 +185,9 @@
       vm.contractSelected= true;
     }
 
-    function submitForm(isValid) {
-      debugger
+    function submitForm(event, isValid) {
+      event.preventDefault();
+      console.log(isValid)
     }
 
     vm.slider = {
