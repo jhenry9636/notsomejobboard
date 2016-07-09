@@ -1156,3 +1156,7 @@ textarea.has-error{
 .error-wrapper {
   margin-left: 10px;
 }
+
+.comp-row .help-block {
+  text-align: center;
+}

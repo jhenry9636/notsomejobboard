@@ -38,8 +38,8 @@
       <li ng-class="{'active': vm.currentStep > 2}" ng-click="vm.setStep(2)">
         <span class="step-name">Pay:</span>
         <span class="step-pay">
-          <span ng-show="vm.contractSelected">{{vm.comp | currency:"$":0}}/hr</span>
-          <span ng-show="vm.fulltimeSelected">{{vm.comp | currency:"$":0}}/yr</span>
+          <span ng-show="vm.contractSelected">{{vm.compHr | currency:"$":2}}/hr</span>
+          <span ng-show="vm.fulltimeSelected">{{vm.compFt | currency:"$":0}}/yr</span>
         </span>
       </li>
     </ul>
@@ -51,7 +51,7 @@
       <!-- Location -->
 
       <div class="wizard-step-container" ng-class="{'active': vm.currentStep == 0}">
-        <form name="locationForm" action="#" method="post" ng-submit="vm.nextStep($event, locationForm.location.$valid)" novalidate>
+        <form name="locationForm" ng-submit="vm.nextStep($event, locationForm.location.$valid)" novalidate>
           <h3>Where do you want to work?</h3>
           <p>Select a location and increase the radius to help us determine where you are willing to commute.<br />We want to make sure you only hear about opportunities within this area.</p>
           <div class="row">
@@ -95,7 +95,7 @@
       <!-- Projects -->
 
       <div class="wizard-step-container wizard-projects" ng-class="{'active': vm.currentStep == 1}">
-        <form name="projectForm" action="#" method="post" novalidate>
+        <form name="projectForm" novalidate>
           <h3>Tell us about some projects you are proud of.</h3>
           <p>Brag a little. Hiring managers like to hear about specific contributions.</p>
           <div class="row">
@@ -175,7 +175,8 @@
                   <input type="text" class="form-control" ng-model="vm.newProject.name" placeholder="Enter a project name ..." name="name" ng-class="{ 'has-error': vm.hasErrors && projectForm.name.$invalid}" required />
                   <input type="text" class="form-control" ng-model="vm.newProject.client" placeholder="Enter a client name ..." name="client" ng-class="{ 'has-error': vm.hasErrors && projectForm.client.$invalid}" />
                   <input type="text" class="form-control" ng-model="vm.newProject.url" placeholder="Enter a url (optional)..." name="url" ng-class="{ 'has-error': vm.hasErrors && projectForm.url.$invalid}"/>
-                  <textarea class="form-control" ng-model="vm.newProject.desc" placeholder="Talk about your contributions to the project. How did you use the selected technologies?" name="desc" ng-class="{ 'has-error': vm.hasErrors && projectForm.desc.$invalid}" required minlength="90"></textarea>
+                  <!--<textarea class="form-control" ng-model="vm.newProject.desc" placeholder="Talk about your contributions to the project. How did you use the selected technologies?" name="desc" ng-class="{ 'has-error': vm.hasErrors && projectForm.desc.$invalid}" required minlength="90"></textarea>-->
+                  <textarea class="form-control" ng-model="vm.newProject.desc" placeholder="Talk about your contributions to the project. How did you use the selected technologies?" name="desc" ng-class="{ 'has-error': vm.hasErrors && projectForm.desc.$invalid}" required></textarea>
                 </div>
                 <button class="btn btn-sm add-project-desktop secondary-form-button" ng-click="vm.createHelper(vm.newProject, $event, projectForm.$valid)">Add Project</button>
               </div>
@@ -212,41 +213,72 @@
       <!-- Pay -->
 
       <div class="wizard-step-container" ng-class="{'active': vm.currentStep == 2}">
-        <form name="payForm">
-          <h3>Lets talk moula!</h3>
-          <p>Specify your desired compensation.</p>
-          <p></p>
-          <div class="row comp-row">
-            <ul class="comp-list">
-              <li>I'm looking for</li>
-              <li ng-click="vm.selectFulltime()" ng-class="{'selected': vm.fulltimeSelected}">Full Time</li>
-              <li ng-click="vm.selectContract()" ng-class="{'selected': vm.contractSelected}">Contract</li>
-            </ul>
-            <div class="input-group">
-              <div class="comp-wrapper salary" ng-show="vm.fulltimeSelected">
-                <input type="text" class="form-control" ng-model="vm.comp" placeholder="e.g. $100,000" ui-money-mask="0" required />
-                <span class="comp-unit">/yr</span>
+        <h3>Lets talk moula!</h3>
+        <p>Specify your desired compensation.</p>
+        <div class="row comp-row">
+          <ul class="comp-list">
+            <li>I'm looking for</li>
+            <li ng-click="vm.selectFulltime()" ng-class="{'selected': vm.fulltimeSelected}">Full Time</li>
+            <li ng-click="vm.selectContract()" ng-class="{'selected': vm.contractSelected}">Contract</li>
+          </ul>
+
+
+          <!-- Full Time -->
+          <div ng-show="vm.fulltimeSelected">
+            <div class="row">
+              <div class="col-sm-12">
+                <div ng-show="vm.hasErrors" class="error-wrapper">
+                  <div class="help-block" ng-messages="fullTimeForm.comp.$error" ng-messages-multiple>
+                    <p ng-message="required">You dont want to be paid? Please enter salary requirement.</p>
+                  </div>
+                </div>
               </div>
             </div>
-            <div class="input-group">
-              <div class="comp-wrapper hourly" ng-show="vm.contractSelected">
-                <input type="text" class="form-control" ng-model="vm.comp" placeholder="e.g. $65" ui-money-mask="0" required />
-                <span class="comp-unit">/hr</span>
+            <form name="fullTimeForm" ng-submit="vm.nextStep($event, fullTimeForm.comp.$valid)" novalidate>
+              <div class="input-group">
+                <div class="comp-wrapper salary">
+                  <input type="text" name="comp" class="form-control" ng-model="vm.compFt" placeholder="e.g. $100,000" ui-money-mask="0" required />
+                  <span class="comp-unit">/yr</span>
+                </div>
+              </div>
+              <div class="wizard-controls-footer">
+                <button type="submit" class="btn btn-success btn-lg">Next Step</button>
+                <button class="btn btn-link btn-lg" ng-click="vm.previousStep()">Go Back.</button>
+              </div>
+            </form>
+          </div>
+
+          <!-- Contract  -->
+          <div ng-show="vm.contractSelected">
+            <div class="row">
+              <div class="col-sm-12">
+                <div ng-show="vm.hasErrors" class="error-wrapper">
+                  <div class="help-block" ng-messages="contractForm.comp.$error" ng-messages-multiple>
+                    <p ng-message="required">You dont want to be paid? Please enter rate requirement.</p>
+                  </div>
+                </div>
               </div>
             </div>
+            <form name="contractForm" ng-submit="vm.nextStep($event, contractForm.comp.$valid)" novalidate>
+                <div class="input-group">
+                  <div class="comp-wrapper hourly">
+                    <input type="text" class="form-control" ng-model="vm.compHr" placeholder="e.g. $65.00" ui-money-mask="2" name="comp" required />
+                    <span class="comp-unit">/hr</span>
+                  </div>
+                </div>
+              <div class="wizard-controls-footer">
+                <button type="submit" class="btn btn-success btn-lg">Next Step</button>
+                <button class="btn btn-link btn-lg" ng-click="vm.previousStep()">Go Back.</button>
+              </div>
+            </form>
           </div>
-          <br />
-          <div class="wizard-controls-footer">
-            <button class="btn btn-success btn-lg" ng-click="vm.nextStep()">Next Step</button>
-            <button class="btn btn-link btn-lg" ng-click="vm.previousStep()">Go Back.</button>
-          </div>
-        </form>
+        </div>
       </div>
 
 
       <!-- Done -->
       <div class="wizard-step-container" ng-class="{'active': vm.currentStep == 3}">
-        <form name="submitForm" action="#" method="post">
+        <form name="submitForm">
           <h3>... aaand you're done.</h3>
           <p>Enter a email address and password to create an account.</p>
           <a href="#">Why ask so little information?</a>

@@ -40,7 +40,8 @@
     vm.handleSkillToggle = handleSkillToggle;
     vm.location = '';
     vm.tech = '';
-    vm.comp = '';
+    vm.compHr = '';
+    vm.compFt = '';
     vm.projects = projectsService.projects;
     vm.project = {}
     vm.showTechList = false;
@@ -194,11 +195,13 @@
     function selectFulltime() {
       vm.fulltimeSelected = true;
       vm.contractSelected= false;
+      vm.hasErrors = false;
     }
 
     function selectContract() {
       vm.fulltimeSelected = false;
       vm.contractSelected= true;
+      vm.hasErrors = false;
     }
 
     function submitForm(event, isValid) {
