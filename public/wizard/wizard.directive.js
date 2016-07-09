@@ -91,6 +91,7 @@
     function previousStep() {
       wizardService.previousStep().then(function(step) {
         vm.currentStep = step;
+        vm.hasErrors = false;
         vm.progressWidth = ((step / 3) * 100) + '%';
       })
     }
