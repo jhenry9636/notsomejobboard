@@ -29,7 +29,7 @@
     <ul id="wizard-indicator" class="wizard-indicator">
       <li ng-class="{'active': vm.currentStep > 0}" ng-click="vm.setStep(0)">
         <span class="step-name">Location:</span>
-        <span>{{vm.location}}</span>
+        <span>{{vm.developer.location}}</span>
       </li>
       <li ng-class="{'active': vm.currentStep > 1}" ng-click="vm.setStep(1)">
         <span class="step-name">Projects:</span>
@@ -38,8 +38,8 @@
       <li ng-class="{'active': vm.currentStep > 2}" ng-click="vm.setStep(2)">
         <span class="step-name">Pay:</span>
         <span class="step-pay">
-          <span ng-show="vm.contractSelected">{{vm.compHr | currency:"$":2}}/hr</span>
-          <span ng-show="vm.fulltimeSelected">{{vm.compFt | currency:"$":0}}/yr</span>
+          <span ng-show="vm.contractSelected">{{vm.developer.compHr | currency:"$":2}}/hr</span>
+          <span ng-show="vm.fulltimeSelected">{{vm.developer.compFt | currency:"$":0}}/yr</span>
         </span>
       </li>
     </ul>
@@ -64,7 +64,7 @@
           <div class="row">
             <div class="col-sm-6">
               <div class="form-group" ng-class="{ 'has-error': vm.hasErrors}">
-                <input type="text" id="autocomplete" name="location" class="form-control" ng-model="vm.location" placeholder="e.g. Downtown San Francisco" required />
+                <input type="text" id="autocomplete" name="location" class="form-control" ng-model="vm.developer.location" placeholder="e.g. Downtown San Francisco" required />
               </div>
               <div class="row">
                 <div class="sm-col-12">
@@ -82,7 +82,7 @@
               </div>
             </div>
             <div class="col-sm-6">
-              <nsj-google-map location="vm.location"></nsj-google-map>
+              <nsj-google-map location="vm.developer.location"></nsj-google-map>
             </div>
           </div>
           <br />
@@ -235,9 +235,9 @@
               </div>
             </div>
             <form name="fullTimeForm" ng-submit="vm.nextStep($event, fullTimeForm.comp.$valid)" novalidate>
-              <div class="input-group">
+              <div class="form-group">
                 <div class="comp-wrapper salary">
-                  <input type="text" name="comp" class="form-control" ng-model="vm.compFt" placeholder="e.g. $100,000" ui-money-mask="0" required />
+                  <input type="text" name="comp" class="form-control" ng-model="vm.developer.compFt" placeholder="e.g. $100,000" ui-money-mask="0" required />
                   <span class="comp-unit">/yr</span>
                 </div>
               </div>
@@ -260,9 +260,9 @@
               </div>
             </div>
             <form name="contractForm" ng-submit="vm.nextStep($event, contractForm.comp.$valid)" novalidate>
-                <div class="input-group">
+                <div class="form-group">
                   <div class="comp-wrapper hourly">
-                    <input type="text" class="form-control" ng-model="vm.compHr" placeholder="e.g. $65.00" ui-money-mask="2" name="comp" required />
+                    <input type="text" class="form-control" ng-model="vm.developer.compHr" placeholder="e.g. $65.00" ui-money-mask="2" name="comp" required />
                     <span class="comp-unit">/hr</span>
                   </div>
                 </div>
@@ -283,8 +283,8 @@
           <p>Enter a email address and password to create an account.</p>
           <a href="#">Why ask so little information?</a>
           <div class="input-group">
-            <input type="email" class="form-control" ng-model="vm.email" placeholder="Email Address" required />
-            <input type="text" class="form-control" ng-model="vm.password" placeholder="Password" required />
+            <input type="email" class="form-control" ng-model="vm.developer.email" placeholder="Email Address" required />
+            <input type="text" class="form-control" ng-model="vm.developer.password" placeholder="Password" required />
           </div>
           <button type="submit" class="btn btn-success btn-lg">Create my account</button>
         </form>

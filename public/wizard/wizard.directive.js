@@ -20,10 +20,11 @@
                               'wizardService',
                               'skillsService',
                               'projectsService',
+                              'developerService',
                               'mapsService',
                               '$rootScope'];
 
-  function WizardController($scope, wizardService, skillsService, projectsService, mapsService, $rootScope) {
+  function WizardController($scope, wizardService, skillsService, projectsService, developerService, mapsService, $rootScope) {
 
     var vm = this;
 
@@ -38,10 +39,7 @@
     vm.addSkill = addSkill;
     vm.removeSkill = removeSkill;
     vm.handleSkillToggle = handleSkillToggle;
-    vm.location = '';
     vm.tech = '';
-    vm.compHr = '';
-    vm.compFt = '';
     vm.projects = projectsService.projects;
     vm.project = {}
     vm.showTechList = false;
@@ -62,9 +60,21 @@
     vm.contractSelected= false;
     vm.selectFulltime = selectFulltime;
     vm.selectContract = selectContract;
-    vm.radius = 20;
     vm.submitForm = submitForm;
     vm.hasErrors = false;
+
+    vm.developer = {};
+    vm.developer.givenName = null;
+    vm.developer.familyName = null;
+    vm.developer.primaryPhone = null;
+    vm.developer.primaryEmail = null;
+    vm.developer.password = null;
+    vm.developer.projects = null;
+    vm.developer.location = null;
+    vm.developer.radius = 20;
+    vm.developer.compType = null;
+    vm.developer.compMin = null;
+
 
     function setStep(newStep) {
       wizardService.setStep(newStep).then(function() {
@@ -72,10 +82,6 @@
         vm.progressWidth = ((newStep / 3) * 100) + '%';
       })
     }
-
-
-
-
 
     function nextStep(event, isValid) {
       event.preventDefault();
@@ -209,10 +215,10 @@
       vm.hasErrors = false;
     }
 
-    function submitForm(event, isValid) {
-      event.preventDefault();
-      event.stopPropagation();
-      console.log(isValid)
+    function submitForm() {
+      
+      developerService.create(vm.developer)
+      console.log()
     }
 
     vm.slider = {
