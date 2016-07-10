@@ -28,11 +28,6 @@ developerSchema = new Schema({
     required: [true, 'Password field is required.'],
     validate: validator.password
   },
-  tech: {
-    type: [String],
-    required: [true, 'Technologies field is required.'],
-    validate: validator.requiredField
-  },
   compType: {
     type: String,
     enum: validator.compType
@@ -55,7 +50,7 @@ developerSchema = new Schema({
     required: true
   },
   location: {
-    type: [Number],
+    type: Object,
     required: true
   },
   salt: String,

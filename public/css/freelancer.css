@@ -1207,3 +1207,7 @@ textarea.has-error {
 .submitForm .form-group {
   text-align: center;
 }
+
+.submitForm .help-block {
+  text-align: center;
+}

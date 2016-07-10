@@ -69,11 +69,24 @@
     vm.developer.primaryPhone = null;
     vm.developer.primaryEmail = null;
     vm.developer.password = null;
-    vm.developer.projects = null;
+    vm.developer.projects = projectsService.projects;
     vm.developer.location = null;
     vm.developer.radius = 20;
-    vm.developer.compType = null;
-    vm.developer.compMin = null;
+    vm.developer.compHr = null;
+    vm.developer.compFt = null;
+    vm.developer.fulltimeSelected = vm.fulltimeSelected;
+    vm.developer.contractSelected = vm.contractSelected;
+
+    vm.slider = {
+      options: {
+        floor: 5,
+        ceil: 80,
+        disabled: true,
+        translate: function(value) {
+          return value + 'mi'
+        }
+      }
+    };
 
 
     function setStep(newStep) {
@@ -215,22 +228,16 @@
       vm.hasErrors = false;
     }
 
-    function submitForm() {
-      
-      developerService.create(vm.developer)
-      console.log()
-    }
+    function submitForm(isValid) {
 
-    vm.slider = {
-      options: {
-        floor: 5,
-        ceil: 80,
-        disabled: true,
-        translate: function(value) {
-          return value + 'mi'
-        }
+      if(!isValid) {
+        vm.hasErrors = true;
+        return;
       }
-    };
+
+      vm.hasErrors = false;
+      console.log(developerService.create(vm.developer))
+    }
 
     $rootScope.$on('nsj:location', function($scope, placeObj) {
       $scope.currentScope.$apply(function() {

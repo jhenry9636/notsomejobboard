@@ -278,16 +278,35 @@
 
       <!-- Done -->
       <div class="wizard-step-container" ng-class="{'active': vm.currentStep == 3}">
-        <form name="submitForm" class="submitForm">
+        <form name="developerForm" class="submitForm" ng-submit="vm.submitForm(developerForm.$valid)" novalidate>
           <h3>Save your account</h3>
           <p>Tell us  your email address, password to create an account.</p>
-          <div class="form-group">
-            <input type="text" class="form-control" ng-model="vm.developer.givenName" placeholder="First Name" required />
-            <input type="text" class="form-control" ng-model="vm.developer.familyName" placeholder="Last Name" required />
-            <input type="email" class="form-control" ng-model="vm.developer.email" placeholder="Email Address" required />
-            <input type="text" class="form-control" ng-model="vm.developer.password" placeholder="Password" required />
+          <div class="row">
+            <div class="col-sm-12">
+              <div ng-show="vm.hasErrors" class="error-wrapper">
+                <div class="help-block" ng-messages="developerForm.givenName.$error" ng-messages-multiple>
+                  <p ng-message="required">First Name is required.</p>
+                </div>
+                <div class="help-block" ng-messages="developerForm.familyName.$error" ng-messages-multiple>
+                  <p ng-message="required">Last Name is required.</p>
+                </div>
+                <div class="help-block" ng-messages="developerForm.email.$error" ng-messages-multiple>
+                  <p ng-message="required">Email Address is required.</p>
+                </div>
+                <div class="help-block" ng-messages="developerForm.password.$error" ng-messages-multiple>
+                  <p ng-message="minlength">Password must be at least 5 characters long.</p>
+                  <p ng-message="required">Password is required.</p>
+                </div>
+              </div>
+            </div>
           </div>
-          <button type="submit" class="btn btn-success btn-lg">Create my account</button>
+          <div class="form-group">
+            <input type="text" class="form-control" name="givenName" ng-model="vm.developer.givenName" placeholder="First Name" required />
+            <input type="text" class="form-control" name="familyName" ng-model="vm.developer.familyName" placeholder="Last Name" required />
+            <input type="text" class="form-control" name="email" ng-model="vm.developer.primaryEmail" placeholder="Email Address" required />
+            <input type="password" class="form-control" name="password" ng-model="vm.developer.password" placeholder="Password" ng-minlength="5" required />
+          </div>
+          <button type="submit" class="btn btn-success btn-lg" >Create my account</button>
         </form>
       </div>
     </div>

@@ -23,7 +23,7 @@ exports.add = function(req, res) {
         reason: err.toString()
       })
     }
-
+    console.log(developer)
     return res.send({
       success: true,
       collection: developer

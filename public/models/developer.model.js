@@ -18,13 +18,13 @@
       var Developer = function(obj) {
         this.givenName = obj.givenName;
         this.familyName = obj.familyName;
-        this.primaryPhone = obj.primaryPhone;
         this.primaryEmail = obj.primaryEmail;
         this.password = obj.password;
         this.projects = obj.projects;
         this.location = obj.location;
-        this.compType = obj.compType;
-        this.compMin = obj.compMin;
+        this.compType = obj.fulltimeSelected ? 'fulltime' : 'hourly';
+        this.compMin =
+          obj.fulltimeSelected ? obj.compFt : obj.compHr;
       };
 
       var developer = new Developer(developerObj)
@@ -33,7 +33,7 @@
     }
 
     function save(developer) {
-      return $http.post('/api/developer')
+      return $http.post('/signup/developer')
         .then(success)
         .catch(fail);
 
