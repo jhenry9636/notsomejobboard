@@ -67,11 +67,15 @@
     vm.hasErrors = false;
 
     function setStep(newStep) {
-      wizardService.setStep(newStep).then(function(step) {
-        vm.currentStep = step;
-        vm.progressWidth = ((step / 3) * 100) + '%';
+      wizardService.setStep(newStep).then(function() {
+        vm.currentStep = newStep;
+        vm.progressWidth = ((newStep / 3) * 100) + '%';
       })
     }
+
+
+
+
 
     function nextStep(event, isValid) {
       event.preventDefault();
