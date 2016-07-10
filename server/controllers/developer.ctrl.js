@@ -4,6 +4,8 @@ var bcrypt = require('bcrypt')
 
 
 exports.add = function(req, res) {
+  console.log('this is the request ********************')
+  console.dir(req.body.projects)
   var userData = req.body;
   var developer = new Developer();
   developer.givenName = userData.givenName;
@@ -17,6 +19,7 @@ exports.add = function(req, res) {
   developer.compMin = userData.compMin;
 
   developer.save(function(err, developer) {
+    console.dir(developer)
     if(err) {
       return res.status(400).send({
         success: false,

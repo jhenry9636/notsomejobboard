@@ -10,7 +10,8 @@
   function developerService($http) {
     return {
       getAll: getAll,
-      create: create
+      create: create,
+      save: save
     };
 
     function create(developerObj) {
@@ -33,7 +34,10 @@
     }
 
     function save(developer) {
-      return $http.post('/signup/developer')
+      var data = $.param(developer)
+
+
+      return $http.post('/signup/developer', developer)
         .then(success)
         .catch(fail);
 
