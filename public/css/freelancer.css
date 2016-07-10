@@ -25,6 +25,26 @@ a.active {
     color: #18bc9c;
 }
 
+textarea:focus,
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="datetime"]:focus,
+input[type="datetime-local"]:focus,
+input[type="date"]:focus,
+input[type="month"]:focus,
+input[type="time"]:focus,
+input[type="week"]:focus,
+input[type="number"]:focus,
+input[type="email"]:focus,
+input[type="url"]:focus,
+input[type="search"]:focus,
+input[type="tel"]:focus,
+input[type="color"]:focus,
+.uneditable-input:focus {
+  border: 2px solid #0c9eef;
+  background-color: #fff;
+}
+
 h1,
 h2,
 h3,
@@ -73,6 +93,20 @@ hr.star-primary {
 hr.star-primary:after {
     color: #2c3e50;
     background-color: #fff;
+}
+
+.form-control {
+  -webkit-transition: all ease .5s !important;
+  -moz-transition: all ease .5s !important;
+  transition: all ease .5s !important;
+  background-color: #f8f9fa;
+}
+
+.form-control:focus {
+  -webkit-transition: all ease .5s !important;
+  -moz-transition: all ease .5s !important;
+  transition: all ease .5s !important;
+  background-color: #fff;
 }
 
 .img-centered {
@@ -1149,7 +1183,7 @@ h5.form-header {
 }
 
 input.has-error,
-textarea.has-error{
+textarea.has-error {
   border: 2px solid #e74c3c;
 }
 
@@ -1158,5 +1192,18 @@ textarea.has-error{
 }
 
 .comp-row .help-block {
+  text-align: center;
+}
+
+.submitForm {
+  display: table;
+}
+
+.submitForm input {
+  margin: 0px auto 10px auto;
+  width: 30%;
+}
+
+.submitForm .form-group {
   text-align: center;
 }

@@ -278,11 +278,12 @@
 
       <!-- Done -->
       <div class="wizard-step-container" ng-class="{'active': vm.currentStep == 3}">
-        <form name="submitForm">
-          <h3>... aaand you're done.</h3>
-          <p>Enter a email address and password to create an account.</p>
-          <a href="#">Why ask so little information?</a>
-          <div class="input-group">
+        <form name="submitForm" class="submitForm">
+          <h3>Save your account</h3>
+          <p>Tell us  your email address, password to create an account.</p>
+          <div class="form-group">
+            <input type="text" class="form-control" ng-model="vm.developer.givenName" placeholder="First Name" required />
+            <input type="text" class="form-control" ng-model="vm.developer.familyName" placeholder="Last Name" required />
             <input type="email" class="form-control" ng-model="vm.developer.email" placeholder="Email Address" required />
             <input type="text" class="form-control" ng-model="vm.developer.password" placeholder="Password" required />
           </div>
