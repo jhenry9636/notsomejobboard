@@ -11,7 +11,10 @@ module.exports = function(server, config) {
     return stylus(str).set('filename', path);
   }
 
-  server.use(bodyParser.urlencoded({extended: false}));
+  server.use(bodyParser.urlencoded({
+    extended: true
+  }));
+  server.use(bodyParser.json());
   server.use(cookieParser());
   server.use(expressSession({
     secret: 'dean milton',

@@ -2,39 +2,31 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var validator = require('../common/validators');
 
-var requestSchema = new Schema({
-  recipient: {
+var projectSchema = new Schema({
+  developer: {
     type : Schema.ObjectId,
     ref : 'Developer',
     required: true
   },
-  sender: {
-    type : Schema.ObjectId,
-    ref : 'Recruiter',
-    require: true
-  },
-  location: {
-    type: Schema.ObjectId,
-    ref: 'Location',
-    require: true
-  },
-  compType: {
+  name: {
     type: String,
     require: true,
-    enum: validator.compType
+    enum: validator.requiredField
   },
-  compMax: {
+  client: {
     type: String,
     require: true,
     validate: validator.requiredField
   },
-  technologies: {
+  url: {
     type: String,
     require: true,
     validate: validator.requiredField
   },
-  clientName: {
-    type: String
+  description: {
+    type: String,
+    require: true,
+    validate: validator.requiredField
   },
   createdAt: {
     type: Date,
@@ -42,4 +34,4 @@ var requestSchema = new Schema({
   },
 })
 
-return mongoose.model('Request', requestSchema)
+return mongoose.model('Project', projectSchema)

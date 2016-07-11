@@ -126,7 +126,3 @@ recruiterSchema.set('toJSON', {
 })
 
 mongoose.model('Recruiter', recruiterSchema)
-
-module.exports = function() {
-
-}

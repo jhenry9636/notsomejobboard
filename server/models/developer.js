@@ -46,13 +46,13 @@ developerSchema = new Schema({
     type: Boolean
   },
   projects: {
-    type: [Object],
-    required: true
-  },
-  location: {
     type: Object,
     required: true
   },
+  // location: {
+  //   type: Object,
+  //   required: true
+  // },
   salt: String,
   joinedAt: {
     type: Date,
@@ -126,8 +126,3 @@ developerSchema.options.toObject.transform = function (doc, ret, options) {
 
 
 mongoose.model('Developer', developerSchema)
-
-exports = function() {
-
-
-}

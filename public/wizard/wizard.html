@@ -25,7 +25,7 @@
 </script>
 
 <div class="wizard-wrapper">
-  <div class="wizard-indicator-row" style="display: none;" ng-class="{'active': vm.currentStep > 0}">
+  <div class="wizard-indicator-row" ng-class="{'active': vm.currentStep > 0}">
     <ul id="wizard-indicator" class="wizard-indicator">
       <li ng-class="{'active': vm.currentStep > 0}" ng-click="vm.setStep(0)">
         <span class="step-name">Location:</span>
@@ -44,7 +44,7 @@
       </li>
     </ul>
   </div>
-  <div id="wizard-progress" class="wizard-progress" style="width: {{vm.getProgressWidth()}}"></div>
+  <div id="wizard-progress" style="display: none;" class="wizard-progress" style="width: {{vm.getProgressWidth()}}"></div>
   <div class="row">
     <div class="col-xs-12">
 
