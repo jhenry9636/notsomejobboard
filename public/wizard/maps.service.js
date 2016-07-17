@@ -26,7 +26,8 @@
       setRadius: setRadius,
       getBounds: getBounds,
       setCenter: setCenter,
-      getCircleProps: getCircleProps
+      getCircleProps: getCircleProps,
+      generateGeoJSONCircle: generateGeoJSONCircle
     }
 
     return service
@@ -49,7 +50,8 @@
 
       point = new google.maps.Marker({
         position: pos,
-        map: getMap()
+        map: getMap(),
+        animation: google.maps.Animation.DROP
       });
 
       service.markers[0] = service.point = point;
@@ -112,6 +114,34 @@
       return service.autocomplete = autocomplete;
     }
 
+    function generateGeoJSONCircle(coordinates, radius, numSides) {
+
+      var points = [];
+      var earthRadius = 6371;
+      var halfsides = numSides / 2;
+
+      //angular distance covered on earth's surface
+      var d = parseFloat(radius / 1000.) / earthRadius;
+
+      var lat = (coordinates[1] * Math.PI) / 180;
+      var lon = (coordinates[0] * Math.PI) / 180;
+
+      for(var i = 0; i < numSides; i++) {
+        var gpos = {};
+        var bearing = i * Math.PI / halfsides; //rad
+        gpos.latitude = Math.asin(Math.sin(lat) * Math.cos(d) + Math.cos(lat) * Math.sin(d) * Math.cos(bearing));
+        gpos.longitude = ((lon + Math.atan2(Math.sin(bearing) * Math.sin(d) * Math.cos(lat), Math.cos(d) - Math.sin(lat) * Math.sin(gpos.latitude))) * 180) / Math.PI;
+        gpos.latitude = (gpos.latitude * 180) / Math.PI;
+        points.push([gpos.longitude, gpos.latitude]);
+      };
+
+      points.push(points[0]);
+      return {
+        type: 'Polygon',
+        coordinates: [ points ]
+      };
+    }
+
     function clearMarkers() {
       if(!service.markers.length) {
         return
@@ -122,7 +152,7 @@
     }
 
     function setRadius(radius) {
-      service.markers[1].set('radius', radius * 1000)
+      service.markers[1].set('radius', radius * 1000) //100 / 3963.2
     }
 
     function getBounds() {

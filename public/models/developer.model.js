@@ -5,9 +5,9 @@
     .module('nsj.wizard')
     .factory('developerService', developerService);
 
-  developerService.$inject = ['$http'];
+  developerService.$inject = ['$http', 'mapsService'];
 
-  function developerService($http) {
+  function developerService($http, mapsService) {
     return {
       getAll: getAll,
       create: create,
@@ -22,7 +22,11 @@
         this.primaryEmail = obj.primaryEmail;
         this.password = obj.password;
         this.projects = obj.projects;
-        this.location = obj.location;
+        this.locationName = obj.locationName;
+        this.locationRadius = obj.locationRadius;
+        this.locationCoords = obj.locationCoords;
+        this.locationPolygon =
+          mapsService.generateGeoJSONCircle(obj.locationCoords, obj.locationRadius, 10)
         this.compType = obj.fulltimeSelected ? 'fulltime' : 'hourly';
         this.compMin =
           obj.fulltimeSelected ? obj.compFt : obj.compHr;
@@ -30,6 +34,7 @@
 
       var developer = new Developer(developerObj)
 
+      debugger
       return developer;
     }
 

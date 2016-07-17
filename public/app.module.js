@@ -6,7 +6,8 @@
     'ngMessages',
     'nsj.wizard',
     'rzModule',
-    'ui.utils.masks'
+    'ui.utils.masks',
+    'uiGmapgoogle-maps'
   ])
 
 })()

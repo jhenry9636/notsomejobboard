@@ -70,8 +70,9 @@
     vm.developer.primaryEmail = null;
     vm.developer.password = null;
     vm.developer.projects = projectsService.projects;
-    vm.developer.location = null;
-    vm.developer.radius = 20;
+    vm.developer.locationName = null;
+    vm.developer.locationRadius = null;
+    vm.developer.locationCoords = null;
     vm.developer.compHr = null;
     vm.developer.compFt = null;
     vm.developer.fulltimeSelected = vm.fulltimeSelected;
@@ -204,7 +205,6 @@
     }
 
     function setEditingProjectIndex(index) {
-
       var currentlyEditing = projectsService.projects[index];
       projectsService.setEditingProjectIndex(index);
       vm.editingProject.name = currentlyEditing.name
@@ -234,25 +234,28 @@
         vm.hasErrors = true;
         return;
       }
-
       vm.hasErrors = false;
       developerService.save(developerService.create(vm.developer))
     }
 
     $rootScope.$on('nsj:location', function($scope, placeObj) {
       $scope.currentScope.$apply(function() {
-        vm.location = placeObj.formatted_address;
-        vm.radius = '20';
+        vm.developer.locationName = placeObj.formatted_address;
+        vm.developer.locationRadius = '20';
+        vm.developer.locationCoords = [mapsService.getCircleProps().lng,
+                                        mapsService.getCircleProps().lat];
         vm.slider.options.disabled = false;
         vm.hasErrors = false;
       })
     })
 
-    $scope.$watch('vm.radius', function(newValue, oldValue) {
+    $scope.$watch('vm.developer.locationRadius', function(newValue) {
       if(!mapsService.getMap()) {
         return;
       }
+
       mapsService.setRadius(newValue)
+      vm.developer.locationRadius = newValue;
       mapsService.setCenter();
     }, true)
 

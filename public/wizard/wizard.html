@@ -29,7 +29,7 @@
     <ul id="wizard-indicator" class="wizard-indicator">
       <li ng-class="{'active': vm.currentStep > 0}" ng-click="vm.setStep(0)">
         <span class="step-name">Location:</span>
-        <span>{{vm.developer.location}}</span>
+        <span>{{vm.developer.locationName}}</span>
       </li>
       <li ng-class="{'active': vm.currentStep > 1}" ng-click="vm.setStep(1)">
         <span class="step-name">Projects:</span>
@@ -44,7 +44,7 @@
       </li>
     </ul>
   </div>
-  <div id="wizard-progress" style="display: none;" class="wizard-progress" style="width: {{vm.getProgressWidth()}}"></div>
+  <div id="wizard-progress" style="dispaly" class="wizard-progress" style="width: {{vm.getProgressWidth()}}"></div>
   <div class="row">
     <div class="col-xs-12">
 
@@ -64,7 +64,7 @@
           <div class="row">
             <div class="col-sm-6">
               <div class="form-group" ng-class="{ 'has-error': vm.hasErrors}">
-                <input type="text" id="autocomplete" name="location" class="form-control" ng-model="vm.developer.location" placeholder="e.g. Downtown San Francisco" required />
+                <input type="text" id="autocomplete" name="location" class="form-control" ng-model="vm.developer.locationName" placeholder="e.g. Downtown San Francisco" required />
               </div>
               <div class="row">
                 <div class="sm-col-12">
@@ -72,7 +72,7 @@
                     <h5 style="padding: 0px; margin: 20px 0px 10px 0px; text-align: center;">Radius</h5>
                       <div class="slider-wrapper"
                            ng-class="{'disabled' : vm.slider.options.disabled}">
-                        <rzslider rz-slider-model="vm.radius"
+                        <rzslider rz-slider-model="vm.developer.locationRadius"
                               rz-slider-min="vm.slide.minValue"
                               rz-slider-max="vm.slide.maxValue"
                               rz-slider-options="vm.slider.options"></rzslider>
@@ -82,7 +82,7 @@
               </div>
             </div>
             <div class="col-sm-6">
-              <nsj-google-map location="vm.developer.location"></nsj-google-map>
+              <nsj-google-map location="vm.developer.locationName"></nsj-google-map>
             </div>
           </div>
           <br />

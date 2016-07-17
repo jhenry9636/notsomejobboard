@@ -1211,3 +1211,9 @@ textarea.has-error {
 .submitForm .help-block {
   text-align: center;
 }
+
+.angular-google-map-container {
+  width: 100%;
+  height: 300px;
+}
+

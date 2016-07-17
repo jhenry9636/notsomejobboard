@@ -6,6 +6,24 @@ var faker = require('faker');
 
 
 var developerSchema;
+var locationPolygonSchema;
+
+
+locationPolygonSchema = new Schema({
+  'type': {
+    type: String,
+    enum: 'Polygon',
+    default: 'Polygon',
+    required: true
+  },
+  coordinates: {
+    type: [Number],
+    default: [0,0],
+    required: true
+  }
+});
+
+
 developerSchema = new Schema({
   givenName: {
     type: String,
@@ -49,10 +67,32 @@ developerSchema = new Schema({
     type: Object,
     required: true
   },
-  // location: {
-  //   type: Object,
-  //   required: true
-  // },
+  locationName : {
+    type: String,
+    required: true
+  },
+  locationRadius: {
+    type: Number,
+    required: true
+  },
+  locationCoords: {
+    required: true,
+    type: [Number],
+    index: '2dsphere'
+  },
+  locationPolygon:{
+    'type': {
+      type: String,
+      enum: 'Polygon',
+      default: 'Polygon',
+      required: true
+    },
+    coordinates: {
+      type: Array,
+      default: [0,0],
+      required: true
+    }
+  },
   salt: String,
   joinedAt: {
     type: Date,
@@ -65,7 +105,9 @@ developerSchema = new Schema({
   roles: [String]
 });
 
-developerSchema.index({location: '2dsphere'});
+developerSchema.index({locationCoords: '2dsphere'});
+
+
 
 developerSchema.pre('save', function(next) {
   var user = this;

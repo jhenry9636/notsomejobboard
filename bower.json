@@ -31,6 +31,9 @@
     "google-places": "^0.0.8",
     "angularjs-slider": "^4.0.2",
     "angular-messages": "^1.5.7",
-    "angular-input-masks": "^2.4.0"
+    "angular-input-masks": "^2.4.0",
+    "angular-google-maps": "^2.3.3",
+    "lodash": "^4.13.1",
+    "angular-simple-logger": "^0.1.7"
   }
 }
