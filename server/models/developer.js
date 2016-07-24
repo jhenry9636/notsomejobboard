@@ -5,26 +5,7 @@ var bcrypt = require('bcrypt');
 var faker = require('faker');
 
 
-var developerSchema;
-var locationPolygonSchema;
-
-
-locationPolygonSchema = new Schema({
-  'type': {
-    type: String,
-    enum: 'Polygon',
-    default: 'Polygon',
-    required: true
-  },
-  coordinates: {
-    type: [Number],
-    default: [0,0],
-    required: true
-  }
-});
-
-
-developerSchema = new Schema({
+var developerSchema = new Schema({
   givenName: {
     type: String,
     required: [true, 'First name field is required.'],
@@ -67,7 +48,7 @@ developerSchema = new Schema({
     type: Object,
     required: true
   },
-  locationName : {
+  locationName: {
     type: String,
     required: true
   },
@@ -76,24 +57,23 @@ developerSchema = new Schema({
     required: true
   },
   locationCoords: {
-    required: true,
     type: [Number],
-    index: '2dsphere'
+    required: true
   },
-  locationPolygon:{
-    'type': {
+  salt: {
+    type: String
+  },
+  locationPolygon: {
+    type: {
       type: String,
-      enum: 'Polygon',
       default: 'Polygon',
       required: true
     },
     coordinates: {
       type: Array,
-      default: [0,0],
       required: true
     }
   },
-  salt: String,
   joinedAt: {
     type: Date,
     default: Date.now
@@ -105,9 +85,8 @@ developerSchema = new Schema({
   roles: [String]
 });
 
-developerSchema.index({locationCoords: '2dsphere'});
-
-
+developerSchema.index({locationPolygon: '2dsphere'});
+developerSchema.set('autoIndex', true);
 
 developerSchema.pre('save', function(next) {
   var user = this;
@@ -134,6 +113,21 @@ developerSchema.methods.comparePassword = function(candidatePassword, cb) {
     if (err) return cb(err);
     cb(null, isMatch);
   });
+};
+
+developerSchema.methods.findByLatLng = function() {
+
+  db.developers.find({
+    locationPolygon: {
+      $geoIntersects: {
+        $geometry: {
+          "type": "Point",
+          "coordinates": [-119.86166599999999, 34.40965316432119]
+        }
+      }
+    }
+  });
+
 };
 
 developerSchema.methods.hasRole = function(role) {
@@ -167,4 +161,14 @@ developerSchema.options.toObject.transform = function (doc, ret, options) {
 
 
 
-mongoose.model('Developer', developerSchema)
+var Client = mongoose.model('Developer', developerSchema);
+
+Client.ensureIndexes(function (err) {
+  console.log('ENSURE INDEX')
+  if (err) console.log(err)
+})
+
+Client.on('index', function (err) {
+  console.log('ON INDEX')
+  if (err) console.log(err)
+})

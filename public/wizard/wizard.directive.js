@@ -235,6 +235,7 @@
         return;
       }
       vm.hasErrors = false;
+      debugger
       developerService.save(developerService.create(vm.developer))
     }
 

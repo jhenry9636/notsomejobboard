@@ -8,9 +8,10 @@ exports.add = function(req, res) {
   var userData = req.body;
   var developer = new Developer();
 
-  console.log('this is the userData ********************')
+  console.log('*************************************************************'
+    + 'this is the userData *************************************************************')
 
-  console.dir(userData)
+  console.dir(userData.locationPolygon)
 
 
   developer.givenName = userData.givenName;
@@ -43,6 +44,10 @@ exports.add = function(req, res) {
   })
 };
 
+
+exports.findByLatLng = function(req, res) {
+  
+};
 
 exports.delete = function(req, res) {
 

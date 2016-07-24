@@ -32,15 +32,12 @@
           obj.fulltimeSelected ? obj.compFt : obj.compHr;
       };
 
-      var developer = new Developer(developerObj)
+      var developer = new Developer(developerObj);
 
-      debugger
       return developer;
     }
 
     function save(developer) {
-      var data = $.param(developer)
-
 
       return $http.post('/signup/developer', developer)
         .then(success)
