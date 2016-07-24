@@ -56,7 +56,6 @@ h3,
 h4,
 h5,
 h6 {
-    text-transform: uppercase;
     font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
     font-weight: 700;
 }
@@ -528,8 +527,9 @@ input[type="url"], textarea {
 
 .wizard-indicator-row {
   margin: 0px -30px 0px -30px;
-  background: #F0F4F9;
+  background: #E2EBF1;
   text-align: center;
+  border-bottom: solid 1px #c5d6de;
 }
 
 .wizard-indicator {
@@ -1193,6 +1193,14 @@ textarea.has-error {
   border: 2px solid #e74c3c;
 }
 
+.text-lft {
+  text-align: left;
+}
+
+.text-rgt {
+  text-align: right;
+}
+
 .error-wrapper {
   margin-left: 10px;
 }
@@ -1205,23 +1213,49 @@ textarea.has-error {
   display: table;
 }
 
+.recruiterForm {
+  display: block;
+}
+
 .submitForm input {
   margin: 0px auto 10px auto;
   width: 30%;
 }
 
-.submitForm .form-group {
+.text-lft input {
+  float: right;
+}
+
+.text-rgt input {
+  float: left;
+}
+
+
+
+.recruiterForm input {
+  width: 80%;
+  margin: 0px auto 10px auto;
+}
+
+.submitForm .form-group,
+.recruiterForm .form-group {
   text-align: center;
 }
 
-.submitForm .help-block {
+.submitForm .help-block,
+.recruiterForm .help-block {
   text-align: center;
 }
 
-.angular-google-map-container {
-  width: 100%;
-  height: 300px;
+.recruiterForm .company-city {
+  width: 50%;
+  margin-right: 6px;
 }
+
+.recruiterForm .company-state {
+  width: 29%;
+}
+
 
 /** Dashboard Nav **/
 
@@ -1235,10 +1269,9 @@ textarea.has-error {
 }
 
 .dashboard-nav {
-  background: #cbdce8;
+  background: #51606f;
   width: 250px;
   padding: 0px;
-  padding-top: 20px;
   position: fixed;
   top: 60px;
   left: 0;
@@ -1254,6 +1287,7 @@ textarea.has-error {
   list-style: none;
   padding: 20px 22px 20px;
   box-sizing: border-box;
+  border-bottom: 1px solid #3a3a3a;
 }
 
 .dashboard-nav li:hover:before {
@@ -1286,7 +1320,7 @@ textarea.has-error {
   white-space: nowrap;
   overflow: hidden;
   font-size: 15px;
-  color: #2c3e50;
+  color: #fff;
   text-transform: none;
   position: relative;
   top: -5px;
@@ -1299,7 +1333,6 @@ textarea.has-error {
 .dashboard-nav li .fa {
   margin-right: 6px;
   font-size: 31px;
-  color: #2c3e50;
 }
 
 .request-wrapper {
@@ -1310,7 +1343,7 @@ textarea.has-error {
 .request-item {
   float: left;
   margin: 0px 3% 20px 0px;
-  border: 1px solid #dce4ec;
+  border: solid 1px #c5d6de;
   border-radius: 10px;
   background: #fff;
   padding: 10px 20px;
@@ -1321,6 +1354,7 @@ textarea.has-error {
 .request-item h3 {
   color: #6c7a86;
   margin: 5px 0px 0px 0px;
+  text-transform: none;
 }
 
 .request-sent {
@@ -1349,8 +1383,8 @@ textarea.has-error {
   border-top: 1px solid #dce4ec;
   border-bottom-left-radius: 4px;
   border-bottom-right-radius: 4px;
-  margin: 0px -20px -5px -20px;
-  padding: 0px;
+  margin: 0px -20px -12px -20px;
+  padding: 5px 0px 5px 0px;
 }
 
 .request-reply li {
@@ -1377,4 +1411,27 @@ textarea.has-error {
   color: red;
   border-color: red;
   border-bottom-right-radius: 4px;
+}
+.reply .fa {
+  color: yellow;
+}
+
+.thumbs-up .fa {
+  color: green;
+}
+
+.thumbs-down .fa {
+  color: red;
+}
+
+.recruiter-join-container {
+  padding-top: 50px;
+  text-align: center;
+}
+
+.recruiter-join-container p {
+  color: #888181;
+  font-size: 18px;
+  margin-top: 10px;
+  margin-bottom: 30px;
 }

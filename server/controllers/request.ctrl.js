@@ -15,7 +15,6 @@ exports.add = function(req, res) {
   request.compMax = userData.compMax;
   request.technologies = userData.technologies;
 
-  console.log(request)
   request.save(function(err, request) {
     if(err) {
       return res.status(400).send({

@@ -1,5 +1,4 @@
 var mongoose = require('mongoose');
-var uniqueValidator = require('mongoose-unique-validator');
 var Schema = mongoose.Schema;
 var validator = require('../common/validators');
 var bcrypt = require('bcrypt');
@@ -53,18 +52,17 @@ var recruiterSchema = new Schema({
     required: [true, 'Company phone number field is required.'],
     validate: validator.phoneNumber
   },
-  companyAddress1: {
-    type: String
-  },
-  companyAddress2: {
-    type: String
-  },
   sentContactRequests: [{
     type: Schema.ObjectId,
     ref: 'Request',
     validate: validator.isObjectId
   }],
   approvedContactRequests: [{
+    type: Schema.ObjectId,
+    ref: 'Request',
+    validate: validator.isObjectId
+  }],
+  declinedContactRequests: [{
     type: Schema.ObjectId,
     ref: 'Request',
     validate: validator.isObjectId

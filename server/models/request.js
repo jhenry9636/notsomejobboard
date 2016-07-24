@@ -6,31 +6,34 @@ var requestSchema = new Schema({
   recipient: {
     type : Schema.ObjectId,
     ref : 'Developer',
-    required: true
+    required: [true, 'Recipient ID field is required'],
+    validate: validator.requiredField
   },
   sender: {
     type : Schema.ObjectId,
     ref : 'Recruiter',
-    require: true
+    required: [true, 'Sender ID field is required'],
+    validate: validator.requiredField
   },
   location: {
     type: Schema.ObjectId,
     ref: 'Location',
-    require: true
+    required: [true, 'Location is required'],
+    validate: validator.requiredField
   },
   compType: {
     type: String,
-    require: true,
+    required: [true, 'Comp type is required'],
     enum: validator.compType
   },
   compMax: {
     type: String,
-    require: true,
+    required: [true, 'Comp max is required'],
     validate: validator.requiredField
   },
   technologies: {
     type: String,
-    require: true,
+    required: [true, 'Technologies is required'],
     validate: validator.requiredField
   },
   clientName: {
@@ -39,7 +42,7 @@ var requestSchema = new Schema({
   createdAt: {
     type: Date,
     default: Date.now
-  },
+  }
 })
 
 return mongoose.model('Request', requestSchema)

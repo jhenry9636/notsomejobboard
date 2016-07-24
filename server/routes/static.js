@@ -17,6 +17,13 @@ module.exports = function() {
         user: req.user
       })
     })
+
+  staticRouter.route('/join/recruiter')
+    .get(function(req, res) {
+      res.render('join-recruiter', {
+        user: req.user
+      })
+    })
   
   staticRouter.route('/contact')
     .get(function(req, res) {
