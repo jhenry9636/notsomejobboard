@@ -1140,6 +1140,10 @@ h5.form-header {
   margin-left: -44px;
 }
 
+.comp-list.search-page {
+  margin: 0px 0px 20px -61px;
+}
+
 .rzslider .rz-pointer {
   border: 1px solid #a9a9a9;
   background-color: #fff !important;
@@ -1456,4 +1460,25 @@ input[name="companyState"] {
 }
 :-moz-placeholder { /* Firefox 18- */
   text-transform: capitalize;
+}
+
+.search-container {
+  background: #fff;
+  margin: 90px 50px 0px 50px;
+  padding: 20px;
+  border: solid 1px #c5d6de;
+  border-radius: 10px;
+}
+
+.search-container label {
+  color: #6c7a86;
+  font-weight: normal;
+}
+
+.search-container input {
+  margin-bottom: 25px;
+}
+
+.search-container h3 {
+  margin: 0px 0px 20px 0px;
 }

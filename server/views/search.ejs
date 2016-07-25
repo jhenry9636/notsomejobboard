@@ -1,0 +1,107 @@
+<% include ./partials/head %>
+<body ng-app="search" id="dashboard">
+<!-- Join  -->
+<!-- Navigation -->
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="javascript://">NotSomeJobboard.com</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="#login" class="portfolio-link" data-toggle="modal">Login</a>
+                </li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container-fluid -->
+</nav>
+
+<div class="dashboard-container container-fluid">
+    <div class="search-container">
+        <h3>Candidate Search</h3>
+        <div class="row">
+            <div class="col-sm-4">
+                <ul class="comp-list search-page">
+                    <li></li>
+                    <li ng-click="vm.selectFulltime()" ng-class="{'selected': vm.fulltimeSelected}">Full Time</li>
+                    <li ng-click="vm.selectContract()" ng-class="{'selected': vm.contractSelected}">Contract</li>
+                </ul>
+                <div class="search-hourly" ng-show="vm.contractSelected">
+                    <div class="radio">
+                        <label>
+                            <input type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
+                            Option one is this and that&mdash;be sure to include why it's great
+                        </label>
+                    </div>
+                    <div class="radio">
+                        <label>
+                            <input type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
+                        </label>
+                    </div>
+                </div>
+                <div class="search-hourly" ng-show="vm.fulltimeSelected">
+                    <div class="radio">
+                        <label>
+                            <input type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
+                            Option one is this and that&mdash;be sure to include why it's great
+                        </label>
+                    </div>
+                    <div class="radio">
+                        <label>
+                            <input type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
+                        </label>
+                    </div>
+                </div>
+                <label for="givenName">Where is the opportunity?</label>
+                <input type="text" class="form-control" name="givenName" ng-model="vm.recruiter.givenName" placeholder="e.g. Downtown San Franciso" required />
+                <label for="familyName">Where is the opportunity?</label>
+                <input type="text" class="form-control" name="familyName" ng-model="vm.recruiter.familyName" placeholder="Last Name" required />
+                <label for="email">Where is the opportunity?</label>
+                <input type="text" class="form-control" name="email" ng-model="vm.recruiter.primaryEmail" placeholder="Email Address" required />
+            </div>
+            <div class="col-sm-8">
+fdsafdsafdsafdsafdsafdsafdasf
+            </div>
+        </div>
+    </div>
+</div>
+
+<% include ./partials/scripts.ejs %>
+
+<script src="/vendor/lodash/dist/lodash.min.js"></script>
+
+<script src="/vendor/angular/angular.min.js"></script>
+
+<script src="/vendor/angular-messages/angular-messages.min.js"></script>
+
+<script src="/vendor/angular-ui-router/release/angular-ui-router.min.js"></script>
+
+<script src="/vendor/angular-input-masks/angular-input-masks-standalone.min.js"></script>
+
+<script src='/vendor/angular-google-maps/dist/angular-google-maps.min.js'></script>
+
+<!-- NSJ Main -->
+<script src="/search/app.module.js"></script>
+
+<script src="/search/search.service.js"></script>
+
+<script src="/search/nsjSearch.js"></script>
+
+<!-- TODO: Make API KEY a server variable -->
+<!-- Google Maps API -->
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true&libraries=places&key=AIzaSyBZnGkLJ3KtI-ZMBWmzMbpUjLFnoA1ej8s"></script>
+
+<% include ./partials/modals.ejs %>
+</body>

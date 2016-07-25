@@ -32,9 +32,12 @@
     vm.recruiter.companyCity = null;
     vm.recruiter.companyState = null;
     vm.recruiter.companyZip = null;
-
     vm.submitForm = submitForm;
     vm.hasErrors = false;
+    vm.selectContract = selectContract;
+    vm.selectFulltime = selectFulltime;
+    vm.fulltimeSelected = false;
+    vm.contractSelected = true;
 
     function submitForm(isValid) {
       if(!isValid) {
@@ -43,6 +46,17 @@
       }
       vm.hasErrors = false;
       recruiterSignupService.save(vm.recruiter)
+    }
+
+    function selectContract() {
+      debugger
+      vm.contractSelected = true;
+      vm.fulltimeSelected = false;
+    }
+
+    function selectFulltime() {
+      vm.contractSelected = false;
+      vm.fulltimeSelected = true;
     }
 
   }

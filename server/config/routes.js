@@ -5,6 +5,7 @@ var logoutRouter = require('../routes/logout.js')();
 var signupRouter = require('../routes/signup.js')();
 var requestRouter = require('../routes/request.js')();
 var staticRouter = require('../routes/static.js')();
+var searchRouter = require('../routes/search.js')();
 var authenticationCheck = require('../common/authcheck.js')
 
 module.exports = function(server) {
@@ -18,6 +19,8 @@ module.exports = function(server) {
   server.use('/api/request', requestRouter)
 
   server.use('/login', loginRouter)
+
+  server.use('/search', searchRouter)
 
   server.use('/signup', signupRouter)
 
