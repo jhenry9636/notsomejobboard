@@ -2,18 +2,18 @@ var mongoose = require('mongoose');
 var Recruiter = mongoose.model('Recruiter');
 var bcrypt = require('bcrypt');
 
-exports.add = function() {
+exports.add = function(req, res) {
   var userData = req.body;
   var recruiter = new Recruiter();
 
   recruiter.givenName = userData.givenName;
   recruiter.familyName = userData.familyName;
-  recruiter.primaryPhone = userData.primaryPhone;
   recruiter.primaryEmail = userData.primaryEmail;
   recruiter.password = userData.password;
+  recruiter.companyPhone = userData.companyPhone;
+  recruiter.password = userData.password;
   recruiter.companyName = userData.companyName;
-  recruiter.companyAddress1 = userData.companyAddress1;
-  recruiter.companyAddress2 = userData.companyAddress2;
+  recruiter.primaryPhone = userData.primaryPhone;
   recruiter.companyCity = userData.companyCity;
   recruiter.companyState = userData.companyState;
   recruiter.companyZip = userData.companyZip;

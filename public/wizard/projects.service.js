@@ -8,10 +8,7 @@
 
   function projectsService($q, skillsService) {
     var projects = [];
-    var currentEditProject = {};
-    var currentRemoveProject = {};
     var currentEditProjectIndex = null;
-    var activeProject = {};
 
 
     var service = {

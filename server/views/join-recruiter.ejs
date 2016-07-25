@@ -1,5 +1,5 @@
 <% include ./partials/head %>
-<body ng-app="dashboard">
+<body ng-app="recruiter-signup">
 <!-- Join  -->
 <!-- Navigation -->
 <nav class="navbar navbar-default">
@@ -33,26 +33,7 @@
         <div class="col-12-sm">
             <h3>Your next front end developer hired faster. <br />We know exactly what our candidates want ... because we asked.</h3>
             <p>Start your search with what matters most to front end developers.</p>
-            <form name="recruiterForm" class="recruiterForm" ng-submit="vm.submitForm(developerForm.$valid)" novalidate>
-                <div class="form-group">
-                    <div class="row">
-                        <div class="col-sm-6 text-lft">
-                            <input type="text" class="form-control" name="givenName" ng-model="vm.developer.givenName" placeholder="First Name" required />
-                            <input type="text" class="form-control" name="familyName" ng-model="vm.developer.familyName" placeholder="Last Name" required />
-                            <input type="text" class="form-control" name="email" ng-model="vm.developer.primaryEmail" placeholder="Email Address" required />
-                            <input type="password" class="form-control" name="password" ng-model="vm.developer.password" placeholder="Password" ng-minlength="5" required />
-                        </div>
-                        <div class="col-sm-6 text-rgt">
-                            <input type="text" class="form-control" name="familyName" ng-model="vm.developer.familyName" placeholder="Company Name" required />
-                            <input type="text" class="form-control" name="familyName" ng-model="vm.developer.familyName" placeholder="Company Phone Number" required />
-                            <input type="text" class="form-control company-city" name="familyName" ng-model="vm.developer.familyName" placeholder="Company City" required />
-                            <input type="text" class="form-control company-state" name="familyName" ng-model="vm.developer.familyName" placeholder="Company State" required />
-                            <input type="text" class="form-control" name="familyName" ng-model="vm.developer.familyName" placeholder="Company Zip" required />
-                        </div>
-                    </div>
-                </div>
-                <button type="submit" class="btn btn-success btn-lg" >Create my account</button>
-            </form>
+            <nsj-recruiter-signUp></nsj-recruiter-signUp>
         </div>
     </div>
 </div>
@@ -63,12 +44,19 @@
 
 <script src="/vendor/angular/angular.min.js"></script>
 
+<script src="/vendor/angular-messages/angular-messages.min.js"></script>
+
 <script src="/vendor/angular-input-masks/angular-input-masks-standalone.min.js"></script>
 
 <script src='/vendor/angular-google-maps/dist/angular-google-maps.min.js'></script>
 
-<!-- NSJ Main -->
-<script src="/dashboard/app.module.js"></script>
+<!-- Recruiter Signup -->
+<script src="/recruiter-signup/app.module.js"></script>
+
+<script src="/recruiter-signup/recruiterSignup.service.js"></script>
+
+<script src="/recruiter-signup/nsjRecruiterSignup.js"></script>
+
 
 <!-- TODO: Make API KEY a server variable -->
 <!-- Google Maps API -->
