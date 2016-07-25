@@ -1273,7 +1273,7 @@ textarea.has-error {
 }
 
 .dashboard-nav {
-  background: #51606f;
+  background: #18BC9C;
   width: 250px;
   padding: 0px;
   position: fixed;
@@ -1291,7 +1291,7 @@ textarea.has-error {
   list-style: none;
   padding: 20px 22px 20px;
   box-sizing: border-box;
-  border-bottom: 1px solid #3a3a3a;
+  border-bottom: 1px solid #fff;
 }
 
 .dashboard-nav li:hover:before {
@@ -1352,7 +1352,6 @@ textarea.has-error {
   background: #fff;
   padding: 10px 20px;
   width: 30%;
-  box-shadow: 0px 2px 0px rgba(0,0,0,0.15);
 }
 
 .request-item h3 {
@@ -1417,15 +1416,15 @@ textarea.has-error {
   border-bottom-right-radius: 4px;
 }
 .reply .fa {
-  color: yellow;
+  color: #fff;
 }
 
 .thumbs-up .fa {
-  color: green;
+  color: #fff;
 }
 
 .thumbs-down .fa {
-  color: red;
+  color: #fff;
 }
 
 .recruiter-join-container {
@@ -1450,24 +1449,22 @@ input[name="companyState"] {
 }
 
 ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
-  text-transform: capitalize;
+  text-transform: none;
 }
 ::-moz-placeholder { /* Firefox 19+ */
-  text-transform: capitalize;
+  text-transform: none;
 }
 :-ms-input-placeholder { /* IE 10+ */
-  text-transform: capitalize;
+  text-transform: none;
 }
 :-moz-placeholder { /* Firefox 18- */
-  text-transform: capitalize;
+  text-transform: none;
 }
 
 .search-container {
   background: #fff;
-  margin: 90px 50px 0px 50px;
-  padding: 20px;
-  border: solid 1px #c5d6de;
-  border-radius: 10px;
+  margin: 0px -15px 0px -15px;
+  padding: 30px 40px 20px 40px;
 }
 
 .search-container label {
@@ -1481,4 +1478,8 @@ input[name="companyState"] {
 
 .search-container h3 {
   margin: 0px 0px 20px 0px;
+}
+
+.search-fulltime input, .search-hourly input {
+  margin: 0px 0px 10px 0px;
 }

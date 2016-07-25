@@ -1,55 +1,36 @@
-<form name="recruiterForm" class="recruiterForm" ng-submit="vm.submitForm(recruiterForm.$valid)" novalidate>
-  <div class="form-group">
-    <div class="row">
-      <div class="col-sm-12">
-        <div ng-show="vm.hasErrors" class="error-wrapper">
-          <div class="help-block" ng-messages="recruiterForm.givenName.$error" ng-messages-multiple>
-            <p ng-message="required">First Name is required.</p>
-          </div>
-          <div class="help-block" ng-messages="recruiterForm.familyName.$error" ng-messages-multiple>
-            <p ng-message="required">Last Name is required.</p>
-          </div>
-          <div class="help-block" ng-messages="recruiterForm.email.$error" ng-messages-multiple>
-            <p ng-message="required">Email Address is required.</p>
-          </div>
-          <div class="help-block" ng-messages="recruiterForm.password.$error" ng-messages-multiple>
-            <p ng-message="minlength">Password must be at least 5 characters long.</p>
-            <p ng-message="required">Password is required.</p>
-          </div>
-          <div class="help-block" ng-messages="recruiterForm.companyName.$error" ng-messages-multiple>
-            <p ng-message="required">Company name is required.</p>
-          </div>
-          <div class="help-block" ng-messages="recruiterForm.primaryPhone.$error" ng-messages-multiple>
-            <p ng-message="required">Phone number is required.</p>
-          </div>
-          <div class="help-block" ng-messages="recruiterForm.companyCity.$error" ng-messages-multiple>
-            <p ng-message="required">Company city is required.</p>
-          </div>
-          <div class="help-block" ng-messages="recruiterForm.companyState.$error" ng-messages-multiple>
-            <p ng-message="required">Company state is required.</p>
-            <p ng-message="maxlength">Must enter state abbreviation.</p>
-          </div>
-          <div class="help-block" ng-messages="recruiterForm.companyZip.$error" ng-messages-multiple>
-            <p ng-message="required">Company zip is required.</p>
+<div class="search-container">
+  <h3>Candidate Search</h3>
+  <div class="row">
+    <div class="col-sm-4">
+      <ul class="comp-list search-page">
+        <li></li>
+        <li ng-click="vm.selectFulltime()" ng-class="{'selected': vm.fulltimeSelected}">Full Time</li>
+        <li ng-click="vm.selectContract()" ng-class="{'selected': vm.contractSelected}">Contract</li>
+      </ul>
+      <div class="search-hourly" ng-show="vm.contractSelected">
+        <label for="givenName">Please provide the maximum hourly rate for this position.</label>
+        <div class="form-group">
+          <div class="comp-wrapper hourly">
+            <input type="text" class="form-control" ng-model="vm.developer.compHr" placeholder="e.g. $65.00" ui-money-mask="2" name="comp" required />
+            <span class="comp-unit">/hr</span>
           </div>
         </div>
       </div>
+      <div class="search-fulltime" ng-show="vm.fulltimeSelected">
+        <label for="givenName">Please provide the maximum yearly salary for this position.</label>
+        <div class="form-group">
+          <div class="comp-wrapper salary">
+            <input type="text" name="comp" class="form-control" ng-model="vm.recruiter.compFt" placeholder="e.g. $100,000" ui-money-mask="0" required />
+            <span class="comp-unit">/yr</span>
+          </div>
+        </div>
+      </div>
+      <label for="givenName">Please specify a location. This location will be used in providing commute estimations for our developers</label>
+      <input type="text" class="form-control" id="givenName" name="givenName" ng-model="vm.recruiter.givenName" placeholder="e.g. Downtown San Francisco" required />
+      <nsj-search-google-map></nsj-search-google-map>
     </div>
-    <div class="row">
-      <div class="col-sm-6 text-lft">
-        <input type="text" class="form-control" name="givenName" ng-model="vm.recruiter.givenName" placeholder="First Name" required />
-        <input type="text" class="form-control" name="familyName" ng-model="vm.recruiter.familyName" placeholder="Last Name" required />
-        <input type="text" class="form-control" name="email" ng-model="vm.recruiter.primaryEmail" placeholder="Email Address" required />
-        <input type="password" class="form-control" name="password" ng-model="vm.recruiter.password" placeholder="Password" ng-minlength="5" required />
-      </div>
-      <div class="col-sm-6 text-rgt">
-        <input type="text" class="form-control" name="companyName" ng-model="vm.recruiter.companyName" placeholder="Company Name" required />
-        <input type="text" class="form-control" name="primaryPhone" ng-model="vm.recruiter.primaryPhone" placeholder="Phone Number" ui-us-phone-number maxlength="14" required />
-        <input type="text" class="form-control company-city" name="companyCity" ng-model="vm.recruiter.companyCity" placeholder="Company City" required />
-        <input type="text" class="form-control company-state" name="companyState" ng-model="vm.recruiter.companyState" placeholder="Company State" maxlength="2" required />
-        <input type="text" class="form-control" name="companyZip" ng-model="vm.recruiter.companyZip" placeholder="Company Zip" maxlength="5" required />
-      </div>
+    <div class="col-sm-8">
+      fdsafdsafdsafdsafdsafdsafdasf
     </div>
   </div>
-  <button type="submit" class="btn btn-success btn-lg">Create my account</button>
-</form>
+</div>

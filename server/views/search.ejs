@@ -1,5 +1,5 @@
 <% include ./partials/head %>
-<body ng-app="search" id="dashboard">
+<body ng-app="search">
 <!-- Join  -->
 <!-- Navigation -->
 <nav class="navbar navbar-default">
@@ -29,53 +29,7 @@
 </nav>
 
 <div class="dashboard-container container-fluid">
-    <div class="search-container">
-        <h3>Candidate Search</h3>
-        <div class="row">
-            <div class="col-sm-4">
-                <ul class="comp-list search-page">
-                    <li></li>
-                    <li ng-click="vm.selectFulltime()" ng-class="{'selected': vm.fulltimeSelected}">Full Time</li>
-                    <li ng-click="vm.selectContract()" ng-class="{'selected': vm.contractSelected}">Contract</li>
-                </ul>
-                <div class="search-hourly" ng-show="vm.contractSelected">
-                    <div class="radio">
-                        <label>
-                            <input type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
-                            Option one is this and that&mdash;be sure to include why it's great
-                        </label>
-                    </div>
-                    <div class="radio">
-                        <label>
-                            <input type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
-                        </label>
-                    </div>
-                </div>
-                <div class="search-hourly" ng-show="vm.fulltimeSelected">
-                    <div class="radio">
-                        <label>
-                            <input type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
-                            Option one is this and that&mdash;be sure to include why it's great
-                        </label>
-                    </div>
-                    <div class="radio">
-                        <label>
-                            <input type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
-                        </label>
-                    </div>
-                </div>
-                <label for="givenName">Where is the opportunity?</label>
-                <input type="text" class="form-control" name="givenName" ng-model="vm.recruiter.givenName" placeholder="e.g. Downtown San Franciso" required />
-                <label for="familyName">Where is the opportunity?</label>
-                <input type="text" class="form-control" name="familyName" ng-model="vm.recruiter.familyName" placeholder="Last Name" required />
-                <label for="email">Where is the opportunity?</label>
-                <input type="text" class="form-control" name="email" ng-model="vm.recruiter.primaryEmail" placeholder="Email Address" required />
-            </div>
-            <div class="col-sm-8">
-fdsafdsafdsafdsafdsafdsafdasf
-            </div>
-        </div>
-    </div>
+    <nsj-search></nsj-search>
 </div>
 
 <% include ./partials/scripts.ejs %>
@@ -98,6 +52,11 @@ fdsafdsafdsafdsafdsafdsafdasf
 <script src="/search/search.service.js"></script>
 
 <script src="/search/nsjSearch.js"></script>
+
+<script src="/search/nsjSearchMap.js"></script>
+
+<script src='/vendor/angular-google-maps/dist/angular-google-maps.min.js'></script>
+
 
 <!-- TODO: Make API KEY a server variable -->
 <!-- Google Maps API -->

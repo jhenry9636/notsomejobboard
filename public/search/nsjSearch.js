@@ -10,16 +10,15 @@
     return {
       transclude: true,
       scope: true,
-      templateUrl: '/recruiter-signup/nsjRecruiterSignUp.html',
+      templateUrl: '/search/search.html',
       controller: SearchController,
       controllerAs: 'vm'
     }
 
   }
 
-  SearchController.$inject = ['recruiterSignupService'];
 
-  function SearchController(recruiterSignupService) {
+  function SearchController() {
     var vm = this;
 
     vm.recruiter = {}
@@ -36,8 +35,8 @@
     vm.hasErrors = false;
     vm.selectContract = selectContract;
     vm.selectFulltime = selectFulltime;
-    vm.fulltimeSelected = false;
-    vm.contractSelected = true;
+    vm.fulltimeSelected = true;
+    vm.contractSelected = false;
 
     function submitForm(isValid) {
       if(!isValid) {
@@ -49,7 +48,6 @@
     }
 
     function selectContract() {
-      debugger
       vm.contractSelected = true;
       vm.fulltimeSelected = false;
     }
