@@ -8,29 +8,52 @@
         <li ng-click="vm.selectContract()" ng-class="{'selected': vm.contractSelected}">Contract</li>
       </ul>
       <div class="search-hourly" ng-show="vm.contractSelected">
-        <label for="givenName">Please provide the maximum hourly rate for this position.</label>
+        <label for="givenName">Please provide the maximum hourly rate for this role.</label>
         <div class="form-group">
           <div class="comp-wrapper hourly">
-            <input type="text" class="form-control" ng-model="vm.developer.compHr" placeholder="e.g. $65.00" ui-money-mask="2" name="comp" required />
+            <input type="text" class="form-control" ng-model="vm.query.compHr" placeholder="e.g. $65.00" ui-money-mask="2" name="comp" required />
             <span class="comp-unit">/hr</span>
           </div>
         </div>
       </div>
       <div class="search-fulltime" ng-show="vm.fulltimeSelected">
-        <label for="givenName">Please provide the maximum yearly salary for this position.</label>
+        <label for="givenName">Please provide the maximum yearly salary for this role.</label>
         <div class="form-group">
           <div class="comp-wrapper salary">
-            <input type="text" name="comp" class="form-control" ng-model="vm.recruiter.compFt" placeholder="e.g. $100,000" ui-money-mask="0" required />
+            <input type="text" name="comp" class="form-control" ng-model="vm.query.compFull" placeholder="e.g. $100,000" ui-money-mask="0" required />
             <span class="comp-unit">/yr</span>
           </div>
         </div>
       </div>
-      <label for="givenName">Please specify a location. This location will be used in providing commute estimations for our developers</label>
-      <input type="text" class="form-control" id="givenName" name="givenName" ng-model="vm.recruiter.givenName" placeholder="e.g. Downtown San Francisco" required />
+      <label>Please select some technologies that are pertinent to this role.</label>
+
+      <perfect-scrollbar class="scroller search-skill-wrapper" wheel-propagation="true" wheel-speed="10" min-scrollbar-length="20">
+        <div class="clearfix skill-item"
+             ng-class="{'selected': vm.selectedSkills.indexOf(skill) > -1}"
+             ng-repeat="skill in vm.skills"
+             ng-click="vm.handleSkillToggle(skill)">
+          <div class="search-skill-reply" >
+            <span>Yes</span><span>No</span>
+          </div>
+          <span>{{skill}}</span>
+        </div>
+      </perfect-scrollbar>
+      <label for="search-location">Please specify a location for this role. This location will be used in providing commute estimations for our developers</label>
+      <input type="text" class="form-control" id="search-location" name="givenName" ng-model="vm.query.location" placeholder="e.g. Downtown San Francisco" required />
       <nsj-search-google-map></nsj-search-google-map>
+      <button type="submit" class="btn btn-success btn-lg" ng-click="vm.submitForm(true)">Search</button>
     </div>
     <div class="col-sm-8">
-      fdsafdsafdsafdsafdsafdsafdasf
+      <div class="request-item">
+        <span class="request-joined">Joined August 9th</span>
+        <h3>Hi I'm T Henry</h3>
+        <h4>Im looking to work near Downtown Sunnyvale</h4>
+        <span class="request-commute">Ive used the following technologies on 8 projects</span>
+
+        <div class="recruiter-info">
+          <span class="recruiter-name">I really need to move ASAP as possible. I am not using the technologies I was promised.</span>
+        </div>
+      </div>
     </div>
   </div>
 </div>

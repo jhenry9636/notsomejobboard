@@ -3,7 +3,8 @@
 
   angular.module('search', [
     'ngMessages',
-    'ui.utils.masks'
+    'ui.utils.masks',
+    'perfect_scrollbar'
   ]);
   
   

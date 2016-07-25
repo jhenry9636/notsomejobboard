@@ -107,19 +107,20 @@
           </div>
           <div class="row">
             <div class="col-sm-12 tech-list-col">
-              <button class="close-tech"
-                      ng-show="vm.showTechList"
-                      ng-click="vm.toggleTechList($event)">Close</button>
-              <ul class="wizard-tech" ng-class="{'expand' : vm.showTechList}">
-                <li ng-repeat="skill in vm.skills"
-                    ng-click="vm.handleSkillToggle(skill)"
-                    ng-class="{'selected': vm.selectedTech.indexOf(skill) > -1}">
-                  <button>
-                    {{skill}}
-                    <i ng-if="vm.selectedTech.indexOf(skill) > -1" class="fa fa-check" aria-hidden="true"></i>
-                  </button>
-                </li>
-              </ul>
+              <div ng-show="vm.showTechList">
+                <button class="close-tech"
+                        ng-click="vm.toggleTechList($event)">Close</button>
+                <ul class="wizard-tech" ng-class="{'expand' : vm.showTechList}">
+                  <li ng-repeat="skill in vm.skills"
+                      ng-click="vm.handleSkillToggle(skill)"
+                      ng-class="{'selected': vm.selectedTech.indexOf(skill) > -1}">
+                    <button>
+                      {{skill}}
+                      <i ng-if="vm.selectedTech.indexOf(skill) > -1" class="fa fa-check" aria-hidden="true"></i>
+                    </button>
+                  </li>
+                </ul>
+              </div>
             </div>
           </div>
           <div class="row wizard-row">
