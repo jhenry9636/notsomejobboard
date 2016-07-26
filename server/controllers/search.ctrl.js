@@ -8,8 +8,8 @@ exports.search = function(req, res) {
 
   Developer.find({
     'projects.techUsed': { $in: req.body.skills },
-    compMin : { $lte: req.body.comp }
-    // compType: req.body.compType
+    compMin : { $lte: req.body.comp },
+    compType: req.body.compType
   })
   .exec(function(err, developers) {
 

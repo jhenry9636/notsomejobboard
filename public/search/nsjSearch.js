@@ -69,10 +69,16 @@
 
       query.comp = vm.fulltimeSelected ? vm.query.compFull : vm.query.compHr;
       query.compType = vm.fulltimeSelected ? 'fulltime' : 'contract';
-      searchService.search(query).then(function(results) {
-        console.log(results)
-      })
-      // recruiterSignupService.save(vm.query)
+
+      vm.loading = true;
+      searchService.search(query)
+        .then(function(result) {
+          vm.developers = result.data.collection;
+          vm.loading = false;
+        })
+        .catch(function() {
+          vm.loading = false;
+        })
     }
 
     function isValid() {
@@ -145,6 +151,8 @@
                                   placeObj.geometry.location.lat()];
       })
     })
+    
+    
 
 
   }

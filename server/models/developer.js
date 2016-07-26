@@ -32,7 +32,7 @@ var developerSchema = new Schema({
     enum: validator.compType
   },
   compMin: {
-    type: String
+    type: Number
   },
   primaryPhone: String,
   receivedContactRequests: [{
