@@ -1,15 +1,12 @@
 var express = require('express');
 var searchRouter = express.Router();
+var searchCtrl = require('../controllers/search.ctrl.js');
 var authenticationCheck = require('../common/authcheck.js');
 
 module.exports = function() {
 
   searchRouter.route('/')
-    .get(function(req, res) {
-      res.render('search', {
-        user: req.user
-      })
-    })
+    .post(searchCtrl.search)
 
   return searchRouter
 }

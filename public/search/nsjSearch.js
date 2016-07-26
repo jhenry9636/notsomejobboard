@@ -17,10 +17,10 @@
 
   }
 
-  ctrl.$inject = ['skillsService']
+  ctrl.$inject = ['searchService', 'skillsService', '$rootScope', '$scope']
 
 
-  function ctrl(skillsService) {
+  function ctrl(searchService, skillsService, $rootScope, $scope) {
     var vm = this;
 
     vm.recruiter = {}
@@ -43,24 +43,68 @@
     vm.selectedSkills = skillsService.selectedSkills
     vm.handleSkillToggle = handleSkillToggle;
     vm.submitForm = submitForm;
+    vm.errors = {};
 
     vm.query = {};
     vm.query.compType = null;
     vm.query.compFull = null;
     vm.query.compHr = null;
     vm.query.skills = null;
-    vm.query.location = null;
+    vm.query.locationName = null;
+    vm.query.locationCoords = null;
 
 
     function submitForm() {
-      // if(!isValid) {
-      //   vm.hasErrors = true;
-      //   return;
-      // }
-      // vm.hasErrors = false;
-      debugger
-      console.dir(vm.query)
+
+
+      var query = angular.copy(vm.query);
+
+      if(!isValid()) {
+        return alert('nope')
+      }
+
+      delete query.compHr;
+      delete query.compFull;
+      delete query.locationName;
+
+      query.comp = vm.fulltimeSelected ? vm.query.compFull : vm.query.compHr;
+      query.compType = vm.fulltimeSelected ? 'fulltime' : 'contract';
+      searchService.search(query).then(function(results) {
+        console.log(results)
+      })
       // recruiterSignupService.save(vm.query)
+    }
+
+    function isValid() {
+      var isValid = true;
+
+      vm.errors = {};
+
+      if(vm.fulltimeSelected) {
+        if(!vm.query.compFull) {
+          isValid = false;
+          vm.errors.compFullError = true;
+        }
+      }
+
+      if(vm.contractSelected) {
+        if(!vm.query.compHr) {
+          isValid = false;
+          vm.errors.compHrError = true;
+        }
+      }
+
+      if(!vm.selectedSkills.length) {
+        isValid = false;
+        vm.errors.skillsError = true;
+      }
+
+      if(!vm.query.locationName) {
+        isValid = false;
+        vm.errors.locationError = true;
+      }
+
+      return isValid;
     }
 
     function selectContract() {
@@ -92,6 +136,16 @@
       }
       vm.query.skills = skillsService.selectedSkills;
     }
+
+
+    $rootScope.$on('search:location', function($scope, placeObj) {
+      $scope.currentScope.$apply(function() {
+        vm.query.locationName = placeObj.formatted_address;
+        vm.query.locationCoords = [placeObj.geometry.location.lng(),
+                                  placeObj.geometry.location.lat()];
+      })
+    })
+
 
   }
 

@@ -8,25 +8,37 @@
         <li ng-click="vm.selectContract()" ng-class="{'selected': vm.contractSelected}">Contract</li>
       </ul>
       <div class="search-hourly" ng-show="vm.contractSelected">
+        <div class="help-block" ng-show="vm.errors.compHrError">
+          <p>Must provide compensation maximum.</p>
+        </div>
         <label for="givenName">Please provide the maximum hourly rate for this role.</label>
         <div class="form-group">
           <div class="comp-wrapper hourly">
-            <input type="text" class="form-control" ng-model="vm.query.compHr" placeholder="e.g. $65.00" ui-money-mask="2" name="comp" required />
+            <input type="text" class="form-control"
+                   ng-class="{'has-error' : vm.errors.compHrError}"
+                   ng-model="vm.query.compHr" placeholder="e.g. $65.00" ui-money-mask="2" name="comp" required />
             <span class="comp-unit">/hr</span>
           </div>
         </div>
       </div>
       <div class="search-fulltime" ng-show="vm.fulltimeSelected">
+        <div class="help-block" ng-show="vm.errors.compFullError">
+          <p>Must provide hourly compensation maximum.</p>
+        </div>
         <label for="givenName">Please provide the maximum yearly salary for this role.</label>
         <div class="form-group">
           <div class="comp-wrapper salary">
-            <input type="text" name="comp" class="form-control" ng-model="vm.query.compFull" placeholder="e.g. $100,000" ui-money-mask="0" required />
+            <input type="text" name="comp" class="form-control"
+                   ng-class="{'has-error' : vm.errors.compFullError}"
+                   ng-model="vm.query.compFull" placeholder="e.g. $100,000" ui-money-mask="0" required />
             <span class="comp-unit">/yr</span>
           </div>
         </div>
       </div>
+      <div class="help-block" ng-show="vm.errors.skillsError">
+        <p>Must select at least 1 technology to search.</p>
+      </div>
       <label>Please select some technologies that are pertinent to this role.</label>
-
       <perfect-scrollbar class="scroller search-skill-wrapper" wheel-propagation="true" wheel-speed="10" min-scrollbar-length="20">
         <div class="clearfix skill-item"
              ng-class="{'selected': vm.selectedSkills.indexOf(skill) > -1}"
@@ -38,8 +50,13 @@
           <span>{{skill}}</span>
         </div>
       </perfect-scrollbar>
+      <div class="help-block" ng-show="vm.errors.locationError">
+        <p>Location is required.</p>
+      </div>
       <label for="search-location">Please specify a location for this role. This location will be used in providing commute estimations for our developers</label>
-      <input type="text" class="form-control" id="search-location" name="givenName" ng-model="vm.query.location" placeholder="e.g. Downtown San Francisco" required />
+      <input type="text" class="form-control" id="search-location" name="givenName"
+             ng-class="{'has-error' : vm.errors.locationError}"
+             ng-model="vm.query.locationName" placeholder="e.g. Downtown San Francisco" required />
       <nsj-search-google-map></nsj-search-google-map>
       <button type="submit" class="btn btn-success btn-lg" ng-click="vm.submitForm(true)">Search</button>
     </div>
@@ -48,9 +65,17 @@
         <span class="request-joined">Joined August 9th</span>
         <h3>Hi I'm T Henry</h3>
         <h4>Im looking to work near Downtown Sunnyvale</h4>
-        <span class="request-commute">Ive used the following technologies on 8 projects</span>
-
+        <span class="request-commute">Ive used the following technologies on <a href="#">8 projects</a></span>
+        <ul class="request-skills">
+          <li>Angular.js</li>
+          <li>Backbone.js</li>
+          <li>Ember.js</li>
+          <li>React.js</li>
+          <li>EJS</li>
+          <li>Handlebars.js</li>
+        </ul>
         <div class="recruiter-info">
+          <span class="recruiter-note">Note from T. Henry:</span>
           <span class="recruiter-name">I really need to move ASAP as possible. I am not using the technologies I was promised.</span>
         </div>
       </div>

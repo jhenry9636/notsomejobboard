@@ -2,21 +2,20 @@
   'use strict'
 
   angular.module('search')
-    .factory('searchService', recruiterSignupService)
+    .factory('searchService', searchService)
 
-  recruiterSignupService.$inject = ['$q', '$http'];
+  searchService.$inject = ['$q', '$http'];
 
-  function recruiterSignupService($q, $http) {
+  function searchService($q, $http) {
 
     var service = {};
 
-    service.save = save;
+    service.search = search;
 
-    function save(recruiter) {
+    function search(query) {
+      debugger
 
-      recruiter.companyState = recruiter.companyState.toUpperCase();
-
-      return $http.post('/signup/recruiter', recruiter)
+      return $http.post('/api/search', query)
         .then(success)
         .catch(fail);
 
@@ -28,7 +27,6 @@
       }
 
     }
-
 
     return service;
 

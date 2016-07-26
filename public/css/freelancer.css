@@ -247,6 +247,10 @@ section.success a.active {
     opacity: 1;
 }
 
+.help-block p {
+  font-size: 18px;
+}
+
 #portfolio .portfolio-item .portfolio-link .caption .caption-content {
     position: absolute;
     top: 50%;
@@ -1393,6 +1397,21 @@ textarea.has-error {
   margin-bottom: 35px;
 }
 
+.request-skills {
+  margin: 10px 0px;
+  padding: 0px;
+}
+
+.request-skills li {
+  margin: 0px 0px 2px 0px;
+  background: #0e76ad;
+  color: #fff;
+  padding: 3px 6px;
+  display: inline-block;
+  list-style: none;
+  border-radius: 5px;
+}
+
 .recruiter-info span {
   display: block;
   color: #717f86;
@@ -1564,4 +1583,8 @@ input[name="companyState"] {
   color: #959798;
   cursor: pointer;
   border-radius: 3px;
+}
+
+input.has-error {
+  border: 2px solid #e74c3c;
 }

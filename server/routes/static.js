@@ -43,6 +43,13 @@ module.exports = function() {
       })
     })
 
+  staticRouter.route('/search')
+    .get(function(req, res) {
+      res.render('search', {
+        user: req.user
+      })
+    })
+
 
 
   return staticRouter

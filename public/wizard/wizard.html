@@ -53,7 +53,7 @@
       <div class="wizard-step-container" ng-class="{'active': vm.currentStep == 0}">
         <form name="locationForm" ng-submit="vm.nextStep($event, locationForm.location.$valid)" novalidate>
           <h3>Where do you want to work?</h3>
-          <p>Select a location and increase the radius to help us determine where you are willing to commute.<br />We want to make sure you only hear about opportunities within this area.</p>
+          <p>Select a location and increase the radius to help us determine where you are willing to commute.<br />We'll make sure you only hear about opportunities within this area.</p>
           <div class="row">
             <div class="col-sm-12">
               <div class="help-block" ng-show="vm.hasErrors" ng-messages="locationForm.location.$error" ng-messages-multiple>

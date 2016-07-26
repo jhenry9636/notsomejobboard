@@ -13,20 +13,19 @@
     }
   }
 
+  ctrl.$inject = ['$rootScope']
 
-  function ctrl(skillsService) {
+  function ctrl($rootScope) {
 
     var vm = this;
-    
+
     initMap()
 
     function initMap() {
       var mapOptions = {
         center: new google.maps.LatLng(37.773972, -122.431297),
         zoom: 9,
-        disableDefaultUI: true,
-        zoomControl: true,
-        scaleControl: true
+        disableDefaultUI: true
       }
 
       var map = new google.maps.Map(document.getElementById('map'), mapOptions)
@@ -56,6 +55,9 @@
           window.alert("Autocomplete's returned place contains no geometry");
           return;
         }
+
+        $rootScope.$broadcast('search:location', place);
+
 
         // If the place has a geometry, then present it on a map.
         if (place.geometry.viewport) {

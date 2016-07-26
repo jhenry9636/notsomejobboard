@@ -115,21 +115,6 @@ developerSchema.methods.comparePassword = function(candidatePassword, cb) {
   });
 };
 
-developerSchema.methods.findByLatLng = function() {
-
-  db.developers.find({
-    locationPolygon: {
-      $geoIntersects: {
-        $geometry: {
-          "type": "Point",
-          "coordinates": [-119.86166599999999, 34.40965316432119]
-        }
-      }
-    }
-  });
-
-};
-
 developerSchema.methods.hasRole = function(role) {
   return this.roles.indexOf(role) > -1;
 }
@@ -161,14 +146,4 @@ developerSchema.options.toObject.transform = function (doc, ret, options) {
 
 
 
-var Client = mongoose.model('Developer', developerSchema);
-
-Client.ensureIndexes(function (err) {
-  console.log('ENSURE INDEX')
-  if (err) console.log(err)
-})
-
-Client.on('index', function (err) {
-  console.log('ON INDEX')
-  if (err) console.log(err)
-})
+mongoose.model('Developer', developerSchema);

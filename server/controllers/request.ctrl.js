@@ -57,7 +57,7 @@ exports.getByDeveloperId = function(req, res) {
   query.populate('recipient')
   query.exec(function(err, request) {
 
-    if(request) {
+    if(!request) {
       return res.status(404).send({
         success: false,
         reason: new Error('Request not found')
