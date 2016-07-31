@@ -1,5 +1,5 @@
 <!-- Login Modal -->
-<div class="portfolio-modal modal fade" id="login" tabindex="-1" role="dialog" aria-hidden="true">
+<div ng-app="developer-signup" class="developer-signup portfolio-modal modal fade" id="login" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-content">
         <div class="close-modal" data-dismiss="modal">
             <div class="lr">
@@ -16,13 +16,7 @@
                 </div>
                 <div class="row">
                     <div class="col-lg-8 col-lg-offset-2">
-                        <form name="recruiterForm" class="recruiterForm" ng-submit="vm.signUp(recruiterForm.$valid)" novalidate>
-                            <input type="text" class="form-control" name="email" ng-model="vm.recruiter.primaryEmail" placeholder="Email Address" required />
-                            <input type="password" class="form-control" name="password" ng-model="vm.recruiter.password" placeholder="Password" ng-minlength="5" required />
-                            <div class="action-wrapper">
-                                <button type="submit" class="btn btn-success btn-lg">Log In</button>
-                            </div>
-                        </form>
+                        <nsj-developer-signup></nsj-developer-signup>
                     </div>
                 </div>
             </div>

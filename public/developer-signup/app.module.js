@@ -1,7 +1,7 @@
 (function() {
   'use strict'
 
-  angular.module('recruiter-signup', [
+  angular.module('developer-signup', [
     'ngMessages',
     'ui.utils.masks'
   ]);

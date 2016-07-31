@@ -186,6 +186,10 @@ header .intro-text .skills {
     outline: 0;
 }
 
+.navbar-default .navbar-brand:hover, .navbar-default .navbar-brand:focus {
+  color: #fff;
+}
+
 .navbar-default,
 .navbar-inverse {
     border: 0;
@@ -1237,9 +1241,14 @@ textarea.has-error {
   display: block;
 }
 
+.developerSigninForm input,
 .submitForm input {
   margin: 0px auto 10px auto;
   width: 30%;
+}
+
+.developerSigninForm input {
+  width: 40%;
 }
 
 /*.text-lft input {*/
@@ -1259,12 +1268,14 @@ textarea.has-error {
 }
 
 .submitForm .form-group,
+.developerSigninForm .form-group,
 .recruiterForm .form-group {
   text-align: center;
 }
 
 .submitForm .help-block,
-.recruiterForm .help-block {
+.recruiterForm .help-block,
+.developerSigninForm .help-block {
   text-align: center;
 }
 
@@ -1671,4 +1682,8 @@ input.has-error {
   margin: 0px 30px;
   padding: 10px;
   height: 44px;
+}
+
+.developer-signup .error-wrapper .help-block p {
+  text-align: center;
 }

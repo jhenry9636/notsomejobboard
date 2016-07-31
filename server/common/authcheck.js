@@ -3,5 +3,5 @@ module.exports = function(req, res, next) {
 		console.log('Not logged in')
 		return res.redirect('/')
 	}
-	next()
+	return next()
 }
