@@ -5,6 +5,7 @@ var expressSession = require('express-session');
 var passport = require('passport');
 var logger = require('morgan');
 var stylus = require('stylus');
+var flash = require('express-flash');
 
 module.exports = function(server, config) {
   function compile(str, path) {
@@ -21,6 +22,8 @@ module.exports = function(server, config) {
     resave: false,
     saveUninitialized: false
   }));
+
+  server.use(flash());
 
   server.use(logger('dev'));
   server.use(passport.initialize());

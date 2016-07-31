@@ -17,10 +17,10 @@
 
   }
 
-  ctrl.$inject = ['searchService', 'skillsService', '$rootScope', '$scope']
+  ctrl.$inject = ['randomGreetingService', 'searchService', 'skillsService', '$rootScope', '$scope']
 
 
-  function ctrl(searchService, skillsService, $rootScope, $scope) {
+  function ctrl(randomGreetingService, searchService, skillsService, $rootScope, $scope) {
     var vm = this;
 
     vm.recruiter = {}
@@ -44,7 +44,6 @@
     vm.handleSkillToggle = handleSkillToggle;
     vm.submitForm = submitForm;
     vm.errors = {};
-
     vm.query = {};
     vm.query.compType = null;
     vm.query.compFull = null;
@@ -60,9 +59,10 @@
       var query = angular.copy(vm.query);
 
       if(!isValid()) {
-        return alert('nope')
+        return
       }
-
+      // TODO: Remove the first and last name from results
+      // and create a virtual field.
       delete query.compHr;
       delete query.compFull;
       delete query.locationName;
@@ -142,7 +142,6 @@
       }
       vm.query.skills = skillsService.selectedSkills;
     }
-
 
     $rootScope.$on('search:location', function($scope, placeObj) {
       $scope.currentScope.$apply(function() {

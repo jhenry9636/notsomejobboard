@@ -11,6 +11,7 @@
     var service = {};
 
     service.save = save;
+    service.submitSignin = submitSignin;
 
     function save(recruiter) {
 
@@ -29,6 +30,19 @@
 
     }
 
+    function submitSignin(query) {
+      return $http.post('/login/recruiter', query)
+        .then(success)
+        .catch(fail);
+
+      function success(response) {
+        console.dir(response);
+      };
+      function fail(error) {
+        console.error('XHR Failed for save.' + error.data);
+      }
+
+    }
 
     return service;
 

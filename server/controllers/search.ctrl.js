@@ -11,7 +11,12 @@ exports.search = function(req, res) {
     compMin : { $lte: req.body.comp },
     compType: req.body.compType
   })
-  .exec(function(err, developers) {
+    .where('locationPolyon').intersects()
+      .geometry({ type: 'Point', coordinates: req.body.locationCoords })
+    
+    .exec(function(err, developers) {
+
+
 
     if(!developers) {
       return res.status(404).send({

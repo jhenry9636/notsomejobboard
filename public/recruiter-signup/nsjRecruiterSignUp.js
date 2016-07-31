@@ -32,14 +32,21 @@
     vm.recruiter.companyCity = null;
     vm.recruiter.companyState = null;
     vm.recruiter.companyZip = null;
-    vm.submitForm = submitForm;
+    vm.signUp = signUp;
     vm.hasErrors = false;
     vm.selectContract = selectContract;
     vm.selectFulltime = selectFulltime;
     vm.fulltimeSelected = false;
     vm.contractSelected = true;
 
-    function submitForm(isValid) {
+    vm.signin = {};
+    vm.signin.primaryEmail = null;
+    vm.signin.password = null;
+
+    vm.submitSignin = submitSignin;
+
+
+    function signUp(isValid) {
       if(!isValid) {
         vm.hasErrors = true;
         return;
@@ -48,8 +55,16 @@
       recruiterSignupService.save(vm.recruiter)
     }
 
+    function submitSignin(isValid) {
+      if(!isValid) {
+        vm.hasErrors = true;
+        return;
+      }
+      vm.hasErrors = false;
+      recruiterSignupService.submitSignin(vm.signin)
+    }
+
     function selectContract() {
-      debugger
       vm.contractSelected = true;
       vm.fulltimeSelected = false;
     }
@@ -57,6 +72,10 @@
     function selectFulltime() {
       vm.contractSelected = false;
       vm.fulltimeSelected = true;
+    }
+    
+    function signin() {
+      
     }
 
   }

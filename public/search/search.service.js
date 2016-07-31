@@ -25,7 +25,7 @@
         deferred.resolve(response)
       };
       function fail(error) {
-        deferred.reject(response)
+        deferred.reject(error)
         console.error('XHR Failed for save.' + error.data);
       }
 

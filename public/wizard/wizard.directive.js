@@ -150,7 +150,7 @@
         vm.selectedTech = skills;
       })
     }
-
+    
     function resetProject() {
       resetSkills();
       vm.tech = '';
@@ -249,13 +249,12 @@
       })
     })
 
-    $scope.$watch('vm.developer.locationRadius', function(newValue) {
+    $scope.$watch('vm.developer.locationRadius', function(currentRadius) {
       if(!mapsService.getMap()) {
         return;
       }
 
-      mapsService.setRadius(newValue)
-      vm.developer.locationRadius = newValue;
+      mapsService.setRadius(currentRadius)
       mapsService.setCenter();
     }, true)
 

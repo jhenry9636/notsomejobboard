@@ -37,6 +37,11 @@ var recruiterSchema = new Schema({
     required: [true, 'Company city field is required.'],
     validate: validator.requiredField
   },
+  primaryPhone: {
+    type: String,
+    required: [true, 'Company phone number field is required.'],
+    validate: validator.phoneNumber
+  }, 
   companyState: {
     type: String,
     required: [true, 'Company state field is required.'],
@@ -46,11 +51,6 @@ var recruiterSchema = new Schema({
     type: String,
     required: [true, 'Company zip code field is required.'],
     validate: validator.zipCode
-  },
-  primaryPhone: {
-    type: String,
-    required: [true, 'Company phone number field is required.'],
-    validate: validator.phoneNumber
   },
   sentContactRequests: [{
     type: Schema.ObjectId,

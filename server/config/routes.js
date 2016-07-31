@@ -13,7 +13,7 @@ module.exports = function(server) {
   // server.use('/api/developer', authenticationCheck, developerRouter)
   server.use('/api/developer', developerRouter)
 
-  server.use('/api/recruiter', authenticationCheck, recruiterRouter)
+  server.use('/api/recruiter', recruiterRouter)
 
   // server.use('/api/request', authenticationCheck, requestRouter)
   server.use('/api/request', requestRouter)
@@ -21,8 +21,7 @@ module.exports = function(server) {
   server.use('/api/search', searchRouter)
   
   server.use('/login', loginRouter)
-
-
+  
   server.use('/signup', signupRouter)
 
   server.use('/', logoutRouter)

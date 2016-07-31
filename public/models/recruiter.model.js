@@ -11,7 +11,8 @@
     return {
       getAll: getAll,
       create: create,
-      save: save
+      save: save,
+      signin: signin
     };
 
     function create(developerObj) {
@@ -39,6 +40,21 @@
     }
 
     function save(developer) {
+
+      return $http.post('/signup/developer', developer)
+        .then(success)
+        .catch(fail);
+
+      function success(response) {
+        console.dir(response)
+      };
+      function fail(error) {
+        console.error('XHR Failed for save.' + error.data);
+      }
+
+    }
+
+    function signin(developer) {
 
       return $http.post('/signup/developer', developer)
         .then(success)

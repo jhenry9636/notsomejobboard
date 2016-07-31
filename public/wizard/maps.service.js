@@ -27,7 +27,8 @@
       getBounds: getBounds,
       setCenter: setCenter,
       getCircleProps: getCircleProps,
-      generateGeoJSONCircle: generateGeoJSONCircle
+      generateGeoJSONCircle: generateGeoJSONCircle,
+      getCurrentLocation: getCurrentLocation
     }
 
     return service
@@ -69,6 +70,39 @@
 
       service.markers[1] = service.circle = circle;
 
+      var data = {
+        "type": "Feature",
+        "id": 9876,
+        "geometry": {
+        "type": "Point",
+          "coordinates": [
+            37.7749,
+            122.4194
+        ]
+      },
+        "properties": {
+        "condition": "Satisfactory",
+          "has_garage": false,
+          "number_of_bedrooms": 3
+        }
+      };
+
+      getMap().data.addGeoJson(data)
+
+    }
+
+    function getCurrentLocation() {
+      var deferred = $q.defer();
+
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function(location) {
+          deferred.resolve(location)
+        });
+      } else {
+        deferred.reject('Geo Location is not supported')
+      }
+      
+      return deferred.promise;
     }
 
     function getCircleProps() {
@@ -83,6 +117,8 @@
       }
     }
 
+
+
     function initAutoComplete() {
       var options = {
         types: ['geocode'],
@@ -94,7 +130,7 @@
           document.getElementById('autocomplete'), options));
     }
 
-    function initMap() {
+    function initMap(lat, lng) {
       var mapOptions = {
         center: new google.maps.LatLng(37.773972, -122.431297),
         zoom: 9,
@@ -115,7 +151,7 @@
     }
 
     function generateGeoJSONCircle(coordinates, radius, numSides) {
-
+      debugger
       var points = [];
       var earthRadius = 6371;
       var halfsides = numSides / 2;

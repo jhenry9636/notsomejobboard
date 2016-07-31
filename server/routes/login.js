@@ -14,7 +14,9 @@ module.exports = function(server) {
         }
 
         if (!developer) {
-          return res.redirect('/');
+          return res.redirect('/login/developer', {messages: [
+            'Invalid username or password'
+          ]});
         }
 
         req.logIn(developer, function(err) {
@@ -35,12 +37,14 @@ module.exports = function(server) {
         }
 
         if (!recruiter) {
-          return res.redirect('/');
+          return res.render('join-recruiter', {messages: [
+            'Invalid username or password'
+          ]});
         }
 
         req.logIn(recruiter, function(err) {
           if (err) { return next(err); }
-          return res.redirect('/dashboard');
+          return res.render('dashboard');
         });
       });
 

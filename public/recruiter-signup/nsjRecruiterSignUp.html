@@ -1,7 +1,13 @@
-<form name="recruiterForm" class="recruiterForm" ng-submit="vm.submitForm(recruiterForm.$valid)" novalidate>
-  <div class="form-group">
-    <div class="row">
-      <div class="col-sm-12">
+<div class="form-group">
+  <div class="row">
+    <div class="col-sm-12">
+
+    </div>
+  </div>
+  <div class="row">
+      <div class="col-sm-6 text-lft">
+        <h3>Your next front end developer hired faster. <br />We know exactly what our candidates want ... because we asked.</h3>
+        <p>Sign up today! Start a search with what matters most to front end developers.</p>
         <div ng-show="vm.hasErrors" class="error-wrapper">
           <div class="help-block" ng-messages="recruiterForm.givenName.$error" ng-messages-multiple>
             <p ng-message="required">First Name is required.</p>
@@ -33,23 +39,32 @@
             <p ng-message="required">Company zip is required.</p>
           </div>
         </div>
+        <form name="recruiterForm" class="recruiterForm" ng-submit="vm.signUp(recruiterForm.$valid)" novalidate>
+          <input type="text" class="form-control" name="givenName" ng-model="vm.recruiter.givenName" placeholder="First Name" required />
+          <input type="text" class="form-control" name="familyName" ng-model="vm.recruiter.familyName" placeholder="Last Name" required />
+          <input type="text" class="form-control" name="email" ng-model="vm.recruiter.primaryEmail" placeholder="Email Address" required />
+          <input type="password" class="form-control" name="password" ng-model="vm.recruiter.password" placeholder="Password" ng-minlength="5" required />
+          <input type="text" class="form-control" name="companyName" ng-model="vm.recruiter.companyName" placeholder="Company Name" required />
+          <input type="text" class="form-control" name="primaryPhone" ng-model="vm.recruiter.primaryPhone" placeholder="Phone Number" ui-us-phone-number maxlength="14" required />
+          <input type="text" class="form-control company-city" name="companyCity" ng-model="vm.recruiter.companyCity" placeholder="Company City" required />
+          <input type="text" class="form-control company-state" name="companyState" ng-model="vm.recruiter.companyState" placeholder="Company State" maxlength="2" required />
+          <input type="text" class="form-control" name="companyZip" ng-model="vm.recruiter.companyZip" placeholder="Company Zip" maxlength="5" required />
+          <div class="action-wrapper">
+            <button type="submit" class="btn btn-success btn-lg">Create my account</button>
+          </div>
+        </form>
       </div>
+    <div class="col-sm-6 text-rgt">
+      <h3 style="margin-top: 76px;">Welcome back, we missed you.</h3>
+      <p>Please enter your credentials below to login.</p>
+      <form name="recruiterLogin" class="recruiterLogin" ng-submit="vm.submitSignin(recruiterLogin.$valid)" novalidate>
+        <input type="text" class="form-control" name="email" ng-model="vm.signin.primaryEmail" placeholder="Email Address" required />
+        <input type="password" class="form-control" name="password" ng-model="vm.signin.password" placeholder="Password" ng-minlength="5" required />
+        <div class="action-wrapper">
+          <button type="submit" class="btn btn-success btn-lg">Log In</button>
+        </div>
+      </form>
     </div>
-    <div class="row">
-      <div class="col-sm-6 text-lft">
-        <input type="text" class="form-control" name="givenName" ng-model="vm.recruiter.givenName" placeholder="First Name" required />
-        <input type="text" class="form-control" name="familyName" ng-model="vm.recruiter.familyName" placeholder="Last Name" required />
-        <input type="text" class="form-control" name="email" ng-model="vm.recruiter.primaryEmail" placeholder="Email Address" required />
-        <input type="password" class="form-control" name="password" ng-model="vm.recruiter.password" placeholder="Password" ng-minlength="5" required />
-      </div>
-      <div class="col-sm-6 text-rgt">
-        <input type="text" class="form-control" name="companyName" ng-model="vm.recruiter.companyName" placeholder="Company Name" required />
-        <input type="text" class="form-control" name="primaryPhone" ng-model="vm.recruiter.primaryPhone" placeholder="Phone Number" ui-us-phone-number maxlength="14" required />
-        <input type="text" class="form-control company-city" name="companyCity" ng-model="vm.recruiter.companyCity" placeholder="Company City" required />
-        <input type="text" class="form-control company-state" name="companyState" ng-model="vm.recruiter.companyState" placeholder="Company State" maxlength="2" required />
-        <input type="text" class="form-control" name="companyZip" ng-model="vm.recruiter.companyZip" placeholder="Company Zip" maxlength="5" required />
-      </div>
     </div>
   </div>
-  <button type="submit" class="btn btn-success btn-lg">Create my account</button>
-</form>
+</div>

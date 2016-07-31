@@ -20,13 +20,13 @@ exports.add = function(req, res) {
 
   recruiter.save(function(err, recruiter) {
     if(err){
-      res.status(400).send({
+      return res.status(400).send({
         success: false,
         reason: err.toString()
       })
     }
     else {
-      res.send({
+      return res.send({
         success: true,
         collection: recruiter
       })

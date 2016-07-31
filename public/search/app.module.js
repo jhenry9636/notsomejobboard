@@ -4,7 +4,8 @@
   angular.module('search', [
     'ngMessages',
     'ui.utils.masks',
-    'perfect_scrollbar'
+    'perfect_scrollbar',
+    'ui-rangeSlider'
   ]);
   
   

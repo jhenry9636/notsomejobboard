@@ -41,16 +41,28 @@ module.exports = function() {
     usernameField: 'primaryEmail'
   },
     function(emailAddress, password, done) {
+      console.log(emailAddress, password)
       Recruiter.findOne({primaryEmail: emailAddress}).exec(function(err, recruiter) {
         if(err) {
           return done(err, false)
         }
-        console.log('Recruiter password matches: '+recruiter.comparePassword(password))
-        if(recruiter && recruiter.comparePassword(password)) {
-          return done(null, user);
-        } else {
-          return done(null, false);
+
+        if(!recruiter) {
+          return done(null, false)
         }
+
+        recruiter.comparePassword(password, function(err, isMatch) {
+          if(err) throw err;
+
+          if(!isMatch) {
+            return done(null, false)
+          }
+
+          if(isMatch) {
+            return done(null, recruiter)
+          }
+
+        })
       })
     }
   ));
