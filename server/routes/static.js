@@ -44,7 +44,7 @@ module.exports = function() {
     })
 
   staticRouter.route('/search')
-    .get(function(req, res) {
+    .get(authenticationCheck, function(req, res) {
       res.render('search', {
         user: req.user
       })

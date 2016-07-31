@@ -3,7 +3,7 @@ var Schema = mongoose.Schema;
 var validator = require('../common/validators');
 var bcrypt = require('bcrypt');
 var faker = require('faker');
-
+var beautifyUnique = require('mongoose-beautiful-unique-validation');
 
 var developerSchema = new Schema({
   givenName: {
@@ -20,7 +20,7 @@ var developerSchema = new Schema({
     type: String,
     required: [true, 'Email address field is required.'],
     validate: validator.emailAddress,
-    index: {unique: true}
+    unique: 'The email address provided has already been registered.'
   },
   password: {
     type: String,
@@ -144,6 +144,6 @@ developerSchema.options.toObject.transform = function (doc, ret, options) {
   delete ret.hasVerifiedEmail;
 }
 
-
+developerSchema.plugin(beautifyUnique);
 
 mongoose.model('Developer', developerSchema);
