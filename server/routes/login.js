@@ -14,14 +14,18 @@ module.exports = function(server) {
         }
 
         if (!developer) {
-          return res.redirect('/login/developer', {messages: [
-            'Invalid username or password'
-          ]});
+          return res.status(403).send({
+            success: false,
+            reason: 'Invalid username or password'
+          })
         }
 
-        req.logIn(developer, function(err) {
+        req.login(developer, function(err) {
           if (err) { return next(err); }
-          return res.redirect('/dashboard');
+          return res.send({
+            success: true,
+            collection: developer
+          })
         });
       });
 
@@ -37,14 +41,18 @@ module.exports = function(server) {
         }
 
         if (!recruiter) {
-          return res.render('join-recruiter', {messages: [
-            'Invalid username or password'
-          ]});
+          return res.status(403).send({
+            success: false,
+            reason: 'Invalid username or password'
+          })
         }
 
         req.logIn(recruiter, function(err) {
           if (err) { return next(err); }
-          return res.render('dashboard');
+          return res.send({
+            success: true,
+            collection: recruiter
+          })
         });
       });
 

@@ -236,6 +236,9 @@
       }
       vm.hasErrors = false;
       developerService.save(developerService.create(vm.developer))
+        .then(function() {
+          alert('test')
+        })
     }
 
     $rootScope.$on('nsj:location', function($scope, placeObj) {

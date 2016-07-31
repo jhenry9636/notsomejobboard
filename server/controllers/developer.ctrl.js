@@ -8,12 +8,6 @@ exports.add = function(req, res) {
   var userData = req.body;
   var developer = new Developer();
 
-  console.log('*************************************************************'
-    + 'this is the userData *************************************************************')
-
-  console.dir(userData.locationPolygon)
-
-
   developer.givenName = userData.givenName;
   developer.familyName = userData.familyName;
   developer.primaryPhone = userData.primaryPhone;
@@ -66,7 +60,8 @@ exports.delete = function(req, res) {
     }
 
     return res.send({
-      success: true
+      success: true,
+      collection: developer
     })
 
   })

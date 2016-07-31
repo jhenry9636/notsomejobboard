@@ -1,6 +1,8 @@
 (function() {
   'use strict'
 
-  angular.module('dashboard', [])
+  angular.module('dashboard', [
+    'current-user'
+  ])
 
 })()

@@ -117,6 +117,10 @@ hr.star-primary:after {
     margin: 0 auto;
 }
 
+.mbttm10 {
+  margin-bottom: 10px;
+}
+
 header {
     text-align: center;
     color: #fff;
@@ -436,7 +440,7 @@ footer .footer-below {
 }
 
 .portfolio-modal .modal-content h2 {
-    margin: 0;
+    margin-bottom: 20px;
     font-size: 3em;
 }
 
@@ -1629,4 +1633,42 @@ input.has-error {
 
 .search-container .request-item h4 {
   font-size: 18px;
+}
+
+.success-signup {
+  display: none;
+  opacity: 0;
+  transition: all .5s;
+}
+
+.success-signup.fade {
+  display: block;
+  opacity: 1;
+}
+
+.alert-success {
+  color: #3c763d;
+  background-color: #dff0d8;
+  border-color: #d6e9c6;
+  margin: 0px 30px;
+}
+
+.alert-success {
+  color: #3c763d;
+  opacity: 0;
+  background-color: transparent;
+  border: none;
+  margin: 0px;
+  height: 0px;
+  padding: 0px;
+  transition: 1s height ease;
+}
+
+.alert-success.visible {
+  opacity: 1;
+  background-color: #dff0d8;
+  border-color: #d6e9c6;
+  margin: 0px 30px;
+  padding: 10px;
+  height: 44px;
 }

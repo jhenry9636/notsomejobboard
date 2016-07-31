@@ -11,31 +11,16 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12 text-center">
-                        <h2>Good to see you again.</h2>
+                        <h2 class="mbttm10">Good to see you again.</h2>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-lg-8 col-lg-offset-2">
-                        <form id="contactForm" method="post" action="/login/developer" novalidate>
-                            <div class="row control-group">
-                                <div class="form-group col-xs-12 floating-label-form-group controls">
-                                    <label for="primaryEmail">Email Address</label>
-                                    <input type="email" class="form-control" placeholder="Email Address" id="primaryEmail" name="primaryEmail" required data-validation-required-message="Must provide a valid email address.">
-                                    <p class="help-block text-danger"></p>
-                                </div>
-                            </div>
-                            <div class="row control-group">
-                                <div class="form-group col-xs-12 floating-label-form-group controls">
-                                    <label for="password">Password</label>
-                                    <input type="password" class="form-control" placeholder="Password" id="password" name="password" required data-validation-required-message="Must provide a valid email address.">
-                                    <p class="help-block text-danger"></p>
-                                </div>
-                            </div>
-                            <br>
-                            <div class="row">
-                                <div class="form-group col-xs-12">
-                                    <button type="submit" class="btn btn-success btn-lg">Let me in</button>
-                                </div>
+                        <form name="recruiterForm" class="recruiterForm" ng-submit="vm.signUp(recruiterForm.$valid)" novalidate>
+                            <input type="text" class="form-control" name="email" ng-model="vm.recruiter.primaryEmail" placeholder="Email Address" required />
+                            <input type="password" class="form-control" name="password" ng-model="vm.recruiter.password" placeholder="Password" ng-minlength="5" required />
+                            <div class="action-wrapper">
+                                <button type="submit" class="btn btn-success btn-lg">Log In</button>
                             </div>
                         </form>
                     </div>

@@ -18,7 +18,7 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#">Jarrad's Dashboard</a></li>
+                <li><a href="#">Hello <%= user.givenName %></a></li>
                 <li><a href="/logout">Logout</a></li>
             </ul>
         </div>
@@ -207,8 +207,12 @@
 
 <script src='/vendor/angular-google-maps/dist/angular-google-maps.min.js'></script>
 
+<script src="/common/currentuser.service.js"></script>
+
 <!-- NSJ Main -->
 <script src="/dashboard/app.module.js"></script>
+
+
 
 <!-- TODO: Make API KEY a server variable -->
 <!-- Google Maps API -->

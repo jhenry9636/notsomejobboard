@@ -14,33 +14,33 @@
     service.submitSignin = submitSignin;
 
     function save(recruiter) {
+      var deffered = $q.defer();
 
       recruiter.companyState = recruiter.companyState.toUpperCase();
 
-      return $http.post('/signup/recruiter', recruiter)
-        .then(success)
-        .catch(fail);
-
-      function success(response) {
-        console.dir(response)
-      };
-      function fail(error) {
-        console.error('XHR Failed for save.' + error.data);
-      }
-
+      $http.post('/signup/recruiter', recruiter)
+        .then(function(recruiter) {
+          deffered.resolve(recruiter)
+        })
+        .catch(function(error) {
+          deffered.reject(error)
+        });
+      
+      return deffered.promise;
     }
 
     function submitSignin(query) {
-      return $http.post('/login/recruiter', query)
-        .then(success)
-        .catch(fail);
+      var deffered = $q.defer();
 
-      function success(response) {
-        console.dir(response);
-      };
-      function fail(error) {
-        console.error('XHR Failed for save.' + error.data);
-      }
+      $http.post('/login/recruiter', query)
+        .then(function(recruiter) {
+          deffered.resolve(recruiter)
+        })
+        .catch(function(error) {
+          deffered.reject(error)
+        });
+
+      return deffered.promise;
 
     }
 

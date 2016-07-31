@@ -36,7 +36,7 @@ module.exports = function() {
     //TODO: Add auth check back in before launch
     //.get(authenticationCheck, function(req, res) {
     .get(function(req, res) {
-
+      console.log('LOG IN'+ req.user)
       res.render('dashboard', {
         user: req.user,
         pageType: 'dashboard'
