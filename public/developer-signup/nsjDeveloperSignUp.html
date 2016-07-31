@@ -1,0 +1,16 @@
+<div ng-show="vm.hasErrors" class="error-wrapper">
+  <div class="help-block" ng-messages="developerSigninForm.email.$error" ng-messages-multiple>
+    <p ng-message="required">Email Address is required.</p>
+  </div>
+  <div class="help-block" ng-messages="developerSigninForm.password.$error" ng-messages-multiple>
+    <p ng-message="minlength">Password must be at least 5 characters long.</p>
+    <p ng-message="required">Password is required.</p>
+  </div>
+</div>
+<form name="developerSigninForm" class="developerSigninForm" ng-submit="vm.submitSignin(developerSigninForm.$valid)" novalidate>
+  <input type="text" class="form-control" name="email" ng-model="vm.developer.primaryEmail" placeholder="Email Address" required />
+  <input type="password" class="form-control" name="password" ng-model="vm.developer.password" placeholder="Password" ng-minlength="5" required />
+  <div class="action-wrapper">
+    <button type="submit" class="btn btn-success btn-lg">Log In</button>
+  </div>
+</form>
