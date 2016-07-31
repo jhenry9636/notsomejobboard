@@ -16,7 +16,7 @@ module.exports = function(server) {
         if (!developer) {
           return res.status(403).send({
             success: false,
-            reason: 'Invalid username or password'
+            reason: 'We didn\'t recognize that email address and/or password'
           })
         }
 
@@ -43,7 +43,7 @@ module.exports = function(server) {
         if (!recruiter) {
           return res.status(403).send({
             success: false,
-            reason: 'Invalid username or password'
+            reason: 'We didn\'t recognize that email address and/or password'
           })
         }
 

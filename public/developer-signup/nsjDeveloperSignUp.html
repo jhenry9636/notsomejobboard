@@ -1,4 +1,10 @@
+<div class="help-block server-error" ng-show="vm.serverError">
+  <p>{{vm.serverError}}</p>
+</div>
 <div ng-show="vm.hasErrors" class="error-wrapper">
+  <div class="help-block" ng-messages="developerSigninForm.email.$error" ng-messages-multiple>
+    <p ng-message="required">Email Address is required.</p>
+  </div>
   <div class="help-block" ng-messages="developerSigninForm.email.$error" ng-messages-multiple>
     <p ng-message="required">Email Address is required.</p>
   </div>

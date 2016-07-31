@@ -26,10 +26,10 @@
     vm.developer.primaryEmail = null;
     vm.developer.password = null;
     vm.submitSignin = submitSignin;
+    vm.serverError = null;
 
     function submitSignin(isValid) {
       if (!isValid) {
-        debugger
         vm.hasErrors = true;
         return;
       }
@@ -38,7 +38,10 @@
       developerSignupService.submitSignin(vm.developer)
         .then(function () {
           $window.location.assign('/dashboard');
-        })
+          vm.serverError = null;
+        }, function(error) {
+          vm.serverError = error.data.reason;
+        });
     }
 
   }

@@ -46,7 +46,7 @@ exports.delete = function(req, res) {
 
   Developer.findOneAndRemove({primaryEmail: req.body.email}, function(err, developer) {
     if(!developer) {
-      return res.status(404).send({
+      return res.status(401).send({
         success: false,
         reason: new Error('User not found')
       })
@@ -117,8 +117,8 @@ exports.getOne = function(req, res) {
   var query = Developer.findOne({primaryEmail: req.body.primaryEmail});
 
   query.exec(function(err, developer) {
-    if(developer) {
-      return res.status(400).send({
+    if(!developer) {
+      return res.status(401).send({
         success: false,
         reason: new Error('User not found')
       })
@@ -148,7 +148,7 @@ exports.getById = function(req, res) {
     function(err, developer) {
 
     if(!developer) {
-      return res.status(404).send({
+      return res.status(401).send({
         success: false,
         reason: new Error('User not found')
       })

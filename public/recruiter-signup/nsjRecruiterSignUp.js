@@ -60,6 +60,9 @@
             return;
           }
           vm.sucessSignUp = true;
+          vm.serverSignUpError = null;
+        }, function(error) {
+          vm.serverSignUpError = error.data.reason.split(':')[1].split(',')
         })
     }
 
@@ -72,6 +75,9 @@
       recruiterSignupService.submitSignin(vm.signin)
         .then(function (response) {
           $window.location.assign('/search');
+          vm.serverError = null;
+        }, function(error) {
+          vm.serverError = error.data.reason;
         })
     }
 

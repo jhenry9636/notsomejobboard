@@ -1687,3 +1687,7 @@ input.has-error {
 .developer-signup .error-wrapper .help-block p {
   text-align: center;
 }
+
+.server-error p {
+  text-align: center;
+}

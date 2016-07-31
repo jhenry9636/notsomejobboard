@@ -19,7 +19,7 @@ var recruiterSchema = new Schema({
     type: String,
     required: [true, 'Email address field is required.'],
     validate: validator.emailAddress,
-    unique: true
+    index: {unique: true}
   },
   password: {
     type: String,
