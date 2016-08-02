@@ -12,6 +12,28 @@
 
     service.developers = null;
     service.search = search;
+    service.sendRequest = sendRequest;
+
+    function sendRequest(request) {
+      var deferred = $q.defer();
+
+      debugger
+
+      $http.post('/api/request/add', request)
+        .then(success)
+        .catch(fail)
+
+      function success(response) {
+        deferred.resolve(response)
+      };
+      function fail(error) {
+        deferred.reject(error)
+        console.error('XHR Failed for save.' + error.data);
+      }
+
+      return deferred.promise
+    }
+
 
     function search(query) {
 

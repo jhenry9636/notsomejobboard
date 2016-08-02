@@ -16,12 +16,23 @@
 
   }
 
-  function ctrl() {
-    var vm = this;
+  ctrl.$inject = ['dashboardService']
 
-    vm.test = function() {
-      alert('test')
+  function ctrl(dashboardService) {
+    var vm = this;
+    
+    vm.getAll = getAll;
+
+
+    function getAll() {
+      dashboardService.getAll()
+        .then(function(response) {
+          vm.requests = response.data.collection;
+        })
     }
+
+    getAll()
+
   }
 
 

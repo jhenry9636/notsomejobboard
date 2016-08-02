@@ -3,9 +3,13 @@
 
 <link rel="stylesheet" href="/vendor/angular-rangeslider/angular.rangeSlider.css">
 <body ng-app="search" id="search">
+<% if(user) { %>
+<script type="text/javascript">
+    window.user = window.exports || {};
+    window.user.currentUser = <%- JSON.stringify(user._id) %>
+</script>
+<% } %>
 <!-- Join  -->
-
-
 <div class="dashboard-container container-fluid">
     <nsj-search></nsj-search>
 </div>

@@ -1,11 +1,13 @@
 <% include ./partials/head %>
 <body ng-app="dashboard" id="dashboard">
-<script>
-    window.exports = {};
-    window.exports.currentUser = <%- JSON.stringify(user._id) %>
-</script>
-<!-- Join  -->
+<!-- Join -->
 <!-- Navigation -->
+<% if(user) { %>
+<script type="text/javascript">
+    window.user = window.exports || {};
+    window.user.currentUser = <%- JSON.stringify(user._id) %>
+</script>
+<% } %>
 <nav class="navbar navbar-default">
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->

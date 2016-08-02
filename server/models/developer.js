@@ -22,7 +22,6 @@ var developerSchema = new Schema({
     validate: validator.emailAddress,
     unique: 'The email address provided has already been registered.'
   },
-
   password: {
     type: String,
     required: [true, 'Password field is required.'],

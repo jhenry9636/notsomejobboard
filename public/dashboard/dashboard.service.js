@@ -11,11 +11,11 @@
     var service = {};
 
     service.getAll = getAll;
-
+  
     function getAll(query) {
       var deffered = $q.defer();
 
-      $http.post('/api/contact', query)
+      $http.get('/api/request/' + window.user.currentUser, query)
         .then(function(developer) {
           deffered.resolve(developer)
         })
@@ -25,6 +25,12 @@
 
       return deffered.promise;
 
+    }
+    
+    function sendRequest(id) {
+      
+      
+      
     }
 
     return service;

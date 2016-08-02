@@ -15,19 +15,20 @@
 <div class="row">
   <div class="col-sm-12">
     <div class="request-wrapper">
-      <div class="request-item">
-        <span class="request-sent">Sent August 9th</span>
-        <h3>CSAA Insurance</h3>
-        <h4>$85/hr</h4>
+      <div ng-repeat="request in vm.requests" class="request-item">
+        <span class="request-sent">Sent {{ request.createdAt | dateInMillis | date: 'MMM d'}} around {{ request.createdAt | dateInMillis | date: 'h:mm a'}}</span>
+        <h3>{{request.clientName}}</h3>
+        <h4 ng-if="request.compType =='fulltime'">{{request.compMax | currency:"$":0}}/yr</h4>
+        <h4 ng-if="request.compType != 'fulltime'">{{request.compMax | currency:"$":0}}/hr</h4>
         <span class="request-commute">40 min commute</span>
 
         <div class="recruiter-info">
-          <span class="recruiter-name">Karen Handler</span>
-          <span class="recruiter-comp">Acme Recruiting</span>
-          <span class="recruiter-ph">(310) 508-4019</span>
-          <span class="recruiter-email">kh@acmerecruiter.com</span>
+          <span class="recruiter-name">{{request.sender.givenName}} {{request.sender.familyName}}</span>
+          <span class="recruiter-comp">{{request.sender.companyName}}</span>
+          <span class="recruiter-ph">{{request.sender.primaryPhone}}</span>
+          <span class="recruiter-email">{{request.sender.primaryEmail}}</span>
         </div>
-        <p class="request-desc">Hey Jarrad, great chance to use Angular.js or React.js. Would love to chat with you about it.</p>
+        <p class="request-desc">{{request.sender.note}}</p>
         <ul class="request-reply clearfix">
           <li class="approve">
             <i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
@@ -39,6 +40,31 @@
           </li>
         </ul>
       </div>
+
+      <!--<div class="request-item">-->
+        <!--<span class="request-sent">Sent August 9th</span>-->
+        <!--<h3>CSAA Insurance</h3>-->
+        <!--<h4>$85/hr</h4>-->
+        <!--<span class="request-commute">40 min commute</span>-->
+
+        <!--<div class="recruiter-info">-->
+          <!--<span class="recruiter-name">Karen Handler</span>-->
+          <!--<span class="recruiter-comp">Acme Recruiting</span>-->
+          <!--<span class="recruiter-ph">(310) 508-4019</span>-->
+          <!--<span class="recruiter-email">kh@acmerecruiter.com</span>-->
+        <!--</div>-->
+        <!--<p class="request-desc">Hey Jarrad, great chance to use Angular.js or React.js. Would love to chat with you about it.</p>-->
+        <!--<ul class="request-reply clearfix">-->
+          <!--<li class="approve">-->
+            <!--<i class="fa fa-thumbs-o-up" aria-hidden="true"></i>-->
+            <!--<a href="#"></a>Accept-->
+          <!--</li>-->
+          <!--<li class="decline">-->
+            <!--<i class="fa fa-thumbs-o-down" aria-hidden="true"></i>-->
+            <!--<a href="#"></a>Decline</li>-->
+          <!--</li>-->
+        <!--</ul>-->
+      <!--</div>-->
     </div>
   </div>
 </div>

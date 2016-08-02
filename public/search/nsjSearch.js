@@ -43,7 +43,10 @@
     vm.selectedSkills = skillsService.selectedSkills
     vm.handleSkillToggle = handleSkillToggle;
     vm.submitForm = submitForm;
+    vm.sendRequest = sendRequest;
     vm.errors = {};
+
+
     vm.query = {};
     vm.query.compType = null;
     vm.query.compFull = null;
@@ -51,7 +54,6 @@
     vm.query.skills = null;
     vm.query.locationName = null;
     vm.query.locationCoords = null;
-
 
     function submitForm() {
 
@@ -150,7 +152,26 @@
                                   placeObj.geometry.location.lat()];
       })
     })
-    
+
+    function sendRequest(recipientId) {
+      var request = {};
+
+      request.recipient = recipientId;
+      request.sender = window.user.currentUser;
+      request.location = vm.query.locationCoords;
+      request.compType = vm.fulltimeSelected ? 'fulltime' : 'hourly';
+      request.compMax = vm.fulltimeSelected ? vm.query.compFull : vm.query.compHr;
+      request.technologies = vm.query.skills;
+      request.clientName = vm.query.clientName;
+
+      searchService.sendRequest(request)
+        .then(function(response) {
+          console.log(response)
+        }, function(error) {
+          console.dir(error)
+        })
+
+    }
     
 
 

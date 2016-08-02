@@ -6,20 +6,16 @@ var requestSchema = new Schema({
   recipient: {
     type : Schema.ObjectId,
     ref : 'Developer',
-    required: [true, 'Recipient ID field is required'],
-    validate: validator.requiredField
+    required: [true, 'Recipient ID field is required']
   },
   sender: {
     type : Schema.ObjectId,
     ref : 'Recruiter',
-    required: [true, 'Sender ID field is required'],
-    validate: validator.requiredField
+    required: [true, 'Sender ID field is required']
   },
   location: {
-    type: Schema.ObjectId,
-    ref: 'Location',
-    required: [true, 'Location is required'],
-    validate: validator.requiredField
+    type: [Number],
+    required: true
   },
   compType: {
     type: String,
@@ -32,9 +28,8 @@ var requestSchema = new Schema({
     validate: validator.requiredField
   },
   technologies: {
-    type: String,
-    required: [true, 'Technologies is required'],
-    validate: validator.requiredField
+    type: [],
+    required: [true, 'Technologies is required']
   },
   clientName: {
     type: String

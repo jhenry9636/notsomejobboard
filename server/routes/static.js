@@ -34,8 +34,8 @@ module.exports = function() {
 
   staticRouter.route('/dashboard')
     //TODO: Add auth check back in before launch
-    .get(authenticationCheck, function(req, res) {
-    // .get(function(req, res) {
+    // .get(authenticationCheck, function(req, res) {
+    .get(function(req, res) {
       console.log('LOG IN'+ req.user)
       res.render('dashboard', {
         user: req.user,

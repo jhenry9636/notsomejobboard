@@ -39,7 +39,7 @@ var recruiterSchema = new Schema({
     type: String,
     required: [true, 'Company phone number field is required.'],
     validate: validator.phoneNumber
-  }, 
+  },
   companyState: {
     type: String
   },

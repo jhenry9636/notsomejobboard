@@ -54,7 +54,7 @@ exports.getByDeveloperId = function(req, res) {
     {recipient: req.params.developerId},
     '-__v');
 
-  query.populate('recipient')
+  query.populate('sender')
   query.exec(function(err, request) {
 
     if(!request) {
