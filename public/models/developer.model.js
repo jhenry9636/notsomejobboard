@@ -5,9 +5,9 @@
     .module('nsj.wizard')
     .factory('developerService', developerService);
 
-  developerService.$inject = ['$http', 'mapsService'];
+  developerService.$inject = ['$http', 'mapsService', '$q'];
 
-  function developerService($http, mapsService) {
+  function developerService($http, mapsService, $q) {
     return {
       getAll: getAll,
       create: create,
@@ -24,6 +24,7 @@
         this.password = obj.password;
         this.projects = obj.projects;
         this.locationName = obj.locationName;
+        this.note = obj.note;
         this.locationRadius = radius;
         this.locationCoords = obj.locationCoords;
         this.locationPolygon =
@@ -39,17 +40,18 @@
     }
 
     function save(developer) {
+      var deffered = $q.defer();
 
-      return $http.post('/signup/developer', developer)
-        .then(success)
-        .catch(fail);
+      $http.post('/signup/developer', developer)
+        .then(function(developer) {
+          deffered.resolve(developer)
+        })
+        .catch(function(error) {
+          deffered.reject(error)
+        });
 
-      function success(response) {
-        console.dir(response)
-      };
-      function fail(error) {
-        console.error('XHR Failed for save.' + error.data);
-      }
+      return deffered.promise;
+
 
     }
 

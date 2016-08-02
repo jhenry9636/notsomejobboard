@@ -66,7 +66,7 @@
               <div class="form-group" ng-class="{ 'has-error': vm.hasErrors}">
                 <input type="text" id="autocomplete" name="location" class="form-control" ng-model="vm.developer.locationName" placeholder="e.g. Downtown San Francisco" required />
               </div>
-              <div class="row">
+              <div>
                 <div class="sm-col-12">
                   <div style="padding: 0px 14px;">
                     <h5 style="padding: 0px; margin: 20px 0px 10px 0px; text-align: center;">Radius</h5>
@@ -147,6 +147,9 @@
             <div class="col-sm-6 form-col">
               <div class="row">
                 <div class="col-sm-12">
+                  <div ng-show="vm.projectError" class="project-error">
+                    <p class="help-block">Must add at least one project</p>
+                  </div>
                   <div ng-show="vm.hasErrors" class="error-wrapper">
                     <div class="help-block" ng-messages="projectForm.name.$error" ng-messages-multiple>
                       <p ng-message="required">A project name is required.</p>
@@ -204,7 +207,7 @@
             </div>
           </div>
           <div class="wizard-controls-footer">
-            <button class="btn btn-success btn-lg" ng-click="vm.nextStep($event, vm.projects.length)">Next Step</button>
+            <button class="btn btn-success btn-lg" ng-click="vm.projectCheck(); vm.nextStep($event, !vm.projectError)">Next Step</button>
             <button class="btn btn-link btn-lg" ng-click="vm.setStep(0)">Go Back.</button>
           </div>
         </form>
@@ -284,6 +287,9 @@
           <p>Tell us  your email address, password to create an account.</p>
           <div class="row">
             <div class="col-sm-12">
+              <div class="help-block server-error" ng-show="vm.serverError">
+                <p ng-repeat="error in vm.serverError">{{error}}</p>
+              </div>
               <div ng-show="vm.hasErrors" class="error-wrapper">
                 <div class="help-block" ng-messages="developerForm.givenName.$error" ng-messages-multiple>
                   <p ng-message="required">First Name is required.</p>
@@ -307,7 +313,11 @@
             <input type="text" class="form-control" name="email" ng-model="vm.developer.primaryEmail" placeholder="Email Address" required />
             <input type="password" class="form-control" name="password" ng-model="vm.developer.password" placeholder="Password" ng-minlength="6" required />
           </div>
-          <button type="submit" class="btn btn-success btn-lg" >Create my account</button>
+          <div class="form-group">
+            <h5 style="padding: 0px; text-align: center; float: none; margin-top: 37px;">Note to recruiter</h5>
+            <textarea style="width: 30%; margin: auto auto 10px auto;" class="form-control" ng-model="vm.developer.note" placeholder="e.g. I have offers already in the pipeline and looking to move fast." name="note"></textarea>
+          </div>
+          <button type="submit" class="register-button-wizard btn btn-success btn-lg" >Create my account</button>
         </form>
       </div>
     </div>

@@ -1296,6 +1296,18 @@ textarea.has-error {
   margin: 0px;
 }
 
+.register-button-wizard {
+  margin-bottom: 60px;
+}
+
+.recruiterForm input {
+  margin-bottom: 0px;
+}
+
+.recruiterForm .form-group {
+  margin-bottom: 0px;
+}
+
 .action-wrapper {
   margin: 23px auto 0px auto;
   text-align: center;
@@ -1690,4 +1702,58 @@ input.has-error {
 
 .server-error p {
   text-align: center;
+}
+
+.form-group {
+  position: relative;
+}
+
+.req-indicator {
+  margin: 0px auto 0px auto;
+  text-align: right;
+  display: inline-block;
+  top: 13px;
+  position: relative;
+  right: -6px;
+  display: block;
+  width: 80%;
+  color: red;
+}
+
+.required-field {
+  color: red;
+  text-align: right;
+  display: block;
+}
+
+
+.marginBttm12 {
+  top: 12px;
+}
+
+.project-error p {
+  margin: 0px;
+  font-weight: 800;
+  color: #e74c3c;
+  text-align: left;
+}
+
+.request-contact {
+  border-top: solid 1px #c5d6de;
+  position: absolute;
+  bottom: 0px;
+  width: 100%;
+  left: 0px;
+  right: 0px;
+  text-align: center;
+  padding: 15px 0px;
+  font-size: 19px;
+}
+
+#dashboard .request-item {
+  height: 426px;
+}
+
+#search .request-item {
+  position: relative;
 }

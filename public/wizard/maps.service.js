@@ -151,7 +151,6 @@
     }
 
     function generateGeoJSONCircle(coordinates, radius, numSides) {
-      debugger
       var points = [];
       var earthRadius = 6371;
       var halfsides = numSides / 2;

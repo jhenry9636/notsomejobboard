@@ -14,8 +14,12 @@
   </div>
 </div>
 <form name="developerSigninForm" class="developerSigninForm" ng-submit="vm.submitSignin(developerSigninForm.$valid)" novalidate>
-  <input type="text" class="form-control" name="email" ng-model="vm.developer.primaryEmail" placeholder="Email Address" required />
-  <input type="password" class="form-control" name="password" ng-model="vm.developer.password" placeholder="Password" ng-minlength="5" required />
+  <div class="form-group">
+    <input type="text" class="form-control" name="email" ng-model="vm.developer.primaryEmail" placeholder="Email Address" required />
+  </div>
+  <div class="form-group">
+    <input type="password" class="form-control" name="password" ng-model="vm.developer.password" placeholder="Password" ng-minlength="6" required />
+  </div>
   <div class="action-wrapper">
     <button type="submit" class="btn btn-success btn-lg">Log In</button>
   </div>

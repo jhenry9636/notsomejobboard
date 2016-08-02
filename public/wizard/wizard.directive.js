@@ -62,12 +62,16 @@
     vm.selectContract = selectContract;
     vm.submitForm = submitForm;
     vm.hasErrors = false;
+    vm.serverError = null;
+    vm.projectCheck = projectCheck;
+    vm.projectError = false;
 
     vm.developer = {};
     vm.developer.givenName = null;
     vm.developer.familyName = null;
     vm.developer.primaryPhone = null;
     vm.developer.primaryEmail = null;
+    vm.developer.note = null;
     vm.developer.password = null;
     vm.developer.projects = projectsService.projects;
     vm.developer.locationName = null;
@@ -185,6 +189,7 @@
 
       projectsService.createHelper(project);
       vm.projects = projectsService.getProjects();
+      vm.projectError = false;
       resetProject();
     }
 
@@ -228,6 +233,15 @@
       vm.hasErrors = false;
     }
 
+    function projectCheck() {
+      if(!vm.projects.length) {
+        vm.projectError = true;
+        return ;
+      }
+
+      vm.projectError = false;
+    }
+
     function submitForm(isValid) {
 
       if(!isValid) {
@@ -236,8 +250,14 @@
       }
       vm.hasErrors = false;
       developerService.save(developerService.create(vm.developer))
-        .then(function() {
-          alert('test')
+        .then(function(response) {
+          if(!response.data.success) {
+            vm.loginError = true;
+            return;
+          }
+          vm.serverError = null;
+        }, function(error) {
+          vm.serverError = error.data.reason.split(':')[1].split(',')
         })
     }
 

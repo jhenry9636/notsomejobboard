@@ -64,18 +64,21 @@
       <p class="no-devs" ng-hide="vm.developers.length">No results found. Please try another search.</p>
       <div class="request-item" ng-repeat="developer in vm.developers">
         <div class="request-inner">
-          <!--<span class="request-joined">Joined August 9th</span>-->
           <h3>Hi, I'm {{developer.givenName}}</h3>
           <h4>Im looking to work near {{developer.locationName}}</h4>
           <span class="request-commute">Ive used the following technologies on <a href="#">{{developer.projects.length}} project(s)</a></span>
           <ul class="request-skills">
             <li ng-repeat="tech in developer.projects[0].techUsed">{{tech}}</li>
           </ul>
-          <div class="recruiter-info">
+          <div class="recruiter-info" ng-show="developer.note">
             <span class="recruiter-note">Note from {{developer.givenName}}:</span>
-            <span class="recruiter-name">I really need to move ASAP as possible. I am not using the technologies I was promised.</span>
+            <span class="recruiter-name">{{developer.note}}</span>
           </div>
         </div>
+        <a href="#" ng-click="" class="request-contact">
+          <i class="fa fa-paper-plane" aria-hidden="true"></i>
+          Send Contact Request
+        </a>
       </div>
     </div>
   </div>

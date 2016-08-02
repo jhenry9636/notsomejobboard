@@ -14,6 +14,7 @@ exports.add = function(req, res) {
   developer.primaryEmail = userData.primaryEmail;
   developer.password = userData.password;
   developer.projects = userData.projects;
+  developer.note = userData.note;
   developer.locationName = userData.locationName;
   developer.locationRadius = userData.locationRadius;
   developer.locationCoords = userData.locationCoords;

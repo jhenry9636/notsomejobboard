@@ -3,16 +3,18 @@ var Developer = mongoose.model('Developer')
 
 
 exports.search = function(req, res) {
-
-  console.log(req.body)
-
-  Developer.find({
-    'projects.techUsed': { $in: req.body.skills },
+  var query = {
     compMin : { $lte: req.body.comp },
     compType: req.body.compType
-  })
-    .where('locationPolyon').intersects()
-      .geometry({ type: 'Point', coordinates: req.body.locationCoords })
+  }
+
+  if(req.body.skills) {
+    query['projects.techUsed'] = { $in: req.body.skills };
+  }
+
+  Developer.find(query)
+    // .where('locationPolyon').intersects()
+    //   .geometry({ type: 'Point', coordinates: req.body.locationCoords })
     
     .exec(function(err, developers) {
 
