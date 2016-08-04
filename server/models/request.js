@@ -17,6 +17,10 @@ var requestSchema = new Schema({
     type: [Number],
     required: true
   },
+  accepted: {
+    type: Number,
+    default: 0
+  },
   compType: {
     type: String,
     required: [true, 'Comp type is required'],

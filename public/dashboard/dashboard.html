@@ -1,13 +1,16 @@
 <ul class="dashboard-nav">
-  <li class="reply">
+  <li class="reply" ng-class="{'selected' : vm.activePanel == 'pending'}" ng-click="vm.setToPending()">
+    <span class="reply-count">{{(vm.requests | filter: {accepted: 0}).length}}</span>
     <i class="fa fa-envelope" aria-hidden="true"></i>
     <a href="">Awaiting Reply</a>
   </li>
-  <li class="thumbs-up">
+  <li class="thumbs-up" ng-class="{'selected' : vm.activePanel == 'accepted'}" ng-click="vm.setToAccepted()">
+    <span class="reply-count">{{(vm.requests | filter: {accepted: 1}).length}}</span>
     <i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
     <a href="">Accepted Requests</a>
   </li>
-  <li class="thumbs-down">
+  <li class="thumbs-down" ng-class="{'selected' : vm.activePanel == 'declined'}" ng-click="vm.setToDeclined()">
+    <span class="reply-count">{{(vm.requests | filter: {accepted: 2}).length}}</span>
     <i class="fa fa-thumbs-o-down" aria-hidden="true"></i>
     <a href="">Declined Requests</a>
   </li>
@@ -15,7 +18,7 @@
 <div class="row">
   <div class="col-sm-12">
     <div class="request-wrapper">
-      <div ng-repeat="request in vm.requests" class="request-item">
+      <div ng-class="{'selected' : vm.getSelectedIndex() == $index}" ng-repeat="request in vm.requests | filter: vm.filter" class="request-item">
         <span class="request-sent">Sent {{ request.createdAt | dateInMillis | date: 'MMM d'}} around {{ request.createdAt | dateInMillis | date: 'h:mm a'}}</span>
         <h3>{{request.clientName}}</h3>
         <h4 ng-if="request.compType =='fulltime'">{{request.compMax | currency:"$":0}}/yr</h4>
@@ -25,16 +28,16 @@
         <div class="recruiter-info">
           <span class="recruiter-name">{{request.sender.givenName}} {{request.sender.familyName}}</span>
           <span class="recruiter-comp">{{request.sender.companyName}}</span>
-          <span class="recruiter-ph">{{request.sender.primaryPhone}}</span>
+          <span class="recruiter-ph">{{request.sender.primaryPhoners}}</span>
           <span class="recruiter-email">{{request.sender.primaryEmail}}</span>
         </div>
         <p class="request-desc">{{request.sender.note}}</p>
         <ul class="request-reply clearfix">
-          <li class="approve">
+          <li class="approve" ng-click="vm.setSelectedIndex($index); vm.setAccepted(request._id)">
             <i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
             <a href="#"></a>Accept
           </li>
-          <li class="decline">
+          <li class="decline" ng-click="vm.setSelectedIndex($index); vm.setDeclined(request._id)">
             <i class="fa fa-thumbs-o-down" aria-hidden="true"></i>
             <a href="#"></a>Decline</li>
           </li>

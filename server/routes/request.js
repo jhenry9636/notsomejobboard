@@ -11,6 +11,9 @@ module.exports = function(server) {
   requestRouter.route('/add')
     .post(requestCtrl.add)
 
+  requestRouter.route('/update')
+    .post(requestCtrl.setAccepted)
+
   requestRouter.route('/delete')
     .delete(requestCtrl.delete)
 
