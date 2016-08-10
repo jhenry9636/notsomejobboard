@@ -1,11 +1,11 @@
 (function() {
   'use strict'
 
+  angular.module('dashboard', ['toastr']);
+
+
   angular.module('dashboard', [])
-
-
-  angular.module('dashboard', []).
-  filter('dateInMillis', function() {
+    .filter('dateInMillis', function() {
     return function(dateString) {
       return Date.parse(dateString);
     };

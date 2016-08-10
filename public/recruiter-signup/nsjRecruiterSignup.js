@@ -53,6 +53,7 @@
         return;
       }
       vm.hasErrors = false;
+      debugger;
       recruiterSignupService.save(vm.recruiter)
         .then(function(response) {
           if(!response.data.success) {
@@ -62,6 +63,7 @@
           vm.sucessSignUp = true;
           vm.serverSignUpError = null;
         }, function(error) {
+          debugger
           vm.serverSignUpError = error.data.reason.split(':')[1].split(',')
         })
     }

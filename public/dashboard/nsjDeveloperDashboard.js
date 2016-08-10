@@ -68,6 +68,7 @@
       dashboardService.setAccepted(vm.acceptQuery)
         .then(function(response) {
           vm.clearSelectedIndex();
+          toastr.success('Contact Request Accepted')
           vm.requests = response.data.collection;
         })
 
@@ -82,6 +83,7 @@
       dashboardService.setAccepted(vm.acceptQuery)
         .then(function(response) {
           vm.clearSelectedIndex();
+          toastr.info('Contact Request Declined')
           vm.requests = response.data.collection;
         })
 

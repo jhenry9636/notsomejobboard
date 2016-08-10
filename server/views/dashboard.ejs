@@ -1,8 +1,9 @@
 <% include ./partials/head %>
+<link rel="stylesheet" href="/vendor/toastr/toastr.min.css" />
 <body ng-app="dashboard" id="dashboard">
 <!-- Join -->
 <!-- Navigation -->
-<% if(user) { %>
+<% if(locals.user) { %>
 <script type="text/javascript">
     window.user = window.exports || {};
     window.user.currentUser = <%- JSON.stringify(user._id) %>
@@ -24,8 +25,10 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
+                <% if(locals.user) { %>
                 <li><a href="#">Hello <%= user.givenName %></a></li>
                 <li><a href="/logout">Logout</a></li>
+                <% } %>
             </ul>
         </div>
         <!-- /.navbar-collapse -->
@@ -56,6 +59,8 @@
 
 <script src="/vendor/angular/angular.min.js"></script>
 
+<script src="/vendor/angular-toastr/dist/angular-toastr.tpls.js"></script>
+
 <script src="/vendor/angular-ui-router/release/angular-ui-router.min.js"></script>
 
 <script src="/vendor/angular-input-masks/angular-input-masks-standalone.min.js"></script>
@@ -69,6 +74,13 @@
 <script src="/dashboard/nsjDeveloperDashboard.js"></script>
 
 
+<script src='/vendor/toastr/toastr.min.js'></script>
+<script type="text/javascript">
+    toastr.options.extendedTimeOut = 0; //1000;
+    toastr.options.timeOut = 2000;
+    toastr.options.fadeOut = 250;
+    toastr.options.fadeIn = 0;
+</script>
 
 <!-- TODO: Make API KEY a server variable -->
 <!-- Google Maps API -->

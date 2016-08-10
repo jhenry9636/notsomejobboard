@@ -1,0 +1,80 @@
+<% include ./partials/head %>
+<% include ./partials/nav %>
+
+<!-- Contact Section -->
+<style>
+    .alert {
+        display: none;
+        margin-bottom: 20px !important;
+        transition: none;
+    }
+
+    .alert.visible {
+        transition: none;
+    }
+</style>
+<section id="contact">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-12">
+                <h3 style="width: 60%; margin: auto; text-align: center;">Forgot your password?</h3>
+                <p style="width: 60%; margin: auto; text-align: center; color: #888181; font-size: 18px; margin-top: 10px; margin-bottom: 30px;">Enter your email address below to reset your password. You will be sent an email which you will need to open to continue. You may need to check your spam folder</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="alert alert-success visible">
+                    We will send an email to the email address on file momentarily. If you don't see this message within 15 minutes, please check any spam filters or secondary email accounts.
+                </div>
+                <div class="alert alert-error visible help-block" style="color: red; text-align: center; font-weight: 800; font-size: 16px; margin: 0px; padding: 0px;">
+                    Must provide a valid email address
+                </div>
+                <% if(hasError) { %>
+                <div class="help-block" style="color: red; text-align: center; font-weight: 800; font-size: 16px; margin: 0px; padding: 0px;">
+                    Invalid link. Please submit another change password request.
+                </div>
+                <% } %>
+                <div class="alert alert-error visible help-block" style="color: red; text-align: center; font-weight: 800; font-size: 16px; margin: 0px; padding: 0px;">
+                    Must provide a valid email address
+                </div>
+                <form name="forgotPassword" id="forgotPassword" class="forgotPassword" ng-submit="vm.submitSignin(forgotPassword.$valid)" novalidate>
+                    <div class="form-group">
+                        <input type="text" id="forgotPassField" class="form-control" name="primaryEmail" placeholder="Email Address" style="width: 40%; margin: auto;" />
+                        <div class="action-wrapper">
+                            <button type="submit" id="submitForm" class="btn btn-success btn-lg">I'm done</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+<% include ./partials/scripts.ejs %>
+<% include ./partials/modals.ejs %>
+<script type="text/javascript">
+    $(function() {
+
+        var noInputMessage = 'Must provide a valid email address';
+
+
+        $('#submitForm').click(submitForm)
+
+        function submitForm(ev) {
+            var query = {
+                primaryEmail: $('#forgotPassField').val()
+            }
+            ev.preventDefault();
+            $('.alert', '.help-block').hide();
+            $.post('/api/forgot', query, function( data ) {
+
+                $('.alert-success').fadeIn();
+            })
+                    .fail(function() {
+                        $('.alert-error').fadeIn();
+                    });
+        }
+
+    });
+</script>
+</body>
+</html>

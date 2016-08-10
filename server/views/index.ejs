@@ -69,6 +69,17 @@
 
 <script src="/developer-signup/nsjDeveloperSignup.js"></script>
 
+<% if(login) { %>
+<script type="text/javascript">
+    $(function() {
+
+        setTimeout(login, 300)
+        function login() {
+            $('#login').modal()
+        }
+    })
+</script>
+<% } %>
 </body>
 </html>
 

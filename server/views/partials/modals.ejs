@@ -11,7 +11,12 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12 text-center">
+                        <% if(locals.login) { %>
+                        <h2 class="mbttm10">Success :)</h2>
+                        <p style="color: #888181; font-size: 18px; margin-bottom: 10px;">Enter your credentials below</p>
+                        <% } else { %>
                         <h2 class="mbttm10">Good to see you again.</h2>
+                        <% }  %>
                     </div>
                 </div>
                 <div class="row">

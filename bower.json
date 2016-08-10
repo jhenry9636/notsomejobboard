@@ -37,6 +37,8 @@
     "angular-simple-logger": "^0.1.7",
     "angular-ui-router": "^0.3.1",
     "angular-perfect-scrollbar": "^0.0.4",
-    "angular-rangeslider": "^0.0.14"
+    "angular-rangeslider": "^0.0.14",
+    "angular-toastr": "^2.0.0",
+    "toastr": "^2.1.3"
   }
 }

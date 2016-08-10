@@ -1,8 +1,10 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
+var Token = require('./token.js').Token;
 var validator = require('../common/validators');
 var bcrypt = require('bcrypt');
 var faker = require('faker');
+var randToken = require('rand-token');
 var beautifyUnique = require('mongoose-beautiful-unique-validation');
 
 var developerSchema = new Schema({
@@ -22,14 +24,13 @@ var developerSchema = new Schema({
     validate: validator.emailAddress,
     unique: 'The email address provided has already been registered.'
   },
+
   password: {
     type: String,
     required: [true, 'Password field is required.'],
     validate: validator.password
   },
-  note: {
-    type: String
-  },
+
   compType: {
     type: String,
     enum: validator.compType
@@ -65,6 +66,11 @@ var developerSchema = new Schema({
   },
   salt: {
     type: String
+  },
+  token: {
+    type: Schema.ObjectId,
+    ref: 'Token',
+    default: null
   },
   locationPolygon: {
     type: {

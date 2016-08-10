@@ -7,7 +7,8 @@ module.exports = function() {
   staticRouter.route('/')
     .get(function(req, res) {
       res.render('index', {
-          user: req.user
+          user: req.user,
+          login: req.query.login
         })
     })
 
@@ -36,7 +37,6 @@ module.exports = function() {
     //TODO: Add auth check back in before launch
     // .get(authenticationCheck, function(req, res) {
     .get(function(req, res) {
-      console.log('LOG IN'+ req.user)
       res.render('dashboard', {
         user: req.user,
         pageType: 'dashboard'
@@ -50,6 +50,19 @@ module.exports = function() {
       })
     })
 
+
+  staticRouter.route('/forgot')
+    .get(function(req, res) {
+      res.render('forgot', {
+        user: req.user,
+        hasError: req.query.error
+      })
+    })
+
+  staticRouter.route('/change')
+    .get(function(req, res) {
+      res.render('change')
+    })
 
 
   return staticRouter

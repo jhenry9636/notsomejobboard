@@ -18,6 +18,9 @@
 <div class="row">
   <div class="col-sm-12">
     <div class="request-wrapper">
+      <span class="request-empty" ng-show="vm.activePanel == 'pending' && (vm.requests | filter: {accepted: 0}).length == 0">No requests awaiting reply</span>
+      <span class="request-empty" ng-show="vm.activePanel == 'accepted' && (vm.requests | filter: {accepted: 1}).length == 0">No accepted requests</span>
+      <span class="request-empty" ng-show="vm.activePanel == 'declined' && (vm.requests | filter: {accepted: 2}).length == 0">No declined requests</span>
       <div ng-class="{'selected' : vm.getSelectedIndex() == $index}" ng-repeat="request in vm.requests | filter: vm.filter" class="request-item">
         <span class="request-sent">Sent {{ request.createdAt | dateInMillis | date: 'MMM d'}} around {{ request.createdAt | dateInMillis | date: 'h:mm a'}}</span>
         <h3>{{request.clientName}}</h3>
