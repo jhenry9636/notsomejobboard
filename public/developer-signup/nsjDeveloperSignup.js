@@ -10,7 +10,7 @@
     return {
       transclude: true,
       scope: true,
-      templateUrl: '/developer-signup/nsjDeveloperSignup.html',
+      templateUrl: '/developer-signup/nsjDeveloperSignUp.html',
       controller: ctrl,
       controllerAs: 'vm'
     }
