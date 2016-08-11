@@ -16,9 +16,9 @@
 
   }
 
-  ctrl.$inject = ['dashboardService']
+  ctrl.$inject = ['dashboardService', '$filter']
 
-  function ctrl(dashboardService) {
+  function ctrl(dashboardService, $filter) {
     var vm = this;
 
     vm.getAll = getAll;
@@ -37,6 +37,7 @@
     vm.getSelectedIndex = getSelectedIndex;
     vm.setSelectedIndex = setSelectedIndex;
     vm.clearSelectedIndex = clearSelectedIndex;
+    vm.givenName = null;
 
     vm.activePanel = 'pending'
     vm.filter = {accepted: 0};
@@ -45,8 +46,8 @@
       return dashboardService.getSelectedIndex()
     }
 
-    function setSelectedIndex(index) {
-      return dashboardService.setSelectedIndex(index)
+    function setSelectedIndex(index, shouldSet, request) {
+      dashboardService.setSelectedIndex(index, shouldSet, request)
     }
 
     function clearSelectedIndex() {
@@ -68,7 +69,8 @@
       dashboardService.setAccepted(vm.acceptQuery)
         .then(function(response) {
           vm.clearSelectedIndex();
-          toastr.success('Contact Request Accepted')
+          toastr.success('from ' +dashboardService.givenName+ ' @ ' +
+            $filter('currency')(dashboardService.comp), 'Contact Request Accepted')
           vm.requests = response.data.collection;
         })
 
@@ -83,7 +85,8 @@
       dashboardService.setAccepted(vm.acceptQuery)
         .then(function(response) {
           vm.clearSelectedIndex();
-          toastr.info('Contact Request Declined')
+          toastr.error('from ' +dashboardService.givenName+ ' @ ' +
+            $filter('currency')(dashboardService.comp), 'Contact Request Declined')
           vm.requests = response.data.collection;
         })
 

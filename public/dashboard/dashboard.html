@@ -36,41 +36,16 @@
         </div>
         <p class="request-desc">{{request.sender.note}}</p>
         <ul class="request-reply clearfix">
-          <li class="approve" ng-click="vm.setSelectedIndex($index); vm.setAccepted(request._id)">
+          <li class="approve" ng-click="vm.setSelectedIndex($index, true, request); vm.setAccepted(request._id)">
             <i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
             <a href="#"></a>Accept
           </li>
-          <li class="decline" ng-click="vm.setSelectedIndex($index); vm.setDeclined(request._id)">
+          <li class="decline" ng-click="vm.setSelectedIndex($index, true, request); vm.setDeclined(request._id)">
             <i class="fa fa-thumbs-o-down" aria-hidden="true"></i>
             <a href="#"></a>Decline</li>
           </li>
         </ul>
       </div>
-
-      <!--<div class="request-item">-->
-        <!--<span class="request-sent">Sent August 9th</span>-->
-        <!--<h3>CSAA Insurance</h3>-->
-        <!--<h4>$85/hr</h4>-->
-        <!--<span class="request-commute">40 min commute</span>-->
-
-        <!--<div class="recruiter-info">-->
-          <!--<span class="recruiter-name">Karen Handler</span>-->
-          <!--<span class="recruiter-comp">Acme Recruiting</span>-->
-          <!--<span class="recruiter-ph">(310) 508-4019</span>-->
-          <!--<span class="recruiter-email">kh@acmerecruiter.com</span>-->
-        <!--</div>-->
-        <!--<p class="request-desc">Hey Jarrad, great chance to use Angular.js or React.js. Would love to chat with you about it.</p>-->
-        <!--<ul class="request-reply clearfix">-->
-          <!--<li class="approve">-->
-            <!--<i class="fa fa-thumbs-o-up" aria-hidden="true"></i>-->
-            <!--<a href="#"></a>Accept-->
-          <!--</li>-->
-          <!--<li class="decline">-->
-            <!--<i class="fa fa-thumbs-o-down" aria-hidden="true"></i>-->
-            <!--<a href="#"></a>Decline</li>-->
-          <!--</li>-->
-        <!--</ul>-->
-      <!--</div>-->
     </div>
   </div>
 </div>

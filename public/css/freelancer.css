@@ -274,19 +274,21 @@ section.success a.active {
   margin: auto 0.5em auto -1.5em;
 }
 #toast-container > .toast-warning:before {
-  content: "\f003";
+  content: "\f164;";
 }
 #toast-container > .toast-error:before {
-  content: "\f001";
+  content: "\f165";
 }
 #toast-container > .toast-info:before {
-  content: "\f005";
+  content: "\f165";
 }
 #toast-container > .toast-success:before {
-  content: "\f002";
+  content: "\f164";
 }
 
-
+.toast-success {
+  color: green;
+}
 
 #portfolio .portfolio-item .portfolio-link .caption .caption-content {
     position: absolute;
@@ -981,6 +983,12 @@ button:active {
 
 .project-form-wrapper {
   text-align: left;
+}
+
+#dashboard #toast-container .toast.toast-error,
+#dashboard #toast-container .toast.toast-success,
+#dashboard #toast-container .toast.toast-warning {
+  background-image: none !important;
 }
 
 button.secondary-form-button {
