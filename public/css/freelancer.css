@@ -1832,13 +1832,13 @@ input.has-error {
 .reply-count {
   display: inline-block;
   position: absolute;
-  top: 9px;
+  top: -11px;
   padding: 5px 10px;
   background: #125df3;
   font-weight: 800;
   border-radius: 11px;
-  left: 1px;
-  color:#fff;
+  right: 1px;
+  color: #fff;
 }
 
 .request-empty {
@@ -1854,11 +1854,12 @@ input.has-error {
 }
 
 .recruiter-dash-nav li {
+  position: relative;
   color: #fff;
   cursor: pointer;
   margin: 0px 5px -2px 5px;
   border: 2px solid #6d849c;
-  padding: 5px 10px;
+  padding: 5px 36px 5px 10px;
   float: left;
   list-style: none;
   border-top-right-radius: 7px;

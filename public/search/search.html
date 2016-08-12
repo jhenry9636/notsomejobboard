@@ -1,9 +1,9 @@
 <div class="search-container">
   <ul class="recruiter-dash-nav clearfix">
     <li ng-click="vm.activePanel = 'search'" ng-class="{'selected' : vm.activePanel == 'search'}">Search for Developers</li>
-    <li ng-click="vm.activePanel = 'accepted'" ng-class="{'selected' : vm.activePanel == 'accepted'}">Accepted Contact Requests</li>
-    <li ng-click="vm.activePanel = 'declined'" ng-class="{'selected' : vm.activePanel == 'declined'}">Declined Contact Requests</li>
-    <li ng-click="vm.activePanel = 'pending'" ng-class="{'selected' : vm.activePanel == 'pending'}">Pending Contact Requests</li>
+    <li ng-click="vm.activePanel = 'accepted'" ng-class="{'selected' : vm.activePanel == 'accepted'}">Accepted Contact Requests<span class="reply-count">{{(vm.requests | filter: {accepted: 1}).length}}</span></li>
+    <li ng-click="vm.activePanel = 'declined'" ng-class="{'selected' : vm.activePanel == 'declined'}">Declined Contact Requests<span class="reply-count">{{(vm.requests | filter: {accepted: 2}).length}}</span></li>
+    <li ng-click="vm.activePanel = 'pending'" ng-class="{'selected' : vm.activePanel == 'pending'}">Pending Contact Requests<span class="reply-count">{{(vm.requests | filter: {accepted: 0}).length}}</span></li>
   </ul>
 
   <div id="search-panel" ng-show="vm.activePanel == 'search'">
@@ -94,6 +94,12 @@
       </div>
     </div>
   </div>
+
+  <span class="request-empty" ng-show="vm.activePanel == 'pending' && (vm.requests | filter: {accepted: 0}).length == 0">No requests awaiting reply</span>
+  <span class="request-empty" ng-show="vm.activePanel == 'accepted' && (vm.requests | filter: {accepted: 1}).length == 0">No accepted requests</span>
+  <span class="request-empty" ng-show="vm.activePanel == 'declined' && (vm.requests | filter: {accepted: 2}).length == 0">No declined requests</span>
+
+
 
   <div id="pending-panel" ng-show="vm.activePanel == 'pending'">
     <h3>Pending Requests</h3>
