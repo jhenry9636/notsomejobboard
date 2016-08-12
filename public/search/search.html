@@ -1,84 +1,148 @@
 <div class="search-container">
-  <h3>Candidate Search</h3>
-  <div class="row">
-    <div class="col-sm-4">
-      <ul class="comp-list search-page">
-        <li></li>
-        <li ng-click="vm.selectFulltime()" ng-class="{'selected': vm.fulltimeSelected}">Full Time</li>
-        <li ng-click="vm.selectContract()" ng-class="{'selected': vm.contractSelected}">Contract</li>
-      </ul>
-      <div class="search-hourly" ng-show="vm.contractSelected">
-        <div class="help-block" ng-show="vm.errors.compHrError">
-          <p>Must provide hourly compensation maximum.</p>
-        </div>
-        <label for="givenName">Please provide the maximum hourly rate for this role.</label>
-        <div class="form-group">
-          <div class="comp-wrapper hourly">
-            <input type="text" class="form-control"
-                   ng-class="{'has-error' : vm.errors.compHrError}"
-                   ng-model="vm.query.compHr" placeholder="e.g. $65.00" ui-money-mask="2" name="comp" required />
-            <span class="comp-unit">/hr</span>
+  <ul class="recruiter-dash-nav clearfix">
+    <li ng-click="vm.activePanel = 'search'" ng-class="{'selected' : vm.activePanel == 'search'}">Search for Developers</li>
+    <li ng-click="vm.activePanel = 'declined'" ng-class="{'selected' : vm.activePanel == 'declined'}">Declined Contact Requests</li>
+    <li ng-click="vm.activePanel = 'accepted'" ng-class="{'selected' : vm.activePanel == 'accepted'}">Accepted Contact Requests</li>
+  </ul>
+  <div id="search-panel" ng-show="vm.activePanel == 'search'">
+    <h3>Candidate Search</h3>
+
+    <div class="row">
+      <div class="col-sm-4">
+        <ul class="comp-list search-page">
+          <li></li>
+          <li ng-click="vm.selectFulltime()" ng-class="{'selected': vm.fulltimeSelected}">Full Time</li>
+          <li ng-click="vm.selectContract()" ng-class="{'selected': vm.contractSelected}">Contract</li>
+        </ul>
+        <div class="search-hourly" ng-show="vm.contractSelected">
+          <div class="help-block" ng-show="vm.errors.compHrError">
+            <p>Must provide hourly compensation maximum.</p>
+          </div>
+          <label for="givenName">Please provide the maximum hourly rate for this role.</label>
+          <div class="form-group">
+            <div class="comp-wrapper hourly">
+              <input type="text" class="form-control"
+                     ng-class="{'has-error' : vm.errors.compHrError}"
+                     ng-model="vm.query.compHr" placeholder="e.g. $65.00" ui-money-mask="2" name="comp" required />
+              <span class="comp-unit">/hr</span>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="search-fulltime" ng-show="vm.fulltimeSelected">
-        <div class="help-block" ng-show="vm.errors.compFullError">
-          <p>Must provide compensation maximum.</p>
-        </div>
-        <label for="givenName">Please provide the maximum yearly salary for this role.</label>
-        <div class="form-group">
-          <div class="comp-wrapper salary">
-            <input type="text" name="comp" class="form-control"
-                   ng-class="{'has-error' : vm.errors.compFullError}"
-                   ng-model="vm.query.compFull" placeholder="e.g. $100,000" ui-money-mask="0" required />
-            <span class="comp-unit">/yr</span>
+        <div class="search-fulltime" ng-show="vm.fulltimeSelected">
+          <div class="help-block" ng-show="vm.errors.compFullError">
+            <p>Must provide compensation maximum.</p>
+          </div>
+          <label for="givenName">Please provide the maximum yearly salary for this role.</label>
+          <div class="form-group">
+            <div class="comp-wrapper salary">
+              <input type="text" name="comp" class="form-control"
+                     ng-class="{'has-error' : vm.errors.compFullError}"
+                     ng-model="vm.query.compFull" placeholder="e.g. $100,000" ui-money-mask="0" required />
+              <span class="comp-unit">/yr</span>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="help-block" ng-show="vm.errors.skillsError">
-        <p>Must select at least 1 technology to search.</p>
-      </div>
-      <label>Please select technologies that are important to this role.</label>
-      <perfect-scrollbar class="scroller search-skill-wrapper" wheel-propagation="true" wheel-speed="10" min-scrollbar-length="20">
-        <div class="clearfix skill-item"
-             ng-class="{'selected': vm.selectedSkills.indexOf(skill) > -1}"
-             ng-repeat="skill in vm.skills"
-             ng-click="vm.handleSkillToggle(skill)">
-          <div class="search-skill-reply" >
-            <span>Yes</span><span>No</span>
-          </div>
-          <span>{{skill}}</span>
+        <div class="help-block" ng-show="vm.errors.skillsError">
+          <p>Must select at least 1 technology to search.</p>
         </div>
-      </perfect-scrollbar>
-      <div class="help-block" ng-show="vm.errors.locationError">
-        <p>Location is required.</p>
+        <label>Please select technologies that are important to this role.</label>
+        <perfect-scrollbar class="scroller search-skill-wrapper" wheel-propagation="true" wheel-speed="10" min-scrollbar-length="20">
+          <div class="clearfix skill-item"
+               ng-class="{'selected': vm.selectedSkills.indexOf(skill) > -1}"
+               ng-repeat="skill in vm.skills"
+               ng-click="vm.handleSkillToggle(skill)">
+            <div class="search-skill-reply" >
+              <span>Yes</span><span>No</span>
+            </div>
+            <span>{{skill}}</span>
+          </div>
+        </perfect-scrollbar>
+        <div class="help-block" ng-show="vm.errors.locationError">
+          <p>Location is required.</p>
+        </div>
+        <label for="search-location">Please specify a location for this role. This location will be used in providing commute estimations for our developers</label>
+        <input type="text" class="form-control" id="search-location" name="givenName"
+               ng-class="{'has-error' : vm.errors.locationError}"
+               ng-model="vm.query.locationName" placeholder="e.g. Downtown San Francisco" required />
+        <nsj-search-google-map></nsj-search-google-map>
+        <button type="submit" class="btn btn-success btn-lg" ng-click="vm.submitForm(true)">Search</button>
       </div>
-      <label for="search-location">Please specify a location for this role. This location will be used in providing commute estimations for our developers</label>
-      <input type="text" class="form-control" id="search-location" name="givenName"
-             ng-class="{'has-error' : vm.errors.locationError}"
-             ng-model="vm.query.locationName" placeholder="e.g. Downtown San Francisco" required />
-      <nsj-search-google-map></nsj-search-google-map>
-      <button type="submit" class="btn btn-success btn-lg" ng-click="vm.submitForm(true)">Search</button>
+      <div class="col-sm-8 request-column" ng-class="{'loading' : vm.loading}">
+        <p class="no-devs" ng-hide="vm.developers.length">No results found. Please try another search.</p>
+        <div class="request-item" ng-repeat="developer in vm.developers">
+          <div class="request-inner">
+            <div class="request-avatar">
+              <img src="/img/portfolio/avatar.png" width="129" height="90" style="margin-bottom: 20px;" />
+            </div>
+            <h3>Hi, I'm {{developer.givenName}}</h3>
+            <h4>Im looking to work near {{developer.locationName}}</h4>
+            <span class="request-commute">Ive used the following technologies on <a href="#">{{developer.projects.length}} project(s)</a></span>
+            <ul class="request-skills">
+              <li ng-repeat="tech in developer.projects[0].techUsed">{{tech}}</li>
+            </ul>
+            <div class="recruiter-info" ng-show="developer.note">
+              <span class="recruiter-note">Note from {{developer.givenName}}:</span>
+              <span class="recruiter-name">{{developer.note}}</span>
+            </div>
+          </div>
+          <a href="#" ng-click="vm.sendRequest(developer)" class="request-contact">
+            <i class="fa fa-paper-plane" aria-hidden="true"></i>
+            Send Contact Request
+          </a>
+        </div>
+      </div>
     </div>
-    <div class="col-sm-8 request-column" ng-class="{'loading' : vm.loading}">
-      <p class="no-devs" ng-hide="vm.developers.length">No results found. Please try another search.</p>
-      <div class="request-item" ng-repeat="developer in vm.developers">
-        <div class="request-inner">
-          <h3>Hi, I'm {{developer.givenName}}</h3>
-          <h4>Im looking to work near {{developer.locationName}}</h4>
-          <span class="request-commute">Ive used the following technologies on <a href="#">{{developer.projects.length}} project(s)</a></span>
-          <ul class="request-skills">
-            <li ng-repeat="tech in developer.projects[0].techUsed">{{tech}}</li>
-          </ul>
-          <div class="recruiter-info" ng-show="developer.note">
-            <span class="recruiter-note">Note from {{developer.givenName}}:</span>
-            <span class="recruiter-name">{{developer.note}}</span>
-          </div>
+  </div>
+
+
+
+
+
+
+
+  <div id="declined-panel"  ng-show="vm.activePanel == 'declined'">
+    <div class="request-item" >
+      <div class="request-inner">
+
+        <h3>Accepted</h3>
+        <h4>Jarrad Henry</h4>
+        <span class="request-commute">(310)754-0662</a></span>
+        <ul class="request-skills">
+          <li ng-repeat="tech in developer.projects[0].techUsed">{{tech}}</li>
+        </ul>
+        <div class="recruiter-info" ng-show="developer.note">
+          <span class="recruiter-note">Note from {{developer.givenName}}:</span>
+          <span class="recruiter-name">{{developer.note}}</span>
         </div>
-        <a href="#" ng-click="vm.sendRequest(developer._id)" class="request-contact">
-          <i class="fa fa-paper-plane" aria-hidden="true"></i>
-          Send Contact Request
-        </a>
+      </div>
+      <a href="#" ng-click="vm.sendRequest(developer)" class="request-contact">
+        <i class="fa fa-paper-plane" aria-hidden="true"></i>
+        Send Contact Request
+      </a>
+    </div>
+  </div>
+
+
+
+
+
+
+
+  <div ng-show="vm.activePanel == 'accepted'">
+    <div class="request-accepted">
+      <div class="request-inner">
+        <div style="text-align: center;">
+          <i class="fa fa-thumbs-o-up" aria-hidden="true" style="font-size: 77px; margin-bottom: 15px;"></i>
+        </div>
+        <h3>Jarrad is interested</h3>
+        <p style="margin:0px">Google</p>
+        <p style="margin:0px">$85,000/yr</p>
+        <div class="recruiter-info" style="text-align: center;">
+          <img src="/img/portfolio/avatar.png" width="129" height="90" style="margin-bottom: 20px;" />
+          <span class="recruiter-note">Jarrad Henry</span>
+          <span class="recruiter-name">jarrad.henry@gmail.com</span>
+          <span class="recruiter-ph">(310)754-0662</span>
+        </div>
       </div>
     </div>
   </div>

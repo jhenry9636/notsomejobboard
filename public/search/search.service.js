@@ -16,9 +16,7 @@
 
     function sendRequest(request) {
       var deferred = $q.defer();
-
-      debugger
-
+      
       $http.post('/api/request/add', request)
         .then(success)
         .catch(fail)

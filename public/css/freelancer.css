@@ -273,16 +273,16 @@ section.success a.active {
   padding-right: 0.5em;
   margin: auto 0.5em auto -1.5em;
 }
-#toast-container > .toast-warning:before {
+#dashboard #toast-container > .toast-warning:before {
   content: "\f164;";
 }
-#toast-container > .toast-error:before {
+#dashboard #toast-container > .toast-error:before {
   content: "\f165";
 }
-#toast-container > .toast-info:before {
+#dashboard #toast-container > .toast-info:before {
   content: "\f165";
 }
-#toast-container > .toast-success:before {
+#dashboard #toast-container > .toast-success:before {
   content: "\f164";
 }
 
@@ -1006,6 +1006,14 @@ button.info-form-button {
   color: #0C9EEF;
 }
 
+.request-avatar {
+  text-align: center;
+}
+
+.request-avatar img {
+  margin: auto;
+}
+
 .add-project-desktop {
   float: left;
 }
@@ -1457,7 +1465,7 @@ textarea.has-error {
   width: 32%;
   overflow: hidden;
   position: relative;
-  height: 360px;
+  height: 450px;
 }
 
 .request-item.selected {
@@ -1515,6 +1523,7 @@ textarea.has-error {
 .recruiter-info span {
   display: block;
   color: #717f86;
+  font-size: 14px;
 }
 
 .request-reply {
@@ -1704,11 +1713,11 @@ input.has-error {
 .search-container .request-item h3 {
   margin: 0px 0px 10px 0px;
   text-align: left;
-  font-size: 21px;
+  font-size: 17px;
 }
 
 .search-container .request-item h4 {
-  font-size: 18px;
+  font-size: 15px;
 }
 
 .success-signup {
@@ -1792,6 +1801,10 @@ input.has-error {
   text-align: left;
 }
 
+.request-commute {
+  font-size: 14px;
+}
+
 .request-contact {
   border-top: solid 1px #c5d6de;
   position: absolute;
@@ -1801,7 +1814,7 @@ input.has-error {
   right: 0px;
   text-align: center;
   padding: 15px 0px;
-  font-size: 19px;
+  font-size: 17px;
 }
 
 #dashboard .request-item {
@@ -1810,6 +1823,10 @@ input.has-error {
 
 #search .request-item {
   position: relative;
+}
+
+#accepted-panel .request-item {
+  width: 20%;
 }
 
 .reply-count {
@@ -1828,4 +1845,49 @@ input.has-error {
   color: #868080;
   font-size: 17px;
   font-style: italic;
+}
+
+.recruiter-dash-nav {
+  margin: 0px 0px 20px 0px;
+  padding: 0px;
+  border-bottom: 2px solid #95a5a6;
+}
+
+.recruiter-dash-nav li {
+  color: #fff;
+  cursor: pointer;
+  margin: 0px 5px -2px 5px;
+  border: 2px solid #95a5a6;
+  padding: 5px 10px;
+  float: left;
+  list-style: none;
+  border-top-right-radius: 7px;
+  border-top-left-radius: 7px;
+  background: #95a5a6;
+}
+
+.recruiter-dash-nav li.selected {
+  border-bottom-color: #fff;
+  color: #95a5a6;
+  background: #fff;
+}
+
+
+.recruiter-dash-nav li:first-child {
+  margin-left: 0px;
+}
+
+.request-accepted {
+  width: 21%;
+  padding: 10px;
+  border: 2px solid green;
+  color: green;
+  text-align: center;
+}
+
+.request-accepted h3,
+.request-accepted h4,
+.request-accepted p {
+  color: green;
+  text-align: center;
 }

@@ -55,6 +55,10 @@
     vm.query.locationName = null;
     vm.query.locationCoords = null;
 
+    vm.activePanel = 'search';
+
+    vm.developerName = null;
+
     function submitForm() {
 
 
@@ -153,10 +157,10 @@
       })
     })
 
-    function sendRequest(recipientId) {
+    function sendRequest(developer) {
       var request = {};
 
-      request.recipient = recipientId;
+      request.recipient = developer._id;
       request.sender = window.user.currentUser;
       request.location = vm.query.locationCoords;
       request.compType = vm.fulltimeSelected ? 'fulltime' : 'hourly';
@@ -164,9 +168,12 @@
       request.technologies = vm.query.skills;
       request.clientName = vm.query.clientName;
 
+      var name = developer.givenName;
+
+
       searchService.sendRequest(request)
         .then(function(response) {
-          console.log(response)
+          toastr.info('Contact Request Sent to '+name);
         }, function(error) {
           console.dir(error)
         })

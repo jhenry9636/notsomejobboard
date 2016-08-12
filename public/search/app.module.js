@@ -5,8 +5,7 @@
     'ngMessages',
     'ui.utils.masks',
     'perfect_scrollbar',
-    'ui-rangeSlider',
-    'toastr'
+    'ui-rangeSlider'
   ]);
   
   

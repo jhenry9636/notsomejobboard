@@ -70,7 +70,7 @@
         .then(function(response) {
           vm.clearSelectedIndex();
           toastr.success('from ' +dashboardService.givenName+ ' @ ' +
-            $filter('currency')(dashboardService.comp), 'Contact Request Accepted')
+            $filter('currency')(dashboardService.comp, "$", 0), 'Contact Request Accepted')
           vm.requests = response.data.collection;
         })
 
