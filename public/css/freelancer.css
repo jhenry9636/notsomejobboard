@@ -1857,13 +1857,13 @@ input.has-error {
   color: #fff;
   cursor: pointer;
   margin: 0px 5px -2px 5px;
-  border: 2px solid #95a5a6;
+  border: 2px solid #6d849c;
   padding: 5px 10px;
   float: left;
   list-style: none;
   border-top-right-radius: 7px;
   border-top-left-radius: 7px;
-  background: #95a5a6;
+  background: #6d849c;
 }
 
 .recruiter-dash-nav li.selected {
