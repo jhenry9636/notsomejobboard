@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
-var Request = mongoose.model('Request')
+var Request = mongoose.model('Request');
+var ObjectId = require('mongoose').Types.ObjectId;
 
 
 exports.add = function(req, res) {
@@ -51,7 +52,7 @@ exports.delete = function(req, res) {
 exports.getByDeveloperId = function(req, res) {
   //TODO: only return validated records
   var query = Request.find(
-    {recipient: req.params.developerId},
+    {recipient: new ObjectId(req.params.developerId)},
     '-__v');
 
   query.populate('sender')
@@ -163,17 +164,20 @@ exports.setAccepted = function(req, res) {
 
 exports.getByRecruiterId = function(req, res) {
   //TODO: only return validated records
+
+  console.log('hre'+req.params.recruiterId)
+
   var query = Request.find(
-    {sender: req.params.recruiterId},
+    {sender: new ObjectId(req.params.recruiterId)},
     '-__v');
 
   query.populate('recipient')
-  query.exec(function(err, requests) {
+  query.exec(function(err, collection) {
 
-    if(request) {
+    if(!collection) {
       return res.status(404).send({
         success: false,
-        reason: new Error('Request not found')
+        reason: new Error('Request not found').toString()
       })
     }
 
@@ -186,7 +190,7 @@ exports.getByRecruiterId = function(req, res) {
 
     return res.send({
       success: true,
-      collection: requests
+      collection: collection
     })
 
   })

@@ -1,12 +1,13 @@
 <div class="search-container">
   <ul class="recruiter-dash-nav clearfix">
     <li ng-click="vm.activePanel = 'search'" ng-class="{'selected' : vm.activePanel == 'search'}">Search for Developers</li>
-    <li ng-click="vm.activePanel = 'declined'" ng-class="{'selected' : vm.activePanel == 'declined'}">Declined Contact Requests</li>
     <li ng-click="vm.activePanel = 'accepted'" ng-class="{'selected' : vm.activePanel == 'accepted'}">Accepted Contact Requests</li>
+    <li ng-click="vm.activePanel = 'declined'" ng-class="{'selected' : vm.activePanel == 'declined'}">Declined Contact Requests</li>
+    <li ng-click="vm.activePanel = 'pending'" ng-class="{'selected' : vm.activePanel == 'pending'}">Pending Contact Requests</li>
   </ul>
+
   <div id="search-panel" ng-show="vm.activePanel == 'search'">
     <h3>Candidate Search</h3>
-
     <div class="row">
       <div class="col-sm-4">
         <ul class="comp-list search-page">
@@ -94,56 +95,70 @@
     </div>
   </div>
 
-
-
-
-
-
-
-  <div id="declined-panel"  ng-show="vm.activePanel == 'declined'">
-    <div class="request-item" >
+  <div id="pending-panel" ng-show="vm.activePanel == 'pending'">
+    <h3>Pending Requests</h3>
+    <div class="request-pending" ng-repeat="request in vm.requests | filter: {accepted: 0}">
       <div class="request-inner">
+        <div style="text-align: center;">
+          <i class="fa fa-clock-o" aria-hidden="true" style="font-size: 77px; margin-bottom: 15px;"></i>
+        </div>
+        <h3>{{ request.recipient.givenName }} hasn't responded.</h3>
+        <p style="margin:0px">{{ request.clientName }}</p>
+        <p style="margin:0px" ng-if="request.compType =='fulltime'">{{request.compMax | currency:"$":0}}/yr</p>
+        <p style="margin:0px" ng-if="request.compType != 'fulltime'">{{request.compMax | currency:"$":0}}/hr</p>
 
-        <h3>Accepted</h3>
-        <h4>Jarrad Henry</h4>
-        <span class="request-commute">(310)754-0662</a></span>
-        <ul class="request-skills">
-          <li ng-repeat="tech in developer.projects[0].techUsed">{{tech}}</li>
-        </ul>
-        <div class="recruiter-info" ng-show="developer.note">
-          <span class="recruiter-note">Note from {{developer.givenName}}:</span>
-          <span class="recruiter-name">{{developer.note}}</span>
+        <p style="margin:0px" class="request-sent">You sent this requst at {{ request.createdAt | dateInMillis | date: 'MMMM d'}} <br />around {{ request.createdAt | dateInMillis | date: 'h:mm a'}}</p>
+
+        <div class="recruiter-info" style="text-align: center;">
+          <img src="/img/portfolio/avatar.png" width="129" height="90" style="margin-bottom: 20px;" />
         </div>
       </div>
-      <a href="#" ng-click="vm.sendRequest(developer)" class="request-contact">
-        <i class="fa fa-paper-plane" aria-hidden="true"></i>
-        Send Contact Request
-      </a>
     </div>
   </div>
 
-
-
-
-
-
-
-  <div ng-show="vm.activePanel == 'accepted'">
-    <div class="request-accepted">
+  <div id="accepted-panel" ng-show="vm.activePanel == 'accepted'">
+    <h3>Accepted Requests</h3>
+    <div class="request-accepted" ng-repeat="request in vm.requests | filter: {accepted: 1}">
       <div class="request-inner">
         <div style="text-align: center;">
           <i class="fa fa-thumbs-o-up" aria-hidden="true" style="font-size: 77px; margin-bottom: 15px;"></i>
         </div>
-        <h3>Jarrad is interested</h3>
-        <p style="margin:0px">Google</p>
-        <p style="margin:0px">$85,000/yr</p>
+        <h3>Great News! {{request.recipient.givenName}} is interested</h3>
+        <p style="margin:0px">{{request.recipient.clientName}}</p>
+        <p style="margin:0px" ng-if="request.compType =='fulltime'">{{request.compMax | currency:"$":0}}/yr</p>
+        <p style="margin:0px" ng-if="request.compType != 'fulltime'">{{request.compMax | currency:"$":0}}/hr</p>
         <div class="recruiter-info" style="text-align: center;">
           <img src="/img/portfolio/avatar.png" width="129" height="90" style="margin-bottom: 20px;" />
-          <span class="recruiter-note">Jarrad Henry</span>
-          <span class="recruiter-name">jarrad.henry@gmail.com</span>
-          <span class="recruiter-ph">(310)754-0662</span>
+          <span class="recruiter-note">{{request.recipient.givenName}} {{request.recipient.familyName}}</span>
+          <span class="recruiter-name">{{request.recipient.primaryEmail}}</span>
+          <span class="recruiter-ph">{{request.recipient.primaryPhone | tel}}</span>
         </div>
       </div>
     </div>
   </div>
+  <div id="declined-panel"  ng-show="vm.activePanel == 'declined'">
+    <h3>Declined Requests<span>(Don't worry about deleting declined requests. All contact requests are deleted 5 days after creation)</span></h3>
+    <div class="request-declined" ng-repeat="request in vm.requests | filter: {accepted: 2}">
+      <div class="request-inner">
+        <div style="text-align: center;">
+          <i class="fa fa-thumbs-o-down" aria-hidden="true" style="font-size: 77px; margin-bottom: 15px;"></i>
+        </div>
+        <h3>Sorry, {{request.recipient.givenName}} is not interested</h3>
+        <p style="margin:0px">{{request.clientName}}</p>
+        <p style="margin:0px" ng-if="request.compType =='fulltime'">{{request.compMax | currency:"$":0}}/yr</p>
+        <p style="margin:0px" ng-if="request.compType != 'fulltime'">{{request.compMax | currency:"$":0}}/hr</p>
+        <div class="recruiter-info" style="text-align: center;">
+          <p>I would prefer to be using different technologies.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+
+
+
+
+
+
+
 </div>

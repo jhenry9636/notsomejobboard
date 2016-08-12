@@ -79,6 +79,7 @@
     vm.developer.locationCoords = null;
     vm.developer.compHr = null;
     vm.developer.compFt = null;
+    vm.developer.primaryPhone = null;
     vm.developer.fulltimeSelected = vm.fulltimeSelected;
     vm.developer.contractSelected = vm.contractSelected;
 

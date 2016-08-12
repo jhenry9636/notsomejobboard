@@ -17,10 +17,10 @@ module.exports = function(server) {
   requestRouter.route('/delete')
     .delete(requestCtrl.delete)
 
-  requestRouter.route('/:developerId')
+  requestRouter.route('/developer/:developerId')
     .get(requestCtrl.getByDeveloperId)
 
-  requestRouter.route('/:recruiterId')
+  requestRouter.route('/recruiter/:recruiterId')
     .get(requestCtrl.getByRecruiterId)
 
   return requestRouter

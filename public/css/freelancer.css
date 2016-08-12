@@ -1883,6 +1883,40 @@ input.has-error {
   border: 2px solid green;
   color: green;
   text-align: center;
+  height: 440px;
+  float: left;
+  margin: 10px 10px 0px 0px;
+  border-radius: 10px 10px 10px 10px;
+  -moz-border-radius: 10px 10px 10px 10px;
+  -webkit-border-radius: 10px 10px 10px 10px;
+}
+
+.request-declined {
+  width: 21%;
+  padding: 10px;
+  border: 2px solid red;
+  color: red;
+  text-align: center;
+  height: 360px;
+  float: left;
+  margin: 10px 10px 0px 0px;
+  border-radius: 10px 10px 10px 10px;
+  -moz-border-radius: 10px 10px 10px 10px;
+  -webkit-border-radius: 10px 10px 10px 10px;
+}
+
+.request-pending {
+  width: 21%;
+  padding: 10px;
+  border: 2px solid #0c9eef;
+  color: #0c9eef;
+  text-align: center;
+  height: 366px;
+  float: left;
+  margin: 10px 10px 0px 0px;
+  border-radius: 10px 10px 10px 10px;
+  -moz-border-radius: 10px 10px 10px 10px;
+  -webkit-border-radius: 10px 10px 10px 10px;
 }
 
 .request-accepted h3,
@@ -1890,4 +1924,30 @@ input.has-error {
 .request-accepted p {
   color: green;
   text-align: center;
+}
+
+.request-declined h3,
+.request-declined h4,
+.request-declined p{
+  color: red;
+  text-align: center;
+}
+
+.request-pending h3,
+.request-pending h4,
+.request-pending p{
+  color: #0c9eef;
+  text-align: center;
+}
+
+#declined-panel h3 span {
+  font-size: 12px;
+  display: inline-block;
+  margin-left: 10px;
+  color: #6c7a86;
+  font-weight: normal;
+}
+
+.request-declined p {
+  margin-top: 15px;
 }

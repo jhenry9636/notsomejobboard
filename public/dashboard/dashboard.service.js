@@ -39,7 +39,7 @@
     function getAll(query) {
       var deffered = $q.defer();
 
-      $http.get('/api/request/' + window.user.currentUser, query)
+      $http.get('/api/request/developer/' + window.user.currentUser, query)
         .then(function(developer) {
           service.developers = developer;
           deffered.resolve(developer)

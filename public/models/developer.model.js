@@ -21,6 +21,7 @@
         this.givenName = obj.givenName;
         this.familyName = obj.familyName;
         this.primaryEmail = obj.primaryEmail;
+        this.primaryPhone = obj.primaryPhone;
         this.password = obj.password;
         this.projects = obj.projects;
         this.locationName = obj.locationName;

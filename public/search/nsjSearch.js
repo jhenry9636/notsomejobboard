@@ -149,6 +149,13 @@
       vm.query.skills = skillsService.selectedSkills;
     }
 
+    function getAll() {
+      searchService.getAll()
+        .then(function(response) {
+          vm.requests = response.data.collection;
+        })
+    }
+
     $rootScope.$on('search:location', function($scope, placeObj) {
       $scope.currentScope.$apply(function() {
         vm.query.locationName = placeObj.formatted_address;
@@ -174,12 +181,14 @@
       searchService.sendRequest(request)
         .then(function(response) {
           toastr.info('Contact Request Sent to '+name);
+          vm.getAll()
         }, function(error) {
           console.dir(error)
         })
 
     }
-    
+    getAll()
+
 
 
   }

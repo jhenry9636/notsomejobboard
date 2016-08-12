@@ -38,7 +38,10 @@ var developerSchema = new Schema({
   compMin: {
     type: Number
   },
-  primaryPhone: String,
+  primaryPhone: {
+    default: false,
+    type: String
+  },
   receivedContactRequests: [{
     type: Schema.ObjectId,
     ref: 'Request',

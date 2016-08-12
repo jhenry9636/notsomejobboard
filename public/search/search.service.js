@@ -13,6 +13,7 @@
     service.developers = null;
     service.search = search;
     service.sendRequest = sendRequest;
+    service.getAll = getAll;
 
     function sendRequest(request) {
       var deferred = $q.defer();
@@ -53,6 +54,23 @@
 
     }
 
+
+    function getAll() {
+      var deffered = $q.defer();
+      console.log('/api/request/recruiter/' + window.user.currentUser)
+      $http.get('/api/request/recruiter/' + window.user.currentUser)
+        .then(function(requests) {
+          service.requests = requests;
+          deffered.resolve(requests)
+        })
+        .catch(function(error) {
+          deffered.reject(error)
+        });
+
+      return deffered.promise;
+
+    }
+    
     return service;
 
   }

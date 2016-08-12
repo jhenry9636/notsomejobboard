@@ -1,7 +1,7 @@
 (function() {
   'use strict'
 
-  angular.module('dashboard', ['toastr']);
+  angular.module('dashboard', []);
 
 
   angular.module('dashboard', [])
