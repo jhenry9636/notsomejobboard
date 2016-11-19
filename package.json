@@ -45,7 +45,8 @@
     "q": "^1.4.1",
     "rand-token": "^0.2.1",
     "slug": "^0.9.1",
-    "stylus": "^0.54.5"
+    "stylus": "^0.54.5",
+    "twilio": "^2.9.2"
   },
   "devDependencies": {}
 }

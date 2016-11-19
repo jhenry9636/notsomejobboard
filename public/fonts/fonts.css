@@ -1,0 +1,23 @@
+/*=== Webfonts ===*/ 
+
+@font-face {
+    font-family: 'avenir';
+    src: url('avenir-black-webfont.eot');
+    src: url('avenir-black-webfont.eot?#iefix') format('embedded-opentype'),
+         url('avenir-black-webfont.woff') format('woff'),
+         url('avenir-black-webfont.ttf') format('truetype'),
+         url('avenir-black-webfont.svg#avenir_95_blackregular') format('svg');
+    font-weight: 800;
+    font-style: normal;
+}
+
+@font-face {
+  font-family: 'avenirLight';
+  src: url('AvenirLTStd-Roman.eot');
+  src: url('AvenirLTStd-Roman.eot?#iefix') format('embedded-opentype'),
+  url('AvenirLTStd-Roman.woff') format('woff'),
+  url('AvenirLTStd-Roman.ttf') format('truetype'),
+  url('AvenirLTStd-Roman.svg#avenir_95_blackregular') format('svg');
+  font-weight: 800;
+  font-style: normal;
+}

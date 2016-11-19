@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 var Developer = mongoose.model('Developer')
-
+var texter = require('../common/texter.js')
 
 exports.search = function(req, res) {
   var query = {
@@ -11,6 +11,13 @@ exports.search = function(req, res) {
   if(req.body.skills) {
     query['projects.techUsed'] = { $in: req.body.skills };
   }
+
+  texter.textRequest('0').then(function(data) {
+    console.log(data)
+  }, function(err) {
+    console.log(err)
+  })
+
 
   Developer.find(query)
     // .where('locationPolyon').intersects()
