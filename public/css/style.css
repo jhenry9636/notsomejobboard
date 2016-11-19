@@ -145,7 +145,8 @@ img{
 }
 /*=== Columns, Rows ===*/
 .col1{
-	width: 655px
+  width: 655px;
+  margin-left: 25px;
 }
 .col2, .col3{
 	float: left;
