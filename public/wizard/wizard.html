@@ -63,13 +63,13 @@
           </div>
           <div class="row">
             <div class="col-sm-6">
-              <div class="form-group" ng-class="{ 'has-error': vm.hasErrors}">
+              <div class="form-group location-input" ng-class="{ 'has-error': vm.hasErrors}">
                 <input type="text" id="autocomplete" name="location" class="form-control" ng-model="vm.developer.locationName" placeholder="e.g. Downtown San Francisco" required />
               </div>
               <div>
                 <div class="sm-col-12">
                   <div style="padding: 0px 14px;">
-                    <h5 style="padding: 0px; margin: 20px 0px 10px 0px; text-align: center;">Radius</h5>
+                    <h5 style="padding: 0px; margin: 20px 0px 12px 15px; text-align: center;">Radius</h5>
                       <div class="slider-wrapper"
                            ng-class="{'disabled' : vm.slider.options.disabled}">
                         <rzslider rz-slider-model="vm.developer.locationRadius"
@@ -165,7 +165,7 @@
                 </div>
               </div>
               <div ng-hide="vm.isEditing" class="project-form-wrapper">
-                <h5 class="form-header">Create Project</h5>
+                <p>Create a Project</p>
                 <div class="selected-tech-wrapper clearfix">
                   <button class="secondary-form-button" ng-click="vm.toggleTechList($event)">Add/Remove technologies</button>
                   <ul class="selected-tech">

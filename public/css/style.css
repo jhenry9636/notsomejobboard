@@ -89,7 +89,7 @@ img{
 	background: #2cd3aa
 }
 #section2 p{
-	padding: 0 0 .5em
+	padding-bottom: 5px;
 }
 /*- section3 -*/
 #section3{
@@ -303,4 +303,8 @@ img{
 
 .sub-heading {
   font-family: avenirLight, Arial, Helvetica, Sans-Serif;
+}
+
+.location-input {
+  margin-left: 30px;
 }
