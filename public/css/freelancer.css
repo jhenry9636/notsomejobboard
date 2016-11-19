@@ -1198,10 +1198,15 @@ h5.form-header {
 
 .comp-unit {
   right: 0px;
-  padding-left: 6px;
   border-top-right-radius: 5px;
   border-bottom-right-radius: 5px;
-  padding: 5px;
+  padding: 10px;
+  font-size: 18px;
+  color: #666;
+}
+
+.join-container .help-block {
+  padding-left: 30px;
 }
 
 .step-pay span {
