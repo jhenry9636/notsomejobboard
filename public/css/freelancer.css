@@ -2010,7 +2010,18 @@ input.has-error {
 
 .success-wrapper {
   margin-top: 60px;
+  color: #55637d;
   font-family: avenirLight, Arial, Helvetica, Sans-Serif;
   color: #666;
   text-align: center;
+}
+
+.smiling-people {
+  margin: auto;
+  text-align: center;
+}
+
+.smiling-people img {
+  display: inline;
+  margin: auto;
 }
