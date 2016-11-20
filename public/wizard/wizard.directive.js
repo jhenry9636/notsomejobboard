@@ -22,9 +22,10 @@
                               'projectsService',
                               'developerService',
                               'mapsService',
-                              '$rootScope'];
+                              '$rootScope',
+                              '$window'];
 
-  function WizardController($scope, wizardService, skillsService, projectsService, developerService, mapsService, $rootScope) {
+  function WizardController($scope, wizardService, skillsService, projectsService, developerService, mapsService, $rootScope, $window) {
 
     var vm = this;
 
@@ -256,6 +257,7 @@
             vm.loginError = true;
             return;
           }
+          $window.location.href = '/success';
           vm.serverError = null;
         }, function(error) {
           vm.serverError = error.data.reason.split(':')[1].split(',')

@@ -2007,3 +2007,10 @@ input.has-error {
   padding: 0px;
   border: none;
 }
+
+.success-wrapper {
+  margin-top: 60px;
+  font-family: avenirLight, Arial, Helvetica, Sans-Serif;
+  color: #666;
+  text-align: center;
+}

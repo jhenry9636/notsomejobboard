@@ -19,6 +19,13 @@ module.exports = function() {
       })
     })
 
+  staticRouter.route('/success')
+    .get(function(req, res) {
+      res.render('success', {
+        user: req.user
+      })
+    })
+
   staticRouter.route('/join/recruiter')
     .get(function(req, res) {
       res.render('join-recruiter', {
