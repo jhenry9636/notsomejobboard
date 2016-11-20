@@ -18,7 +18,7 @@ body,div,h1,h2,h3,h4,h5,h6,p,ul,ol,li,dl,dt,dd,th,td,tr,img,form,fieldset,blockq
 body{
 	background: #ffffff;
 	color: #fff;
-	font:900 26px avenir, Arial, Helvetica, Sans-Serif
+	font:900 26px avenir, Arial, Helvetica, Sans-Serif;
 }
 a{
 	color: #fff;
