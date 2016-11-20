@@ -1,0 +1,105 @@
+<% include ./partials/head %>
+<body id="join">
+<!-- Join  -->
+<!-- Navigation -->
+<div id="top-bar">
+    <header id="header">
+        <div class="logo"><a href="#" title="NotSomeJobBoard.com"><img src="images/logo.svg" width="370" height="120px" alt="NotSomeJobBoard.com"></a></div>
+    </header>
+</div>
+
+<div class="join-container" ng-app="nsj">
+    <div class="success-wrapper">
+        <h3>All done!</h3>
+        <p>Expect an email and a member of our team to reach out to you in the coming days.
+        <br/>
+            We are thrilled to have you on board.</p>
+        <div class="smiling-people">
+            <img src="/images/smiling-boy.svg" width="200" />
+            <img src="/images/smiling-girl.svg" width="200" />
+        </div>
+    </div>
+</div>
+
+<% include ./partials/scripts.ejs %>
+
+<script src='/vendor/lodash/dist/lodash.min.js'></script>
+
+<script src="/vendor/angular/angular.min.js"></script>
+
+<script src="/vendor/angular-animate/angular-animate.min.js"></script>
+
+<script src="/vendor/angular-messages/angular-messages.min.js"></script>
+
+<script src="/vendor/angular-simple-logger/dist/angular-simple-logger.min.js"></script>
+
+<script src="/vendor/angular-input-masks/angular-input-masks-standalone.min.js"></script>
+
+
+<!-- TODO: Make API KEY a server variable -->
+<!-- Google Maps API -->
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true&libraries=geometry,places&key=AIzaSyBZnGkLJ3KtI-ZMBWmzMbpUjLFnoA1ej8s"></script>
+
+<!-- JS Source -->
+<script src="/vendor/angularjs-geolocation/dist/angularjs-geolocation.min.js"></script>
+
+<!-- NSJ Wizard -->
+<script src="/wizard/wizard.module.js"></script>
+
+<!-- NSJ Skills service -->
+<script src="/wizard/skills.service.js"></script>
+
+<!-- NSJ Projects service -->
+<script src="/wizard/projects.service.js"></script>
+
+<!-- NSJ Fade Indicator -->
+<script src="/wizard/nsjAddedIndicator.js"></script>
+
+<!-- Developer Model -->
+<script src="/models/developer.model.js"></script>
+
+<!-- NSJ Google Map -->
+<script src="/wizard/maps.service.js"></script>
+<script src="/wizard/nsjGoogleMap.js"></script>
+
+<script src="/wizard/wizard.service.js"></script>
+<script src="/wizard/wizard.directive.js"></script>
+
+<script src="/vendor/google-places/google-places.js"></script>
+
+<script src="/vendor/angularjs-slider/dist/rzslider.js"></script>
+
+<!-- NSJ Main -->
+<script src="/app.module.js"></script>
+
+<!--<script src='/path/to/angular-simple-logger/angular-simple-logger[.min].js'></script>-->
+<script src='/vendor/angular-google-maps/dist/angular-google-maps.min.js'></script>
+
+
+
+<% include ./partials/modals.ejs %>
+<!-- Start of Async Drift Code -->
+<script>
+    !function() {
+        var t;
+        if (t = window.driftt = window.drift = window.driftt || [], !t.init) return t.invoked ? void (window.console && console.error && console.error("Drift snippet included twice.")) : (t.invoked = !0,
+                t.methods = [ "identify", "config", "track", "reset", "debug", "show", "ping", "page", "hide", "off", "on" ],
+                t.factory = function(e) {
+                    return function() {
+                        var n;
+                        return n = Array.prototype.slice.call(arguments), n.unshift(e), t.push(n), t;
+                    };
+                }, t.methods.forEach(function(e) {
+            t[e] = t.factory(e);
+        }), t.load = function(t) {
+            var e, n, o, i;
+            e = 3e5, i = Math.ceil(new Date() / e) * e, o = document.createElement("script"),
+                    o.type = "text/javascript", o.async = !0, o.crossorigin = "anonymous", o.src = "https://js.driftt.com/include/" + i + "/" + t + ".js",
+                    n = document.getElementsByTagName("script")[0], n.parentNode.insertBefore(o, n);
+        });
+    }();
+    drift.SNIPPET_VERSION = '0.3.1';
+    drift.load('9k3rnk3sambg');
+</script>
+<!-- End of Async Drift Code -->
+</body>
