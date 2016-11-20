@@ -566,7 +566,7 @@ input[type="url"], textarea {
 .wizard-progress {
   width: 0%;
   height: 5px;
-  background: #0C9EEF;
+  background: #55637d;
   -webkit-transition: width 1s ease-in-out;
   -moz-transition: width 1s ease-in-out;
   -o-transition: width 1s ease-in-out;
