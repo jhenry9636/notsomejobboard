@@ -221,9 +221,9 @@
         <p>Specify your desired compensation.</p>
         <div class="row comp-row">
           <ul class="comp-list">
-            <li>I'm looking for</li>
-            <li ng-click="vm.selectFulltime()" ng-class="{'selected': vm.fulltimeSelected}">Full Time</li>
-            <li ng-click="vm.selectContract()" ng-class="{'selected': vm.contractSelected}">Contract</li>
+            <li class="imLooking">I'm looking for</li>
+            <li class="imLooking" ng-click="vm.selectFulltime()" ng-class="{'selected': vm.fulltimeSelected}">Full Time</li>
+            <li class="imLooking" ng-click="vm.selectContract()" ng-class="{'selected': vm.contractSelected}">Contract</li>
           </ul>
 
 
@@ -315,10 +315,10 @@
             <input type="password" class="form-control" name="password" ng-model="vm.developer.password" placeholder="Password" ng-minlength="6" required />
           </div>
           <div class="form-group">
-            <h5 style="padding: 0px; text-align: center; float: none; margin-top: 37px;">Note to recruiter</h5>
+            <h5 style="padding: 0px; text-align: center; float: none; margin-top: 37px; margin-bottom: 5px; font-family: avenirLight, Arial, Helvetica, Sans-Serif; width: auto;">Note to recruiter</h5>
             <textarea style="width: 30%; margin: auto auto 10px auto;" class="form-control" ng-model="vm.developer.note" placeholder="e.g. I have offers already in the pipeline and looking to move fast." name="note"></textarea>
           </div>
-          <button type="submit" class="register-button-wizard btn btn-success btn-lg" >Create my account</button>
+          <button type="submit" class="register-button-wizard btn btn-success btn-lg" style="padding: 0px 15px; width: inherit;">Create my account</button>
         </form>
       </div>
     </div>
